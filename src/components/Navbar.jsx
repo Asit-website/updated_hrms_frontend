@@ -6,7 +6,7 @@ const Navbar = ({showSidebar,setShowSidebar}) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   return (
-    <nav className="bg-white border-gray-200 dark:bg-gray-900 shadow-md">
+    <nav className="bg-white border-gray-200 dark:bg-gray-900 shadow-md fixed top-0 left-0 right-0">
       <div className="max-w-[1720px] flex flex-wrap items-center justify-between mx-auto p-4 md:px-8">
         <img
           src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1739012691/logo_zckmvw.png"
@@ -27,7 +27,7 @@ const Navbar = ({showSidebar,setShowSidebar}) => {
             />
           </button>
 
-          <button className=" bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" onClick={()=> setShowSidebar(!showSidebar)}>{showSidebar ? <RxCross2  fontSize={21}/> : <GiHamburgerMenu fontSize={21}/>}</button>
+          <button className=" bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white md:hidden" onClick={()=> setShowSidebar(!showSidebar)}>{showSidebar ? <RxCross2  fontSize={21}/> : <GiHamburgerMenu fontSize={21}/>}</button>
 
 
 

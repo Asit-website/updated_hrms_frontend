@@ -19,14 +19,14 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
             >
                 <h5
                     id="drawer-navigation-label"
-                    className="text-base font-semibold text-gray-500 uppercase dark:text-gray-400"
+                    className="text-base font-semibold text-gray-500 uppercase dark:text-gray-400 md:hidden"
                 >
                     Menu
                 </h5>
                 <button
                     type="button"
                     onClick={() => setShowSidebar(false)}
-                    className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 absolute top-2.5 end-2.5 inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                    className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 absolute top-2.5 end-2.5 inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white md:hidden"
                 >
                     <svg
                         aria-hidden="true"
