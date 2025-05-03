@@ -3,6 +3,7 @@ import CommonTable from "../../components/CommonTable";
 import TimerTable from "../../components/DashBoard/TimerTable";
 import { MdCalendarToday, MdEventAvailable } from "react-icons/md";
 import TimeLog from "../../components/DashBoard/TimeLog";
+import ActionMenu from "../../components/ActionMenu";
 
 const Dashboard = () => {
   const stats = [
@@ -50,18 +51,26 @@ const Dashboard = () => {
     },
   ];
   const theadData = ["TITLE", "START DATE", "END DATE", "ACTION"];
-  const tbodyData = [];
+  const tbodyData = []
   const theadData1 = ["OCCASION", "START DATE", "END DATE"];
   const tbodyData1 = [];
-
-  const theadData2 = [
-    "POJECT NAME",
-    "	ASSIGN DATE",
-    "END DATE",
-    "STATUS",
-    "ACTION",
+  const theadData2= [
+    "Project Name",
+    "Assign Date",
+    "End Date",
+    "Status",
+    "Action",
   ];
-  const tbodyData2 = [];
+  const tbodyData2 = [
+    ["apk", "2025-05-03", "2025-10-10", "Ongoing",<ActionMenu/>],
+    ["Aman", "2025-04-30", "2025-05-01", "Ongoing",<ActionMenu/>],
+    ["Kapil Choudhary", "2025-04-30", "2025-05-01", "OnHold",<ActionMenu/>],
+    ["HomePageBanner", "2025-04-23", "2025-04-30", "OnHold",<ActionMenu/>],
+    ["Nirviex2", "2025-03-31", "2025-05-01", "Ongoing",<ActionMenu/>],
+    ["inderpal", "2025-04-16", "2025-04-30", "Ongoing",<ActionMenu/>],
+
+  ];
+ 
   return (
     <div className="p-6">
       <div className="flex justify-between items-start mb-6">
@@ -99,9 +108,9 @@ const Dashboard = () => {
       </div>
 
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 pt-8">
-        <div className="bg-grey rounded-xl border-2 p-4 order-3 md:order-1">
+        <div className="bg-grey rounded-xl border-2 order-3 md:order-1">
          
-<div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-4">
+<div className="flex flex-col sm:flex-row sm:justify-between sm:items-center p-4">
   <div className="flex items-center gap-2">
     <div className="w-9 h-9 bg-blue-600 rounded-lg flex items-center justify-center">
       <Gift className="w-6 h-6 text-white" />
@@ -136,8 +145,8 @@ const Dashboard = () => {
           <TimerTable />
         </div>
 
-        <div className="bg-grey rounded-xl border-2 p-4 order-4 md:order-3">
-          <div className="flex justify-between items-center mb-4">
+        <div className="bg-grey rounded-xl border-2 order-4 md:order-3">
+          <div className="flex justify-between items-center p-4">
             <div className="flex items-center gap-2">
               <div className="w-9 h-9 bg-blue-600 rounded-lg flex items-center justify-center">
                 <Gift className="w-6 h-6 text-white" />
@@ -156,7 +165,7 @@ const Dashboard = () => {
         </div>
 
         <div className="bg-grey rounded-xl border-2 p-4 order-2 md:order-4">
-          <div className="items-center mb-4">
+          <div className="items-center">
             <div className="flex items-center mb-6">
               <div className="bg-blue-600 text-white p-2 rounded-md shadow mr-3">
                 <MdCalendarToday className="w-5 h-5" />
@@ -171,8 +180,8 @@ const Dashboard = () => {
 
           <TimeLog />
         </div>
-        <div className="bg-grey rounded-xl border-2 p-4 xl:col-span-2 order-5 md:order-5">
-          <div className="flex justify-between items-center mb-4">
+        <div className="bg-grey rounded-xl border-2  xl:col-span-2 order-5 md:order-5">
+          <div className="flex justify-between items-center p-4">
             <div className="flex items-center gap-2">
               <div className="w-9 h-9 bg-blue-600 rounded-lg flex items-center justify-center">
                 <Gift className="w-6 h-6 text-white" />
