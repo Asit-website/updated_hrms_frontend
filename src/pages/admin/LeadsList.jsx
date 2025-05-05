@@ -1,6 +1,7 @@
 import { Filter, Search, Plus, Upload, CalendarDays, ChevronDown } from "lucide-react";
 import CommonTableLead from "../../components/CommonTableLead";
 import ActionMenu from "../../components/ActionMenu";
+import { useEffect, useRef, useState } from "react";
 
 export default function LeadManagementHeader() {
     const theadData = [
@@ -81,6 +82,41 @@ export default function LeadManagementHeader() {
         ],
       ];
     
+
+      const [isOpen, setIsOpen] = useState(false);
+      const dropdownRef = useRef();
+    
+      const toggleDropdown = () => setIsOpen(!isOpen);
+    
+      useEffect(() => {
+        const handleClickOutside = (event) => {
+          if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+            setIsOpen(false);
+          }
+        };
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+      }, []);
+
+      const [isFilterOpen, setIsFilterOpen] = useState(false);
+      const filterRef = useRef();
+      useEffect(() => {
+        const handleClickOutside = (event) => {
+          if (
+            dropdownRef.current && !dropdownRef.current.contains(event.target)
+          ) {
+            setIsOpen(false);
+          }
+          if (
+            filterRef.current && !filterRef.current.contains(event.target)
+          ) {
+            setIsFilterOpen(false);
+          }
+        };
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+      }, []);
+      
   return (
   <div>
     <div className="flex flex-col md:flex-row md:items-start md:justify-between px-6 py-5 bg-white border-b gap-4">
@@ -90,10 +126,93 @@ export default function LeadManagementHeader() {
     <p className="text-sm text-gray-500 mt-0.5">Real-time insights and performance overview</p>
 
     <div className="flex flex-wrap items-center mt-4 gap-2">
-      <button className="p-2 border rounded-lg text-blue-600 border-blue-600 hover:bg-blue-50">
-        <Filter className="w-4 h-4" />
-      </button>
+    
+<div className="relative" ref={filterRef}>
+  <button
+    className="p-2 border rounded-lg text-blue-600 border-blue-600 hover:bg-blue-50"
+    onClick={() => setIsFilterOpen(!isFilterOpen)}
+  >
+    <Filter className="w-4 h-4" />
+  </button>
 
+  {isFilterOpen && (
+    <div className="absolute z-20 top-2 left-1 w-72 bg-white border border-gray-200 rounded-lg shadow-md p-4">
+      <p className="text-md text-gray-800 font-medium mb-2">Filter Leads by</p>
+      <hr/>
+      <div className="space-y-2 text-sm mt-2">
+        <label className="flex items-center space-x-2">
+          <input type="checkbox" defaultChecked />
+          <span className="text-md text-gray-900 font-medium">Touched Records</span>
+        </label>
+
+        <div className="ml-5 space-y-2">
+          <div className="flex gap-2 items-center text-gray-600 font-thin"> 
+          <span> By</span>
+          <select className="border rounded px-2 py-1 text-sm w-52">
+            <option>User & system</option>
+            <option>User only</option>
+            <option>System only</option>
+          </select>
+            </div> 
+
+          <div className="flex items-center justify-around space-x-2">
+         
+            <input
+              type="type"
+             placeholder="In the last"
+              className="w-24 border rounded px-1 py-1 text-sm"
+            />
+            <input
+              type="number"
+              defaultValue={2}
+              className="w-11 border rounded px-1 py-1 text-sm"
+            />
+            <select className="border rounded px-2 py-1 text-sm w-16">
+              <option>Days</option>
+              <option>Weeks</option>
+              <option>Months</option>
+            </select>
+          </div>
+    
+        </div>
+        <hr/>
+
+      <div className="overflow-y-scroll max-h-[250px]">
+      {[
+          "Untouched Records",
+          "Activities",
+          "Notes",
+          "Annual Revenue",
+          "Country",
+          "Untouched Records",
+          "Activities",
+          "Notes",
+          "Annual Revenue",
+          "Country",
+         
+        ].map((label) => (
+          <label key={label} className="flex items-center space-x-4 border-b-2  pt-2 pb-2">
+          
+            <input type="checkbox" />
+         
+            <span>{label}</span>
+      
+          </label>
+        ))}
+      </div>
+
+        <div className="flex justify-between pt-3">
+          <button className="bg-blue-600 text-white px-4 py-1 rounded hover:bg-blue-700 text-sm">
+            Apply
+          </button>
+          <button className="border border-blue-600 text-blue-600 px-4 py-1 rounded hover:bg-blue-50 text-sm">
+            Clear
+          </button>
+        </div>
+      </div>
+    </div>
+  )}
+</div>
       <div className="relative w-full sm:w-auto">
         <input
           type="text"
@@ -104,6 +223,7 @@ export default function LeadManagementHeader() {
       </div>
     </div>
   </div>
+  
 
   {/* Right Side */}
   <div className="flex flex-col md:items-end gap-2">
@@ -117,11 +237,27 @@ export default function LeadManagementHeader() {
         <Upload className="w-4 h-4" />
         Import Leads
       </button>
-
-      <button className="flex items-center gap-2 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200">
+      <div className="relative inline-block text-left" ref={dropdownRef}>
+      <button
+        className="flex items-center gap-2 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200"
+        onClick={toggleDropdown}
+      >
         Actions
         <ChevronDown className="w-4 h-4" />
       </button>
+
+      {isOpen && (
+        <div className="absolute right-4 z-10 top-3 w-48 bg-white rounded-lg shadow-lg border border-gray-200">
+          <ul className="py-1">
+            <li className="px-4 py-2 hover:bg-blue-100 hover:text-blue-700  cursor-pointer">Mass Delete</li>
+            <li className="px-4 py-2 hover:bg-blue-100 hover:text-blue-700 cursor-pointer">Mass Update</li>
+            <li className="px-4 py-2 hover:bg-blue-100 hover:text-blue-700  cursor-pointer">Mass Convert</li>
+            <li className="px-4 py-2 hover:bg-blue-100 hover:text-blue-700 cursor-pointer">Mass Email</li>
+          </ul>
+        </div>
+      )}
+    </div>
+
     </div>
 
     <div className="flex items-center gap-2 mt-1 flex-wrap">
