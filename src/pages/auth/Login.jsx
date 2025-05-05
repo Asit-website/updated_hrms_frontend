@@ -9,7 +9,6 @@ export default function LoginPage() {
   const location = useLocation();
   const navigate = useNavigate();
   const [userType, setUserType] = useState("admin");
-  const [tab, setTab] = useState(0);
   const [showPassword, setShowPassword] = useState(false);
 
   const [value, setValue] = useState({
@@ -40,7 +39,23 @@ export default function LoginPage() {
       employeeCode: "",
     });
   };
+  const userLogin = (e) => {
+    e.preventDefault();
+    setValue({
+      email: "",
+      password: "",
+      employeeCode: "",
+    });
+  };
 
+  const clientsLogin = (e) => {
+    e.preventDefault();
+    setValue({
+      email: "",
+      password: "",
+      employeeCode: "",
+    });
+  };
   const handleChange = (e) => {
     setValue({ ...value, [e.target.name]: e.target.value.trim("") });
   };
@@ -48,7 +63,7 @@ export default function LoginPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (tab === 3) {
+    if (userType === 'client') {
       const ans = await clientLogin(value.email.trim(""), value.password);
       console.log("Client Login Response: ", ans);
       console.log(ans?.data?.client);
@@ -111,7 +126,10 @@ export default function LoginPage() {
       <section className="bg-gray-100 min-h-screen">
         <div className="flex items-center justify-center p-5 py-12 xl:p-24 xl:py:24">
           <div className="bg-white rounded-2xl shadow-md flex max-w-5xl w-full overflow-hidden">
-            <form onSubmit={handleSubmit} className="w-full md:w-1/2 p-8 md:p-12">
+            <form
+              onSubmit={handleSubmit}
+              className="w-full md:w-1/2 p-8 md:p-12"
+            >
               <div className="mb-6 flex items-center space-x-3">
                 <img
                   src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746172201/Kds_logo_1_1_qj1mca.png"
@@ -134,7 +152,7 @@ export default function LoginPage() {
                       setUserType("admin");
                       adminLogin;
                     }}
-                    className={`px-6 py-2 text-md font-normal ${
+                    className={`px-6 py-2 text-md font-normal cursor-pointer ${
                       userType === "admin"
                         ? "bg-blue-600 text-white"
                         : "bg-white text-gray-700"
@@ -143,14 +161,30 @@ export default function LoginPage() {
                     Admin
                   </span>
                   <span
-                    onClick={() => setUserType("employee")}
-                    className={`px-6 py-2 text-md font-medium ${
+                    onClick={() => {
+                      setUserType("employee");
+                      userLogin;
+                    }}
+                    className={`px-6 py-2 text-md font-medium cursor-pointer ${
                       userType === "employee"
                         ? "bg-blue-600 text-white"
                         : "bg-white text-gray-600"
                     }`}
                   >
                     Employee
+                  </span>
+                  <span
+                    onClick={() => {
+                      setUserType("client");
+                      clientsLogin;
+                    }}
+                    className={`px-6 py-2 text-md font-normal cursor-pointer ${
+                      userType === "client"
+                        ? "bg-blue-600 text-white"
+                        : "bg-white text-gray-700"
+                    }`}
+                  >
+                    Client
                   </span>
                 </div>
 
@@ -163,13 +197,25 @@ export default function LoginPage() {
                     placeholder="Email Address"
                     className="w-full px-4 py-3 mb-4 border rounded-md text-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 placeholder:text-gray-700 bg-gray-200"
                   />
-                ) : (
+                ) : userType === "employee" ? (
                   <input
                     type="text"
+                    name="employeeCode"
+                    onChange={handleChange}
+                    value={value.employeeCode}
                     placeholder="Employee Code"
                     className="w-full px-4 py-3 mb-4 border rounded-md text-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 placeholder:text-gray-700 bg-gray-200"
                   />
-                )}
+                ) :  userType === "client" ? (
+                  <input
+                    type="email"
+                    name="email"
+                    onChange={handleChange}
+                    value={value.email}
+                    placeholder="Email Address"
+                    className="w-full px-4 py-3 mb-4 border rounded-md text-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 placeholder:text-gray-700 bg-gray-200"
+                  />
+                ): null}
               </div>
               <div className="relative w-full mb-6">
                 <input
@@ -205,7 +251,11 @@ export default function LoginPage() {
                   Forgot Password?
                 </a>
               </div>
-              <button type="submit"   disabled={loading} className="w-full bg-blue-600 text-white py-3 rounded-md text-md font-medium hover:bg-blue-700 transition">
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full bg-blue-600 text-white py-3 rounded-md text-md font-medium hover:bg-blue-700 transition"
+              >
                 Login
               </button>
             </form>
