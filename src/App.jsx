@@ -25,11 +25,11 @@ function App() {
 
         <Route path="/login" element={<Login />} />
         <Route element={<MainLayout />}>
-          <Route path="/adminDash/HRM" element={<AdminDashboard />} />
-          <Route path="/employee/dashboard" element={<EmployeeDashboard />} />
-          <Route path="/client/dashboard" element={<ClientDashboard />} />
+          <Route path="/adminDash/HRM" element={<AdminDashboard/>} />
+          <Route path="/employeeDash" element={<EmployeeDashboard />} />
+          <Route path="/client" element={<ClientDashboard />} />
 
-          <Route path="/admin/leadmanagement" element={<LeadManagement />} />
+          <Route path="/adminDash/leadDash" element={<LeadManagement />} />
           <Route path="/admin/leadlist" element={<LeadsList />} />
           <Route path="/admin/createlead" element={<CreateLead />} />
         </Route>
