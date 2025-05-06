@@ -7,13 +7,15 @@ import {
 import MainLayout from "./layout/MainLayout";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import EmployeeDashboard from "./pages/employee/Dashboard";
-import LeadManagement from "./pages/admin/LeadManagement";
+import LeadManagement from "./pages/admin/LeadManagement/LeadManagement";
+import CloseLeads from './pages/admin/LeadManagement/CloseLeads'
 import LeadsList from "./pages/admin/LeadsList";
 import CreateLead from "./pages/admin/CreateLead";
 import ClientDashboard from "./pages/Client/ClientDashboard";
 import Login from "./pages/auth/Login";
 import Forget from "./pages/auth/Forget";
 import Create from "./pages/auth/Create";
+import MyLead from "./pages/admin/LeadManagement/MyLead";
 
 function App() {
   return (
@@ -29,7 +31,9 @@ function App() {
           <Route path="/employeeDash" element={<EmployeeDashboard />} />
           <Route path="/client" element={<ClientDashboard />} />
 
-          <Route path="/adminDash/leadDash" element={<LeadManagement />} />
+          <Route path="/adminDash/leadDash" element={<LeadManagement/>} />
+          <Route path="/adminDash/closeLeads" element={<CloseLeads/>}/>
+          <Route path="/adminDash/myLead" element={<MyLead/>}/>
           <Route path="/admin/leadlist" element={<LeadsList />} />
           <Route path="/admin/createlead" element={<CreateLead />} />
         </Route>
