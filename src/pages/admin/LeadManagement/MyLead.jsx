@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "react-calendar/dist/Calendar.css";
 
 import { NavLink, useNavigate } from "react-router-dom";
@@ -14,8 +14,9 @@ import { MdOutlineEdit } from "react-icons/md";
 import { FaRegEye } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";
 import { useMain } from "../../../hooks/UseMain";
+import { useDownloadExcel } from "react-export-table-to-excel";
 
-const MyLead = ({ setAlert, pop, setPop }) => {
+const MyLead = () => {
   const navigate = useNavigate();
 
   const { user, getLead, deleteLeads, getUserByDesignation, closeLead } = useMain();
@@ -25,7 +26,7 @@ const MyLead = ({ setAlert, pop, setPop }) => {
   const [refreshFlag, setRefreshFlag] = useState(false);
 
   const [Filter1, setFilter1] = useState("Select");
-
+  const tableRef = useRef(null);
   const [allLeading, setAllLeading] = useState([]);
   const [allLead, setAllLead] = useState([]);
   const [allData, setAllData] = useState([]);
@@ -282,55 +283,63 @@ const MyLead = ({ setAlert, pop, setPop }) => {
     });
 
   }
+  const { onDownload } = useDownloadExcel({
+    currentTableRef: tableRef.current,
+    filename: 'Leads Table',
+    sheet: 'Leads'
+  })
 
   return (
     <>
-      <div className="employee-dash h-full">
-       
-
-        <div className="w-full bg-[#f5f5f5]">
+      <div className="flex relative bg-gray-100 h-full">
+        <div className="w-full">
 
           <div className="pt-[10px] px-[20px] pb-[30px]">
-            <div className="flex items-center justify-between">
+           <div className="flex items-center justify-between flex-wrap">
               <div className="lead_content1">
                 <h2 className="text-[#101820] font-semibold text-[24px]">Lead Management</h2>
                 <p className="text-[12px] text-[#6B7280] mt-1">Real-time insights and performance overview</p>
               </div>
               <div>
                 <div className="flex items-center justify-center gap-[10px]">
-                  <button className="flex items-center justify-center gap-[10px]">
-                    <NavLink className="such_thing" to="/adminDash/createLead">
+                  <button className="bg-[#0B56E4] w-[186px] h-[40px] rounded-[10px] text-white font-inter font-medium text-[16px] ml-[15px] flex items-center px-[10px] py-[0px] gap-[3px]">
+                    <NavLink className="flex items-center" to="/adminDash/createLead">
                       {" "}
                       <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746536488/pluss_syd720.png" alt="" />{" "}
-                      <span className="colp"> Create New Lead </span>{" "}
+                      <span className="text-[16px] font-medium text-white"> Create New Lead </span>{" "}
                     </NavLink>
                   </button>
 
                   <NavLink to="/adminDash/leadFile">
-                    <button className="refresh">
-                      <span className="ref1">Import Leads</span>
+                    <button className="flex items-center justify-evenly w-[162px] h-[40px] border border-[#0B56E4] rounded-[10px] bg-[linear-gradient(131.78deg,_#D1E8FD_6.87%,_#EDEFFF_91.67%)]">
+                      <span className="text-[#0B56E4] font-medium text-[16px]">Import Leads</span>
                     </button>
                   </NavLink>
 
+
+                  <button onClick={onDownload} className="flex items-center justify-evenly w-[162px] h-[40px] border border-[#0B56E4] rounded-[10px] bg-[linear-gradient(131.78deg,_#D1E8FD_6.87%,_#EDEFFF_91.67%)]">
+                      <span className="text-[#0B56E4] font-medium text-[16px]">Export Leads</span>
+                    </button>
 
 
 
                 </div>
               </div>
-            </div>
+            </div> 
 
-            <div className="laed1">
+            <div className="flex justify-between items-center flex-wrap">
               {/* left side */}
               <div>
-                <div className="leftlead1">
-                  <div className="inptsearch">
+                <div className="my-[20px] flex gap-[20px] items-center">
+                  <div className="flex items-center gap-[8px] w-[285px] h-[48px] px-[16px] py-[8px] rounded-[15px] bg-white border border-[#D0D4DC]">
                     <input
+                    className="w-[288px] h-[46px] px-[16px] py-[8px] gap-[8px] border border-t border-none text-[#666D76] outline-none text-[14px] font-normal leading-[20px] tracking-[0.0025em] text-left"
                       value={searchText}
                       onChange={(e) => setSrchText(e.target.value)}
                       type="text"
                       placeholder="Search leads"
                     />
-                    <span>
+                    <span className="flex items-center gap-4">
                       <img className="cursor-pointer" src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746530595/bx-search_sxotf2.png" alt="Serach" />
                     </span>
                   </div>
@@ -340,18 +349,20 @@ const MyLead = ({ setAlert, pop, setPop }) => {
 
               </div>
 
-              <div className="leaftlead2">
-                <span>Sort by</span>
+              <div className="flex items-center gap-5">
+                <span className="text-[#666D76] text-[14px] font-normal leading-[20px] tracking-[0.0025em] text-left">Sort by</span>
 
                 <input
+                className="w-[265px] h-[48px] px-[16px] py-[8px] gap-[8px]  border-[#1B2533] rounded-[10px] text-[#1B2533"
                   type="date"
                   value={sortDate}
                   onChange={(e) => setSortDate(e.target.value)}
                 />
 
-                <span>TO</span>
+                <span className="text-[#666D76] text-[14px] font-normal leading-[20px] tracking-[0.0025em] text-left">TO</span>
 
                 <input
+                className="w-[265px] h-[48px] px-[16px] py-[8px] gap-[8px] border-[#1B2533] rounded-[10px] text-[#1B2533"
                   type="date"
                   value={sortDate2}
                   onChange={(e) => setSortDate2(e.target.value)}
@@ -361,13 +372,13 @@ const MyLead = ({ setAlert, pop, setPop }) => {
 
             <div>
 
-              <div className="test_filter">
+              <div className="flex items-center justify-end p-8">
                 <select
                   onChange={(e) => setFilter1(e.target.value)}
                   value={Filter1}
                   name="thisFilter"
                   id="fentar"
-                  className="select-wrapper"
+                  className="relative p-1"
                 >
 
                   <option value="Select" disabled selected>
@@ -378,48 +389,36 @@ const MyLead = ({ setAlert, pop, setPop }) => {
                   <option value="Last 14 Days">Last 14 Days</option>
                   <option value="This Month">This Month</option>
                 </select>
-                <img className="doqn" width="30" src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746530550/downis_yfkfau.png" alt="downis" />
+               
               </div>
 
-              <div className=" relative w-full overflow-x-scroll md:overflow-visible">
-                <table className="w-full table1 text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                  <thead className="text-xs uppercase textALLtITL ">
+           <div className="bg-grey rounded-xl border-2 overflow-hidden">
+           <div className=" relative w-full overflow-x-scroll md:overflow-visible border-gray-200 bg-white border">
+                <table className="w-full text-sm text-gray-700">
+                  <thead className="bg-white font-semibold">
                     <tr>
-                      <th scope="col" className="px-6 py-3 taskTitl ">
-                        {/* <input
-                          onClick={() => {
-                            if (checkInpId?.length === allData?.length) {
-                              setCheckInpId([]);
-                            } else {
-                              checkallinput();
-                            }
-                          }}
-                          checked={checkInpId?.length === allData.length}
-                          type="checkbox"
-                          className="checkboxes"
-                        /> */}
+                      <th scope="col" className="text-left font-bold text-gray-900 py-3 px-4 border-b border-gray-200 whitespace-nowrap">
+                       
                         S/N
                       </th>
-                      <th scope="col" className="px-6 py-3 taskTitl ">
+                      <th scope="col" className="text-left font-bold text-gray-900 py-3 px-4 border-b border-gray-200 whitespace-nowrap">
                         Company Name
                       </th>
-                      <th scope="col" className="px-6 py-3 taskTitl ">
+                      <th scope="col" className="text-left font-bold text-gray-900 py-3 px-4 border-b border-gray-200 whitespace-nowrap ">
                         LeadName
                       </th>
-                      {/* <th scope="col" className="px-6 py-3 taskTitl ">
-                        Email
-                      </th> */}
-                      <th scope="col" className="px-6 py-3 taskTitl ">
+                     
+                      <th scope="col" className="text-left font-bold text-gray-900 py-3 px-4 border-b border-gray-200 whitespace-nowrap ">
                         Website
                       </th>
-                      <th scope="col" className="px-6 py-3 taskTitl ">
+                      <th scope="col" className="text-left font-bold text-gray-900 py-3 px-4 border-b border-gray-200 whitespace-nowrap">
                         Status
                       </th>
-                      <th scope="col" className="px-6 py-3 taskTitl ">
+                      <th scope="col" className="text-left font-bold text-gray-900 py-3 px-4 border-b border-gray-200 whitespace-nowrap ">
                         Lead Date
                       </th>
 
-                      <th scope="col" className="px-6 py-3 taskTitl ">
+                      <th scope="col" className="text-left font-bold text-gray-900 py-3 px-4 border-b border-gray-200 whitespace-nowrap">
                         ACTION
                       </th>
                     </tr>
@@ -427,37 +426,23 @@ const MyLead = ({ setAlert, pop, setPop }) => {
 
                   <tbody>
                     {currentItems.map((item, index) => (
-                      <tr key={index} className="bg-white border-b fdf">
-                        <th scope="col" className="px-6 py-3 taskTitl ">
-                          {/* <input
-                            onClick={() => {
-                              if (checkInpId.includes(item?._id)) {
-                                const filterdata = checkInpId.filter(
-                                  (id) => id !== item?._id
-                                );
-                                setCheckInpId(filterdata);
-                              } else {
-                                setCheckInpId((prev) => [...prev, item?._id]);
-                              }
-                            }}
-                            checked={checkInpId.includes(item?._id)}
-                            type="checkbox"
-                            className="checkboxes"
-                          /> */}
+                      <tr key={index} className="border-b border-gray-200 hover:bg-gray-50 transition duration-150">
+                        <td scope="col" className="px-6 py-4 text-gray-800">
+                        
                           {
                             index + 1
                           }
                           {console.log(currentItems, currentFilteredItems)}
-                        </th>
+                        </td>
 
-                        <td className="px-6 py-4 taskAns">{item?.Company}</td>
-                        <td className="px-6 py-4 taskAns">
+                        <td className="px-6 py-4 text-gray-800">{item?.Company}</td>
+                        <td className="px-6 py-4 text-gray-800">
                           {item?.FirstName} {item?.LastName}
                         </td>
-                        {/* <td className="px-6 py-4 taskAns">{item?.Email}</td> */}
-                        <td className="px-6 py-4 taskAns">{item?.Website}</td>
+                       
+                        <td className="px-6 py-4 text-gray-800">{item?.Website}</td>
 
-                        <td scope="col" className="px-3 py-3">
+                        <td scope="col" className="px-6 py-4 text-gray-800">
                           <div
                             scope="col"
                             className={`statussame 
@@ -474,7 +459,7 @@ const MyLead = ({ setAlert, pop, setPop }) => {
                           </div>
                         </td>
 
-                        <td className="px-6 py-4 taskAns">
+                        <td className="px-6 py-4 text-gray-800">
                           {new Date(item?.createAt).toLocaleDateString("en-CA")}
                         </td>
 
@@ -485,23 +470,21 @@ const MyLead = ({ setAlert, pop, setPop }) => {
                             }
                           }}
                         >
-                          <div className="viewOnwWRAP">
+                          <div className="relative">
                             <td
                               onClick={() => {
                                 setCurrView(currView === index ? -1 : index);
-                                // setShowPlay(-1);
+                           
                               }}
-                              className="px-3 py-3 flex items-center hiii_gap cursor-pointer"
+                              className="px-6 py-4 text-gray-800"
                             >
                               <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746536583/actions_cwfbva.png" alt="" />
                             </td>
 
                             {index === currView && (
-                              <div className="viewOne">
+                              <div className="absolute top-[-65px] min-w-[120px] h-fit border-t border-[#E3E3E3] flex flex-col shadow-[0_4px_12px_0px_#1A1A1A33] py-[8px] gap-[5px] rounded-tl-[8px] rounded-tr-none rounded-br-none rounded-bl-none z-[1000] bg-white right-[75px]">
                                 <div className="flex gap-4 items-center px-2 cursor-pointer" onClick={() => navigate("/adminDash/editLead", { state: item })}>
-                                  {/* <svg className="cursor-pointer" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M9.71569 5.51667L10.4824 6.28333L2.93236 13.8333H2.16569V13.0667L9.71569 5.51667ZM12.7157 0.5C12.5074 0.5 12.2907 0.583333 12.1324 0.741667L10.6074 2.26667L13.7324 5.39167L15.2574 3.86667C15.5824 3.54167 15.5824 3.01667 15.2574 2.69167L13.3074 0.741667C13.1407 0.575 12.9324 0.5 12.7157 0.5ZM9.71569 3.15833L0.499023 12.375V15.5H3.62402L12.8407 6.28333L9.71569 3.15833Z" fill="#383838" />
-                                  </svg> */}
+                                 
                                    <MdOutlineEdit className="text-[18px]"/>
                                    <p className="text-[12px] font-normal">Edit</p>
                                 </div>
@@ -509,9 +492,7 @@ const MyLead = ({ setAlert, pop, setPop }) => {
                                 <div className="flex gap-4 items-center px-2 cursor-pointer" onClick={() => {
                                   navigate(`/adminDash/importLead/${item._id}`);
                                 }}>
-                                  {/* <svg className="cursor-pointer" width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M10.0002 2.41667C13.1585 2.41667 15.9752 4.19167 17.3502 7C15.9752 9.80833 13.1585 11.5833 10.0002 11.5833C6.84183 11.5833 4.02516 9.80833 2.65016 7C4.02516 4.19167 6.84183 2.41667 10.0002 2.41667ZM10.0002 0.75C5.8335 0.75 2.27516 3.34167 0.833496 7C2.27516 10.6583 5.8335 13.25 10.0002 13.25C14.1668 13.25 17.7252 10.6583 19.1668 7C17.7252 3.34167 14.1668 0.75 10.0002 0.75ZM10.0002 4.91667C11.1502 4.91667 12.0835 5.85 12.0835 7C12.0835 8.15 11.1502 9.08333 10.0002 9.08333C8.85016 9.08333 7.91683 8.15 7.91683 7C7.91683 5.85 8.85016 4.91667 10.0002 4.91667ZM10.0002 3.25C7.9335 3.25 6.25016 4.93333 6.25016 7C6.25016 9.06667 7.9335 10.75 10.0002 10.75C12.0668 10.75 13.7502 9.06667 13.7502 7C13.7502 4.93333 12.0668 3.25 10.0002 3.25Z" fill="#383838" />
-                                  </svg> */}
+                                  
                                   <FaRegEye className="text-[18px]"/>
                                   <p className="text-[12px] font-normal">View</p>
                                 </div>
@@ -519,9 +500,7 @@ const MyLead = ({ setAlert, pop, setPop }) => {
                                 <div className="flex gap-4 items-center px-2 cursor-pointer" onClick={() => {
                                   deleteProject(item?._id)
                                 }}>
-                                  {/* <svg className="cursor-pointer" width="12" height="16" viewBox="0 0 12 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M9.33317 5.5V13.8333H2.6665V5.5H9.33317ZM8.08317 0.5H3.9165L3.08317 1.33333H0.166504V3H11.8332V1.33333H8.9165L8.08317 0.5ZM10.9998 3.83333H0.999837V13.8333C0.999837 14.75 1.74984 15.5 2.6665 15.5H9.33317C10.2498 15.5 10.9998 14.75 10.9998 13.8333V3.83333Z" fill="#DE3730" />
-                                  </svg> */}
+                               
                                  <MdDeleteOutline className="text-[18px]"/>
                                  <p className="text-[12px] font-normal">Delete</p>
                                   </div>
@@ -548,13 +527,15 @@ const MyLead = ({ setAlert, pop, setPop }) => {
                   </tbody>
                 </table>
               </div>
+            </div>
+
 
 
             </div>
 
-            {totalPages > 1 && (<div className="emPaginate">
+            {totalPages > 1 && (<div className="flex items-center gap-[10px] justify-center mt-[20px]">
               <button
-                className={`prepaginate ${currentPage !== 1 && "putthehovebtn"
+                className={`w-[100px] h-[40px] gap-[10px] rounded-[10px] border border-[#D8D8D8] bg-white text-[#2B2B2B] text-[12px] font-medium leading-[16px] tracking-[0.004em] text-center ${currentPage !== 1 && "transition-all duration-300 hover:bg-[#2B2B2B] hover:text-white"
                   } disabled:bg-gray-200`}
                 onClick={() => {
                   handlePageChange(currentPage - 1);
@@ -564,11 +545,11 @@ const MyLead = ({ setAlert, pop, setPop }) => {
               >
                 Previous
               </button>
-              <span className="pagenum">
+              <span className="text-[#2B2B2B] font-inter text-[12px] font-normal leading-[16px] tracking-[0.004em] text-left">
                 Page {currentPage} of {totalPages}
               </span>
               <button
-                className={`prepaginate ${currentPage !== totalPages && "putthehovebtn"
+                className={`w-[100px] h-[40px] gap-[10px] rounded-[10px] border border-[#D8D8D8] bg-white text-[#2B2B2B] text-[12px] font-medium leading-[16px] tracking-[0.004em] text-cente ${currentPage !== totalPages && "transition-all duration-300 hover:bg-[#2B2B2B] hover:text-white"
                   } disabled:bg-gray-200`}
                 onClick={() => {
                   handlePageChange(currentPage + 1);

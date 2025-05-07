@@ -16,6 +16,7 @@ import Login from "./pages/auth/Login";
 import Forget from "./pages/auth/Forget";
 import Create from "./pages/auth/Create";
 import MyLead from "./pages/admin/LeadManagement/MyLead";
+import LeadFile2 from "./pages/admin/LeadManagement/LeadFile2";
 
 function App() {
   return (
@@ -30,12 +31,13 @@ function App() {
           <Route path="/adminDash/HRM" element={<AdminDashboard/>} />
           <Route path="/employeeDash" element={<EmployeeDashboard />} />
           <Route path="/client" element={<ClientDashboard />} />
-
+          <Route path="/adminDash/leadFile" element={<LeadFile2/>} />
           <Route path="/adminDash/leadDash" element={<LeadManagement/>} />
           <Route path="/adminDash/closeLeads" element={<CloseLeads/>}/>
           <Route path="/adminDash/myLead" element={<MyLead/>}/>
+          <Route path="/adminDash/createLead" element={<CreateLead/>}/>
           <Route path="/admin/leadlist" element={<LeadsList />} />
-          <Route path="/admin/createlead" element={<CreateLead />} />
+          
         </Route>
       </Routes>
     </Router>
