@@ -295,7 +295,7 @@ const MyLead = () => {
         <div className="w-full">
 
           <div className="pt-[10px] px-[20px] pb-[30px]">
-           <div className="flex items-center justify-between flex-wrap">
+           {/* <div className="flex items-center justify-between">
               <div className="lead_content1">
                 <h2 className="text-[#101820] font-semibold text-[24px]">Lead Management</h2>
                 <p className="text-[12px] text-[#6B7280] mt-1">Real-time insights and performance overview</p>
@@ -325,7 +325,51 @@ const MyLead = () => {
 
                 </div>
               </div>
-            </div> 
+            </div>  */}
+            <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 md:gap-0">
+  <div className="lead_content1">
+    <h2 className="text-[#101820] font-semibold text-[20px] md:text-[24px]">
+      Lead Management
+    </h2>
+    <p className="text-[12px] text-[#6B7280] mt-1">
+      Real-time insights and performance overview
+    </p>
+  </div>
+
+  <div>
+    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-start sm:justify-center gap-3 sm:gap-[10px]">
+      <NavLink to="/adminDash/createLead">
+        <button className="bg-[#0B56E4] w-full sm:w-[186px] h-[40px] rounded-[10px] text-white font-inter font-medium text-[16px] flex items-center justify-center px-[10px] py-[0px] gap-[3px]">
+          <img
+            src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746536488/pluss_syd720.png"
+            alt=""
+          />
+          <span className="text-[16px] font-medium text-white">
+            Create New Lead
+          </span>
+        </button>
+      </NavLink>
+
+      <NavLink to="/adminDash/leadFile">
+        <button className="flex items-center justify-center w-full sm:w-[162px] h-[40px] border border-[#0B56E4] rounded-[10px] bg-[linear-gradient(131.78deg,_#D1E8FD_6.87%,_#EDEFFF_91.67%)]">
+          <span className="text-[#0B56E4] font-medium text-[16px] px-5">
+            Import Leads
+          </span>
+        </button>
+      </NavLink>
+
+      <button
+        onClick={onDownload}
+        className="flex items-center justify-center w-full sm:w-[162px] h-[40px] border border-[#0B56E4] rounded-[10px] bg-[linear-gradient(131.78deg,_#D1E8FD_6.87%,_#EDEFFF_91.67%)]"
+      >
+        <span className="text-[#0B56E4] font-medium text-[16px]">
+          Export Leads
+        </span>
+      </button>
+    </div>
+  </div>
+</div>
+
 
             <div className="flex justify-between items-center flex-wrap">
               {/* left side */}
@@ -333,7 +377,7 @@ const MyLead = () => {
                 <div className="my-[20px] flex gap-[20px] items-center">
                   <div className="flex items-center gap-[8px] w-[285px] h-[48px] px-[16px] py-[8px] rounded-[15px] bg-white border border-[#D0D4DC]">
                     <input
-                    className="w-[288px] h-[46px] px-[16px] py-[8px] gap-[8px] border border-t border-none text-[#666D76] outline-none text-[14px] font-normal leading-[20px] tracking-[0.0025em] text-left"
+                    className="w-[288px] h-[46px] px-[16px] py-[8px] gap-[8px] border border-t border-none outline-none text-[14px] font-normal leading-[20px] tracking-[0.0025em] text-left"
                       value={searchText}
                       onChange={(e) => setSrchText(e.target.value)}
                       type="text"
@@ -392,9 +436,9 @@ const MyLead = () => {
                
               </div>
 
-           <div className="bg-grey rounded-xl border-2 overflow-hidden">
-           <div className=" relative w-full overflow-x-scroll md:overflow-visible border-gray-200 bg-white border">
-                <table className="w-full text-sm text-gray-700">
+           <div className="bg-grey rounded-xl border-2">
+           <div className="w-full border-gray-200 bg-white border">
+                <table className="w-full text-sm text-gray-700 overflow-x-auto">
                   <thead className="bg-white font-semibold">
                     <tr>
                       <th scope="col" className="text-left font-bold text-gray-900 py-3 px-4 border-b border-gray-200 whitespace-nowrap">
@@ -485,8 +529,8 @@ const MyLead = () => {
                               <div className="absolute top-[-65px] min-w-[120px] h-fit border-t border-[#E3E3E3] flex flex-col shadow-[0_4px_12px_0px_#1A1A1A33] py-[8px] gap-[5px] rounded-tl-[8px] rounded-tr-none rounded-br-none rounded-bl-none z-[1000] bg-white right-[75px]">
                                 <div className="flex gap-4 items-center px-2 cursor-pointer" onClick={() => navigate("/adminDash/editLead", { state: item })}>
                                  
-                                   <MdOutlineEdit className="text-[18px]"/>
-                                   <p className="text-[12px] font-normal">Edit</p>
+                                <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746260260/Vector_zah5tt.svg" alt="Edit" />
+                                   <p className="text-sm text-gray-700 hover:bg-gray-100">Edit</p>
                                 </div>
                                 <hr />
                                 <div className="flex gap-4 items-center px-2 cursor-pointer" onClick={() => {
@@ -494,15 +538,15 @@ const MyLead = () => {
                                 }}>
                                   
                                   <FaRegEye className="text-[18px]"/>
-                                  <p className="text-[12px] font-normal">View</p>
+                                  <p className="text-sm text-gray-700 hover:bg-gray-100">View</p>
                                 </div>
                                 <hr />
                                 <div className="flex gap-4 items-center px-2 cursor-pointer" onClick={() => {
                                   deleteProject(item?._id)
                                 }}>
                                
-                                 <MdDeleteOutline className="text-[18px]"/>
-                                 <p className="text-[12px] font-normal">Delete</p>
+                               <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746260280/delete_sgefhv.png" alt="delete" />
+                                 <p className="text-sm text-gray-700 hover:bg-gray-100">Delete</p>
                                   </div>
                                   <hr />
                                 <div
@@ -513,7 +557,7 @@ const MyLead = () => {
                                 >
                                   <IoIosCloseCircle className="incfornsizze" />
 
-                                  <p className="text-[12px] font-normal">Close Deal</p>
+                                  <p className="text-sm text-gray-700 hover:bg-gray-100">Close Deal</p>
 
                                 </div>
                               </div>

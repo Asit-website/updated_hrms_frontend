@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { MdAccountCircle } from 'react-icons/md';
 import * as EmailValidator from "email-validator";
 import validator from 'validator';
@@ -8,142 +8,103 @@ import { useMain } from '../../hooks/UseMain';
 import toast from 'react-hot-toast';
 
 const CreateLead = () => {
-  const navigate = useNavigate();
-  const {getLeadCatgory, uploadToCloudinaryImg,createLead} = useMain();
- 
- 
-
-  let userDetail = JSON.parse(localStorage.getItem("hrms_user"));
-
-  const [formdata, setFormdata] = useState({
-    image: null,
-    LeadOwner: userDetail?._id,
-    Company: "",
-    FirstName: "",
-    LastName: "",
-    Title: "",
-    Email: "",
-    Phone: "",
-    Fax: "",
-    Mobile: "",
-    Website: "",
-    LeadSource: "",
-    NoOfEmployee: "",
-    Industry: "",
-    LeadStatus: "",
-    AnnualRevenue: "",
-    Rating: "",
-    EmailOptOut: "",
-    SkypeID: "",
-    SecondaryEmail: "",
-    Twitter: "",
-    Street: "",
-    City: "",
-    State: "",
-    ZipCode: "",
-    Country: "",
-    DescriptionInfo: "",
-    date: "",
-    dynamicFields: {}
-  });
-  const submitHandler = async () => {
-    let toastId;
-
-    if (!formdata.Company || !formdata.FirstName || !formdata.Email || !formdata.Phone) {
-      toast.dismiss(toastId);
-      return toast.error("Please fill in all required fields.");
-    }
-
-    if (emailisValid === false && formdata.Email !== "") {
-      toast.dismiss(toastId);
-      return toast.error("Please Enter Correct Gmail");
-    }
-
-    console.log(formdata);
-    toastId = toast.loading("Loading...");
-    const ans = await createLead({ ...formdata });
-
-    if (ans?.status) {
-      toast.success("Successfully created");
-      navigate("/adminDash/myLead");
-
-      setFormdata((prev) => ({
-        ...prev,
-        Company: "",
-        FirstName: "",
-        LastName: "",
-        Title: "",
-        Email: "",
-        Phone: "",
-        Fax: "",
-        Website: "",
-        LeadSource: "",
-        NoOfEmployee: "",
-        Industry: "",
-        LeadStatus: "",
-        AnnualRevenue: "",
-        Rating: "",
-        EmailOptOut: "",
-        SkypeID: "",
-        SecondaryEmail: "",
-        Twitter: "",
-        Street: "",
-        City: "",
-        State: "",
-        ZipCode: "",
-        Country: "",
-        DescriptionInfo: "",
-        date: ""
-      }));
-    }
-
-    toast.dismiss(toastId);
-  };
-  const [emailisValid, setIsemailValid] = useState(null);
-  const [isUrlValid1, setIsUrlValid1] = useState(null);
-  const [isUrlValid, setIsUrlValid] = useState(null);
-  const [isUrlValid2, setIsUrlValid2] = useState(null);
-  const [leadCategory, setLeadCategory] = useState([]);
-  const [leadUpldProf, setLeadUpLdPro] = useState(null);
-  const [subLeadCategory, setSubLeadCategory] = useState([]);
-  const fileInputRef = useRef(null);
-  const [selectedCategories, setSelectedCategories] = useState([]);
-  const handleValidation = () => {
-    const valid = EmailValidator.validate(formdata.Email);
-    setIsemailValid(valid);
-};
-const getAllLeadCategory = async () => {
-  const res = await getLeadCatgory();
-  setLeadCategory(res?.data)
-  console.log(res?.data)
-}
-
-const handleImageChange = async (event) => {
-  const imageFile = event.target.files[0];
-
-  if (!imageFile || !imageFile.type.match('image/*')) {
-      return toast.error('Please select a valid image file.');
+  const { user, createLead, getEmployees, AllLeadSource, AllLeadStatus, getLeadStat, uploadToCloudinaryImg, getLeadCatgory, getLeadSubCategory, } = useMain();
+  const [pop1, setPop1] = useState(false);
+  const stylePeer = {
+      display: pop1 ? "block" : "none"
   }
 
-  setFormdata((prev) => ({
-      ...prev,
-      image: imageFile
-  }))
+  let userDetail = JSON.parse(localStorage.getItem("hrms_user"));
+  const [leadCategory, setLeadCategory] = useState([]);
+  const [subLeadCategory, setSubLeadCategory] = useState([]);
 
-  const resp = await uploadToCloudinaryImg({ image: imageFile });
-  setLeadUpLdPro(resp?.data);
+  const getAllLeadCategory = async () => {
+      const res = await getLeadCatgory();
+      setLeadCategory(res?.data)
+      console.log(res?.data)
+  }
 
-};
+  const getAllLeadSubCategory = async () => {
+      const res = await getLeadSubCategory();
+      setSubLeadCategory(res?.data)
+  }
 
-  const changeHandler = (e) => {
-    const { name, value, type, checked } = e.target;
+  useEffect(() => {
+      getAllLeadCategory();
+      getAllLeadSubCategory();
+  }, []);
 
-    if ((name === "Phone" || name === "Mobile") && value.length > 10) {
-      return;
-    }
-   
-  
-    const handleInputUrlChange = (value) => {
+  const [addCat, setAddCat] = useState(false);
+
+  const [
+      formdata, setFormdata] = useState({
+          image: null,
+          LeadOwner: userDetail?._id,
+          Company: "",
+          FirstName: "",
+          LastName: "",
+          Title: "",
+          Email: "",
+          Phone: "",
+          Fax: "",
+          // Mobile: "",
+          Website: "",
+          LeadSource: "",
+          NoOfEmployee: "",
+          Industry: "",
+          LeadStatus: "",
+          AnnualRevenue: "",
+          Rating: "",
+          EmailOptOut: "",
+          SkypeID: "",
+          SecondaryEmail: "",
+          Twitter: "",
+          Street: "",
+          City: "",
+          State: "",
+          ZipCode: "",
+          Country: "",
+          DescriptionInfo: "",
+          date: "",
+          dynamicFields: {}
+      });
+
+  const handleDynamicChange = (key, value) => {
+      setFormdata(prev => {
+          const updatedDynamicFields = {
+              ...prev.dynamicFields,
+              [key]: value,
+          };
+          console.log(`Dynamic field "${key}" changed to:`, value);
+          console.log('All dynamicFields now:', updatedDynamicFields);
+
+          return {
+              ...prev,
+              dynamicFields: updatedDynamicFields,
+          };
+      });
+  };
+
+  const [emp, setEmp] = useState([]);
+  const [emailisValid, setIsemailValid] = useState(null);
+  const [emailisValid1, setIsemailValid1] = useState(null);
+
+  const handleValidation = () => {
+      const valid = EmailValidator.validate(formdata.Email);
+      setIsemailValid(valid);
+  };
+
+  const handleValidation1 = () => {
+      const valid = EmailValidator.validate(formdata.SecondaryEmail);
+      setIsemailValid1(valid);
+  }
+  const [selectedCategories, setSelectedCategories] = useState([]);
+
+  const [isUrlValid, setIsUrlValid] = useState(null);
+  const [isUrlValid1, setIsUrlValid1] = useState(null);
+  const [isUrlValid2, setIsUrlValid2] = useState(null);
+
+  const handleInputUrlChange = (value) => {
       if (validator.isURL(value)) {
           setIsUrlValid(true);
       } else {
@@ -151,7 +112,7 @@ const handleImageChange = async (event) => {
       }
   };
 
-    const handleInputUrlChange1 = (value) => {
+  const handleInputUrlChange1 = (value) => {
       if (validator.isURL(value)) {
           setIsUrlValid1(true);
       } else {
@@ -160,39 +121,149 @@ const handleImageChange = async (event) => {
   };
 
   const handleInputUrlChange2 = (value) => {
-    if (validator.isURL(value)) {
-        setIsUrlValid2(true);
-    } else {
-        setIsUrlValid2(false);
-    }
-};
-
-
-    setFormdata((prev) => ({
-      ...prev,
-      [name]: type === "checkbox" ? checked : value
-    }));
+      if (validator.isURL(value)) {
+          setIsUrlValid2(true);
+      } else {
+          setIsUrlValid2(false);
+      }
   };
+
+  const navigate = useNavigate();
+
+  const [leadUpldProf, setLeadUpLdPro] = useState(null);
+  const fileInputRef = useRef(null);
+
+  const handleImageChange = async (event) => {
+      const imageFile = event.target.files[0];
+
+      if (!imageFile || !imageFile.type.match('image/*')) {
+          return toast.error('Please select a valid image file.');
+      }
+
+      setFormdata((prev) => ({
+          ...prev,
+          image: imageFile
+      }))
+
+      const resp = await uploadToCloudinaryImg({ image: imageFile });
+      setLeadUpLdPro(resp?.data);
+
+  };
+
+  const changeHandler = async (e) => {
+      const { name, value } = e.target;
+
+      if (name === "Phone" && value.length > 10) {
+          return
+      }
+
+      if (name === "Mobile" && value.length > 10) {
+          return
+      }
+
+      setFormdata((prev) => ({
+          ...prev,
+          [name]: value
+      }))
+  }
+
+  const submitHandler = async () => {
+      let toastId;
+      // Check all required fields are filled
+      if (!formdata.Company || !formdata.FirstName || !formdata.Email || !formdata.Phone) {
+          toast.dismiss(toastId);
+          return toast.error("Please fill in all required fields.");
+      }
+
+
+
+
+      if (emailisValid === false && formdata.Email !== "") {
+          toast.dismiss(toastId);
+          return toast.error("Please Enter Correct Gmail")
+      }
+     
+      console.log(formdata)
+      const ans = await createLead({ ...formdata });
+      toastId = toast.loading("Loading...");
+      if (ans?.status) {
+          toast.success("Successful created");
+          navigate("/adminDash/myLead")
+          setFormdata({
+              LeadOwner: userDetail?._id,
+              Company: "",
+              FirstName: "",
+              LastName: "",
+              Title: "",
+              Email: "",
+              Phone: "",
+              Fax: "",
+              // Mobile: "",
+              Website: "",
+              LeadSource: "",
+              NoOfEmployee: "",
+              Industry: "",
+              LeadStatus: "",
+              AnnualRevenue: "",
+              Rating: "",
+              EmailOptOut: "",
+              SkypeID: "",
+              SecondaryEmail: "",
+              Twitter: "",
+              Street: "",
+              City: "",
+              State: "",
+              ZipCode: "",
+              Country: "",
+              DescriptionInfo: "",
+              date: ""
+          })
+      }
+
+      toast.dismiss(toastId);
+  }
+
+  const getOwner = async () => {
+      const ans = await getEmployees();
+      setEmp(ans?.data);
+
+  }
+
+  useEffect(() => {
+      getOwner();
+  }, [])
+
+
+  const [allLeadStatus, setAllLeadStatus] = useState([]);
+  const [allLeadSource, setAllLeadSource] = useState([]);
+  const [allleadStat, setAllLeadStat] = useState([]);
+
+  const fetchStatus = async () => {
+      const ans = await AllLeadStatus();
+      setAllLeadStatus(ans?.data);
+  }
+
+  const fetchSource = async () => {
+      const ans = await AllLeadSource();
+      setAllLeadSource(ans?.data);
+  }
+
+  const fetchStat = async () => {
+      const ans = await getLeadStat();
+      setAllLeadStat(ans?.data);
+  }
+
+  useEffect(() => {
+      fetchStatus();
+      fetchSource();
+      fetchStat();
+  }, []);
+
   const [showAdditionalSetting, setShowAdditionalSetting] = useState(4);
-  const handleDynamicChange = (key, value) => {
-    setFormdata(prev => {
-        const updatedDynamicFields = {
-            ...prev.dynamicFields,
-            [key]: value,
-        };
-        console.log(`Dynamic field "${key}" changed to:`, value);
-        console.log('All dynamicFields now:', updatedDynamicFields);
 
-        return {
-            ...prev,
-            dynamicFields: updatedDynamicFields,
-        };
-    });
-};
-
-const triggerFileSelect = () => {
-  fileInputRef.current.click();
-};
+  const triggerFileSelect = () => {
+      fileInputRef.current.click();
+  };
   return (
     <div className='bg-[#f9fbfc]'>
       <div>
@@ -450,7 +521,7 @@ Date
 
           <h2 className="text-lg font-semibold pl-6 border-b-2 p-5">Additional Fields</h2>
        
-                                <div className="border grid grid-cols-4 gap-4 p-4 rounded shadow mt-4">
+                                <div className="border grid grid-cols-4 gap-4 p-4 rounded shadow mt-4 m-5">
                                     {leadCategory.slice(0, showAdditionalSetting).map((item) => (
                                         <div key={item._id} className="flex items-center space-x-2">
                                             <input
@@ -492,7 +563,7 @@ Date
                                 </div>
                                 {
                                     leadCategory.length > 4 ? (
-                                        showAdditionalSetting === 4 ? <span className="bg-blue-600 cursor-pointer mt-3 inline-block m-auto rounded-md text-white py-1 px-2" onClick={() => setShowAdditionalSetting()}>View All</span> : <span className="bg-blue-600 inline-block mt-3 m-auto cursor-pointer rounded-md text-white py-1 px-2" onClick={() => setShowAdditionalSetting(4)}>View Less</span>
+                                        showAdditionalSetting === 4 ? <span className="bg-blue-600 cursor-pointer mt-3 inline-block  rounded-md text-white py-1 px-2 m-7" onClick={() => setShowAdditionalSetting()}>View All</span> : <span className="bg-blue-600 inline-block mt-3 cursor-pointer rounded-md text-white py-1 px-2 m-7" onClick={() => setShowAdditionalSetting(4)}>View Less</span>
                                     ) : null
                                 }
 

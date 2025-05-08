@@ -1,11 +1,20 @@
 import React, { useState } from 'react';
+import toast from 'react-hot-toast';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { RxCross2 } from 'react-icons/rx';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = ({showSidebar,setShowSidebar}) => {
+  const navigate = useNavigate();
   const [dropdownOpen, setDropdownOpen] = useState(false);
-
+  const handleLogout = () => {
+    // Clear user data from localStorage and redirect to login
+    localStorage.clear();
+    toast.success("Logged out successfully");
+    navigate('/login');
+  };
   return (
+    
     <nav className="bg-white border-gray-200 dark:bg-gray-900 shadow-md fixed top-0 left-0 right-0 z-50">
       <div className="max-w-[1720px] flex flex-wrap items-center justify-between mx-auto p-4 md:px-8">
         <img
@@ -42,10 +51,10 @@ const Navbar = ({showSidebar,setShowSidebar}) => {
                   <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">MySelf</a>
                 </li>
                 <li>
-                  <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Permission</a>
+                  <a href='#' className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Permission</a>
                 </li>
                 <li>
-                  <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Log out</a>
+                  <p onClick={handleLogout} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white cursor-pointer">Log out</p>
                 </li>
               </ul>
             </div>
