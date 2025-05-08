@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useMain } from "../../../hooks/UseMain";
 
-const LeadFile2 = ({ setAlert, pop, setPop }) => {
+const LeadFile2 = () => {
   const navigate = useNavigate();
     const { user, allEmployee, createExcelLead } = useMain();
 
@@ -125,42 +125,42 @@ const LeadFile2 = ({ setAlert, pop, setPop }) => {
                 <div className="w-full bg-[#f5f5f5]">
                     
 
-                    <div className="pt-8 pr-5 pb-8 pl-[54px] mt-[69px] relative w-full">
+                    <div className="pt-8 pr-5 pb-8 pl-[54px] relative w-full">
                         <div className="flex items-center justify-between">
                             <h2 className="text-[#101820] text-2xl font-semibold">Import Leads</h2>
-                           <NavLink to="/employeeDash/myLead"><button className="refresh canlo">
-                                <span className="text-[#0B56E4] font-medium text-base">Cancel</span>
+                           <NavLink to="/adminDash/myLead"><button className="bg-[#2563eb] text-white text-[16px] font-medium px-4 py-[6px] rounded-md hover:bg-blue-700">
+                                <span className="text-white font-medium text-base">Cancel</span>
                             </button></NavLink>
                         </div>
                         <div className="bg-white mt-[30px] rounded-[10px] py-[40px]">
-                            <div className="form_filel">
+                            <div className="flex items-center justify-center">
                                 <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746621216/bxs_fdlr66.svg" alt="bxs" />
-                                <h3>From File</h3>
+                                <h3 className="text-[#2B2B2B] font-medium text-[24px] ml-[10px]">From File</h3>
                             </div>
 
                             <div className="max-w-[478px] w-full h-[296px] border border-dashed border-[#8FB1F3] mx-auto mt-[15px] rounded-[10px] flex flex-col items-center justify-center bg-[#F8F9FB]">
-                                <h3 className="srop">Drag and drop your file here. <br />
+                                <h3 className="text-[#666D76] text-[16px] font-normal text-center">Drag and drop your file here. <br />
                                     -  or  -</h3>
                                 <div className="selis_inp">
-                                    <div className="opd mt-4">
-                                        <div className="browse">
-                                            <h3>Browse Local Files</h3>
+                                    <div className="flex items-center justify-center flex-col relative mt-4">
+                                        <div className="w-[175px] h-[40px] rounded-[8px] flex items-center justify-center">
+                                            <h3 className="text-[16px] text-black underline font-medium cursor-pointer">Browse Local Files</h3>
                                         </div>
-                                        <input type="file"  onChange={handleFile} required />
+                                        <input className="absolute opacity-0 cursor-pointer" type="file"  onChange={handleFile} required />
                                     </div>
                                     {selectedFiles && <p className="text-center">{selectedFiles.name}</p>} 
 
                                 </div>
-                                <div className="download_gfg">
-                                    <h2>Download sample file
-                                        <span> CSV </span>
+                                <div className="mt-[25px]">
+                                    <h2 className="text-[16px] font-medium text-[#49515C] tracking-[1px]">Download sample file
+                                        <span className="text-[16px] font-medium text-[#0B56E4]"> CSV </span>
                                            or
-                                        <span> XLSX </span>
+                                        <span className="text-[16px] font-medium text-[#0B56E4]"> XLSX </span>
                                     </h2>
                                 </div>
 
-                                <button onClick={handleFileSubmit} className="uplaodin">
-                  <span>Upload</span>
+                                <button onClick={handleFileSubmit} className="bg-[#2563eb] text-white text-[16px] font-medium px-4 py-[6px] rounded-md hover:bg-blue-700">
+                  <span className="text-white font-medium text-base">Upload</span>
                 </button>
                             </div>
                         </div>

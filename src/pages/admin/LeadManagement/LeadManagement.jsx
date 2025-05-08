@@ -564,7 +564,7 @@ export default function LeadManagement() {
             </table>
           </div>
         </div>
-        <div className="bg-grey rounded-xl border-2 overflow-hidden  xl:col-span-2">
+        <div className="bg-grey rounded-xl border-2 overflow-x-auto overflow-hidden  xl:col-span-2">
           <div className="flex p-4 justify-between sm:items-center bg-white flex-wrap">
             <div className="flex items-center">
               <h3 className="text-xl font-semibold ">Today's Leads</h3>
@@ -579,7 +579,7 @@ export default function LeadManagement() {
           <hr />
 
           {/* <CommonTable theadData={theadData2} tbodyData={tbodyData2} /> */}
-          <div className="w-full overflow-x-auto  overflow-visible relative bg-white  border border-gray-200">
+          <div className="w-full relative bg-white  border border-gray-200">
             <table className="w-full text-sm text-gray-700">
               {/* Table Head */}
               <thead className="bg-white font-semibold">
@@ -654,7 +654,7 @@ export default function LeadManagement() {
 
                                     >
                                       <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746260260/Vector_zah5tt.svg" alt="" />
-                                      <p>Edit</p>
+                                      <p className="text-sm text-gray-700 hover:bg-gray-100">Edit</p>
                                     </div>
                                     <div
                                       onClick={() => {
@@ -676,7 +676,7 @@ export default function LeadManagement() {
                                         />
                                       </svg>
 
-                                      <p>View</p>
+                                      <p className="text-sm text-gray-700 hover:bg-gray-100">View</p>
                                     </div>
                                     <div
                                       onClick={() => {
@@ -686,7 +686,7 @@ export default function LeadManagement() {
 
                                     >
                                       <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746260280/delete_sgefhv.png" alt="delete" />
-                                      <p>Delete</p>
+                                      <p className="text-sm text-gray-700 hover:bg-gray-100">Delete</p>
                                     </div>
                                   </div>
                                 )}
