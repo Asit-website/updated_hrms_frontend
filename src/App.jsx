@@ -18,8 +18,37 @@ import Create from "./pages/auth/Create";
 import MyLead from "./pages/admin/LeadManagement/MyLead";
 import LeadFile2 from "./pages/admin/LeadManagement/LeadFile2";
 import UserLead from "./pages/admin/LeadManagement/UserLead";
-
+import Profile from './pages/admin/MySelf/Profile'
+import Permission from "./pages/admin/Permission/Permission";
+import PermissionDetail  from "./pages/admin/Permission/PermissionDetail";
+import { useState } from "react";
+import MySelf from "./pages/admin/MySelf/MySelf";
+var tc;
 function App() {
+  
+  const [alertValue, setAlertValue] = useState({
+    show: false,
+    color: "",
+    message: "",
+  });
+
+  const [pop, setPop] = useState(false);
+  const setAlert = (color, message) => {
+    setAlertValue({
+      color,
+      message,
+      show: true,
+    });
+
+    clearTimeout(tc);
+    tc = setTimeout(() => {
+      setAlertValue({
+        color: "",
+        message: "",
+        show: false,
+      });
+    }, 3000);
+  };
   return (
     <Router>
       <Routes>
@@ -37,8 +66,12 @@ function App() {
           <Route path="/adminDash/userLead" element={<UserLead/>} />
           <Route path="/adminDash/leadDash" element={<LeadManagement/>} />
           <Route path="/adminDash/closeLeads" element={<CloseLeads/>}/>
+          <Route path="/adminDash/Permission" element={<Permission  pop={pop} setAlert={setAlert} setPop={setPop} />} />
+          <Route path="/adminDash/PermissionDetail" element={<PermissionDetail pop={pop} setAlert={setAlert} setPop={setPop} />} />
           <Route path="/adminDash/myLead" element={<MyLead/>}/>
+          <Route path="/adminDash/profile" element={<Profile pop={pop} setPop={setPop} setAlert={setAlert}/>} />
           <Route path="/adminDash/createLead" element={<CreateLead/>}/>
+          <Route path="/adminDash/mySelf" element={<MySelf setAlert={setAlert} />} />
           <Route path="/admin/leadlist" element={<LeadsList />} />
           
         </Route>
