@@ -246,9 +246,9 @@ const CreateLead2 = ({ setAlert, pop, setPop }) => {
 
                        
 
-<div className="items-center justify-between fixed top-20 left-0 w-full h-20 bg-white z-10 flex justify-end p-2">
+<div className="items-center justify-between fixed top-20 left-0 w-full h-20 bg-white z-10 flex justify-end p-2">  
                             <div className="flex items-center gap-2 mr-5">
-                                <NavLink to="/adminDash/myLead"><button className="bg-[#E8E9EB] border border-[#B8BBC0] w-16 h-10 font-inter font-medium text-[#666D76] rounded-sm text-base">Back</button></NavLink>
+                                <NavLink to="/adminDash/myLead"><button className="bg-[#E8E9EB] border border-[#B8BBC0] w-16 h-10 font-medium text-[#666D76] rounded-sm text-base">Back</button></NavLink>
 
                                 <button onClick={submitHandler} type="button" className="bg-[#0B56E4] text-white font-inter font-medium text-lg w-[120px] border-none">Submit</button>
 

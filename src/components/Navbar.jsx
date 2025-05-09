@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { RxCross2 } from 'react-icons/rx';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 const Navbar = ({showSidebar,setShowSidebar}) => {
   const navigate = useNavigate();
@@ -48,10 +48,10 @@ const Navbar = ({showSidebar,setShowSidebar}) => {
               </div>
               <ul className="py-2">
                 <li>
-                  <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">MySelf</a>
+                  <a href="/adminDash/mySelf" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">MySelf</a>
                 </li>
                 <li>
-                  <a href='#' className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Permission</a>
+                  <a href="/adminDash/Permission" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Permission </a>
                 </li>
                 <li>
                   <p onClick={handleLogout} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white cursor-pointer">Log out</p>
