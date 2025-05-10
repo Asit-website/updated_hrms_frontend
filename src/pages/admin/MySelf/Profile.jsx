@@ -285,24 +285,25 @@ const profile = () => {
                 <button onClick={() => navigate(user1?.role === "ADMIN" ? '/adminDash/mySelf' : '/employeeDash/mySelf')} className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 py-2 px-4 rounded-md text-white"><MdKeyboardBackspace /> Back</button>
               </div>
               <form className="w-[90%] mx-auto flex flex-col gap-5" onSubmit={handleSubmit}>
-                <div className="grid grid-cols-2 gap-5">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-6">
 
                   <div className="">
-                    <label htmlFor="fullName" className="block mb-1 ">
+                    <label htmlFor="fullName" className="block text-md font-normal mb-1">
                       Full Name
                     </label>
                     <input
                       type="text"
                       name="fullName"
+                        className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                       onChange={handleChange}
                       value={user?.role === "ADMIN" ? user?.fullName : value.fullName}
                       id="fullName"
-                      className=" block disabled:bg-gray-200 disabled:cursor-text disabled:text-gray-500"
+                 
                       disabled={!!user?.fullName}
                     />
                   </div>
                   <div className="">
-                    <label htmlFor="email" className="block mb-1 ">
+                    <label htmlFor="email" className="block text-md font-normal mb-1">
                       Company Email
                     </label>
                     <input
@@ -311,14 +312,14 @@ const profile = () => {
                       onChange={handleChange}
                       value={value.email}
                       id="email"
-                      className=" block disabled:bg-gray-200 disabled:cursor-text disabled:text-gray-500"
+                      className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                       disabled={!!user?.email}
                     // required
                     />
                   </div>
 
                   <div className="">
-                    <label htmlFor="fullName" className="block mb-1 ">
+                    <label htmlFor="fullName" className="block text-md font-normal mb-1">
                       Update Password
                     </label>
                     <input
@@ -326,7 +327,8 @@ const profile = () => {
                       name="updatePassword"
                       value={value.updatePassword}
                       id="fullName"
-                      className=" block disabled:bg-gray-200 disabled:cursor-text disabled:text-gray-500"
+                      className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                      
                       onChange={(e) => setValue((prev) => ({
                         ...prev,
                         updatePassword: e.target.value
@@ -335,7 +337,7 @@ const profile = () => {
                   </div>
 
                   <div className="">
-                    <label htmlFor="mobile" className="block mb-1">
+                    <label htmlFor="mobile" className="block text-md font-normal mb-1">
                       Mobile Number
                     </label>
                     <input
@@ -344,43 +346,42 @@ const profile = () => {
                       onChange={handleChange}
                       value={value.mobile || ''}
                       id="mobile"
-                      className=" block disabled:bg-gray-200 disabled:cursor-text disabled:text-gray-500"
+                      className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                       disabled={!!user?.mobile}
-                    // required
                     />
                   </div>
 
                   <div className="">
-                    <label htmlFor="gender" className="block mb-1 disabled:bg-gray-200 disabled:cursor-text disabled:text-gray-500">
+                    <label htmlFor="gender" className="block text-md font-normal mb-1">
                       Gender
                     </label>
-                    <select disabled={!!user?.gender} className="disabled:bg-gray-200 disabled:cursor-text disabled:text-gray-500" name="gender" id="gender" value={value?.gender}>
+                    <select disabled={!!user?.gender} className="w-full border rounded p-2 text-sm font-normal text-gray-500" name="gender" id="gender" value={value?.gender}>
                       <option>Male</option>
                       <option>Female</option>
                     </select>
                   </div>
 
                   <div className="">
-                    <label htmlFor="DOB" className="block mb-1 ">
+                    <label htmlFor="DOB" className="block text-md font-normal mb-1">
                       DOB
                     </label>
 
-                    <input disabled={!!user?.dob} type="date" name="dob" onChange={handleChange} value={value?.dob} className=" block disabled:bg-gray-200 disabled:cursor-text disabled:text-gray-500" />
+                    <input disabled={!!user?.dob} type="date" name="dob" onChange={handleChange} value={value?.dob} className="w-full border rounded p-2 text-sm font-normal text-gray-500" />
                   </div>
 
                   <div className="">
-                    <label htmlFor="profileImage" className="block mb-1">
+                    <label htmlFor="profileImage" className="block text-md font-normal mb-1">
                       Profile Image
                     </label>
 
                     <input
-                      className="block disabled:bg-gray-200 disabled:cursor-text disabled:text-gray-500"
+                      className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                       name="profileImage"
                       onChange={handleChange}
                       id="file_input"
                       type="file"
                       value={pic}
-                    //  disabled={!!user?.profileImage}
+                  
                     />
 
                     {
@@ -395,29 +396,28 @@ const profile = () => {
                   </div>
 
                   <div className="">
-                    <label htmlFor="email1" className="block mb-1">
+                    <label htmlFor="email1" className="block text-md font-normal mb-1">
                       Personal Gmail
                     </label>
                     <input
-                      className="block disabled:bg-gray-200 disabled:cursor-text disabled:text-gray-500"
+                      className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                       name="email1"
                       value={value.email1}
                       onChange={handleChange}
                       id="email1"
                       required
                       type="email"
-                      // required
                       disabled={!!user?.email1}
                     />
                   </div>
 
 
                   <div className="">
-                    <label htmlFor="department" className="block mb-1">
+                    <label htmlFor="department" className="block text-md font-normal mb-1">
                       Department
                     </label>
                     <select
-                      className="block disabled:bg-gray-200 disabled:cursor-text disabled:text-gray-500"
+                      className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                       onChange={handleChange}
                       name="department"
                       value={value?.department}
@@ -434,22 +434,17 @@ const profile = () => {
                   </div>
 
                   <div className="">
-                    <label htmlFor="designation" className="block mb-1">
+                    <label htmlFor="designation" className="block text-md font-normal mb-1">
                       Designation
                     </label>
                     <select
-                      className=" block disabled:bg-gray-200 disabled:cursor-text disabled:text-gray-500"
+                      className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                       onChange={handleChange}
                       disabled={!!user?.designation}
                       name="designation"
                       value={value.designation}
                       id="designation"
                     >
-                      {/* <option>Designation</option>
-                    <option value="Developer">Developer</option>
-                    <option value="Designer">Designer</option>
-                    <option value="Hr">Hr</option>
-                    <option value="Manager">Manager/Project manager</option> */}
                       {
                         designations?.map((val, index) => {
                           return <option key={index} value={val?.name}>{val?.name}</option>
@@ -459,7 +454,7 @@ const profile = () => {
                   </div>
 
                   <div className="">
-                    <label htmlFor="date" className="block mb-1 ">
+                    <label htmlFor="date" className="block text-md font-normal mb-1">
                       JoiningDate
                     </label>
                     <input
@@ -467,20 +462,20 @@ const profile = () => {
                       name="joiningDate"
                       value={value.joiningDate}
                       disabled={!!user?.joiningDate}
-                      className="block disabled:bg-gray-200 disabled:cursor-text disabled:text-gray-500"
+                      className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                       id="date"
                       onChange={handleChange}
                     />
                   </div>
 
                   <div className="">
-                    <label htmlFor="date" className="block mb-1">
+                    <label htmlFor="date" className="block text-md font-normal mb-1">
                       PAN Number.
                     </label>
                     <input
                       type="text"
                       id="pan"
-                      className="  block disabled:bg-gray-200 disabled:cursor-text disabled:text-gray-500"
+                      className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                       name="pan"
                       disabled={!!user?.pan}
                       value={value.pan}
@@ -489,13 +484,13 @@ const profile = () => {
                   </div>
 
                   <div className="">
-                    <label htmlFor="adhar" className="block mb-1">
+                    <label htmlFor="adhar" className="block text-md font-normal mb-1">
                       Aadhaar Number.
                     </label>
                     <input
                       type="text"
                       id="adhar"
-                      className=" block disabled:bg-gray-200 disabled:cursor-text disabled:text-gray-500"
+                      className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                       // required
                       name="adhar"
                       disabled={!!user?.adhar}
@@ -505,13 +500,13 @@ const profile = () => {
                   </div>
 
                   <div className="">
-                    <label htmlFor="father" className="block mb-1">
+                    <label htmlFor="father" className="block text-md font-normal mb-1">
                       Father Name
                     </label>
                     <input
                       type="text"
                       id="father"
-                      className=" block disabled:bg-gray-200 disabled:cursor-text disabled:text-gray-500"
+                      className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                       // required
                       name="father"
                       disabled={!!user?.father}
@@ -521,13 +516,13 @@ const profile = () => {
                   </div>
 
                   <div className="">
-                    <label htmlFor="currentAddress" className="block mb-1">
+                    <label htmlFor="currentAddress" className="block text-md font-normal mb-1">
                       Current Residence Address
                     </label>
                     <input
                       type="text"
                       id="currentAddress"
-                      className="block disabled:bg-gray-200 disabled:cursor-text disabled:text-gray-500 "
+                      className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                       // required
                       name="currentAddress"
                       value={value.currentAddress}
@@ -536,14 +531,14 @@ const profile = () => {
                     />
                   </div>
                   <div className="">
-                    <label htmlFor="currentState" className="block mb-1">
+                    <label htmlFor="currentState" className="block text-md font-normal mb-1">
                       Current state
                     </label>
 
                     <input
                       type="text"
                       id="currentState"
-                      className="rounded-lg  disabled:bg-gray-200 disabled:cursor-text disabled:text-gray-500"
+                      className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                       // required
                       name="currentState"
                       value={value.currentState}
@@ -553,13 +548,13 @@ const profile = () => {
                     />
                   </div>
                   <div className="">
-                    <label htmlFor="currentCity" className="block mb-1">
+                    <label htmlFor="currentCity" className="block text-md font-normal mb-1">
                       Current city
                     </label>
                     <input
                       type="text"
                       id="currentCity"
-                      className="rounded-lg  disabled:bg-gray-200 disabled:cursor-text disabled:text-gray-500"
+                      className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                       // required
                       name="currentCity"
                       value={value.currentCity}
@@ -569,13 +564,13 @@ const profile = () => {
                     />
                   </div>
                   <div className="">
-                    <label htmlFor="currentPin" className="block mb-1">
+                    <label htmlFor="currentPin" className="block text-md font-normal mb-1">
                       Area Pincode
                     </label>
                     <input
                       type="text"
                       id="currentPin"
-                      className="block  disabled:bg-gray-200 disabled:cursor-text disabled:text-gray-500"
+                      className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                       // required
                       name="currentPin"
                       value={value.currentPin}
@@ -585,11 +580,11 @@ const profile = () => {
                     />
                   </div>
                   <div className="">
-                    <label htmlFor="perState" className="block mb-1">
+                    <label htmlFor="perState" className="block text-md font-normal mb-1">
                       Permanent state
                     </label>
                     <select
-                      className=" block  disabled:bg-gray-200 disabled:cursor-text disabled:text-gray-500"
+                      className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                       name="perState"
                       value={value.perState}
                       id="perState"
@@ -637,13 +632,13 @@ const profile = () => {
                     </select>
                   </div>
                   <div className="">
-                    <label htmlFor="perCity" className="block mb-1">
+                    <label htmlFor="perCity" className="block text-md font-normal mb-1">
                       Permanent city
                     </label>
                     <input
                       type="text"
                       id="perCity"
-                      className="block disabled:bg-gray-200 disabled:cursor-text disabled:text-gray-500"
+                      className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                       // required
                       name="perCity"
                       disabled={!!user?.perCity}
@@ -652,13 +647,13 @@ const profile = () => {
                     />
                   </div>
                   <div className="">
-                    <label htmlFor="perPin" className="block mb-1">
+                    <label htmlFor="perPin" className="block text-md font-normal mb-1">
                       Permanent Area Pincode
                     </label>
                     <input
                       type="text"
                       id="perPin"
-                      className="block disabled:bg-gray-200 disabled:cursor-text disabled:text-gray-500"
+                      className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                       // required
                       name="perPin"
                       disabled={!!user?.perPin}
@@ -667,11 +662,11 @@ const profile = () => {
                     />
                   </div>
                   <div className="">
-                    <label htmlFor="Martial" className="block mb-1">
+                    <label htmlFor="Martial" className="block text-md font-normal mb-1">
                       Marital status
                     </label>
                     <select
-                      className="rounded-lg disabled:bg-gray-200 disabled:cursor-text disabled:text-gray-500"
+                      className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                       name="Martial"
                       id="Martial"
                       disabled={!!user?.Martial}
@@ -684,11 +679,11 @@ const profile = () => {
                     </select>
                   </div>
                   <div className="">
-                    <label htmlFor="nationality" className="block mb-1">
+                    <label htmlFor="nationality" className="block text-md font-normal mb-1">
                       Nationality
                     </label>
                     <select
-                      className="block  disabled:bg-gray-200 disabled:cursor-text disabled:text-gray-500"
+                      className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                       name="nationality"
                       id="nationality"
                       disabled={!!user?.nationality}
@@ -701,13 +696,13 @@ const profile = () => {
                     </select>
                   </div>
                   <div className="">
-                    <label htmlFor="Mother" className="block mb-1">
+                    <label htmlFor="Mother" className="block text-md font-normal mb-1">
                       Mother name
                     </label>
                     <input
                       type="text"
                       id="Mother"
-                      className=" block disabled:bg-gray-200 disabled:cursor-text disabled:text-gray-500"
+                      className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                       // required
                       disabled={!!user?.Mother}
 
@@ -717,13 +712,13 @@ const profile = () => {
                     />
                   </div>
                   <div className="">
-                    <label htmlFor="qualification" className="block mb-1">
+                    <label htmlFor="qualification" className="block text-md font-normal mb-1">
                       Qualification
                     </label>
                     <input
                       type="text"
                       id="qualification"
-                      className=" block disabled:bg-gray-200 disabled:cursor-text disabled:text-gray-500"
+                      className="w-full border rounded p-2 text-sm font-normal text-gray-50"
                       // required
                       name="qualification"
                       disabled={!!user?.qualification}
@@ -733,13 +728,13 @@ const profile = () => {
                     />
                   </div>
                   <div className="">
-                    <label htmlFor="specialization" className="block mb-1">
+                    <label htmlFor="specialization" className="block text-md font-normal mb-1">
                       Specialization
                     </label>
                     <input
                       type="text"
                       id="qualification"
-                      className=" block disabled:bg-gray-200 disabled:cursor-text disabled:text-gray-500"
+                      className="w-full border rounded p-2 text-sm font-normal text-gray-50"
                       // required
                       name="specialization"
                       value={value.specialization}
@@ -749,11 +744,11 @@ const profile = () => {
                     />
                   </div>
                   <div className="">
-                    <label htmlFor="qualificationType" className="block mb-1">
+                    <label htmlFor="qualificationType" className="block text-md font-normal mb-1">
                       Qualification Type
                     </label>
                     <select
-                      className="rounded-lg  disabled:bg-gray-200 disabled:cursor-text disabled:text-gray-500"
+                      className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                       name="qualificationType"
                       id="qualificationType"
                       value={value.qualificationType}
@@ -776,7 +771,7 @@ const profile = () => {
                     </select>
                   </div>
                   <div className="">
-                    <label htmlFor="yearPass" className="block mb-1">
+                    <label htmlFor="yearPass" className="block text-md font-normal mb-1">
                       Year of passing •
                     </label>
 
@@ -785,16 +780,16 @@ const profile = () => {
                       value={value.yearPass}
                       disabled={!!user?.yearPass}
 
-                      onChange={handleChange} className=" rounded-lg disabled:bg-gray-200 disabled:cursor-text disabled:text-gray-500" type="date" />
+                      onChange={handleChange} className="w-full border rounded p-2 text-sm font-normal text-gray-500" type="date" />
                   </div>
                   <div className="">
-                    <label htmlFor="university" className="block mb-1">
+                    <label htmlFor="university" className="block text-md font-normal mb-1">
                       University/Board •
                     </label>
                     <input
                       type="text"
                       id="university"
-                      className=" block disabled:bg-gray-200 disabled:cursor-text disabled:text-gray-500"
+                      className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                       // required
                       name="university"
                       value={value.university}
@@ -804,13 +799,13 @@ const profile = () => {
                     />
                   </div>
                   <div className="">
-                    <label htmlFor="college" className="block mb-1 ">
+                    <label htmlFor="college" className="block text-md font-normal mb-1">
                       College/School •
                     </label>
                     <input
                       type="text"
                       id="college"
-                      className=" block disabled:bg-gray-200 disabled:cursor-text disabled:text-gray-500"
+                      className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                       // required
                       name="college"
                       value={value.college}
@@ -819,13 +814,13 @@ const profile = () => {
                     />
                   </div>
                   <div className="">
-                    <label htmlFor="percentage" className="block mb-1">
+                    <label htmlFor="percentage" className="block text-md font-normal mb-1">
                       Grade/CCPA/Percentage
                     </label>
                     <input
                       type="text"
                       id="percentage"
-                      className="block disabled:bg-gray-200 disabled:cursor-text disabled:text-gray-500"
+                      className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                       // required
                       name="percentage"
                       value={value.percentage}
@@ -835,13 +830,13 @@ const profile = () => {
                     />
                   </div>
                   <div className="">
-                    <label htmlFor="previousCompany" className="block mb-1">
+                    <label htmlFor="previousCompany" className="block text-md font-normal mb-1">
                       Previous Company •
                     </label>
                     <input
                       type="text"
                       id="previousCompany"
-                      className="block disabled:bg-gray-200 disabled:cursor-text disabled:text-gray-500"
+                      className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                       // required
                       name="previousCompany"
                       value={value.previousCompany}
@@ -851,13 +846,13 @@ const profile = () => {
                     />
                   </div>
                   <div className="">
-                    <label htmlFor="previousDesignation" className="block mb-1">
+                    <label htmlFor="previousDesignation" className="block text-md font-normal mb-1">
                       Previous Designation •
                     </label>
                     <input
                       type="text"
                       id="previousDesignation"
-                      className="block disabled:bg-gray-200 disabled:cursor-text disabled:text-gray-500"
+                      className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                       // required
                       name="previousDesignation"
                       value={value.previousDesignation}
@@ -867,13 +862,13 @@ const profile = () => {
                     />
                   </div>
                   <div className="">
-                    <label htmlFor="toDate" className="block mb-1">
+                    <label htmlFor="toDate" className="block text-md font-normal mb-1">
                       To date •
                     </label>
                     <input
                       type="date"
                       id="toDate"
-                      className="block disabled:bg-gray-200 disabled:cursor-text disabled:text-gray-500"
+                      className="-full border rounded p-2 text-sm font-normal text-gray-500"
                       // required
                       name="toDate"
                       value={value.toDate}
@@ -883,13 +878,13 @@ const profile = () => {
                     />
                   </div>
                   <div className="">
-                    <label htmlFor="fromDate" className="block mb-1">
+                    <label htmlFor="fromDate" className="block text-md font-normal mb-1">
                       From date*
                     </label>
                     <input
                       type="date"
                       id="fromDate"
-                      className="block disabled:bg-gray-200 disabled:cursor-text disabled:text-gray-500"
+                      className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                       // required
                       name="fromDate"
                       value={value.fromDate}
@@ -899,13 +894,13 @@ const profile = () => {
                     />
                   </div>
                   <div className="">
-                    <label htmlFor="numberOfMonth" className="block mb-1">
+                    <label htmlFor="numberOfMonth" className="block text-md font-normal mb-1">
                       Number of months *
                     </label>
                     <input
                       type="text"
                       id="numberOfMonth"
-                      className="block disabled:bg-gray-200 disabled:cursor-text disabled:text-gray-500"
+                      className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                       // required
                       name="numberOfMonth"
                       value={value.numberOfMonth}
@@ -915,13 +910,13 @@ const profile = () => {
                     />
                   </div>
                   <div className="">
-                    <label htmlFor="Jobdescription" className="block mb-1">
+                    <label htmlFor="Jobdescription" className="block text-md font-normal mb-1">
                       Job description
                     </label>
                     <input
                       type="text"
                       id="Jobdescription"
-                      className="block disabled:bg-gray-200 disabled:cursor-text disabled:text-gray-500"
+                      className="w-full border rounded p-2 text-sm font-normal text-gray-50"
                       // required
                       name="Jobdescription"
                       value={value.Jobdescription}
@@ -932,13 +927,13 @@ const profile = () => {
                   </div>
 
                   <div className="">
-                    <label htmlFor="SalaryBankName" className="block mb-1">
+                    <label htmlFor="SalaryBankName" className="block text-md font-normal mb-1">
                       Salary Bank Name
                     </label>
                     <input
                       type="text"
                       id="SalaryBankName"
-                      className="block disabled:bg-gray-200 disabled:cursor-text disabled:text-gray-500"
+                      className="w-full border rounded p-2 text-sm font-normal text-gray-50"
                       // required
                       name="SalaryBankName"
                       value={value.SalaryBankName}
@@ -948,13 +943,13 @@ const profile = () => {
                     />
                   </div>
                   <div className="">
-                    <label htmlFor="BeneficiaryName" className="block mb-1">
+                    <label htmlFor="BeneficiaryName" className="block text-md font-normal mb-1">
                       Beneficiary Name
                     </label>
                     <input
                       type="text"
                       id="BeneficiaryName"
-                      className="block disabled:bg-gray-200 disabled:cursor-text disabled:text-gray-500"
+                      className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                       // required
                       name="BeneficiaryName"
                       value={value.BeneficiaryName}
@@ -964,13 +959,13 @@ const profile = () => {
                     />
                   </div>
                   <div className="">
-                    <label htmlFor="BankIfsc" className="block mb-1">
+                    <label htmlFor="BankIfsc" className="block text-md font-normal mb-1">
                       Bank IFSC Code
                     </label>
                     <input
                       type="text"
                       id="BankIfsc"
-                      className="block disabled:bg-gray-200 disabled:cursor-text disabled:text-gray-500"
+                      className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                       // required
                       name="BankIfsc"
                       value={value.BankIfsc}
@@ -981,13 +976,13 @@ const profile = () => {
                   </div>
 
                   <div className="">
-                    <label htmlFor="AccountNumber" className="block mb-1">
+                    <label htmlFor="AccountNumber" className="block text-md font-normal mb-1">
                       Account Number
                     </label>
                     <input
                       type="text"
                       id="AccountNumber"
-                      className="block disabled:bg-gray-200 disabled:cursor-text disabled:text-gray-500"
+                      className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                       // required
                       name="AccountNumber"
                       value={value.AccountNumber}
@@ -998,13 +993,13 @@ const profile = () => {
                   </div>
 
                   <div className="">
-                    <label htmlFor="confirmAccount" className="block mb-1">
+                    <label htmlFor="confirmAccount" className="block text-md font-normal mb-1">
                       Confirm Account Number
                     </label>
                     <input
                       type="text"
                       id="confirmAccount"
-                      className="block disabled:bg-gray-200 disabled:cursor-text disabled:text-gray-500"
+                      className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                       // required
                       name="confirmAccount"
                       value={value.confirmAccount}
@@ -1014,13 +1009,13 @@ const profile = () => {
                   </div>
 
                   <div className="">
-                    <label htmlFor="Branch" className="block mb-1">
+                    <label htmlFor="Branch" className="block text-md font-normal mb-1">
                       Bank Branch
                     </label>
                     <input
                       type="text"
                       id="Branch"
-                      className="block disabled:bg-gray-200 disabled:cursor-text disabled:text-gray-500"
+                      className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                       // required
                       name="Branch"
                       value={value.Branch}
@@ -1034,14 +1029,14 @@ const profile = () => {
 
                 </div>
 
-                <div className="makethisfelxd">
+                <div className="flex gap-[20px]">
 
-                  <div className="basic-information2 givethissowidth mb-4 mt-7">
-                    <div className="basics !px-0">
-                      <h3>Documents </h3>
+                  <div className="py-[15px] px-0 rounded-[10px] min-w-1/2 mb-4 mt-7">
+                    <div className="flex items-center justify-between px-[20px] py-0">
+                      <h3 className="text-[#101820] text-[16px] font-bold leading-[24px] tracking-[0.0015em] text-left">Documents </h3>
                     </div>
 
-                    <hr className="upper" />
+                    <hr className="mt-[20px] opacity-[0.8]" />
 
                     <div className="form2-class">
 
@@ -1050,10 +1045,10 @@ const profile = () => {
 
                         <div className="flex ">
                           {/* fist   */}
-                          <div className="thiddrapgsingl">
-                            <h4>Aadhar Card</h4>
+                          <div className="flex flex-col gap-[5px] w-full">
+                            <h4 className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Aadhar Card</h4>
 
-                            <div className="drag-area try">
+                            <div className="max-w-[252px] w-full h-[62px] rounded-[12px] border border-[#B7B7B7] flex items-center justify-evenly">
                               {documentPreviews.adharCard ? (
                                 <img
                                   src={documentPreviews.adharCard}
@@ -1076,7 +1071,7 @@ const profile = () => {
                                 />
                               )}
 
-                              <p>Click to upload</p>
+                              <p className="text-[14px] font-medium leading-[24px] tracking-[0.005em] text-[#1B2533] underline">Click to upload</p>
 
                               <input
                                 className="filesjila"
@@ -1091,10 +1086,10 @@ const profile = () => {
 
                           {/* second */}
 
-                          <div className="thiddrapgsingl">
-                            <h4>PAN Card</h4>
+                          <div className="flex flex-col gap-[5px] w-full">
+                            <h4 className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">PAN Card</h4>
 
-                            <div className="drag-area try">
+                            <div className="max-w-[252px] w-full h-[62px] rounded-[12px] border border-[#B7B7B7] flex items-center justify-evenly try">
                               {documentPreviews.pancard ? (
                                 <img
                                   src={documentPreviews.pancard}
@@ -1107,6 +1102,7 @@ const profile = () => {
                                 />
                               ) : (
                                 <img
+                                className="max-w-[29px] max-h-[29px]"
                                   src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746794106/upload-file_i7qokk.png"
                                   alt="Upload Placeholder"
                                   style={{
@@ -1117,7 +1113,7 @@ const profile = () => {
                                 />
                               )}
 
-                              <p>Click to upload</p>
+                              <p className="text-[14px] font-medium leading-[24px] tracking-[0.005em] text-[#1B2533] underline">Click to upload</p>
 
                               <input
                                 className="filesjila"
@@ -1135,10 +1131,10 @@ const profile = () => {
 
                         <div className="flex  mt-6">
                           {/* frist   */}
-                          <div className="thiddrapgsingl">
-                            <h4>10th Certificate</h4>
+                          <div className="flex flex-col gap-[5px] w-full">
+                            <h4 className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">10th Certificate</h4>
 
-                            <div className="drag-area try">
+                            <div className="max-w-[252px] w-full h-[62px] rounded-[12px] border border-[#B7B7B7] flex items-center justify-evenly try">
                               {documentPreviews.tenCert ? (
                                 <img
                                   src={documentPreviews.tenCert}
@@ -1161,10 +1157,10 @@ const profile = () => {
                                 />
                               )}
 
-                              <p>Click to upload</p>
+                              <p className="text-[14px] font-medium leading-[24px] tracking-[0.005em] text-[#1B2533] underline">Click to upload</p>
 
                               <input
-                                className="filesjila"
+                                className="absolute opacity-0 bg-red-500"
                                 name="tenCert"
                                 type="file"
                                 accept="image/*"
@@ -1178,7 +1174,7 @@ const profile = () => {
                           <div className="thiddrapgsingl">
                             <h4>12th Certificate</h4>
 
-                            <div className="drag-area try">
+                            <div className="max-w-[252px] w-full h-[62px] rounded-[12px] border border-[#B7B7B7] flex items-center justify-evenly try">
                               {documentPreviews.twevelCert ? (
                                 <img
                                   src={documentPreviews.twevelCert}
@@ -1191,6 +1187,7 @@ const profile = () => {
                                 />
                               ) : (
                                 <img
+                                className="max-w-[29px] max-h-[29px]"
                                   src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746794106/upload-file_i7qokk.png"
                                   alt="Upload Placeholder"
                                   style={{
@@ -1201,7 +1198,7 @@ const profile = () => {
                                 />
                               )}
 
-                              <p>Click to upload</p>
+                              <p className="text-[14px] font-medium leading-[24px] tracking-[0.005em] text-[#1B2533] underline">Click to upload</p>
 
                               <input
                                 className="filesjila"
@@ -1549,7 +1546,7 @@ const profile = () => {
 
                 <button
                   type="submit"
-                  className=" sabeupdabtn "
+                  className="w-[150px] h-[40px] rounded-[5px] bg-[#0B56E4] text-white font-semibold"
                 >
                   Save
                 </button>

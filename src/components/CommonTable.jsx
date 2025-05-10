@@ -1,5 +1,6 @@
 import React from "react";
 const CommonTable = ({ theadData = [], tbodyData = [] }) => {
+  // console.log(tbodyData)
   return (
     <div className="w-full overflow-x-auto rounded-lg">
       <table className="min-w-full text-sm text-left bg-white rounded-lg">
@@ -26,12 +27,13 @@ const CommonTable = ({ theadData = [], tbodyData = [] }) => {
               </td>
             </tr>
           ) : (
-            tbodyData.map((row, i) => (
+            tbodyData?.map((row, i) => (
               <tr
                 key={i}
                 className="border-b border-gray-200 hover:bg-gray-50 transition duration-150"
               >
-                {row.map((cell, j) => (
+                {console.log(row)}
+                {Object.values(row).map((cell, j) => (
                   <td key={j} className="px-6 py-4 text-gray-800">
                     {cell}
                   </td>
