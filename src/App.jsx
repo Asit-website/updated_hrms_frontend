@@ -34,6 +34,7 @@ import Warning from "./pages/admin/HrAdmin/Warning";
 import Termination from "./pages/admin/HrAdmin/Termination";
 import Holiday from "./pages/admin/HrAdmin/Holiday";
 import Announcement from "./pages/admin/HrAdmin/Announcement";
+import 'react-toastify/dist/ReactToastify.css';
 var tc;
 function App() {
   const [alertValue, setAlertValue] = useState({

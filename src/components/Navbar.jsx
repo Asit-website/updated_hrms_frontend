@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { RxCross2 } from 'react-icons/rx';
 import { NavLink, useNavigate } from 'react-router-dom';
+import { useMain } from '../hooks/UseMain';
 
-const Navbar = ({showSidebar,setShowSidebar}) => {
+const Navbar = ({ showSidebar, setShowSidebar }) => {
+  const { allEmployee, getDepartments, getBranchs } = useMain()
   const navigate = useNavigate();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const handleLogout = () => {
@@ -13,8 +15,14 @@ const Navbar = ({showSidebar,setShowSidebar}) => {
     toast.success("Logged out successfully");
     navigate('/login');
   };
+
+  useEffect(()=>{
+          allEmployee();
+      getDepartments();
+      getBranchs();
+  },[])
   return (
-    
+
     <nav className="bg-white border-gray-200 dark:bg-gray-900 shadow-md fixed top-0 left-0 right-0 z-50">
       <div className="max-w-[1720px] flex flex-wrap items-center justify-between mx-auto p-4 md:px-8">
         <img
@@ -36,7 +44,7 @@ const Navbar = ({showSidebar,setShowSidebar}) => {
             />
           </button>
 
-          <button className=" bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white md:hidden" onClick={()=> setShowSidebar(!showSidebar)}>{showSidebar ? <RxCross2  fontSize={21}/> : <GiHamburgerMenu fontSize={21}/>}</button>
+          <button className=" bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white md:hidden" onClick={() => setShowSidebar(!showSidebar)}>{showSidebar ? <RxCross2 fontSize={21} /> : <GiHamburgerMenu fontSize={21} />}</button>
 
 
 

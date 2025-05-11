@@ -1,18 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { deleteReq, get, post, postDocuments, put } from '../Api/api';
 import MainContext from './MainContext';
 
 const baseUrl = "https://my-backend-blond.vercel.app";
 const MainState = (props) => {
-   const [user, setUser] = useState({});
+   const [user, setUser] = useState(null);
    const [flag, setFlag] = useState(false);
    const [chatUser, setChatUser] = useState({});
    const [loading, setLoading] = useState(false);
+   const [awards, setAwards] = useState(null);
+   const [transfer, setTransfer] = useState([]);
+   const [resignation, setResignation] = useState([]);
+   const [promotion, setPromotion] = useState([]);
+   const [complain, setComplain] = useState([]);
+   const [warning, setWarning] = useState([]);
+   const [termination, setTermination] = useState([]);
+   const [holiday, setHoliday] = useState([]);
+   const [announcement, setAnnouncement] = useState([]);
+   const [allEmp, setAllEmp] = useState([]);
+   const [allDep, setAllDep] = useState([]);
+   const [allBranch, setBranch] = useState([]);
+
 
    const login = async ({ email, employeeCode, password }) => {
       setLoading(true)
 
       const data = await post(`${baseUrl}/auth/login`, { email, employeeCode, password }, false);
+      setUser(data?.user)
       setLoading(false)
       return data;
    };
@@ -702,6 +716,9 @@ const MainState = (props) => {
 
    const getBranchs = async () => {
       const data = await get(`${baseUrl}/system/getBranchs`, true);
+      if(data?.statusCode===200){
+         setBranch(data?.data)
+      }
       return data;
    };
 
@@ -722,6 +739,9 @@ const MainState = (props) => {
 
    const getDepartments = async () => {
       const data = await get(`${baseUrl}/system/getDepartments`, true);
+      if (data?.statusCode === 200) {
+         setAllDep(data?.data);
+      }
       return data;
    };
 
@@ -823,6 +843,9 @@ const MainState = (props) => {
 
    const allEmployee = async () => {
       const data = await get(`${baseUrl}/admin/fetchEmployee`, true);
+      if (data?.status) {
+         setAllEmp(data?.emp)
+      }
       return data;
 
    }
@@ -940,6 +963,9 @@ const MainState = (props) => {
 
    const fetchAnnoucement = async () => {
       const data = await get(`${baseUrl}/admin/getAnnouncement`, true);
+      if (data?.statusCode === 200) {
+         setAnnouncement(data?.data)
+      }
       return data;
    };
 
@@ -1098,6 +1124,9 @@ const MainState = (props) => {
 
    const getTermination = async () => {
       const data = await get(`${baseUrl}/admin/getTermination`, true);
+      if (data?.statusCode) {
+         setTermination(data?.data)
+      }
       return data;
    };
 
@@ -1142,6 +1171,9 @@ const MainState = (props) => {
 
    const getWarning = async () => {
       const data = await get(`${baseUrl}/admin/getWarning`, true);
+      if (data?.statusCode) {
+         setWarning(data?.data)
+      }
       return data;
    };
 
@@ -1185,6 +1217,9 @@ const MainState = (props) => {
 
    const getComplain = async () => {
       const data = await get(`${baseUrl}/admin/getComplain`, true);
+      if (data?.statusCode === 200) {
+         setComplain(data?.data)
+      }
       return data;
    };
 
@@ -1253,6 +1288,9 @@ const MainState = (props) => {
 
    const getResignation = async () => {
       const data = await get(`${baseUrl}/admin/getResignation`, true);
+      if (data?.statusCode === 200) {
+         setResignation(data?.data)
+      }
       return data;
    };
 
@@ -1284,6 +1322,9 @@ const MainState = (props) => {
 
    const getPromotion = async () => {
       const data = await get(`${baseUrl}/admin/getPromotion`, true);
+      if (data?.statusCode === 200) {
+         setPromotion(data?.data)
+      }
       return data;
    };
 
@@ -1311,8 +1352,9 @@ const MainState = (props) => {
 
    const getAward = async () => {
       const data = await get(`${baseUrl}/award/getAllAward`, true);
+      setAwards(data?.data);
       return data;
-   }
+   };
 
    const deleteAward = async (id) => {
       const data = await deleteReq(`${baseUrl}/award/deleteAward/${id}`, true);
@@ -1344,6 +1386,7 @@ const MainState = (props) => {
 
    const getTransfer = async () => {
       const data = await get(`${baseUrl}/admin/getTransfer`, true);
+      setTransfer(data?.data)
       return data;
    }
 
@@ -1422,6 +1465,9 @@ const MainState = (props) => {
 
    const getHoliday = async () => {
       const data = await get(`${baseUrl}/admin/getHoliday`, true);
+      if (data?.status === 200) {
+         setHoliday(data?.data)
+      }
       return data;
    }
 
@@ -2531,6 +2577,15 @@ const MainState = (props) => {
       return data;
    }
 
+   // =============== Fetch common data only once when the app loads ===============
+   useEffect(() => {
+      const validUser = localStorage.getItem("hrms_user");
+      if (validUser) {
+         setUser(JSON.parse(validUser));
+      }
+
+   }, []);
+
    return (
       <MainContext.Provider value={{
          login, clientLogin, deleteQuotationapi, timerHandlerapi, saveLORLetterapi, saveLetter1Api, fetchMonthlyLeave, deleteExpenseApi, getExpenseApi, CreateExpense, saveRelivingLetterapi, getTodayBirthday, changeTaskStatusApi, getAllProjectUserTaskApi2, getProjectTask, getAllProjectAllTaskApi, getAllProjectUserTaskApi, CreateProjectTask, taskCreateApi, FetchFollowApi, getQuotationApi, ProvidePermission, RemovePermission, GetOpenLeadsApi, getLeadById, CreateNoteApi, updateNoteApi, DeleteNoteApi, getUserByDesignation, UpdateLeadStatus, UpdateLeadSource, AllLeadSource, meetCreateApi, AllLeadStatus, taskEditApi, meetEditApi, GetNoteApi, deleteTaskapi, deleteMeetapi, getTaskApi, getMeetApi, employeeLogin, employeeResetPassword, hrLogin, createHr, getHrs, deleteHr, createEmployee, getEmployees, getUsers, getActiveUsers, getActiveUsersCount, postLeadStatus, postLeadSource2, getAdminEmployees, getCheckInActivity, postActivity, editTaskapi, deleteProject, postActivityHr, getActivitiesByUser, getStatisticsByUser, getAllTaskUser, postLeave, updateLeave, getUserLeaves, getUserLeaveById, deleteLeave, getTotalLeaves, postTotalLeaves, verifyEmployee, verifyHr, verifyAdmin, setUser, buildAPI, user, disableClientapi, getProjects, postProject, getHolidays, postHoliday, updateProject, getProjectsByEmployee, getTasks, postTask, updateTask, deleteTask, setFlag, flag, changePassword, updateProfile, deleteHoliday, updateHoliday, deleteTaskProject, getChats, createNewChat, postMessage, deleteChat, getClientapi, adminLogin, getChat, getChatByUser, setUserTotalLeaveApi, setChatUser, chatUser, getEmployeesByEmployee, topDash, postAnnouncement, updateAnnouncement, getAnnouncements, getAnnouncementDates, deleteAnnouncement, getAttendance, getAttendanceByUser, createEmployee1, updateAdminProfile, createProjectapi, getAllProjectApi, editProjectapi
@@ -2541,8 +2596,8 @@ const MainState = (props) => {
          acceptLeave, rejectLeave, leaveTypeApi,
          ProvideRemovePermission, postQuotationFormApi, updatePropsalFormApi, postProposalFormApi, createClientapi,
          updateQuotationFormApi, changeRelivingLetterPer, getThisMonthLeave,
-         uploadOwnDocs, loading,
-
+         uploadOwnDocs, loading,allBranch, setBranch,
+         transfer, setTransfer, resignation, getResignation, promotion, setPromotion,
          getAllLeads,
          updateDocSetup,
          changeOfferLetterPer,
@@ -2565,9 +2620,9 @@ const MainState = (props) => {
          getUserSlip,
          createCommision,
          updateLeadNote,
-         createTermination, getTermination, deleteTermination, updateTermination,
-         createWarning, getWarning, deleteWarning, updateWarning,
-         createComplain, getComplain, updateComplain, deleteComplain,
+         createTermination, getTermination, deleteTermination, updateTermination, termination, setTermination, holiday, setHoliday,
+         createWarning, getWarning, deleteWarning, updateWarning, announcement, setAnnouncement, allEmp, setAllEmp, allDep, setAllDep,
+         createComplain, getComplain, updateComplain, deleteComplain, complain, setComplain, warning, setWarning,
          postAttendence,
          getAttendence, createResignation, getResignation, deleteResignation, updateResignation,
          createPromotion, getPromotion, postAward,
@@ -2609,7 +2664,7 @@ const MainState = (props) => {
          deleteIndustry,
          updateIndustry,
          getLeadByUser,
-         DeleteRoleApi,
+         DeleteRoleApi, awards, setAwards,
          getLeadStat,
          postLeadStat, getMonthlyWorkingHours,
          updateLeadStat,
