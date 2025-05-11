@@ -5,18 +5,27 @@ import { useMain } from "../../../hooks/UseMain";
 import { useEffect, useState } from "react";
 
 const Holiday = () => {
-  const { getHoliday } = useMain();
-  const [holiday, setHoliday] = useState([]);
-  const getAllHoliday = async () => {
-    const ans = await getHoliday();
-    if (ans?.status === 200) {
-      setHoliday(ans?.data);
-      console.log(ans?.status);
-    }
-  };
+  const { getHoliday, holiday, setHoliday } = useMain();
+
+  const buttonOptions = [
+    {
+      label: 'Edit',
+      icon: 'https://res.cloudinary.com/dd9tagtiw/image/upload/v1746260260/Vector_zah5tt.svg',
+      onClick: () => console.log('Edit clicked'),
+    },
+    {
+      label: 'Delete',
+      icon: 'https://res.cloudinary.com/dd9tagtiw/image/upload/v1746260280/delete_sgefhv.png',
+      danger: true,
+      onClick: () => console.log('Delete clicked'),
+    },
+  ]
+
 
   useEffect(() => {
-    getAllHoliday();
+    if (!holiday?.length) {
+      getHoliday()
+    }
   }, []);
   const theadData2 = ["OCCASION", "START DATE", "END DATE", "ACTION"];
 
@@ -79,7 +88,10 @@ const Holiday = () => {
                       </td>
 
                       <td key={i} className="px-6 py-4 text-gray-800">
-                        <ActionMenu />
+                        <ActionMenu
+                          options={buttonOptions}
+                        />
+
                       </td>
                     </tr>
                   ))

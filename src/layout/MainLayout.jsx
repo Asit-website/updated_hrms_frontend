@@ -12,9 +12,8 @@ const MainLayout = () => {
       <div className="flex">
         <Sidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
         <div
-          className={`flex-1 transition-all pt-20 ${
-            showSidebar ? "md:ml-80" : ""
-          }`}
+          className={`flex-1 transition-all pt-20 ${showSidebar ? "md:ml-80" : ""
+            }`}
         >
           {/* {children} */}
           <Outlet />

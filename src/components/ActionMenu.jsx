@@ -1,10 +1,11 @@
 import { useState, useRef, useEffect } from 'react';
 
-export default function ActionMenu() {
+export default function ActionMenu({ options = [] }) {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef(null);
 
   const toggleMenu = () => setIsOpen(!isOpen);
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -17,32 +18,32 @@ export default function ActionMenu() {
 
   return (
     <div className="relative inline-block text-left" ref={menuRef}>
-      <button
-        onClick={toggleMenu}
-       
-      >
+      <button onClick={toggleMenu}>
         <img
           src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746248545/Frame_9688_jxzfmp.png"
           alt="action button"
-        
         />
       </button>
 
       {isOpen && (
         <div className="absolute right-0 -mt-8 mr-2 w-36 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 z-20">
-          <div className="py-3">
-            <button
-              
-              className="items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex gap-2"
-            >
-            <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746260260/Vector_zah5tt.svg" alt="Edit" />
-             Edit
-            </button>
-            <button
-               className="items-center w-full px-4 py-2 text-sm text-red-600 hover:bg-red-100 flex gap-2"
-            >
-              <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746260280/delete_sgefhv.png" alt="delete" /> Delete
-            </button>
+          <div className="py-2">
+            {options.map((option, index) => (
+              <button
+                key={index}
+                onClick={() => {
+                  option.onClick(); // call the function
+                  setIsOpen(false); // close menu
+                }}
+                className={`items-center w-full px-4 py-2 text-sm flex gap-2 ${option.danger
+                  ? 'text-red-600 hover:bg-red-100'
+                  : 'text-gray-700 hover:bg-gray-100'
+                  }`}
+              >
+                {option.icon && <img src={option.icon} alt={option.label} />}
+                {option.label}
+              </button>
+            ))}
           </div>
         </div>
       )}
