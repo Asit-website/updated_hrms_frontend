@@ -130,7 +130,7 @@ const Award = () => {
       res = await postAward(data);
     }
 
-    if (res.success) {
+    if (res.status) {
       await getAward();
       toast.success(`Award ${isEdit ? "updated" : "created"} for ${data.employee}`);
     } else {
