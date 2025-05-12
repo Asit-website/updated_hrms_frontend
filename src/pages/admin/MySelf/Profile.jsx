@@ -278,14 +278,14 @@ const profile = () => {
         <div className="w-full bg-[#f5f5f5]">
          
 
-          <div className="pt-8 pr-5 pb-8 pl-[54px] mt-[69px] relative w-full">
+          <div className="pt-8 pr-5 pb-8 relative w-full">
             <div className="">
               <div className="flex items-center justify-between mb-6 px-4">
                 <h3 className="font-semibold text-[20px]">Update Profile</h3>
                 <button onClick={() => navigate(user1?.role === "ADMIN" ? '/adminDash/mySelf' : '/employeeDash/mySelf')} className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 py-2 px-4 rounded-md text-white"><MdKeyboardBackspace /> Back</button>
               </div>
               <form className="w-[90%] mx-auto flex flex-col gap-5" onSubmit={handleSubmit}>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 
                   <div className="">
                     <label htmlFor="fullName" className="block text-md font-normal mb-1">
@@ -1043,16 +1043,16 @@ const profile = () => {
                       <div className=" sfgh mt-6">
                         {/* this is first doc row  */}
 
-                        <div className="flex ">
+                        <div className="flex gap-10">
                           {/* fist   */}
-                          <div className="flex flex-col gap-[5px] w-full">
+                          <div className="flex flex-col w-full">
                             <h4 className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Aadhar Card</h4>
 
-                            <div className="max-w-[252px] w-full h-[62px] rounded-[12px] border border-[#B7B7B7] flex items-center justify-evenly">
-                              {documentPreviews.adharCard ? (
+                            <div className="w-[250px] h-[62px] py-5 px-3 rounded-[12px] border border-[#B7B7B7] flex items-center justify-evenly try">
+                              {documentPreviews.tenCert ? (
                                 <img
-                                  src={documentPreviews.adharCard}
-                                  alt="Aadhar Preview"
+                                  src={documentPreviews.tenCert}
+                                  alt="aadharCard Certificate Preview"
                                   style={{
                                     height: "150px",
                                     width: "auto",
@@ -1064,8 +1064,8 @@ const profile = () => {
                                   src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746794106/upload-file_i7qokk.png"
                                   alt="Upload Placeholder"
                                   style={{
-                                    height: "60px",
-                                    width: "60px",
+                                    height: "30px",
+                                    width: "30px",
                                     objectFit: "contain",
                                   }}
                                 />
@@ -1074,26 +1074,26 @@ const profile = () => {
                               <p className="text-[14px] font-medium leading-[24px] tracking-[0.005em] text-[#1B2533] underline">Click to upload</p>
 
                               <input
-                                className="filesjila"
-                                name="adharCard"
+                                className="absolute opacity-0 bg-red-500"
+                                name="tenCert"
                                 type="file"
                                 accept="image/*"
                                 onChange={handleFileChange}
-                                disabled={checkdiable("adharCard")}
+                                disabled={checkdiable("tenCert")}
                               />
                             </div>
                           </div>
 
                           {/* second */}
 
-                          <div className="flex flex-col gap-[5px] w-full">
-                            <h4 className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">PAN Card</h4>
+                            <div className="flex flex-col gap-[5px] w-full">
+                            <h4 className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">PAN CARD</h4>
 
-                            <div className="max-w-[252px] w-full h-[62px] rounded-[12px] border border-[#B7B7B7] flex items-center justify-evenly try">
-                              {documentPreviews.pancard ? (
+                            <div className="w-[250px] h-[62px] rounded-[12px] border border-[#B7B7B7] flex items-center justify-evenly try">
+                              {documentPreviews.tenCert ? (
                                 <img
-                                  src={documentPreviews.pancard}
-                                  alt="PAN Card Preview"
+                                  src={documentPreviews.tenCert}
+                                  alt="Pan Certificate Preview"
                                   style={{
                                     height: "150px",
                                     width: "auto",
@@ -1102,12 +1102,11 @@ const profile = () => {
                                 />
                               ) : (
                                 <img
-                                className="max-w-[29px] max-h-[29px]"
                                   src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746794106/upload-file_i7qokk.png"
                                   alt="Upload Placeholder"
                                   style={{
-                                    height: "60px",
-                                    width: "60px",
+                                    height: "30px",
+                                    width: "30px",
                                     objectFit: "contain",
                                   }}
                                 />
@@ -1116,12 +1115,12 @@ const profile = () => {
                               <p className="text-[14px] font-medium leading-[24px] tracking-[0.005em] text-[#1B2533] underline">Click to upload</p>
 
                               <input
-                                className="filesjila"
-                                name="pancard"
+                                className="absolute opacity-0 bg-red-500"
+                                name="tenCert"
                                 type="file"
                                 accept="image/*"
                                 onChange={handleFileChange}
-                                disabled={checkdiable("pancard")}
+                                disabled={checkdiable("tenCert")}
                               />
                             </div>
                           </div>
@@ -1129,7 +1128,7 @@ const profile = () => {
 
                         {/* this is second doc row  */}
 
-                        <div className="flex  mt-6">
+                        <div className="flex  mt-6 gap-10">
                           {/* frist   */}
                           <div className="flex flex-col gap-[5px] w-full">
                             <h4 className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">10th Certificate</h4>
@@ -1150,8 +1149,8 @@ const profile = () => {
                                   src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746794106/upload-file_i7qokk.png"
                                   alt="Upload Placeholder"
                                   style={{
-                                    height: "60px",
-                                    width: "60px",
+                                    height: "30px",
+                                    width: "30px",
                                     objectFit: "contain",
                                   }}
                                 />
@@ -1171,13 +1170,13 @@ const profile = () => {
                           </div>
 
                           {/* second  */}
-                          <div className="thiddrapgsingl">
-                            <h4>12th Certificate</h4>
+                          <div className="flex flex-col gap-[5px] w-full">
+                            <h4 className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">12th Certificate</h4>
 
-                            <div className="max-w-[252px] w-full h-[62px] rounded-[12px] border border-[#B7B7B7] flex items-center justify-evenly try">
-                              {documentPreviews.twevelCert ? (
+                            <div className="w-[250px] h-[62px] rounded-[12px] border border-[#B7B7B7] flex items-center justify-evenly try">
+                              {documentPreviews.tenCert ? (
                                 <img
-                                  src={documentPreviews.twevelCert}
+                                  src={documentPreviews.tenCert}
                                   alt="12th Certificate Preview"
                                   style={{
                                     height: "150px",
@@ -1187,12 +1186,11 @@ const profile = () => {
                                 />
                               ) : (
                                 <img
-                                className="max-w-[29px] max-h-[29px]"
                                   src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746794106/upload-file_i7qokk.png"
                                   alt="Upload Placeholder"
                                   style={{
-                                    height: "60px",
-                                    width: "60px",
+                                    height: "30px",
+                                    width: "30px",
                                     objectFit: "contain",
                                   }}
                                 />
@@ -1201,27 +1199,28 @@ const profile = () => {
                               <p className="text-[14px] font-medium leading-[24px] tracking-[0.005em] text-[#1B2533] underline">Click to upload</p>
 
                               <input
-                                className="filesjila"
-                                name="twevelCert"
+                                className="absolute opacity-0 bg-red-500"
+                                name="tenCert"
                                 type="file"
                                 accept="image/*"
                                 onChange={handleFileChange}
-                                disabled={checkdiable("twevelCert")}
+                                disabled={checkdiable("tenCert")}
                               />
                             </div>
                           </div>
                         </div>
 
-                        <div className="flex  mt-6">
+                        <div className="flex  mt-6 gap-10">
                           {/* frist   */}
 
-                          <div className="thiddrapgsingl">
-                            <h4>Cancelled Cheque</h4>
-                            <div className="drag-area try">
-                              {documentPreviews.cancelCheque ? (
+                         <div className="flex flex-col gap-[5px] w-full">
+                            <h4 className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Cancelled Cheque</h4>
+
+                            <div className="max-w-[252px] w-full h-[62px] rounded-[12px] border border-[#B7B7B7] flex items-center justify-evenly try">
+                              {documentPreviews.tenCert ? (
                                 <img
-                                  src={documentPreviews.cancelCheque}
-                                  alt="Cancelled Cheque Preview"
+                                  src={documentPreviews.tenCert}
+                                  alt="Cancel Preview"
                                   style={{
                                     height: "150px",
                                     width: "auto",
@@ -1233,216 +1232,215 @@ const profile = () => {
                                   src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746794106/upload-file_i7qokk.png"
                                   alt="Upload Placeholder"
                                   style={{
-                                    height: "60px",
-                                    width: "60px",
+                                    height: "30px",
+                                    width: "30px",
                                     objectFit: "contain",
                                   }}
                                 />
                               )}
 
-                              <p>Click to upload</p>
+                              <p className="text-[14px] font-medium leading-[24px] tracking-[0.005em] text-[#1B2533] underline">Click to upload</p>
 
                               <input
-                                className="filesjila"
-                                name="cancelCheque"
+                                className="absolute opacity-0 bg-red-500"
+                                name="tenCert"
                                 type="file"
                                 accept="image/*"
                                 onChange={handleFileChange}
-                                disabled={checkdiable("cancelCheque")}
+                                disabled={checkdiable("tenCert")}
                               />
                             </div>
                           </div>
 
                           {currEmp === 0 && (
-                            <div className="thiddrapgsingl">
-                              <h4>Last Organization</h4>
+                            <div className="flex flex-col gap-[5px] w-full">
+                            <h4 className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em] ">Last Organization</h4>
 
-                              <div className="drag-area try">
-                                {documentPreviews.LastOrganization ? (
-                                  <img
-                                    src={documentPreviews.LastOrganization}
-                                    alt="Last Organization Preview"
-                                    style={{
-                                      height: "150px",
-                                      width: "auto",
-                                      objectFit: "contain",
-                                    }}
-                                  />
-                                ) : (
-                                  <img
-                                    src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746794106/upload-file_i7qokk.png"
-                                    alt="Upload Placeholder"
-                                    style={{
-                                      height: "60px",
-                                      width: "60px",
-                                      objectFit: "contain",
-                                    }}
-                                  />
-                                )}
-
-                                <p>Click to upload</p>
-
-                                <input
-                                  className="filesjila"
-                                  name="LastOrganization"
-                                  type="file"
-                                  accept="image/*"
-                                  onChange={handleFileChange}
-                                  disabled={checkdiable("LastOrganization")}
+                            <div className="max-w-[252px] w-full h-[62px] rounded-[12px] border border-[#B7B7B7] flex items-center justify-evenly try">
+                              {documentPreviews.tenCert ? (
+                                <img
+                                  src={documentPreviews.tenCert}
+                                  alt="Last organization"
+                                  style={{
+                                    height: "150px",
+                                    width: "auto",
+                                    objectFit: "contain",
+                                  }}
                                 />
-                              </div>
+                              ) : (
+                                <img
+                                  src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746794106/upload-file_i7qokk.png"
+                                  alt="Upload Placeholder"
+                                  style={{
+                                    height: "30px",
+                                    width: "30px",
+                                    objectFit: "contain",
+                                  }}
+                                />
+                              )}
+
+                              <p className="text-[14px] font-medium leading-[24px] tracking-[0.005em] text-[#1B2533] underline">Click to upload</p>
+
+                              <input
+                                className="absolute opacity-0 bg-red-500"
+                                name="tenCert"
+                                type="file"
+                                accept="image/*"
+                                onChange={handleFileChange}
+                                disabled={checkdiable("tenCert")}
+                              />
                             </div>
+                          </div>
                           )}
                         </div>
 
                         {currEmp === 0 && (
                           <>
 
-                            <h1 className="lstOrgText !px-0">
+                            <h1 className="lstOrgText !px-0 mt-5 font-semibold">
                               Last Organization Docs
                             </h1>
 
-                            <div className="flex  mt-6">
+                            <div className="flex  mt-6 gap-10">
                               {/* first   */}
 
-                              <div className="thiddrapgsingl">
-                                <h4>Relieving Letter</h4>
+                              <div className="flex flex-col gap-[5px] w-full">
+                            <h4 className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Relieving Letter</h4>
 
-                                <div className="drag-area try">
-                                  {documentPreviews.RelievingLetter ? (
-                                    <img
-                                      src={documentPreviews.RelievingLetter}
-                                      alt="Relieving Letter Preview"
-                                      style={{
-                                        height: "150px",
-                                        width: "auto",
-                                        objectFit: "contain",
-                                      }}
-                                    />
-                                  ) : (
-                                    <img
-                                      src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746794106/upload-file_i7qokk.png"
-                                      alt="Upload Placeholder"
-                                      style={{
-                                        height: "60px",
-                                        width: "60px",
-                                        objectFit: "contain",
-                                      }}
-                                    />
-                                  )}
+                            <div className="max-w-[252px] w-full h-[62px] rounded-[12px] border border-[#B7B7B7] flex items-center justify-evenly try">
+                              {documentPreviews.tenCert ? (
+                                <img
+                                  src={documentPreviews.tenCert}
+                                  alt="Relieving Preview"
+                                  style={{
+                                    height: "150px",
+                                    width: "auto",
+                                    objectFit: "contain",
+                                  }}
+                                />
+                              ) : (
+                                <img
+                                  src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746794106/upload-file_i7qokk.png"
+                                  alt="Upload Placeholder"
+                                  style={{
+                                    height: "30px",
+                                    width: "30px",
+                                    objectFit: "contain",
+                                  }}
+                                />
+                              )}
 
-                                  <p>Click to upload</p>
+                              <p className="text-[14px] font-medium leading-[24px] tracking-[0.005em] text-[#1B2533] underline">Click to upload</p>
 
-                                  <input
-                                    className="filesjila disabled:bg-gray-200 disabled:cursor-text disabled:text-gray-500"
-                                    type="file"
-                                    name="RelievingLetter"
-                                    onChange={handleFileChange}
-                                    disabled={checkdiable("RelievingLetter")}
-                                  />
-                                </div>
-                              </div>
+                              <input
+                                className="absolute opacity-0 bg-red-500"
+                                name="tenCert"
+                                type="file"
+                                accept="image/*"
+                                onChange={handleFileChange}
+                                disabled={checkdiable("tenCert")}
+                              />
+                            </div>
+                          </div>
 
                               {/* second  */}
+  <div className="flex flex-col gap-[5px] w-full">
+                            <h4 className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Offer Letter</h4>
 
-                              <div className="thiddrapgsingl">
-                                <h4>Offer letter</h4>
+                            <div className="max-w-[252px] w-full h-[62px] rounded-[12px] border border-[#B7B7B7] flex items-center justify-evenly try">
+                              {documentPreviews.tenCert ? (
+                                <img
+                                  src={documentPreviews.tenCert}
+                                  alt="Offer letter"
+                                  style={{
+                                    height: "150px",
+                                    width: "auto",
+                                    objectFit: "contain",
+                                  }}
+                                />
+                              ) : (
+                                <img
+                                  src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746794106/upload-file_i7qokk.png"
+                                  alt="Upload Placeholder"
+                                  style={{
+                                    height: "30px",
+                                    width: "30px",
+                                    objectFit: "contain",
+                                  }}
+                                />
+                              )}
 
+                              <p className="text-[14px] font-medium leading-[24px] tracking-[0.005em] text-[#1B2533] underline">Click to upload</p>
 
-                                <div className="drag-area try">
-                                  {documentPreviews.OfferLetter ? (
-                                    <img
-                                      src={documentPreviews.OfferLetter}
-                                      alt="Offer Letter Preview"
-                                      style={{
-                                        height: "150px",
-                                        width: "auto",
-                                        objectFit: "contain",
-                                      }}
-                                    />
-                                  ) : (
-                                    <img
-                                      src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746794106/upload-file_i7qokk.png"
-                                      alt="Upload Placeholder"
-                                      style={{
-                                        height: "60px",
-                                        width: "60px",
-                                        objectFit: "contain",
-                                      }}
-                                    />
-                                  )}
-
-                                  <p>Click to upload</p>
-
-                                  <input
-                                    className="filesjila"
-                                    name="OfferLetter"
-                                    type="file"
-                                    accept="image/*"
-                                    onChange={handleFileChange}
-                                    disabled={checkdiable("OfferLetter")}
-                                  />
-                                </div>
-                              </div>
+                              <input
+                                className="absolute opacity-0 bg-red-500"
+                                name="tenCert"
+                                type="file"
+                                accept="image/*"
+                                onChange={handleFileChange}
+                                disabled={checkdiable("tenCert")}
+                              />
+                            </div>
+                          </div>
                             </div>
 
-                            <div className="flex  mt-6">
+                            <div className="flex  mt-6 gap-10">
                               {/* first   */}
 
-                              <div className="thiddrapgsingl">
-                                <h4>Experience letter</h4>
+                              <div className="flex flex-col gap-[5px] w-full">
+                            <h4 className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Experience Letter</h4>
 
-                                <div className="drag-area try">
-                                  {documentPreviews.ExperienceLetter ? (
-                                    <img
-                                      src={documentPreviews.ExperienceLetter}
-                                      alt="Experience Letter Preview"
-                                      style={{
-                                        height: "150px",
-                                        width: "auto",
-                                        objectFit: "contain",
-                                      }}
-                                    />
-                                  ) : (
-                                    <img
-                                      src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746794106/upload-file_i7qokk.png"
-                                      alt="Upload Placeholder"
-                                      style={{
-                                        height: "60px",
-                                        width: "60px",
-                                        objectFit: "contain",
-                                      }}
-                                    />
-                                  )}
+                            <div className="max-w-[252px] w-full h-[62px] rounded-[12px] border border-[#B7B7B7] flex items-center justify-evenly try">
+                              {documentPreviews.tenCert ? (
+                                <img
+                                  src={documentPreviews.tenCert}
+                                  alt="Experience letter"
+                                  style={{
+                                    height: "150px",
+                                    width: "auto",
+                                    objectFit: "contain",
+                                  }}
+                                />
+                              ) : (
+                                <img
+                                  src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746794106/upload-file_i7qokk.png"
+                                  alt="Upload Placeholder"
+                                  style={{
+                                    height: "30px",
+                                    width: "30px",
+                                    objectFit: "contain",
+                                  }}
+                                />
+                              )}
 
-                                  <p>Click to upload</p>
+                              <p className="text-[14px] font-medium leading-[24px] tracking-[0.005em] text-[#1B2533] underline">Click to upload</p>
 
-                                  <input
-                                    className="filesjila"
-                                    name="ExperienceLetter"
-                                    type="file"
-                                    accept="image/*"
-                                    onChange={handleFileChange}
-                                    disabled={checkdiable("ExperienceLetter")}
-                                  />
-                                </div>
-                              </div>
+                              <input
+                                className="absolute opacity-0 bg-red-500"
+                                name="tenCert"
+                                type="file"
+                                accept="image/*"
+                                onChange={handleFileChange}
+                                disabled={checkdiable("tenCert")}
+                              />
+                            </div>
+                          </div>
 
                            
                             </div>
                           </>
                         )}
 
-                        <div className="flex  ">
+                        <div className="flex gap-10 mt-6">
 
-                          <div className="thiddrapgsingl mt-4">
-                            <h4>ITR(Income Tax Return)</h4>
+                           <div className="flex flex-col gap-[5px] w-full">
+                            <h4 className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">ITR(Income Tax Return)</h4>
 
-                            <div className="drag-area try">
-                              {documentPreviews.ITR ? (
+                            <div className="max-w-[252px] w-full h-[62px] rounded-[12px] border border-[#B7B7B7] flex items-center justify-evenly try">
+                              {documentPreviews.tenCert ? (
                                 <img
-                                  src={documentPreviews.ITR}
-                                  alt="ITR Preview"
+                                  src={documentPreviews.tenCert}
+                                  alt="ITR Certificate Preview"
                                   style={{
                                     height: "150px",
                                     width: "auto",
@@ -1454,34 +1452,33 @@ const profile = () => {
                                   src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746794106/upload-file_i7qokk.png"
                                   alt="Upload Placeholder"
                                   style={{
-                                    height: "60px",
-                                    width: "60px",
+                                    height: "30px",
+                                    width: "30px",
                                     objectFit: "contain",
                                   }}
                                 />
                               )}
 
-                              <p>Click to upload</p>
+                              <p className="text-[14px] font-medium leading-[24px] tracking-[0.005em] text-[#1B2533] underline">Click to upload</p>
 
                               <input
-                                className="filesjila"
-                                name="ITR"
+                                className="absolute opacity-0 bg-red-500"
+                                name="tenCert"
                                 type="file"
                                 accept="image/*"
                                 onChange={handleFileChange}
-                                disabled={checkdiable("ITR")}
+                                disabled={checkdiable("tenCert")}
                               />
                             </div>
                           </div>
+                          <div className="flex flex-col gap-[5px] w-full">
+                            <h4 className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">ITR(Income Tax Return) 2nd pdf</h4>
 
-                          <div className="thiddrapgsingl mt-4">
-                            <h4>ITR(Income Tax Return) Pdf2</h4>
-
-                            <div className="drag-area try">
-                              {documentPreviews.ITR2 ? (
+                            <div className="max-w-[252px] w-full h-[62px] rounded-[12px] border border-[#B7B7B7] flex items-center justify-evenly try">
+                              {documentPreviews.tenCert ? (
                                 <img
-                                  src={documentPreviews.ITR2}
-                                  alt="ITR2 Preview"
+                                  src={documentPreviews.tenCert}
+                                  alt="ITR Certificate Preview"
                                   style={{
                                     height: "150px",
                                     width: "auto",
@@ -1493,22 +1490,22 @@ const profile = () => {
                                   src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746794106/upload-file_i7qokk.png"
                                   alt="Upload Placeholder"
                                   style={{
-                                    height: "60px",
-                                    width: "60px",
+                                    height: "30px",
+                                    width: "30px",
                                     objectFit: "contain",
                                   }}
                                 />
                               )}
 
-                              <p>Click to upload</p>
+                              <p className="text-[14px] font-medium leading-[24px] tracking-[0.005em] text-[#1B2533] underline">Click to upload</p>
 
                               <input
-                                className="filesjila"
-                                name="ITR2"
+                                className="absolute opacity-0 bg-red-500"
+                                name="tenCert"
                                 type="file"
                                 accept="image/*"
                                 onChange={handleFileChange}
-                                disabled={checkdiable("ITR2")}
+                                disabled={checkdiable("tenCert")}
                               />
                             </div>
                           </div>

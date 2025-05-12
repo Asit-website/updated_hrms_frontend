@@ -43,7 +43,7 @@ const Termination = () => {
 
   return (
     <div className="p-6">
-      <div className="flex flex-col sm:flex-item justify-between items-start">
+      <div className="flex flex-col md:flex-row sm:flex-item justify-between items-start">
         <div>
           <h1 className="text-2xl font-semibold">Manage Termination</h1>
         </div>
@@ -119,7 +119,7 @@ const Termination = () => {
                         }
                       </td>
                       <td className="px-6 py-4 text-gray-800">
-                        <ActionMenu options={butto}/>
+                        <ActionMenu options={buttonOptions}/>
                       </td>
                     </tr>
                   ))

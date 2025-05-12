@@ -267,7 +267,7 @@ const CreateLead = () => {
   return (
     <div className='bg-[#f9fbfc]'>
       <div>
-        <div className="flex items-center justify-between px-7 py-5 pt-5">
+        <div className="flex flex-col md:flex-row items-center justify-between px-7 py-5 pt-5">
           <h2 className="text-[24px] font-semibold text-[#111827]">Create Lead</h2>
           <div className="flex gap-2">
           <NavLink to="/adminDash/myLead">
@@ -521,7 +521,7 @@ Date
 
           <h2 className="text-lg font-semibold pl-6 border-b-2 p-5">Additional Fields</h2>
        
-                                <div className="border grid grid-cols-4 gap-4 p-4 rounded shadow mt-4 m-5">
+                                <div className="border grid grid-col md:grid-cols-2 lg:grid-cols-4 gap-4 p-4 rounded shadow mt-4 m-5">
                                     {leadCategory.slice(0, showAdditionalSetting).map((item) => (
                                         <div key={item._id} className="flex items-center space-x-2">
                                             <input

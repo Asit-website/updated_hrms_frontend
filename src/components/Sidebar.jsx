@@ -7,25 +7,17 @@ import {
   MdLeaderboard,
   MdManageAccounts,
 } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Sidebar = ({ showSidebar, setShowSidebar }) => {
   const [showLeadLi, setShowLeadLi] = useState(false);
   const [showTaskLi, setShowTaskLi] = useState(false);
+    const [showTaskMa, setShowTaskMa] = useState(false);
   const [openAssets, setOpenAssets] = useState(
     sessionStorage.getItem("adminAssetsManagement") === "true"
   );
   const [assetsItem, setAssetsItem] = useState(null);
-  const assestspage = [
-    {
-      title: "Assests Management",
-      link: "/performance/Assets",
-    },
-    {
-      title: "Items",
-      link: "/adminDash/HRM/Expense",
-    },
-  ];
+ 
   const [openHr, setOpenHr] = useState(false);
   const [hrItem, setHrItem] = useState(0);
   const hrAdminItems = [
@@ -112,25 +104,28 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
         <div className="py-4 overflow-y-auto">
           <ul className=" font-medium">
             <li>
-              <a
-                href="#"
-                className="flex items-center p-2 py-3 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-              >
-                <MdDashboard />
-                <span className="ms-3">Dashboard</span>
-              </a>
+              <NavLink to="/adminDash/HRM"
+                 className={({ isActive }) =>
+      `flex items-center p-2 py-3 rounded-lg group
+      ${isActive ? 'bg-[#F5F9FF] text-[#0B56E4]' : 'text-black hover:bg-gray-100'}`
+    }
+  >
+    <MdDashboard className={`${({ isActive }) => isActive ? 'text-[#0B56E4]' : ''}`} />
+    <span className="ms-3">Dashboard</span>
+              </NavLink>
             </li>
-            <hr />
+          
             <li>
               <a
                 href="#"
                 className="flex items-center p-2 py-3 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
+                
                 <MdLeaderboard />
-                <span className="flex-1 ms-3 whitespace-nowrap">
+                <span onClick={() => setShowLeadLi(!showLeadLi)} className="flex-1 ms-3 whitespace-nowrap">
                   Lead Management
                 </span>
-                <span onClick={() => setShowLeadLi(!showLeadLi)}>
+                <span>
                   <FaAngleDown
                     className={`transition-all ${
                       showLeadLi ? "rotate-180" : ""
@@ -139,29 +134,36 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
                 </span>
               </a>
             </li>
-            <hr />
+            
             {showLeadLi && (
               <div className="pl-4">
                 <li>
-                  <a
-                    href="#"
-                    className="flex items-center p-2 py-3 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-                  >
-                    <MdDashboard />
+                  <NavLink
+                    to="/adminDash/leadDash"
+                   
+                     className={({ isActive }) =>
+      `flex items-center p-2 py-3 rounded-lg group
+      ${isActive ? 'bg-[#F5F9FF] text-[#0B56E4]' : 'text-black'}`
+    }
+>
+    <MdDashboard className={`${({ isActive }) => isActive ? 'text-[#0B56E4]' : ''}`} />
+                    
                     <span className="ms-3">Lead</span>
-                  </a>
+                  </NavLink>
                 </li>
-                <hr />
+         
                 <li>
-                  <a
-                    href="#"
-                    className="flex items-center p-2 py-3 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-                  >
-                    <MdDashboard />
+                  <NavLink to="/adminDash/LeadSystemSetting"
+                      className={({ isActive }) =>
+      `flex items-center p-2 py-3 rounded-lg group
+      ${isActive ? 'bg-[#F5F9FF] text-[#0B56E4]' : 'text-black'}`
+    }
+>
+    <MdDashboard className={`${({ isActive }) => isActive ? 'text-[#0B56E4]' : ''}`} />
                     <span className="ms-3">Lead System Setting</span>
-                  </a>
+                  </NavLink>
                 </li>
-                <hr />
+        
               </div>
             )}
             <li>
@@ -170,10 +172,10 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
                 className="flex items-center p-2 py-3  rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
                 <FaTasks />
-                <span className="flex-1 ms-3 whitespace-nowrap">
+                <span onClick={() => setShowTaskLi(!showTaskLi)} className="flex-1 ms-3 whitespace-nowrap">
                   Task Management
                 </span>
-                <span onClick={() => setShowTaskLi(!showTaskLi)}>
+                <span>
                   <FaAngleDown
                     className={`transition-all ${
                       showTaskLi ? "rotate-180" : ""
@@ -182,217 +184,352 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
                 </span>
               </a>
             </li>
-            <hr />
+      
             {showTaskLi && (
               <div className="pl-4">
                 <li>
-                  <a
-                    href="#"
-                    className="flex items-center p-2 py-3 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-                  >
-                    <MdDashboard />
+                  <NavLink
+                    to="/adminDash/HRM/taskClients"
+                    className={({ isActive }) =>
+      `flex items-center p-2 py-3 rounded-lg group
+      ${isActive ? 'bg-[#F5F9FF] text-[#0B56E4]' : 'text-black'}`
+    }
+>
+    <MdDashboard className={`${({ isActive }) => isActive ? 'text-[#0B56E4]' : ''}`} />
                     <span className="ms-3">Clients</span>
-                  </a>
+                  </NavLink>
                 </li>
-                <hr />
+                
                 <li>
-                  <a
-                    href="#"
-                    className="flex items-center p-2 py-3 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-                  >
-                    <MdDashboard />
+                  <NavLink
+                    to="/adminDash/HRM/taskProjects"
+                      className={({ isActive }) =>
+      `flex items-center p-2 py-3 rounded-lg group
+      ${isActive ? 'bg-[#F5F9FF] text-[#0B56E4]' : 'text-black'}`
+    }
+>
+    <MdDashboard className={`${({ isActive }) => isActive ? 'text-[#0B56E4]' : ''}`} />
                     <span className="ms-3">Projects</span>
-                  </a>
+                  </NavLink>
                 </li>
-                <hr />
+             
               </div>
             )}
-            <li>
+
+
+
+             <li>
               <a
                 href="#"
-                className="flex items-center p-2 py-3 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                className="flex items-center p-2 py-3  rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
-                <MdManageAccounts />
-                <span className="flex-1 ms-3 whitespace-nowrap">
+                <FaTasks />
+                <span onClick={() => setShowTaskMa(!showTaskMa)} className="flex-1 ms-3 whitespace-nowrap">
                   Hr Management
+                </span>
+                <span>
+                  <FaAngleDown
+                    className={`transition-all ${
+                      showTaskMa ? "rotate-180" : ""
+                    }`}
+                  />
                 </span>
               </a>
             </li>
-            <hr />
-            {/* <li>
-                            <a href="#" className="flex items-center p-2 py-3 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                                <MdAssessment />
-                                <span className="flex-1 ms-3 whitespace-nowrap">Assets</span>
-                            </a>
-                        </li> */}
-            <div
-              onClick={() => {
-                setOpenAssets((prev) => !prev);
-                sessionStorage.setItem("adminAssetsManagement", !openAssets);
-              }}
-              className="flex items-center justify-between w-full h-[44px] cursor-pointer ml-0 px-[10px]"
-            >
-              <div className="flex items-center gap-3">
-                <img
-                  src={`${
-                    window.location.pathname === "/performance/Assets" ||
-                    window.location.pathname === "/adminDash/HRM/Expense"
-                      ? "https://res.cloudinary.com/dd9tagtiw/image/upload/v1746867422/analytics_hjcdw1.svg"
-                      : "https://res.cloudinary.com/dd9tagtiw/image/upload/v1746867455/anal_iwhmpq.svg"
-                  }`}
-                  alt="assets-icon"
-                />
-                <p
-                  className={`text-[16px] font-medium leading-[18px] tracking-[0px] text-left ${
-                    window.location.pathname === "/performance/Assets" ||
-                    window.location.pathname === "/adminDash/HRM/Expense" ||
-                    openAssets
-                      ? "semo"
-                      : "none"
-                  }`}
-                >
-                  Assets
-                </p>
-              </div>
+        
+            {showTaskMa && (
+              <div className="pl-4">
+                <li>
+                  <NavLink
+                    to="/adminDash/HRM/employeeManagement"
+                  className={({ isActive }) =>
+      `flex items-center p-2 py-3 rounded-lg group
+      ${isActive ? 'bg-[#F5F9FF] text-[#0B56E4]' : 'text-black hover:bg-gray-100'}`
+    }
+  >
+    <MdDashboard className={`${({ isActive }) => isActive ? 'text-[#0B56E4]' : ''}`} />
+                    <span className="ms-3">Employee Management</span>
+                  </NavLink>
+                </li>
+                
+                <li>
+                  <NavLink
+                    to="/adminDash/HRM/markAttendance"
+                 className={({ isActive }) =>
+      `flex items-center p-2 py-3 rounded-lg group
+      ${isActive ? 'bg-[#F5F9FF] text-[#0B56E4]' : 'text-black hover:bg-gray-100'}`
+    }
+  >
+    <MdDashboard className={`${({ isActive }) => isActive ? 'text-[#0B56E4]' : ''}`} />
+                    <span className="ms-3">Leave Management Setup</span>
+                  </NavLink>
+                </li>
+        
+                <li>
+                  <NavLink
+                    to="/adminDash/HRM/markAttendance"
+                   className={({ isActive }) =>
+      `flex items-center p-2 py-3 rounded-lg group
+      ${isActive ? 'bg-[#F5F9FF] text-[#0B56E4]' : 'text-black hover:bg-gray-100'}`
+    }
+  >
+    <MdDashboard className={`${({ isActive }) => isActive ? 'text-[#0B56E4]' : ''}`} />
+                    <span className="ms-3">Leave Management setup</span>
 
-              <img
-                src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746867385/vect_gyg2cc.svg"
-                alt="toggle-arrow"
-              />
-            </div>
-
-            {openAssets && (
-              <div className="alladminDash-item ml-5 -mt-3">
-                {assestspage?.map((item, index) => (
-                  <div
-                    onClick={() => {
-                      setAssetsItem(index);
-                      navigate(item?.link);
-                      setOpenAssets(true);
-                    }}
-                    className="flex items-center gap-2 p-2 py-3 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 border-b-[1px] cursor-pointer"
-                    key={index}
-                  >
-                    {assetsItem === index ? (
-                      <img
-                        src={
-                          window.location.pathname === item?.link
-                            ? "https://res.cloudinary.com/dd9tagtiw/image/upload/v1746867296/clientsIcon_dlzq3r.svg"
-                            : "https://res.cloudinary.com/dd9tagtiw/image/upload/v1746867296/clientsIcon_dlzq3r.svg"
-                        }
-                        alt=""
-                        className="w-6"
-                      />
-                    ) : (
-                      <img
-                        src={
-                          window.location.pathname === item?.link
-                            ? "https://res.cloudinary.com/dd9tagtiw/image/upload/v1746867344/projects_u88awi.svg"
-                            : "https://res.cloudinary.com/dd9tagtiw/image/upload/v1746867344/projects_u88awi.svg"
-                        }
-                        alt=""
-                        className="w-5"
-                      />
-                    )}
-                    <p
-                      className={`${
-                        assetsItem === index
-                          ? "text-[16px]"
-                          : "text-[16px] font-medium leading-[17px] tracking-[0px] text-left"
-                      } ${
-                        window.location.pathname === item?.link ? "fan" : ""
-                      } lessfontweight`}
-                    >
-                      {item?.title}
-                    </p>
-                  </div>
-                ))}
+                  </NavLink>
+                </li>
+                   <li>
+                  <NavLink
+                    to="/adminDash/HRM/taskProjects"
+                 className={({ isActive }) =>
+      `flex items-center p-2 py-3 rounded-lg group
+      ${isActive ? 'bg-[#F5F9FF] text-[#0B56E4]' : 'text-black hover:bg-gray-100'}`
+    }
+  >
+    <MdDashboard className={`${({ isActive }) => isActive ? 'text-[#0B56E4]' : ''}`} />
+                    <span className="ms-3">Payroll Management</span>
+                    
+                  </NavLink>
+                </li>
+         
+                   <li>
+                  <NavLink
+                    to="/adminDash/documentManagement"
+                   className={({ isActive }) =>
+      `flex items-center p-2 py-3 rounded-lg group
+      ${isActive ? 'bg-[#F5F9FF] text-[#0B56E4]' : 'text-black hover:bg-gray-100'}`
+    }
+  >
+    <MdDashboard className={`${({ isActive }) => isActive ? 'text-[#0B56E4]' : ''}`} />
+                    <span className="ms-3">Document Management</span>
+                    
+                  </NavLink>
+                </li>
+                   <li>
+                  <NavLink
+                    to="/adminDash/HRM/taskProjects"
+                  className={({ isActive }) =>
+      `flex items-center p-2 py-3 rounded-lg group
+      ${isActive ? 'bg-[#F5F9FF] text-[#0B56E4]' : 'text-black hover:bg-gray-100'}`
+    }
+  >
+    <MdDashboard className={`${({ isActive }) => isActive ? 'text-[#0B56E4]' : ''}`} />
+                    <span className="ms-3">Performance setup</span>
+                    
+                  </NavLink>
+                </li>
+                   <li>
+                  <NavLink
+                    to="/adminDash/HRM/HRMsystemSetup"
+                   className={({ isActive }) =>
+      `flex items-center p-2 py-3 rounded-lg group
+      ${isActive ? 'bg-[#F5F9FF] text-[#0B56E4]' : 'text-black hover:bg-gray-100'}`
+    }
+  >
+    <MdDashboard className={`${({ isActive }) => isActive ? 'text-[#0B56E4]' : ''}`} />
+                    <span className="ms-3">Hr System Setup</span>
+                    
+                  </NavLink>
+                </li>
               </div>
             )}
+        
+           
 
-            <hr />
-            {/* <li>
-                            <a href="#" className="flex items-center p-2 py-3 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                                <GrSettingsOption />
-                                <span className="flex-1 ms-3 whitespace-nowrap">Hr Admin Setup</span>
-                            </a>
-                        </li> */}
 
-            <div
-              onClick={() => {
-                setOpenHr((prev) => !prev);
-                sessionStorage.setItem("adminHRSetup", !openHr);
-              }}
-              className="flex items-center justify-between  w-full h-[44px] cursor-pointer ml-0 px-[10px]"
-            >
-              <div className="flex items-center gap-3">
-                <img
-                  src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746868302/reading_stkfi2.svg"
-                  alt="dasg"
-                />
-                <p
-                  className={`text-[16px] font-medium leading-[18px] tracking-[0px] text-left ${
-                    openHr && "fan"
-                  }`}
-                >
-                  Hr Admin Setup
-                </p>
+
+  
+             <li>
+              <a
+                href="#"
+                className="flex items-center p-2 py-3  rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+              >
+                <FaTasks />
+                <span onClick={() => setAssetsItem(!assetsItem)} className="flex-1 ms-3 whitespace-nowrap">
+         Assets
+                </span>
+                <span>
+                  <FaAngleDown
+                    className={`transition-all ${
+                      assetsItem ? "rotate-180" : ""
+                    }`}
+                  />
+                </span>
+              </a>
+            </li>
+        
+            {assetsItem && (
+              <div className="pl-4">
+                <li>
+                  <NavLink
+                    to="/performance/Assets"
+                  className={({ isActive }) =>
+      `flex items-center p-2 py-3 rounded-lg group
+      ${isActive ? 'bg-[#F5F9FF] text-[#0B56E4]' : 'text-black hover:bg-gray-100'}`
+    }
+  >
+    <MdDashboard className={`${({ isActive }) => isActive ? 'text-[#0B56E4]' : ''}`} />
+                    <span className="ms-3">Assets Management</span>
+                  </NavLink>
+                </li>
+                
+                <li>
+                  <NavLink
+                    to="/adminDash/HRM/Expense"
+                 className={({ isActive }) =>
+      `flex items-center p-2 py-3 rounded-lg group
+      ${isActive ? 'bg-[#F5F9FF] text-[#0B56E4]' : 'text-black hover:bg-gray-100'}`
+    }
+  >
+    <MdDashboard className={`${({ isActive }) => isActive ? 'text-[#0B56E4]' : ''}`} />
+                    <span className="ms-3">Items</span>
+                  </NavLink>
+                </li>
+        
+        
+                  
               </div>
+            )}
+        
 
-              <img
-                src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746867385/vect_gyg2cc.svg"
-                alt="vect"
-              />
-            </div>
 
+          <li>
+              <a
+                href="#"
+                className="flex items-center p-2 py-3  rounded-lg dark:text-white  dark:hover:bg-gray-700 group"
+              >
+                <FaTasks />
+                <span onClick={() => setOpenHr(!openHr)} className="flex-1 ms-3 whitespace-nowrap">
+         Hr Admin Setup
+                </span>
+                <span>
+                  <FaAngleDown
+                    className={`transition-all ${
+                      openHr? "rotate-180" : ""
+                    }`}
+                  />
+                </span>
+              </a>
+            </li>
+        
             {openHr && (
-              <div className="alladminDash-item ml-5">
-                {hrAdminItems?.map((item, index) => (
-                  <div
-                    onClick={() => {
-                      setHrItem(index);
-                      navigate(item?.link);
-                      // setOpenLeaveMan(true);
-                    }}
-                    className="flex items-center gap-2 p-2 py-3 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 border-b-[1px] cursor-pointer"
-                    key={index}
+              <div className="pl-4">
+                <li>
+                  <NavLink
+                    to="/adminDash/HRM/AwardHRM"
+                   className={({ isActive }) =>
+      `flex items-center p-2 py-3 rounded-lg group
+      ${isActive ? 'bg-[#F5F9FF] text-[#0B56E4]' : 'text-black hover:bg-gray-100'}`
+    }
+  >
+    <MdDashboard className={`${({ isActive }) => isActive ? 'text-[#0B56E4]' : ''}`} />
+                    <span className="ms-3">Award</span>
+                  </NavLink>
+                </li>
+                
+                <li>
+                  <NavLink
+                    to="/adminDash/HRM/TransferHRM"
+                 className={({ isActive }) =>
+      `flex items-center p-2 py-3 rounded-lg group
+      ${isActive ? 'bg-[#F5F9FF] text-[#0B56E4]' : 'text-black hover:bg-gray-100'}`
+    }
+  >
+    <MdDashboard className={`${({ isActive }) => isActive ? 'text-[#0B56E4]' : ''}`} />
+                    <span className="ms-3">Transfer</span>
+                  </NavLink>
+                </li>
+         <li>
+                  <NavLink
+                    to="/adminDash/HRM/ResignationHRM"
+                  className={({ isActive }) =>
+      `flex items-center p-2 py-3 rounded-lg group
+      ${isActive ? 'bg-[#F5F9FF] text-[#0B56E4]' : 'text-black hover:bg-gray-100'}`
+    }
+  >
+    <MdDashboard className={`${({ isActive }) => isActive ? 'text-[#0B56E4]' : ''}`} />
+                    <span className="ms-3">Regisnation</span>
+                  </NavLink>
+                </li>
+        
+          <li>
+                  <NavLink
+                    to="/adminDash/HRM/PromotionHRM"
+                   className={({ isActive }) =>
+      `flex items-center p-2 py-3 rounded-lg group
+      ${isActive ? 'bg-[#F5F9FF] text-[#0B56E4]' : 'text-black hover:bg-gray-100'}`
+    }
+  >
+    <MdDashboard className={`${({ isActive }) => isActive ? 'text-[#0B56E4]' : ''}`} />
+                    <span className="ms-3">Promtion</span>
+                  </NavLink>
+                </li>
+        
+           <li>
+                  <NavLink
+                    to="/adminDash/HRM/ComplaintsHRM"
+                 className={({ isActive }) =>
+      `flex items-center p-2 py-3 rounded-lg group
+      ${isActive ? 'bg-[#F5F9FF] text-[#0B56E4]' : 'text-black hover:bg-gray-100'}`
+    }
+  >
+    <MdDashboard className={`${({ isActive }) => isActive ? 'text-[#0B56E4]' : ''}`} />
+                    <span className="ms-3">Complaints</span>
+                  </NavLink>
+                </li>
+                   <li>
+                  <NavLink
+                    to="/adminDash/HRM/WarningHRM"
+                   className={({ isActive }) =>
+      `flex items-center p-2 py-3 rounded-lg group
+      ${isActive ? 'bg-[#F5F9FF] text-[#0B56E4]' : 'text-black hover:bg-gray-100'}`
+    }
+  >
+    <MdDashboard className={`${({ isActive }) => isActive ? 'text-[#0B56E4]' : ''}`} />
+                    <span className="ms-3">Warning</span>
+                  </NavLink>
+                </li>
+                   <li>
+                  <NavLink
+                    to="/adminDash/HRM/TerminationHRM"
+                    className="flex items-center p-2 py-3 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                   >
-                    {hrItem == index ? (
-                      <img
-                        src={`${
-                          window.location.pathname === `${item?.link}`
-                            ? "https://res.cloudinary.com/dd9tagtiw/image/upload/v1746868460/fiber_m7ucfr.svg"
-                            : "https://res.cloudinary.com/dd9tagtiw/image/upload/v1746868499/tyming_y3l9ku.svg"
-                        }`}
-                        alt=""
-                      />
-                    ) : (
-                      <img
-                        src={`${
-                          window.location.pathname === `${item?.link}`
-                            ? "https://res.cloudinary.com/dd9tagtiw/image/upload/v1746868460/fiber_m7ucfr.svg"
-                            : "https://res.cloudinary.com/dd9tagtiw/image/upload/v1746868499/tyming_y3l9ku.svg"
-                        }`}
-                        alt=""
-                      />
-                    )}
-                    <p
-                      className={` ${
-                        hrItem === index
-                          ? "text-[16px]"
-                          : "text-[16px] font-medium leading-[17px] tracking-[0px] text-left"
-                      } ${
-                        window.location.pathname === `${item?.link}`
-                          ? "fan"
-                          : ""
-                      } lessfontweight`}
-                    >
-                      {item?.title}
-                    </p>
-                  </div>
-                ))}
+                    <MdDashboard />
+                    <span className="ms-3">Termination</span>
+                  </NavLink>
+                </li>
+                   <li>
+                  <NavLink
+                    to="/adminDash/HRM/holiday"
+                    className={({ isActive }) =>
+      `flex items-center p-2 py-3 rounded-lg group
+      ${isActive ? 'bg-[#F5F9FF] text-[#0B56E4]' : 'text-black hover:bg-gray-100'}`
+    }
+  >
+    <MdDashboard className={`${({ isActive }) => isActive ? 'text-[#0B56E4]' : ''}`} />
+                    <span className="ms-3">Holiday</span>
+                  </NavLink>
+                </li>
+                  
+                     <li>
+                  <NavLink
+                    to="/adminDash/announcement"
+                   className={({ isActive }) =>
+      `flex items-center p-2 py-3 rounded-lg group
+      ${isActive ? 'bg-[#F5F9FF] text-[#0B56E4]' : 'text-black hover:bg-gray-100'}`
+    }
+  >
+    <MdDashboard className={`${({ isActive }) => isActive ? 'text-[#0B56E4]' : ''}`} />
+                    <span className="ms-3">Announcement</span>
+                  </NavLink>
+                </li>
               </div>
             )}
+        
+
+          
+
+         
           </ul>
         </div>
       </div>
