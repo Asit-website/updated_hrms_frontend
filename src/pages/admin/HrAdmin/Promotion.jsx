@@ -1,15 +1,15 @@
-
 import CommonTable from "../../../components/CommonTable";
-
 import ActionMenu from "../../../components/ActionMenu";
 import { FaPlus, FaSearch } from 'react-icons/fa';
 import { useMain } from "../../../hooks/UseMain";
 import { useEffect, useState } from "react";
+import ModalForm from "../../../components/ModalForm";
+import { confirmAlert } from "react-confirm-alert";
 
 const Promotion = () => {
 
 
-  const { getPromotion, promotion } = useMain();
+  const { getPromotion, promotion, allDep, allEmp } = useMain();
   const buttonOptions = [
     {
       label: 'Edit',
@@ -116,7 +116,7 @@ const Promotion = () => {
                         }
                       </td>
                       <td key={i} className="px-6 py-4 text-gray-800">
-                        <ActionMenu options={buttonOptions}/>
+                        <ActionMenu options={buttonOptions} />
                       </td>
                     </tr>
                   ))

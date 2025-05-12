@@ -64,8 +64,8 @@ export default function ModalForm({ isOpen, onClose, onSubmit, fields, title }) 
 
                         if (field.type === "select") {
                             return (
-                                <div key={field.name}>
-                                    <label className="text-sm font-medium">{field.label}</label>
+                                <div key={field.name} className={field.fullWidth ? "md:col-span-2" : ""}>
+                                    <label className={`text-sm font-medium ${field.fullWidth ? "md:col-span-2" : ""}`}>{field.label}</label>
                                     <select
                                         name={field.name}
                                         value={formData[field.name]}
@@ -74,7 +74,7 @@ export default function ModalForm({ isOpen, onClose, onSubmit, fields, title }) 
                                         className="w-full mt-1 p-2 border border-gray-300 rounded"
                                     >
                                         <option value="">Select</option>
-                                        {field.options.map((opt,index) => (
+                                        {field.options.map((opt, index) => (
                                             <option key={index} value={opt.value}>
                                                 {opt.label}
                                             </option>
@@ -86,8 +86,8 @@ export default function ModalForm({ isOpen, onClose, onSubmit, fields, title }) 
                         }
 
                         return (
-                            <div key={field.name}>
-                                <label className="text-sm font-medium">{field.label}</label>
+                              <div key={field.name} className={field.fullWidth ? "md:col-span-2" : ""}>
+                                <label className={`text-sm font-medium `}>{field.label}</label>
                                 <input
                                     type={field.type}
                                     name={field.name}
