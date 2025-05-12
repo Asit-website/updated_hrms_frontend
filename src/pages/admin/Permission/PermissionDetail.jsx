@@ -1,28 +1,25 @@
-
 import "react-confirm-alert/src/react-confirm-alert.css";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import {
-    allLead,
-    allowancePerms,
-    assetPerms,
-    dashboardPerms,
-    expensePerms,
-    hrmsSetupPerms,
-    leadSystem,
-    otherPerms,
-    payrollPerms,
-    payslipPerms,
-    ProjectCreate,
-    taskPerms,
-    permissionProvide
-  } from "./data";
+  allLead,
+  allowancePerms,
+  assetPerms,
+  dashboardPerms,
+  expensePerms,
+  hrmsSetupPerms,
+  leadSystem,
+  otherPerms,
+  payrollPerms,
+  payslipPerms,
+  ProjectCreate,
+  taskPerms,
+  permissionProvide,
+} from "./data";
 import { useLocation, useNavigate, NavLink } from "react-router-dom";
 import { useMain } from "../../../hooks/UseMain";
 
-
 const PermissionDetail = () => {
-
   const { user, AllRolesapi, ProvidePermission, UpdatePermission } = useMain();
 
   let hrms_user = JSON?.parse(localStorage.getItem("hrms_user"));
@@ -39,12 +36,11 @@ const PermissionDetail = () => {
   const fetchAllRoles = async () => {
     const ans = await AllRolesapi();
     setAllRoles(ans?.data);
-  }
+  };
 
   const location = useLocation();
 
   const item = location.state;
-
 
   const changeHandler = (e) => {
     const { name, value } = e.target;
@@ -57,29 +53,33 @@ const PermissionDetail = () => {
 
   const [selectLead, setSelectLead] = useState([]);
 
-
   const applyPermission = async () => {
+    console.log("click");
 
-    if (roleName?.name === "") {
-      return toast.error("Please Enter the name");
-    }
-    if (allRoles?.filter((item) => item?.name.toLowerCase() === roleName?.name.toLowerCase())) {
-      return toast.error("Role already exist");
-    }
-    const toastId = toast.loading("Loading...");
+    // if (roleName?.name === "") {
+    //   return toast.error("Please Enter the name");
+    // }
+    // if (
+    //   allRoles?.filter(
+    //     (item) => item?.name.toLowerCase() === roleName?.name.toLowerCase()
+    //   )
+    // ) {
+    //   return toast.error("Role already exist");
+    // }
+    // const toastId = toast.loading("Loading...");
 
     const ans = await ProvidePermission({
       name: roleName?.name,
       Service: selectLead,
     });
+    console.log("anssss",ans)
 
-    toast.success("Successfuly done");
-    navigate("/adminDash/Permission")
-    toast.dismiss(toastId);
+    // toast.success("Successfuly done");
+    navigate("/adminDash/Permission");
+    // toast.dismiss(toastId);
   };
 
   const udpatePermision = async () => {
-
     if (roleName?.name === "") {
       return toast.error("Please Enter the name");
     }
@@ -88,13 +88,12 @@ const PermissionDetail = () => {
     const ans = await UpdatePermission({
       name: roleName?.name,
       Service: selectLead,
-      roleId: item?._id
+      roleId: item?._id,
     });
 
     if (ans?.status) {
       toast.success("Successfuly Updated");
-      navigate("/adminDash/Permission")
-
+      navigate("/adminDash/Permission");
     }
 
     toast.dismiss(toastId);
@@ -102,7 +101,7 @@ const PermissionDetail = () => {
 
   useEffect(() => {
     fetchAllRoles();
-  }, [])
+  }, []);
 
   const handleSelect = (id) => {
     setSelectLead((prevSelected) =>
@@ -130,17 +129,18 @@ const PermissionDetail = () => {
   };
 
   const renderCategory = (category, title) => (
-    <div className="flex flex-col w-full max-w-[325px] h-[260px] overflow-y-scroll p-[10px] gap-[10px] rounded-[10px] border border-t-[3px] border-t-[#3595F6]">
-      <div className="flex items-center justify-center gap-[10px]">
+    <div className="flex flex-col w-full max-w-[325px] h-[260px] overflow-y-scroll relative gap-[10px] rounded-[10px] border border-t-[3px] border-t-[#3595F6] bg-white pl-4 pr-4 pb-4">
+      <div className="flex items-center justify-start gap-[10px] sticky top-0 left-0 py-2 w-full bg-white">
         <input
           type="checkbox"
           checked={category.every((item) => selectLead.includes(item.id))}
           onChange={(e) => handleSelectAll(e, category)}
         />
-        <h2 className="text-[20px] font-semibold leading-[24px] tracking-[0.0015em] text-left text-[#1B2533]">{title}</h2>
+        <h2 className="text-[20px] font-semibold leading-[24px] tracking-[0.0015em] text-left text-[#1B2533]">
+          {title}
+        </h2>
+        <hr />
       </div>
-
-      <hr />
 
       <div className="flex flex-col gap-[10px]">
         {category.map((item) => (
@@ -150,7 +150,9 @@ const PermissionDetail = () => {
               checked={selectLead.includes(item.id)}
               onChange={() => handleSelect(item.id)}
             />
-            <span className="text-[16px] font-normal leading-[24px] tracking-[0.0015em] text-left text-[#1B2533]">{item.title}</span>
+            <span className="text-[16px] font-normal leading-[24px] tracking-[0.0015em] text-left text-[#1B2533]">
+              {item.title}
+            </span>
           </div>
         ))}
       </div>
@@ -161,8 +163,8 @@ const PermissionDetail = () => {
     if (item) {
       setRoleName({ name: item.name });
 
-      const truePermissions = Object.keys(item).filter(key =>
-        item[key] === true
+      const truePermissions = Object.keys(item).filter(
+        (key) => item[key] === true
       );
       setSelectLead(truePermissions);
     }
@@ -171,25 +173,33 @@ const PermissionDetail = () => {
   return (
     <>
       <div className="flex bg-[#f0f6ff] min-h-screen relative h-full">
-        
-
         <div className="w-full bg-[#f5f5f5]">
-          
-
-          <div className="w-full relative mt-[69px] pt-[32px] pr-[20px] pb-[32px] pl-[54px] flex flex-col gap-[30px]">
+          <div className="w-full relative pt-[32px] pr-[20px] pb-[32px] pl-[54px] flex flex-col gap-[30px]">
             <div className="flex items-center justify-between sticky left-0 top-0">
-              <h1 className="text-[24px] font-semibold text-[#111827] leading-6">{item ? 'Edit Role' : 'Create Role'}</h1>
+              <h1 className="text-[24px] font-semibold text-[#111827] leading-6">
+                {item ? "Edit Role" : "Create Role"}
+              </h1>
 
               <div className="flex items-center gap-[10px] mr-[20px]">
-                <NavLink to="/adminDash/Permission"><button className="flex gap-2 items-center bg-[#2563eb] text-white text-[16px] font-medium px-4 py-[6px] rounded-md hover:bg-blue-700">Back</button></NavLink>
+                <NavLink to="/adminDash/Permission">
+                  <button className="flex gap-2 items-center bg-[#2563eb] text-white text-[16px] font-medium px-4 py-[6px] rounded-md hover:bg-blue-700">
+                    Back
+                  </button>
+                </NavLink>
               </div>
-
             </div>
-           
 
             <label htmlFor="" className="block text-md font-normal mb-1">
-              <p className="text-[16px] font-semibold leading-[24px] tracking-[0.0015em] text-left text-[#1B2533]">Name</p>
-              <input  className="w-full border rounded p-2 text-sm font-normal "type="text" value={roleName.name} name="name" onChange={changeHandler} />
+              <p className="text-[16px] font-semibold leading-[24px] tracking-[0.0015em] text-left text-[#1B2533]">
+                Name
+              </p>
+              <input
+                className="w-full border rounded p-2 text-sm font-normal "
+                type="text"
+                value={roleName.name}
+                name="name"
+                onChange={changeHandler}
+              />
             </label>
 
             <div className="flex flex-wrap gap-[20px]">
@@ -208,17 +218,21 @@ const PermissionDetail = () => {
               {renderCategory(permissionProvide, "Permission Page")}
             </div>
 
-            <button onClick={() => {
-              if (item) {
-                udpatePermision();
-              }
-              else {
-                applyPermission()
-              }
-            }} className="w-fit mx-auto px-[10px] py-[5px] bg-[#0B56E4] border border-[#0B56E4] rounded-[10px"><span className="text-[16px] font-medium leading-[24px] tracking-[0.005em] text-white">{item ? "Update" : "Create"}</span></button>
-
+            <button
+              onClick={() => {
+                if (item) {
+                  udpatePermision();
+                } else {
+                  applyPermission();
+                }
+              }}
+              className="w-fit mx-auto px-[10px] py-[5px] bg-[#0B56E4] border border-[#0B56E4] rounded-[10px]"
+            >
+              <span className="text-[16px] font-medium leading-[24px] tracking-[0.005em] text-white">
+                {item ? "Update" : "Create"}
+              </span>
+            </button>
           </div>
-
         </div>
       </div>
     </>
