@@ -261,7 +261,7 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
     }
   >
     <MdDashboard className={`${({ isActive }) => isActive ? 'text-[#0B56E4]' : ''}`} />
-                    <span className="ms-3">Leave Management Setup</span>
+                    <span className="ms-3">Attandance Management</span>
                   </NavLink>
                 </li>
         

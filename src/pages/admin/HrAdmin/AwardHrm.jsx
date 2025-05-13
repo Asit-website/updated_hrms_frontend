@@ -43,7 +43,6 @@ const Award = () => {
                 if (res.success) {
                   await getAward();
                   toast.success("Deleted successfully");
-                  setRefreshFlag(!refreshFlag);
                 }
               },
             },
@@ -240,7 +239,8 @@ const Award = () => {
       {/* ModalForm call */}
       <ModalForm
         isOpen={isModalOpen}
-        onClose={() => {setIsModalOpen(false)
+        onClose={() => {
+          setIsModalOpen(false)
           setEditData(null); setIsEdit(false)
         }}
         onSubmit={handleFormSubmit}

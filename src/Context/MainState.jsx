@@ -20,7 +20,8 @@ const MainState = (props) => {
    const [allEmp, setAllEmp] = useState([]);
    const [allDep, setAllDep] = useState([]);
    const [allBranch, setBranch] = useState([]);
-
+   const [allDesignation, setAllDesignation] = useState([])
+   const [allAttandance, setAllAttandance] = useState([])
 
    const login = async ({ email, employeeCode, password }) => {
       setLoading(true)
@@ -245,7 +246,9 @@ const MainState = (props) => {
    const getAllActivities = async () => {
 
       const data = await get(`${baseUrl}/clock/allAttendence`, true);
-
+      if (data?.status === 200) {
+         setAllAttandance(data?.data?.reverse())
+      }
       return data;
 
 
@@ -264,7 +267,9 @@ const MainState = (props) => {
    const getAllActivities2 = async (type, date, month, userId, department, year) => {
 
       const data = await post(`${baseUrl}/clock/attendencedetail`, { type, date, month, userId, department, year }, true);
-
+      if (data?.status === 200) {
+         setAllAttandance(data?.data?.reverse())
+      }
       return data;
    };
    const getCheckInActivity = async (userId) => {
@@ -716,7 +721,7 @@ const MainState = (props) => {
 
    const getBranchs = async () => {
       const data = await get(`${baseUrl}/system/getBranchs`, true);
-      if(data?.statusCode===200){
+      if (data?.statusCode === 200) {
          setBranch(data?.data)
       }
       return data;
@@ -773,6 +778,9 @@ const MainState = (props) => {
 
    const getDesignations = async () => {
       const data = await get(`${baseUrl}/system/getDesignation`, true);
+      if (data?.statusCode === 200) {
+         setAllDesignation(data?.data)
+      }
       return data;
    }
 
@@ -2592,13 +2600,13 @@ const MainState = (props) => {
          , changePassword1, verify, updateUser, forgetPassword, forgetPassword1, forgetPassword2, getBranchs, postBranch, updateBranch, deleteBranch, getDepartments, postDepartment, updateDepartment, deleteDepartment, getDesingation, postDesignation, updateDesignation, deleteDesignation, getAllActivities, postLeaveType, updateLeaveType, getLeaveTypes, deleteLeaveType,
          createIndicator, getIndicator, deleteIndicator, getDesignations, updateIndicator, getAppraisal, createAppraisal, allEmployee, deleteApprisal, updateApprisal, createAssets, getAssets, deleteAssets, updateAssets, deleteUser, createTracks, getTracks, deleteTracks, updateTracks, editComApi, loanDeleteHandler,
          editAllowance, commisionDelteHandler, createLoan, editLoanApi, UpdatePermission,
-         getTotalLeavesCount, uploadDocuments, createAnnouncement, deleteAnnouncement, updateAnnouncements, fetchAnnoucement, deleteAnnouncements, getEmp, allEmployeebyDep, notificationGet,
-         acceptLeave, rejectLeave, leaveTypeApi,
+         getTotalLeavesCount, uploadDocuments, createAnnouncement, updateAnnouncements, fetchAnnoucement, deleteAnnouncements, getEmp, allEmployeebyDep, notificationGet,
+         acceptLeave, rejectLeave, leaveTypeApi, allDesignation, setAllDesignation,
          ProvideRemovePermission, postQuotationFormApi, updatePropsalFormApi, postProposalFormApi, createClientapi,
          updateQuotationFormApi, changeRelivingLetterPer, getThisMonthLeave,
-         uploadOwnDocs, loading,allBranch, setBranch,
-         transfer, setTransfer, resignation, getResignation, promotion, setPromotion,
-         getAllLeads,
+         uploadOwnDocs, loading, allBranch, setBranch,
+         transfer, setTransfer, resignation, promotion, setPromotion,
+         getAllLeads, allAttandance, setAllAttandance,
          updateDocSetup,
          changeOfferLetterPer,
          fetchAllDocs,

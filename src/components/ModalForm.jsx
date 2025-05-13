@@ -73,7 +73,7 @@ export default function ModalForm({ isOpen, onClose, onSubmit, fields, title }) 
                                         required
                                         className="w-full mt-1 p-2 border border-gray-300 rounded"
                                     >
-                                        <option value="">Select</option>
+                                        {/* <option value="">Select</option> */}
                                         {field.options.map((opt, index) => (
                                             <option key={index} value={opt.value}>
                                                 {opt.label}

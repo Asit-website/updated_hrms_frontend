@@ -36,6 +36,7 @@ import Holiday from "./pages/admin/HrAdmin/Holiday";
 import Announcement from "./pages/admin/HrAdmin/Announcement";
 import 'react-toastify/dist/ReactToastify.css';
 import LeadSystemSetting from "./pages/admin/LeadManagement/LeadSystemSetting";
+import AttandanceManagement from "./pages/admin/HRManagement/AttandanceManagement";
 var tc;
 function App() {
   const [alertValue, setAlertValue] = useState({
@@ -96,6 +97,7 @@ function App() {
               <PermissionDetail pop={pop} setAlert={setAlert} setPop={setPop} />
             }
           />
+          <Route path="/adminDash/HRM/markAttendance" element={<AttandanceManagement/>} />
           <Route path="/adminDash/myLead" element={<MyLead />} />
           <Route
             path="/adminDash/profile"

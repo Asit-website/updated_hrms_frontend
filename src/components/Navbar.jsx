@@ -6,7 +6,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { useMain } from '../hooks/UseMain';
 
 const Navbar = ({ showSidebar, setShowSidebar }) => {
-  const { allEmployee, getDepartments, getBranchs } = useMain()
+  const { allEmployee, getDepartments, getBranchs, getDesignations } = useMain()
   const navigate = useNavigate();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const handleLogout = () => {
@@ -16,11 +16,12 @@ const Navbar = ({ showSidebar, setShowSidebar }) => {
     navigate('/login');
   };
 
-  useEffect(()=>{
-          allEmployee();
-      getDepartments();
-      getBranchs();
-  },[])
+  useEffect(() => {
+    allEmployee();
+    getDepartments();
+    getBranchs();
+    getDesignations();
+  }, [])
   return (
 
     <nav className="bg-white border-gray-200 dark:bg-gray-900 shadow-md fixed top-0 left-0 right-0 z-50">
