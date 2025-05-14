@@ -11,9 +11,6 @@ import { useOutsideClick } from "../../../hooks/UseOutsideClick";
 import ViewTask from "./ViewTask";
 
 
-
-
-
 const ProjectOverview2 = ({ allTasks, getProjectTaskapi }) => {
   const navigate = useNavigate();
   const {
@@ -218,7 +215,7 @@ const ProjectOverview2 = ({ allTasks, getProjectTaskapi }) => {
           StartDate: "",
           DueDate: "",
           Github: "",
-          Members: "",
+         
 
         });
         setAddClientPop(false);
