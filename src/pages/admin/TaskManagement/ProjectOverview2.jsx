@@ -755,7 +755,7 @@ const ProjectOverview2 = ({ allTasks, getProjectTaskapi }) => {
                       DueDate: "",
                       Priority: "",
                       Github: "",
-                      Members: "",
+                      
                     });
                   }}
                   className="cancel"
