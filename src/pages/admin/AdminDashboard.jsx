@@ -80,20 +80,17 @@ const Dashboard = () => {
             Real-time insights and performance overview
           </p>
         </div>
-        <button className="bg-blue-100 text-blue-600 font-medium px-4 py-2 rounded-lg flex items-center gap-1.5 space-x-1">
-          <span>Refresh</span>
-          <RefreshCw size={16} />
-        </button>
+     
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4">
         {stats.map((stat, index) => (
           <div
             key={index}
             className={`border rounded-lg p-4 ${stat.card} flex flex-col justify-between h-28 shadow-sm`}
           >
             <div className="flex items-center space-x-2">
-              <div className={`p-2 rounded-md ${stat.bg} shadow-md`}>
+              <div className={`p-2 rounded-md ${stat.bg}`}>
                 {stat.icon}
               </div>
               <h2 className="text-sm font-semibold text-gray-900">

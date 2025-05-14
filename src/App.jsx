@@ -35,7 +35,11 @@ import Termination from "./pages/admin/HrAdmin/Termination";
 import Holiday from "./pages/admin/HrAdmin/Holiday";
 import Announcement from "./pages/admin/HrAdmin/Announcement";
 import 'react-toastify/dist/ReactToastify.css';
+import Clients from './pages/admin/TaskManagement/Clients'
+import ProjectOverView from './pages/admin/TaskManagement/ProjectOverView'
+import ClientsProject from './pages/admin/TaskManagement/ClientsProject'
 import LeadSystemSetting from "./pages/admin/LeadManagement/LeadSystemSetting";
+
 var tc;
 function App() {
   const [alertValue, setAlertValue] = useState({
@@ -127,6 +131,10 @@ function App() {
           <Route path="/adminDash/HRM/AwardHRM" element={<AwardHrm />} />
           <Route path="/admin/leadlist" element={<LeadsList />} />
            <Route path="/adminDash/LeadSystemSetting" element={<LeadSystemSetting/>} />
+           {/* task management */}
+             <Route path="/adminDash/HRM/taskClients" element={<Clients setAlert={setAlert} />} />
+               <Route path="/adminDash/HRM/clientsProject" element={<ClientsProject/>} />
+                 <Route path="/adminDash/HRM/projectOverview" element={<ProjectOverView/>} />
         </Route>
       </Routes>
     </Router>
