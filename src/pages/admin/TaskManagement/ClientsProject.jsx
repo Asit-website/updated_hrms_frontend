@@ -399,7 +399,7 @@ const AdminClientDashboard = () => {
                                         Members: "",
                                         Status: "Ongoing",
                                         DueDate: "",
-                                        Members: "",
+                                       
                                     });
                                 }}
                                 src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747207613/cutt_g0ckso.png"
