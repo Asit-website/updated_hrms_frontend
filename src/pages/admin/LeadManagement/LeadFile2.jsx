@@ -125,7 +125,7 @@ const LeadFile2 = () => {
                 <div className="w-full bg-[#f5f5f5]">
                     
 
-                    <div className="pt-8 pr-5 pb-8 pl-[54px] relative w-full">
+                    <div className="pt-8 pr-4 pb-7 pl-[16px] relative w-full">
                         <div className="flex items-center justify-between">
                             <h2 className="text-[#101820] text-2xl font-semibold">Import Leads</h2>
                            <NavLink to="/adminDash/myLead"><button className="bg-[#2563eb] text-white text-[16px] font-medium px-4 py-[6px] rounded-md hover:bg-blue-700">
