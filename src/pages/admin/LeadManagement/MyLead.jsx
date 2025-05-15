@@ -326,9 +326,9 @@ const MyLead = () => {
                 </div>
               </div>
             </div>  */}
-            <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 md:gap-0">
+            <div className="flex flex-col xl:flex-row items-start lg:items-center justify-between gap-4 xl:gap-0">
   <div className="lead_content1">
-    <h2 className="text-[#101820] font-semibold text-[20px] md:text-[24px]">
+    <h2 className="text-[#101820] font-semibold text-[20px] lg:text-[24px]">
       Lead Management
     </h2>
     <p className="text-[12px] text-[#6B7280] mt-1">
@@ -337,7 +337,7 @@ const MyLead = () => {
   </div>
 
   <div>
-    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-start sm:justify-center gap-3 sm:gap-[10px]">
+    <div className="flex flex-col lg:flex-row items-start lg:items-center justify-start lg:justify-center gap-3 lg:gap-[10px]">
       <NavLink to="/adminDash/createLead">
         <button className="bg-[#0B56E4] w-full sm:w-[186px] h-[40px] rounded-[10px] text-white font-inter font-medium text-[16px] flex items-center justify-center px-[10px] py-[0px] gap-[3px]">
           <img
@@ -393,7 +393,7 @@ const MyLead = () => {
 
               </div>
 
-              <div className="flex items-center gap-5">
+              <div className="flex flex-col lg:flex-row gap-0 items-center lg:gap-5">
                 <span className="text-[#666D76] text-[14px] font-normal leading-[20px] tracking-[0.0025em] text-left">Sort by</span>
 
                 <input
@@ -437,7 +437,7 @@ const MyLead = () => {
               </div>
 
            <div className="bg-grey rounded-xl border-2">
-           <div className="w-full border-gray-200 bg-white border">
+           <div className="w-full border-gray-200 bg-white border overflow-x-scroll">
                 <table className="w-full text-sm text-gray-700 overflow-x-auto">
                   <thead className="bg-white font-semibold">
                     <tr>
@@ -526,7 +526,7 @@ const MyLead = () => {
                             </td>
 
                             {index === currView && (
-                              <div className="absolute top-[-65px] min-w-[120px] h-fit border-t border-[#E3E3E3] flex flex-col shadow-[0_4px_12px_0px_#1A1A1A33] py-[8px] gap-[5px] rounded-tl-[8px] rounded-tr-none rounded-br-none rounded-bl-none z-[1000] bg-white right-[75px]">
+                              <div className="absolute top-[-15px] min-w-[120px] h-fit border-t border-[#E3E3E3] flex flex-col shadow-[0_4px_12px_0px_#1A1A1A33] py-[8px] gap-[5px] rounded-tl-[8px] rounded-tr-none rounded-br-none rounded-bl-none z-[1000] bg-white right-[75px]">
                                 <div className="flex gap-4 items-center px-2 cursor-pointer" onClick={() => navigate("/adminDash/editLead", { state: item })}>
                                  
                                 <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746260260/Vector_zah5tt.svg" alt="Edit" />

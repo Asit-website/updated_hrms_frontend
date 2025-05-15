@@ -39,6 +39,9 @@ import Clients from './pages/admin/TaskManagement/Clients'
 import ProjectOverView from './pages/admin/TaskManagement/ProjectOverView'
 import ClientsProject from './pages/admin/TaskManagement/ClientsProject'
 import LeadSystemSetting from "./pages/admin/LeadManagement/LeadSystemSetting";
+import TaskProjects from "./pages/admin/TaskManagement/Projects/TaskProjects";
+import EditLead from "./pages/admin/LeadManagement/EditLead";
+import ImportLead from "./pages/admin/LeadManagement/ImportLead";
 
 var tc;
 function App() {
@@ -101,6 +104,7 @@ function App() {
             }
           />
           <Route path="/adminDash/myLead" element={<MyLead />} />
+           <Route path="/adminDash/importLead/:id" element={<ImportLead/>} />
           <Route
             path="/adminDash/profile"
             element={<Profile pop={pop} setPop={setPop} setAlert={setAlert} />}
@@ -126,6 +130,7 @@ function App() {
               <Announcement pop={pop} setPop={setPop} setAlert={setAlert} />
             }
           />
+             <Route path="/adminDash/editLead" element={<EditLead/>} />
           <Route path="/adminDash/HRM/holiday" element={<Holiday />} />
           <Route path="/adminDash/HRM/TransferHRM" element={<Transfer />} />
           <Route path="/adminDash/HRM/AwardHRM" element={<AwardHrm />} />
@@ -135,6 +140,7 @@ function App() {
              <Route path="/adminDash/HRM/taskClients" element={<Clients setAlert={setAlert} />} />
                <Route path="/adminDash/HRM/clientsProject" element={<ClientsProject/>} />
                  <Route path="/adminDash/HRM/projectOverview" element={<ProjectOverView/>} />
+                   <Route path="/adminDash/HRM/taskProjects" element={<TaskProjects/>} />
         </Route>
       </Routes>
     </Router>
