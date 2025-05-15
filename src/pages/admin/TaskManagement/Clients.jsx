@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import "react-calendar/dist/Calendar.css";
 import toast from "react-hot-toast";
-import { Avatar } from "react-profile-avatar";
-import "react-profile-avatar/dist/index.css";
+// import { Avatar } from "react-profile-avatar";
+// import "react-profile-avatar/dist/index.css";
 import { useNavigate } from "react-router-dom";
 import * as XLSX from "xlsx";
 import { useMain } from "../../../hooks/UseMain";
@@ -341,7 +341,7 @@ const TaskClients = ({ setAlert, pop, setPop }) => {
                       <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747201690/thredonts_snuk81.png" alt="" />
                     </div>
 
-                    <Avatar
+                    {/* <Avatar
                       name={client?.Name}
                       colour={
                         index % 3 == 0
@@ -350,7 +350,7 @@ const TaskClients = ({ setAlert, pop, setPop }) => {
                       }
                       size={60}
                       className="text-[24px] font-semibold leading-[32px] text-[#F3F3F4]"
-                    />
+                    /> */}
 
                     <h3 className="text-[18px] font-semibold leading-[32px] text-[#1B2533]">{client?.Name}</h3>
                     <p className="text-[14px] font-normal leading-[24px] tracking-[0.0015em] text-[#666D76]">

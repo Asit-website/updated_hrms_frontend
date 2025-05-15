@@ -4,7 +4,7 @@ import CircularProgress from "./CircularProgress";
 import ProgressBar from "@ramonak/react-progress-bar";
 import ProjectOverview2 from "./ProjectOverview2";
 import "react-calendar/dist/Calendar.css";
-import "react-profile-avatar/dist/index.css";
+// import "react-profile-avatar/dist/index.css";
 import toast from "react-hot-toast";
 // import ClientNavbar from "../../Client/ClientNavbar";
 // import ClientSideBar from "../../Client/ClientSideBar";
