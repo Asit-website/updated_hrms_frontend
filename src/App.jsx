@@ -42,6 +42,11 @@ import LeadSystemSetting from "./pages/admin/LeadManagement/LeadSystemSetting";
 import TaskProjects from "./pages/admin/TaskManagement/Projects/TaskProjects";
 import EditLead from "./pages/admin/LeadManagement/EditLead";
 import ImportLead from "./pages/admin/LeadManagement/ImportLead";
+import QuotationForm from "./pages/admin/LeadManagement/QuotationForm";
+import ProposalForm from "./pages/admin/LeadManagement/ProposalForm";
+import EmployeeManagement from "./pages/admin/HrManagement/EmployeeManagement";
+import EmployeeDetail from './pages/admin/HrManagement/EmployeeDetail'
+import EmployeeManage from "./pages/admin/HrManagement/EmployeeManage";
 
 var tc;
 function App() {
@@ -136,11 +141,18 @@ function App() {
           <Route path="/adminDash/HRM/AwardHRM" element={<AwardHrm />} />
           <Route path="/admin/leadlist" element={<LeadsList />} />
            <Route path="/adminDash/LeadSystemSetting" element={<LeadSystemSetting/>} />
+                <Route path="/adminDash/HRM/QuotationForm" element={<QuotationForm/>} />
+                   <Route path="/adminDash/HRM/ProposalForm" element={<ProposalForm/>} />
            {/* task management */}
              <Route path="/adminDash/HRM/taskClients" element={<Clients setAlert={setAlert} />} />
                <Route path="/adminDash/HRM/clientsProject" element={<ClientsProject/>} />
                  <Route path="/adminDash/HRM/projectOverview" element={<ProjectOverView/>} />
                    <Route path="/adminDash/HRM/taskProjects" element={<TaskProjects/>} />
+
+                   {/* Employee Management */}
+                      <Route path="/adminDash/HRM/EmployeeManagement" element={<EmployeeManagement pop={pop} setPop={setPop} setAlert={setAlert} />} />
+         <Route path="/adminDash/EmployeeDetails" element={<EmployeeDetail/>} />
+          <Route path="/adminDash/EmployeeMan/:id" element={<EmployeeManage pop={pop} setPop={setPop} setAlert={setAlert} />} />
         </Route>
       </Routes>
     </Router>
