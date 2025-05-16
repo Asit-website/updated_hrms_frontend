@@ -288,7 +288,7 @@ const AdminClientDashboard = () => {
                                             projects?.map((project, index) => (
                                                 <tr key={index} className="border-b border-gray-200 hover:bg-gray-50 transition duration-150">
                                                     <td className="px-3 py-3">{index + 1}</td>
-                                                    <t  className="px-6 py-4 text-gray-800"d>
+                                                    <td className="px-6 py-4 text-gray-800">
                                                         <span>{project.projectName}</span>
                                                         <div
                                                             style={{
@@ -348,7 +348,7 @@ const AdminClientDashboard = () => {
                                                                 Delete
                                                             </p>
                                                         </div>
-                                                    </t>
+                                                    </td>
                                                     <td  className="px-6 py-4 text-gray-800">{project.startDate}</td>
                                                     <td  className="px-6 py-4 text-gray-800">{project.deadline}</td>
                                                     <td className="flex px-6 py-4 text-gray-800">

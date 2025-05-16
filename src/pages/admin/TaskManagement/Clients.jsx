@@ -441,7 +441,7 @@ const TaskClients = ({ setAlert, pop, setPop }) => {
 
             <hr />
 
-            <form className="flex flex-col gap-[20px] overflow-y-scroll max-h-[400px] pr-[10px] pl-0 py-0" onSubmit={isEdit ? editHandler : submitHandler}>
+            <form className="flex flex-col gap-[20px] pr-[10px] pl-0 py-0" onSubmit={isEdit ? editHandler : submitHandler}>
 
               <div className="flex flex-col gap-[20px] overflow-y-scroll max-h-[400px] px-[10px] pt-0 pb-0">
 

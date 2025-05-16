@@ -146,7 +146,7 @@ export default function LoginPage() {
               </p>
 
               <div>
-                <div className="flex border rounded-md mb-6 overflow-hidden w-fit">
+                <div className="flex border rounded-md mb-6 overflow-x-scroll lg:overflow-x-hidden w-webkit-fill-available lg:w-fit">
                   <span
                     onClick={() => {
                       setUserType("admin");
