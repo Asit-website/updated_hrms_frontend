@@ -297,7 +297,7 @@ const TaskClients = ({ setAlert, pop, setPop }) => {
 
         <div className="w-full bg-[#f5f5f5] ">
          
-          <div className="pt-8 pr-5 pb-8 pl-[54px] relative w-full">
+          <div className="pt-8 pr-5 pb-8 pl-[20px] relative w-full">
             <div className="relative flex flex-col gap-[20px]">
               <nav className="flex items-center justify-between">
                 <h2 className="text-[24px] font-semibold text-[#111827] leading-6">Clients</h2>
