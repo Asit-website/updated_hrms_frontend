@@ -47,7 +47,11 @@ import ProposalForm from "./pages/admin/LeadManagement/ProposalForm";
 import EmployeeManagement from "./pages/admin/HrManagement/EmployeeManagement";
 import EmployeeDetail from './pages/admin/HrManagement/EmployeeDetail'
 import EmployeeManage from "./pages/admin/HrManagement/EmployeeManage";
-
+import MarkAttendance from "./pages/admin/HrManagement/MarkAttendance";
+import LeaveEmployee from "./pages/admin/HrManagement/LeaveEmployee";
+import LeaveRequest from "./pages/admin/HrManagement/LeaveRequest";
+import SetSallary from "./pages/admin/HrManagement/SetSallary"
+import SetSalaryId from './pages/admin/HrManagement/SetSalaryId'
 var tc;
 function App() {
   const [alertValue, setAlertValue] = useState({
@@ -153,6 +157,11 @@ function App() {
                       <Route path="/adminDash/HRM/EmployeeManagement" element={<EmployeeManagement pop={pop} setPop={setPop} setAlert={setAlert} />} />
          <Route path="/adminDash/EmployeeDetails" element={<EmployeeDetail/>} />
           <Route path="/adminDash/EmployeeMan/:id" element={<EmployeeManage pop={pop} setPop={setPop} setAlert={setAlert} />} />
+           <Route path="/adminDash/HRM/markAttendance" element={<MarkAttendance pop={pop} setPop={setPop} setAlert={setAlert} />} />
+           <Route path="/adminDash/HRM/LeaveEmployee" element={<LeaveEmployee pop={pop} setPop={setPop} setAlert={setAlert} />} />
+                  <Route path="/adminDash/HRM/leaveRequest" element={<LeaveRequest pop={pop} setPop={setPop} setAlert={setAlert} />} />
+                  <Route path="/adminDash/setSallary" element={<SetSallary pop={pop} setPop={setPop} />} />
+                   <Route path="/adminDash/setAll/:id" element={<SetSalaryId pop={pop} setPop={setPop} />} />
         </Route>
       </Routes>
     </Router>
