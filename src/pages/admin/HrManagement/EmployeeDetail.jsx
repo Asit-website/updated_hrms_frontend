@@ -190,7 +190,6 @@ const EmployeeSelf = ({ setAlert, pop1, setPop1 }) => {
   const deleteOfferLetterFunc = async (id) => {
     confirmAlert({
       title: "Are you sure to Delete this offer letter ?",
-      // message: "All related data to this will be deleted",
       buttons: [
         {
           label: "Yes, Go Ahead!",

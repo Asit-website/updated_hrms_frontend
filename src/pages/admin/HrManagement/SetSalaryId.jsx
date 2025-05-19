@@ -475,7 +475,7 @@ const SetSallary = ({
 ">Employee Set Salary</h2>
                             </div>
 
-                            <div className="flex items-center">
+                            <div className="flex flex-col xl:flex-row items-center">
 
                                 <div className="w-full mx-[10px]
 ">
@@ -617,7 +617,7 @@ mt-5">
                                                 }} src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747392487/thredonts_jlsvvx.png" alt="" />
                                             </div>
                                         </div>
-                                        <div className="p-[20px] flex items-center
+                                        <div className="p-[6px] flex items-center
  salary_bdy11">
                                             <div className="relative overflow-x-auto w-full
 ">
@@ -808,7 +808,7 @@ mt-5">
                                     id="authentication-modal"
                                     tabIndex={-1}
                                     aria-hidden="true"
-                                    className="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-[3000] justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] lokig max-h-full backdrop-blur-[1px]"
+                                    className="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-[3000] justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] lokig max-h-full backdrop-blur-[1px] bg-[rgba(0,0,0,0.3)]"
                                 >
                                     <div ref={popupwrapper} className="relative top-[30%] left-[40%] p-4 w-full max-w-md max-h-full">
                                         {/* Modal content */}
@@ -890,9 +890,9 @@ mt-5">
                                     id="authentication-modal1"
                                     tabIndex={-1}
                                     aria-hidden="true"
-                                    className="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-[3000] justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] lokig max-h-full backdrop-blur-[1px]"
+                                    className="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-[3000] justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] lokig max-h-full backdrop-blur-[1px] bg-[rgba(0,0,0,0.3)]"
                                 >
-                                    <div ref={popupallowance} className="relative sekin sekin1 p-4 w-full max-w-md max-h-full">
+                                    <div ref={popupallowance} className="relative absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-[599px] p-4 max-w-md max-h-full">
                                         {/* Modal content */}
                                         <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
                                             {/* Modal header */}
@@ -911,7 +911,7 @@ mt-5">
                                             {/* Modal body */}
                                             <div className="p-4 md:p-5">
                                                 <form className="space-y-4 kinh" action="#">
-                                                    <div className=" flex items-center fgg">
+                                                    <div className=" flex items-center fgg gap-3">
                                                         <div className="w-full">
                                                             <label
                                                                 htmlFor="email"
@@ -941,7 +941,7 @@ mt-5">
                                                             />
                                                         </div>
                                                     </div>
-                                                    <div className=" flex items-center mt-4 fgg">
+                                                    <div className=" flex items-center mt-4 fgg gap-3">
                                                         <div className="w-full">
                                                             <label
                                                                 htmlFor="email"
@@ -1010,9 +1010,9 @@ mt-5">
                                     id="authentication-modal2"
                                     tabIndex={-1}
                                     aria-hidden="true"
-                                    className="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-[3000] justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] lokig max-h-full backdrop-blur-[1px]"
+                                    className="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-[3000] justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] lokig max-h-full backdrop-blur-[1px] bg-[rgba(0,0,0,0.3)]"
                                 >
-                                    <div ref={commisionpopwrapper} className="relative sekin sekin1 p-4 w-full max-w-md max-h-full">
+                                    <div ref={commisionpopwrapper} className="relative absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 max-w-[599px] p-4 w-full max-w-md max-h-full">
                                         {/* Modal content */}
                                         <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
                                             {/* Modal header */}
@@ -1053,7 +1053,7 @@ mt-5">
                                                             />
                                                         </div>
                                                     </div>
-                                                    <div className=" flex items-center mt-4 fgg">
+                                                    <div className=" flex items-center mt-4 fgg gap-3">
                                                         <div className="w-full">
                                                             <label
                                                                 htmlFor="email"
@@ -1119,9 +1119,9 @@ mt-5">
                                     id="authentication-modal3"
                                     tabIndex={-1}
                                     aria-hidden="true"
-                                    className="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-[3000] justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] lokig max-h-full backdrop-blur-[1px]"
+                                    className="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-[3000] justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] lokig max-h-full backdrop-blur-[1px] bg-[rgba(0,0,0,0.3)]"
                                 >
-                                    <div ref={loanpopupwrapper} className="relative sekin sekin1 p-4 w-full max-w-md max-h-full">
+                                    <div ref={loanpopupwrapper} className="relative absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  max-w-[599px] p-4 w-full max-w-md max-h-full">
                                         {/* Modal content */}
                                         <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
                                             {/* Modal header */}
@@ -1175,7 +1175,7 @@ mt-5">
                                                         </div>
 
                                                     </div>
-                                                    <div className=" flex items-center fgg mt-5">
+                                                    <div className=" flex items-center fgg mt-5 gap-3">
                                                         <div className="w-full">
                                                             <label
                                                                 htmlFor="email"
@@ -1212,7 +1212,7 @@ mt-5">
 
                                                     </div>
 
-                                                    <div className=" flex items-center fgg mt-5">
+                                                    <div className=" flex items-center fgg mt-5 gap-3">
 
                                                         <div className="w-full">
                                                             <label
