@@ -184,7 +184,7 @@ const TaskProjects = ({ setAlert, pop, setPop }) => {
           Members: [],
           Status: "Ongoing",
           DueDate: "",
-          Members: "",
+         
           projectOwner: clientInfo || hrms_user._id,
           client: clientInfo || hrms_user._id
         });
@@ -254,7 +254,7 @@ const TaskProjects = ({ setAlert, pop, setPop }) => {
           Status: "Ongoing",
           DueDate: "",
           startDate: "",
-          Members: "",
+       
         });
         setAddClientPop(false);
         setProUser([]);

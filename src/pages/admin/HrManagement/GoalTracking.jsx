@@ -458,6 +458,7 @@ const GoalTracking = ({ pop, setPop, setAlert }) => {
                       type="date"
                     />
                   </label>
+
                   <label className="w-1/2 flex flex-col gap-2">
                     <p className="text-[#1B2533] text-sm font-normal leading-5 tracking-[0.0025em] text-left">End Date <span className="text-red-600">*</span></p>
                     <input
@@ -519,11 +520,7 @@ const GoalTracking = ({ pop, setPop, setAlert }) => {
                   </label>
 
                   <div className="w-full h-11 flex gap-2.5 items-center">
-                    {/* <FaRegStar />
-                  <FaRegStar />
-                  <FaRegStar />
-                  <FaRegStar />
-                  <FaRegStar /> */}
+                   
                     <p className="text-[12px] font-medium leading-4 text-left">Rating</p>
                     <input
                       className="w-full border border-gray-300 p-2 rounded-sm "
@@ -536,11 +533,6 @@ const GoalTracking = ({ pop, setPop, setAlert }) => {
                   </div>
 
                   <div className="w-full h-11 flex gap-2.5 items-center">
-                    {/* <FaRegStar />
-                  <FaRegStar />
-                  <FaRegStar />
-                  <FaRegStar />
-                  <FaRegStar /> */}
                     <p className="text-[12px] font-medium leading-4 text-left">Progress</p>
                     <input
                       className="w-full"

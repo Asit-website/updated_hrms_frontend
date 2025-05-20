@@ -578,7 +578,6 @@ export default function LeadManagement() {
 
           <hr />
 
-          {/* <CommonTable theadData={theadData2} tbodyData={tbodyData2} /> */}
           <div className="w-full relative bg-white  border border-gray-200">
             <table className="w-full text-sm text-gray-700">
               {/* Table Head */}
@@ -597,7 +596,7 @@ export default function LeadManagement() {
 
          
               <tbody>
-                          {paginatedData?.map((item, index) => (
+                          {paginatedData && paginatedData.length > 0? ( paginatedData?.map((item, index) => (
                             <tr key={index} className="border-b border-gray-200 hover:bg-gray-50 transition duration-150 ">
 
 
@@ -692,7 +691,13 @@ export default function LeadManagement() {
                                 )}
                               </td>
                             </tr>
-                          ))}
+                          ))
+                         ) : (
+    <tr>
+      <td colSpan="6" className="text-center text-gray-400 px-6 py-4">
+        No data available !!
+      </td>
+    </tr>)}
                         </tbody>
 
             </table>
@@ -730,7 +735,7 @@ export default function LeadManagement() {
 
          
               <tbody>
-                    {
+                    {filteredAllItems && filteredAllItems.length > 0 ? (
                       filteredAllItems?.map((item, index) => (
                         <tr key={index} className="border-b border-gray-200 hover:bg-gray-50 transition duration-150">
                           <td
@@ -768,6 +773,13 @@ export default function LeadManagement() {
                         </tr>
 
                       ))
+                        ) : (
+    <tr>
+      <td colSpan="6" className="text-center text-gray-400 px-6 py-4">
+        No data available !!
+      </td>
+    </tr>
+  )
                     }
 
                   </tbody>
