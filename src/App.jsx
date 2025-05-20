@@ -56,6 +56,9 @@ import Payslip from "./pages/admin/HrManagement/Payslip";
 import DocumentManagement from "./pages/admin/HrManagement/DocumentManagement";
 import Appraisal from "./pages/admin/HrManagement/Appraisal";
 import GoalTracking from "./pages/admin/HrManagement/GoalTracking";
+import HRMsystemSetup from "./pages/admin/HrManagement/HRMsystemSetup";
+import EmployeeMan from './pages/admin/HrManagement/EmployeeMan'
+import AdminAnnouncement from './pages/admin/Dashboard/AdminAnnouncement'
 var tc;
 function App() {
   const [alertValue, setAlertValue] = useState({
@@ -86,11 +89,12 @@ function App() {
       <Routes>
         <Route path="/" element={<Navigate to="/login" replace />} />
         <Route path="/create" element={<Create />} />
-        <Route path="/forget" element={<Forget />} />
+        <Route path="/forget" element={<Forget setAlert={setAlert}/>} />
 
         <Route path="/login" element={<Login />} />
         <Route element={<MainLayout />}>
           <Route path="/adminDash/HRM" element={<AdminDashboard />} />
+                        <Route path="/adminDash/announcement" element={<AdminAnnouncement pop={pop} setPop={setPop} setAlert={setAlert} />} />
           <Route path="/employeeDash" element={<EmployeeDashboard />} />
           <Route path="/client" element={<ClientDashboard />} />
 
@@ -170,6 +174,8 @@ function App() {
                        <Route path="/adminDash/documentManagement" element={<DocumentManagement/>} />
                          <Route path="/performance/appraisal" element={<Appraisal pop={pop} setPop={setPop} setAlert={setAlert} />} />
                          <Route path="/performance/goalTracking" element={<GoalTracking pop={pop} setPop={setPop} setAlert={setAlert} />} />
+                              <Route path="/adminDash/HRM/HRMsystemSetup" element={<HRMsystemSetup />} />
+                                 <Route path="/adminDash/EmployeeMan" element={<EmployeeMan pop={pop} setPop={setPop} setAlert={setAlert} />} />
         </Route>
       </Routes>
     </Router>

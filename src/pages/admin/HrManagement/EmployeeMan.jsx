@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 
-import "react-calendar/dist/Calendar.css"; 
+import "react-calendar/dist/Calendar.css";
+
 import { NavLink, useFetcher, useNavigate, useParams } from "react-router-dom";
 import toast from "react-hot-toast";
 import { ImCross } from "react-icons/im";
 import * as EmailValidator from "email-validator";
 import { useMain } from "../../../hooks/UseMain";
+
 
 const item = [
   {
@@ -350,9 +352,10 @@ const EmployeeManage = ({
         [name]: file,
       }));
     }
+      const ans = await uploadToCloudinaryImg({ image: file });
 
     const toastId = toast.loading("Wait...");
-    const ans = await uploadToCloudinaryImg({ image: file });
+  
 
     if (ans?.status) {
       toast.success("Successfuly");
@@ -380,7 +383,21 @@ const EmployeeManage = ({
 
     if (!value3.pan) missingFields.push('PAN');
     if (!value3.adhar) missingFields.push('Aadhar');
-   
+    // if (!value3.father) missingFields.push('Father Name');
+    // if (!value3.currentAddress) missingFields.push('Current Address');
+    // if (!value3.currentState) missingFields.push('Current State');
+    // if (!value3.currentCity) missingFields.push('Current City');
+    // if (!value3.currentPin) missingFields.push('Current Pin');
+    // if (!value3.residence) missingFields.push('Residence');
+    // if (!value3.perState) missingFields.push('Permanent State');
+    // if (!value3.perCity) missingFields.push('Permanent City');
+    // if (!value3.perPin) missingFields.push('Permanent Pin');
+    // if (!value3.Martial) missingFields.push('Martial Status');
+    // if (!value3.nationality) missingFields.push('Nationality');
+    // if (!value3.Mother) missingFields.push('Mother Name');
+
+
+    // if (!value2.gmail) missingFields.push('Gmail');
     if (!value2.email1) missingFields.push('Personal Email');
     // if (!value2.mobile) missingFields.push('Mobile');
     if (!value2.gender) missingFields.push('Gender');
@@ -398,6 +415,8 @@ const EmployeeManage = ({
 
   const handleSubmit = async (e, type) => {
     e.preventDefault();
+
+      const toastId = toast.loading("Loading..."); 
 
     if (emailisValid === false && value1?.email !== "") {
       toast.dismiss(toastId);
@@ -443,7 +462,7 @@ const EmployeeManage = ({
     }
 
 
-    const toastId = toast.loading("Loading...");
+    // const toastId = toast.loading("Loading...");
 
     if (!id) {
       const {
@@ -687,28 +706,39 @@ const EmployeeManage = ({
   return (
     <>
       <div className="employee-dash h-full">
+       
+
         <div className="w-full bg-[#f5f5f5]">
          
-          <div className="relative w-full p-[32px_20px_32px_20px]">
+
+          <div className="w-full relative px-[20px] pt-[32px] pb-[32px] pl-[20px]
+">
             {/* first  */}
-            <section className="flex items-center justify-between">
+            <section className="flex flex-col sm:flex-row items-center justify-between">
               {/* left side  */}
-              <h2 className="text-[#101820] font-inter text-2xl font-semibold leading-8 text-left">{id ? "Edit" : "Add"} Employee </h2>
+              <h2 className="text-[#101820] font-inter text-[24px] font-semibold leading-[32px] text-left
+">{id ? "Edit" : "Add"} Employee </h2>
 
               {/* right side  */}
-              <div className="flex gap-4 items-center">
+              <div className="flex gap-4 items-center mt-2 sm:mt-0
+">
                 <NavLink to="/adminDash/HRM/employeeManagement">
-                  <button className="w-[102px] h-[40px] flex gap-[10px] rounded-[10px] border">
-                    <span className="w-[102px] h-[40px] flex gap-[10px] rounded-[10px] border border-[#0B56E4] bg-gradient-to-br from-[#D1E8FD] via-[#EDEFFF] to-[#EDEFFF] items-center justify-center text-[#0B56E4]">Cancel</span>
+                  <button className="w-[102px] h-[40px] gap-[10px] rounded-[10px] border border-[#0B56E4] bg-[linear-gradient(131.78deg,_#D1E8FD_6.87%,_#EDEFFF_91.67%)]
+">
+                    <span className="text-[#0B56E4] text-[16px] font-medium leading-[24px] tracking-[0.005em] text-left
+">Cancel</span>
                   </button>
                 </NavLink>
-              
+                {/* <button className="register">
+                  <span>Register New</span>
+                </button> */}
                 <button
                   onClick={(f) => {
                     handleSubmit(f, "submit");
                   }}
                   type="submit"
-                  className=" text-white text-base font-medium leading-5 ctext-white outline-none bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300  font-semibold rounded-lg text-sm px-5 py-2.5 mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                  className="bg-[#0B56E4] text-white text-[16px] font-inter font-medium leading-[20px]
+ outline-none  hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 rounded-lg text-sm px-5 py-2.5 mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                 >
                  {id ? "Save Changes" : "Register"}
                 </button>
@@ -717,14 +747,16 @@ const EmployeeManage = ({
 
             <div className="flex-col">
               {/* first sec */}
-              <div className="flex items-center gap-6 border-t border-gray-200 rounded-lg mt-10 bg-white p-3 overflow-x-scroll lg:overflow-x-hidden mr-2">
+              <div className="flex items-center gap-6 border border-[#E8E9EB] rounded-[12px] mt-[40px] bg-white p-[12px] overflow-x-scroll lg:overflow-x-hidden
+">
                 {item.map((e, index) => (
                   <div
                     onClick={() => setCurrEmp(index)}
-                    className="flex items-center gap-2 cursor-pointer min-w-fit"
+                    className="flex items-center gap-2 cursor-pointer min-w-fit
+"
                     key={index}
                   >
-                    <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747395339/bx-user-pin_mfhhlq.png" alt="" />
+                    <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747640680/bx-user-pin_mef3ze.png" alt="" />
 
                     <p className={`${currEmp == index ? "text-[14px] font-normal leading-[24px] text-left text-[#0B56E4]" : "text-[14px] font-normal leading-[24px] text-left text-[#0F141C]"}`}>
                       {e.title}
@@ -736,21 +768,29 @@ const EmployeeManage = ({
               <form
                 className="mt-[30px]"
               >
-                <div className="flex flex-col gap-8">
+                <div className="flex flex-col gap-7
+">
                   <div className="flex flex-col lg:flex-row gap-5 w-full justify-between">
-                    <div className="bg-white max-w-[100%] lg:max-w-[48%] w-full p-4 rounded-lg">
-                    
-                      <div className="flex items-center justify-between px-5">
-                        <h3 className="text-[#101820] text-[16px] font-bold leading-[24px] tracking-[0.0015em] text-left">Personal Detail</h3>
+                    <div className="bg-white max-w-[100%] lg:max-w-[48%] w-full p-4 rounded-[10px]
+">
+                      {/* <h2 className="admfperh2">Personal Detail</h2>
+                      <hr className="mt-5 opacity-80
+" /> */}
+                      <div className="flex items-center justify-between px-5
+">
+                        <h3 className="text-[#101820] text-[16px] font-extrabold leading-[24px] tracking-[0.0015em] text-left
+">Personal Detail</h3>
                       </div>
-                      <hr className="mt-5 opacity-80" />
+                      <hr className="mt-5 opacity-80
+" />
                       <div className="form-section">
                         <div>
-                          <div className="flex flex-col gap-[20px] mt-[10px] mb-[10px]">
+                          <div className="flex flex-col emmanformflex w-full gap-5 justify-between
+">
                             <label className="block text-md font-normal mb-1">
                               <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Full Name <span className="text-red-600">*</span></p>
                               <input
-                              className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                                 onChange={(e) => {
                                   handleChange(e, "form1");
                                 }}
@@ -766,7 +806,7 @@ const EmployeeManage = ({
                               <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Password <span className="text-red-600">*</span></p>
 
                               <input
-                              className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                                 onChange={(e) => {
                                   handleChange(e, "form1");
                                 }}
@@ -782,7 +822,7 @@ const EmployeeManage = ({
                               <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Date of Birth <span className="text-red-600">*</span></p>
 
                               <input
-                              className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                                 onChange={(e) => {
                                   handleChange(e, "form2");
                                 }}
@@ -798,14 +838,15 @@ const EmployeeManage = ({
                               <div className=" w-full try">
                                 <label
                                   for="pan"
-                                  className="block text-md font-normal mb-1"
+                                className="block text-md font-normal mb-1"
                                 >
                                   PAN No. <span className="text-red-600">*</span>
                                 </label>
                                 <input
+                                  className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                                   type="text"
                                   id="pan"
-                                  className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                
                                   // required
                                   name="pan"
                                   value={value3?.pan}
@@ -819,15 +860,15 @@ const EmployeeManage = ({
                               <div className=" w-full try">
                                 <label
                                   for="adhar"
-                                  className="block text-md font-normal mb-1"
+                                className="block text-md font-normal mb-1"
                                 >
                                   Aadhaar No. <span className="text-red-600">*</span>
                                 </label>
                                 <input
+
                                   type="text"
                                   id="adhar"
                                   className="w-full border rounded p-2 text-sm font-normal text-gray-500"
-                             
                                   // required
                                   name="adhar"
                                   value={value3?.adhar}
@@ -852,7 +893,7 @@ const EmployeeManage = ({
                                 <input
                                   type="text"
                                   id="father"
-                                 className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                  className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                                   // required
                                   name="father"
                                   value={value3?.father}
@@ -866,14 +907,14 @@ const EmployeeManage = ({
                               <div className=" w-full try">
                                 <label
                                   for="Mother"
-                                  className="block text-md font-normal mb-1"
+                                 className="block text-md font-normal mb-1"
                                 >
                                   Mother name
                                 </label>
                                 <input
                                   type="text"
                                   id="Mother"
-                                 className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                  className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                                   // required
                                   name="Mother"
                                   value={value3?.Mother}
@@ -889,14 +930,14 @@ const EmployeeManage = ({
                               <div className=" w-full try">
                                 <label
                                   for="currentAddress"
-                                  className="block text-md font-normal mb-1"
+                                className="block text-md font-normal mb-1"
                                 >
                                   Mobile Number
                                 </label>
                                 <input
                                   type="number"
                                   id="mobile"
-                                className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                  className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                                   // required
                                   name="mobile"
                                   value={value2?.mobile}
@@ -910,12 +951,12 @@ const EmployeeManage = ({
                               <div className=" w-full try">
                                 <label
                                   for="Martial"
-                                  className="block text-md font-normal mb-1"
+                                 className="block text-md font-normal mb-1"
                                 >
                                   Marital status
                                 </label>
                                 <select
-                                  className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                    className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                                   name="Martial"
                                   id="Martial"
                                   value={value3?.Martial}
@@ -941,7 +982,7 @@ const EmployeeManage = ({
                                 name="department"
                                 value={value1?.department}
                                 disabled={value1.status}
-                                className="department_test w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                               >
                                 <option value={""}>Select Department</option>
                                 {departments?.map((e, index) => {
@@ -977,9 +1018,8 @@ const EmployeeManage = ({
                                   handleChange(e, "form1");
                                   handleValidation(e.target.value);
                                 }}
-                              
-                                className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
-  emailisValid === false && value1.email !== "" ? "border-red-500 text-red-600" : ""
+className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
+  emailisValid === false && value1.email !== "" ? "emailvalidinput" : ""
 }`}
 
                                 type="email"
@@ -987,7 +1027,7 @@ const EmployeeManage = ({
                                 name="email"
                                 // value={value1?.gmail}
                                 value={value1?.email}
-          
+                                // placeholder="Company Gmail"
                                 placeholder="Company Email Address"
                                 disabled={value1.status}
                               />
@@ -1074,24 +1114,24 @@ const EmployeeManage = ({
                                 name="joiningDate"
                                 value={value1?.joiningDate}
                                 disabled={value1.status}
-                                className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                    className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                               />
                             </label>
 
                             <label
                               for="email1"
-                              className="block text-md font-normal mb-1"
+                             className="block text-md font-normal mb-1"
                             >
                               <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]"> Personal Email Address <span className="text-red-600">*</span></p>
                               <input
                                 type="email"
                                 id="email1"
-                            className={`w-full rounded-lg p-2 text-sm font-normal ${
-    emailisValid1 === false && value2.email1 !== ""
-      ? "emailvalidinput border text-gray-500"
-      : "border text-gray-500"
-  }`}
-                                // required
+                                // rounded-lg  w-full
+                                className={`${emailisValid1 === false &&
+                                  value2.email1 !== "" &&
+                                  "emailvalidinput"
+                                  } w-full border rounded p-2 text-sm font-normal text-gray-500l`}
+                             
                                 name="email1"
                                 value={value2?.email1}
                                 onChange={(e) => {
@@ -1104,7 +1144,7 @@ const EmployeeManage = ({
 
                             <label
                               for="gender"
-                              className="block text-md font-normal mb-1 "
+                             className="block text-md font-normal mb-1"
                             >
                               <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]"> Gender <span className="text-red-600">*</span></p>
                               <select
@@ -1131,7 +1171,7 @@ const EmployeeManage = ({
                               <div className=" w-full try">
                                 <label
                                   htmlFor="leaveNumber"
-                                  className="block text-md font-normal mb-1"
+                             className="block text-md font-normal mb-1"
                                 >
                                   Total Leaves <span className="text-red-600">*</span>
                                 </label>
@@ -1152,18 +1192,27 @@ const EmployeeManage = ({
                       </div>
                     </div>
 
-                    <div className="bg-white p-[15px] rounded-[10px] max-w-[100%] lg:max-w-[49%] w-full">
-                      <div className="flex items-center justify-between px-5">
-                        <h3 className="text-[#101820] text-[16px] font-bold leading-[24px] tracking-[0.0015em] text-left">Address Detail</h3>
+                    <div className="bg-white p-4 rounded-[10px] max-w-[100%] lg:max-w-[49%] w-full
+">
+                      <div className="flex items-center justify-between px-5
+">
+                        <h3 className="text-[#101820] text-[16px] font-extrabold leading-[24px] tracking-[0.0015em] text-left
+">Address Detail</h3>
                       </div>
-                      <hr className="mt-5 opacity-80" />
+                      <hr className="mt-5 opacity-80
+" />
 
                       <div className="form2-class">
                         <div className="w-full mt-2 flex flex-col gap-5">
-                        
+
+
                           <div className="flex w-full">
                             <div className=" w-full try">
-                            
+                             
+                              <label htmlFor="currentAddress" className="block text-md font-normal mb-1">
+                                Current Residence Address
+                              </label>
+                           
                               <input
                                 type="text"
                                 id="currentAddress"
@@ -1187,12 +1236,12 @@ const EmployeeManage = ({
                             <div className=" w-full try">
                               <label
                                 for="currentState"
-                                className="block text-md font-normal mb-1 "
+                               className="block text-md font-normal mb-1"
                               >
                                 Current state
                               </label>
 
-                            
+                              
                               <select
                                 className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                                 name="currentState"
@@ -1253,7 +1302,7 @@ const EmployeeManage = ({
                             <div className=" w-full try">
                               <label
                                 for="currentCity"
-                                className="block text-md font-normal mb-1"
+                             className="block text-md font-normal mb-1"
                               >
                                 Current city
                               </label>
@@ -1273,7 +1322,7 @@ const EmployeeManage = ({
                             <div className=" w-full try">
                               <label
                                 for="currentPin"
-                                className="block text-md font-normal mb-1"
+                             className="block text-md font-normal mb-1"
                               >
                                 Area Pincode
                               </label>
@@ -1292,8 +1341,9 @@ const EmployeeManage = ({
                             </div>
                           </div>
 
-                          <label className="block text-md font-normal mb-1">
+                          <label className="text-md font-normal mb-1 flex items-center gap-5 my-3">
                             <input
+                            className=""
                               type="checkbox"
                               checked={value3.currentAddressStatus}
                               onChange={(e) => {
@@ -1307,9 +1357,8 @@ const EmployeeManage = ({
                                   perPin: checked ? prev.currentPin : "",
                                 }));
                               }}
-                              className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                             />
-                            <span className="text-sm">Permanent address same as current</span>
+                            <span className="text-md">Permanent address same as current</span>
                           </label>
 
                           <div className="flex w-full">
@@ -1321,17 +1370,7 @@ const EmployeeManage = ({
                                 </label>
                                 <div className="flex items-center"></div>
                               </div>
-                              {/* <input
-                                type="text"
-                                id="residence"
-                                name="residence"
-                                value={value3?.residence}
-                                className=" rounded-lg w-full"
-                                onChange={(e) => {
-                                  handleChange(e, "form3");
-                                }}
-                                disabled={value3.status}
-                              /> */}
+                              
                               <input
                                 type="text"
                                 name="residence"
@@ -1408,11 +1447,11 @@ const EmployeeManage = ({
                           <div className=" try">
                             <label
                               for="perCity"
-                              className="block text-md font-normal mb-1"
+                          className="block text-md font-normal mb-1"
                             >
                               Permanent city
                             </label>
-                            
+                           
                             <input
                               type="text"
                               id="perCity"
@@ -1427,7 +1466,7 @@ const EmployeeManage = ({
                           <div className=" try">
                             <label
                               for="perPin"
-                              className="block text-md font-normal mb-1"
+                             className="block text-md font-normal mb-1"
                             >
                               Permanent Area Pincode
                             </label>
@@ -1450,7 +1489,7 @@ const EmployeeManage = ({
                             <div className=" w-full try">
                               <label
                                 for="nationality"
-                                className="block text-md font-normal mb-1"
+                               className="block text-md font-normal mb-1"
                               >
                                 Nationality
                               </label>
@@ -1475,31 +1514,41 @@ const EmployeeManage = ({
                     </div>
                   </div>
 
-                  <div className="flex flex-col lg:flex-row w-full gap-5 justify-between">
+                  <div className="flex flex-col lg:flex-row gap-5 w-full justify-between
+">
                     {/* this is doc side  */}
 
-                    <div className="bg-white max-w-[100%] lg:max-w-[48%] w-full p-4 rounded-lg">
-                      <div className="flex items-center justify-between px-5">
-                        <h3 className="text-[#101820] text-[16px] font-bold leading-[24px] tracking-[0.0015em] text-left">Documents</h3>
+                    <div className="bg-white max-w-[100%] lg:max-w-[48%] w-full p-4 rounded-[10px]
+">
+                      <div className="flex items-center justify-between px-5
+">
+                        <h3 className="text-[#101820] text-[16px] font-extrabold leading-[24px] tracking-[0.0015em] text-left
+">Documents</h3>
                       </div>
 
-                      <hr className="mt-5 opacity-80" />
+                      <hr className="mt-5 opacity-80
+" />
 
-                      <div className="w-full alldocwwrap">
+                      <div className="w-full flex flex-col gap-5 mt-5 w-full
+">
                         {/* this is first doc row  */}
 
-                        <div className="flex w-full gap-[10px] justify-between flex-col xl:flex-row">
+                        <div className="flex flex-col xl:flex-row w-full gap-2.5 justify-between
+">
                           {/* fist   */}
-                          <div className="flex flex-col gap-[5px] w-full">
-                            <h4 className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Aadhar Card </h4>
+                          <div className="flex flex-col gap-1.25 w-full
+">
+                            <h4 className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]
+">Aadhar Card </h4>
 
-                            <div className="max-w-[252px] w-full h-[62px] rounded-[12px] border border-[#B7B7B7] flex items-center justify-evenly">
-                              <img className="h-full w-full object-cover rounded-[5px] max-w-[29px] max-h-[29px]" src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747395640/upload-file_eeafaw.png" alt="" />
+                            <div className="max-w-[252px] w-full h-[62px] rounded-[12px] border border-[#B7B7B7] flex items-center justify-evenly
+">
+                              <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747729553/upload-file_sctjfj.png" alt="" className="h-full w-full object-cover rounded max-w-[29px] max-h-[29px]"/>
 
-                              <p className="text-[14px] font-medium leading-[24px] tracking-[0.005em] text-[#1B2533] underline">Click to upload</p>
+                              <p className="text-sm font-medium leading-6 tracking-[0.005em] text-[#1B2533] underline">Click to upload</p>
 
                               <input
-                                className="absolute opacity-0 bg-red-600 w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                className="absolute opacity-0 bg-red-500 w-full border rounded p-2 text-sm font-normal text-gray-500"
                                 name="adharCard"
                                 type="file"
                                 onChange={(e) =>
@@ -1537,16 +1586,19 @@ const EmployeeManage = ({
 
                           {/* second */}
 
-                          <div className="flex flex-col gap-[5px] w-full">
-                            <h4 className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">PAN Card</h4>
+                          <div className="flex flex-col gap-1.25 w-full
+">
+                            <h4 className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]
+">PAN Card</h4>
 
-                            <div className="max-w-[252px] w-full h-[62px] rounded-[12px] border border-[#B7B7B7] flex items-center justify-evenly try">
-                              <img className="h-full w-full object-cover rounded-[5px] max-w-[29px] max-h-[29px]" src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747395640/upload-file_eeafaw.png" alt="" />
+                            <div className="max-w-[252px] w-full h-[62px] rounded-[12px] border border-[#B7B7B7] flex items-center justify-evenly
+ try">
+                              <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747729553/upload-file_sctjfj.png" alt="" className="h-full w-full object-cover rounded max-w-[29px] max-h-[29px]"/>
 
-                              <p className="text-[14px] font-medium leading-[24px] tracking-[0.005em] text-[#1B2533] underline">Click to upload</p>
+                              <p className="text-sm font-medium leading-6 tracking-[0.005em] text-[#1B2533] underline">Click to upload</p>
 
                               <input
-                                className="absolute opacity-0 bg-red-600 w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                className="absolute opacity-0 bg-red-500 w-full border rounded p-2 text-sm font-normal text-gray-500"
                                 type="file"
                                 name="pancard"
                                 onChange={(e) => handleFileChange(e, "pancard")}
@@ -1583,18 +1635,22 @@ const EmployeeManage = ({
 
                         {/* this is second doc row  */}
 
-                        <div className="flex w-full gap-[10px] justify-between flex-col xl:flex-row">
+                        <div className="flex flex-col xl:flex-row w-full gap-2.5 justify-between
+">
                           {/* frist   */}
-                          <div className="flex flex-col gap-[5px] w-full">
-                            <h4 className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">10th Certificate</h4>
+                          <div className="flex flex-col gap-1.25 w-full
+">
+                            <h4 className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]
+">10th Certificate</h4>
 
-                            <div className="max-w-[252px] w-full h-[62px] rounded-[12px] border border-[#B7B7B7] flex items-center justify-evenly ">
-                              <img className="h-full w-full object-cover rounded-[5px] max-w-[29px] max-h-[29px]" src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747395640/upload-file_eeafaw.png" alt="" />
+                            <div className="max-w-[252px] w-full h-[62px] rounded-[12px] border border-[#B7B7B7] flex items-center justify-evenly
+ ">
+                              <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747729553/upload-file_sctjfj.png" alt="" className="h-full w-full object-cover rounded max-w-[29px] max-h-[29px]"/>
 
-                              <p className="text-[14px] font-medium leading-[24px] tracking-[0.005em] text-[#1B2533] underline">Click to upload</p>
+                              <p className="text-sm font-medium leading-6 tracking-[0.005em] text-[#1B2533] underline">Click to upload</p>
 
                               <input
-                                className="absolute opacity-0 bg-red-600 w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                className="absolute opacity-0 bg-red-500 w-full border rounded p-2 text-sm font-normal text-gray-500"
                                 type="file"
                                 name="tenCert"
                                 onChange={(e) => handleFileChange(e, "tenCert")}
@@ -1628,20 +1684,23 @@ const EmployeeManage = ({
                           </div>
 
                           {/* second  */}
-                          <div className="flex flex-col gap-[5px] w-full">
-                            <h4 className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">12th Certificate</h4>
+                          <div className="flex flex-col gap-1.25 w-full
+">
+                            <h4 className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]
+">12th Certificate</h4>
 
-                            <div className="max-w-[252px] w-full h-[62px] rounded-[12px] border border-[#B7B7B7] flex items-center justify-evenly">
-                              <img className="h-full w-full object-cover rounded-[5px] max-w-[29px] max-h-[29px]" src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747395640/upload-file_eeafaw.png" alt="" />
+                            <div className="max-w-[252px] w-full h-[62px] rounded-[12px] border border-[#B7B7B7] flex items-center justify-evenly
+">
+                              <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747729553/upload-file_sctjfj.png" alt="" className="h-full w-full object-cover rounded max-w-[29px] max-h-[29px]" />
 
-                              <p className="text-[14px] font-medium leading-[24px] tracking-[0.005em] text-[#1B2533] underline">Click to upload</p>
+                              <p className="text-sm font-medium leading-6 tracking-[0.005em] text-[#1B2533] underline">Click to upload</p>
 
                               <input
-                                name="twevelCert w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                name="twevelCert"
                                 onChange={(e) =>
                                   handleFileChange(e, "twevelCert")
                                 }
-                                className="absolute opacity-0 bg-red-600"
+                                className="absolute opacity-0 bg-red-500 w-full border rounded p-2 text-sm font-normal text-gray-500"
                                 type="file"
                               />
                             </div>
@@ -1673,18 +1732,23 @@ const EmployeeManage = ({
                           </div>
                         </div>
 
-                        <div className="flex w-full gap-[10px] justify-between flex-col xl:flex-row">
-                          
+                        <div className="flex flex-col xl:flex-row w-full gap-2.5 justify-between
+">
+                          {/* frist   */}
 
-                          <div className="flex flex-col gap-[5px] w-full">
-                            <h4 className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Cancelled Cheque</h4>
-                            <div className="max-w-[252px] w-full h-[62px] rounded-[12px] border border-[#B7B7B7] flex items-center justify-evenly ">
-                              <img className="h-full w-full object-cover rounded-[5px] max-w-[29px] max-h-[29px]" src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747395640/upload-file_eeafaw.png" alt="" />
 
-                              <p className="text-[14px] font-medium leading-[24px] tracking-[0.005em] text-[#1B2533] underline">Click to upload</p>
+                          <div className="flex flex-col gap-1.25 w-full
+">
+                            <h4 className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]
+">Cancelled Cheque</h4>
+                            <div className="max-w-[252px] w-full h-[62px] rounded-[12px] border border-[#B7B7B7] flex items-center justify-evenly
+ ">
+                              <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747729553/upload-file_sctjfj.png" alt="" className="h-full w-full object-cover rounded max-w-[29px] max-h-[29px]"/>
+
+                              <p className="text-sm font-medium leading-6 tracking-[0.005em] text-[#1B2533] underline">Click to upload</p>
 
                               <input
-                                className="absolute opacity-0 bg-red-600 w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                className="absolute opacity-0 bg-red-500 w-full border rounded p-2 text-sm font-normal text-gray-500"
                                 type="file"
                                 name="cancelCheque"
                                 onChange={(e) =>
@@ -1726,23 +1790,27 @@ const EmployeeManage = ({
 
                         {currEmp === 0 && (
                           <>
-                            <h1 className="text-[#101820] pt-20px pr-20px pb-0 pl-20px text-[16px] font-bold leading-[24px] tracking-[0.0015em] text-left mt-3">
+                            <h1 className="text-[#101820] pt-5 px-5 pb-0 text-[16px] font-bold leading-6 tracking-[0.0015em] text-left">
                               Last Organization Docs
                             </h1>
 
-                            <div className="flex w-full gap-[10px] justify-between flex-col xl:flex-row">
+                            <div className="flex flex-col xl:flex-row w-full gap-2.5 justify-between
+">
                               {/* first   */}
 
-                              <div className="flex flex-col gap-[5px] w-full">
-                                <h4 className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Relieving Letter</h4>
+                              <div className="flex flex-col gap-1.25 w-full
+">
+                                <h4 className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]
+">Relieving Letter</h4>
 
-                                <div className="max-w-[252px] w-full h-[62px] rounded-[12px] border border-[#B7B7B7] flex items-center justify-evenly try">
-                                  <img className="h-full w-full object-cover rounded-[5px] max-w-[29px] max-h-[29px]" src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747395640/upload-file_eeafaw.png" alt="" />
+                                <div className="max-w-[252px] w-full h-[62px] rounded-[12px] border border-[#B7B7B7] flex items-center justify-evenly
+ try">
+                                  <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747729553/upload-file_sctjfj.png" alt="" className="h-full w-full object-cover rounded max-w-[29px] max-h-[29px]"/>
 
-                                  <p className="text-[14px] font-medium leading-[24px] tracking-[0.005em] text-[#1B2533] underline">Click to upload</p>
+                                  <p className="text-sm font-medium leading-6 tracking-[0.005em] text-[#1B2533] underline">Click to upload</p>
 
                                   <input
-                                    className="absolute opacity-0 bg-red-600 w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                    className="absolute opacity-0 bg-red-500 w-full border rounded p-2 text-sm font-normal text-gray-500"
                                     type="file"
                                     name="RelievingLetter"
                                     onChange={(e) =>
@@ -1782,17 +1850,20 @@ const EmployeeManage = ({
 
                               {/* second  */}
 
-                              <div className="flex flex-col gap-[5px] w-full">
-                                <h4 className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Offer letter</h4>
+                              <div className="flex flex-col gap-1.25 w-full
+">
+                                <h4 className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]
+">Offer letter</h4>
 
-                                <div className="max-w-[252px] w-full h-[62px] rounded-[12px] border border-[#B7B7B7] flex items-center justify-evenly try">
-                                  <img className="h-full w-full object-cover rounded-[5px] max-w-[29px] max-h-[29px]" src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747395640/upload-file_eeafaw.png" alt="" />
+                                <div className="max-w-[252px] w-full h-[62px] rounded-[12px] border border-[#B7B7B7] flex items-center justify-evenly
+ try">
+                                  <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747729553/upload-file_sctjfj.png" alt="" className="h-full w-full object-cover rounded max-w-[29px] max-h-[29px]"/>
 
-                                  <p className="text-[14px] font-medium leading-[24px] tracking-[0.005em] text-[#1B2533] underline">Click to upload</p>
+                                  <p className="text-sm font-medium leading-6 tracking-[0.005em] text-[#1B2533] underline">Click to upload</p>
 
                                   <input
                                     name="OfferLetter"
-                                    className="absolute opacity-0 bg-red-600 w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                    className="absolute opacity-0 bg-red-500 w-full border rounded p-2 text-sm font-normal text-gray-500"
                                     type="file"
                                     onChange={(e) =>
                                       handleFileChange(e, "OfferLetter")
@@ -1830,19 +1901,23 @@ const EmployeeManage = ({
                               </div>
                             </div>
 
-                            <div className="flex w-full gap-[10px] justify-between flex-col xl:flex-row">
+                            <div className="flex  flex-col xl:flex-row w-full gap-2.5 justify-between
+">
                               {/* first   */}
 
-                              <div className="flex flex-col gap-[5px] w-full">
-                                <h4 className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Experience letter</h4>
+                              <div className="flex flex-col gap-1.25 w-full
+">
+                                <h4 className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]
+">Experience letter</h4>
 
-                                <div className="max-w-[252px] w-full h-[62px] rounded-[12px] border border-[#B7B7B7] flex items-center justify-evenly try">
-                                  <img className="h-full w-full object-cover rounded-[5px] max-w-[29px] max-h-[29px]" src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747395640/upload-file_eeafaw.png" alt="" />
+                                <div className="max-w-[252px] w-full h-[62px] rounded-[12px] border border-[#B7B7B7] flex items-center justify-evenly
+ try">
+                                  <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747729553/upload-file_sctjfj.png" alt="" className="h-full w-full object-cover rounded max-w-[29px] max-h-[29px]" />
 
-                                  <p className="text-[14px] font-medium leading-[24px] tracking-[0.005em] text-[#1B2533] underline">Click to upload</p>
+                                  <p className="text-sm font-medium leading-6 tracking-[0.005em] text-[#1B2533] underline">Click to upload</p>
 
                                   <input
-                                    className="absolute opacity-0 bg-red-600 w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                    className="absolute opacity-0 bg-red-500 w-full border rounded p-2 text-sm font-normal text-gray-500"
                                     type="file"
                                     name="ExperienceLetter"
                                     onChange={(e) =>
@@ -1880,6 +1955,7 @@ const EmployeeManage = ({
                                 )}
                               </div>
 
+                             
                             </div>
                           </>
                         )}
@@ -1887,15 +1963,19 @@ const EmployeeManage = ({
                     </div>
 
                     {/* this is backend acc side  */}
-                    <div className="bg-white p-[15px] rounded-[10px] max-w-[100%] lg:max-w-[49%] w-full">
-                      <div className="flex items-center justify-between px-5">
-                        <h3 className="text-[#101820] text-[16px] font-bold leading-[24px] tracking-[0.0015em] text-left">Bank Account Information</h3>
+                    <div className="bg-white p-4 rounded-[10px] max-w-[100%] lg:max-w-[49%] w-full
+">
+                      <div className="flex items-center justify-between px-5
+">
+                        <h3 className="text-[#101820] text-[16px] font-extrabold leading-[24px] tracking-[0.0015em] text-left
+">Bank Account Information</h3>
                       </div>
 
-                      <hr className="mt-5 opacity-80" />
+                      <hr className="mt-5 opacity-80
+" />
 
                       <div className="form2-class">
-                        <div className="w-full flex flex-col gap-[20px] mt-2">
+                        <div className="w-full flex flex-col gap-5 mt-2">
                           <div className="flex flex flex-col gap-5 w-full">
                             <div className=" w-full try">
                               <label
@@ -1920,7 +2000,7 @@ const EmployeeManage = ({
                             <div className=" w-full try">
                               <label
                                 for="SalaryBankName"
-                                className="block text-md font-normal mb-1"
+                               className="block text-md font-normal mb-1"
                               >
                                 Salary Bank Name
                               </label>
@@ -1940,7 +2020,7 @@ const EmployeeManage = ({
                             <div className=" w-full try">
                               <label
                                 for="BeneficiaryName"
-                                className="block text-md font-normal mb-1"
+                               className="block text-md font-normal mb-1"
                               >
                                 Beneficiary Name
                               </label>
@@ -1963,14 +2043,14 @@ const EmployeeManage = ({
                             <div className=" w-full try">
                               <label
                                 for="BankIfsc"
-                                className="block text-md font-normal mb-1"
+                             className="block text-md font-normal mb-1"
                               >
                                 Bank IFSC Code
                               </label>
                               <input
                                 type="text"
                                 id="BankIfsc"
-                                className="rounded-lg  w-full"
+                                className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                                 name="BankIfsc"
                                 value={value5?.BankIfsc}
                                 onChange={(e) => {
@@ -1983,7 +2063,7 @@ const EmployeeManage = ({
                             <div className=" w-full try">
                               <label
                                 for="AccountNumber"
-                                className="block text-md font-normal mb-1"
+                              className="block text-md font-normal mb-1"
                               >
                                 Account Number
                               </label>
@@ -2003,7 +2083,7 @@ const EmployeeManage = ({
                             <div className=" w-full try">
                               <label
                                 for="confirmAccount"
-                                className="block text-md font-normal mb-1"
+                             className="block text-md font-normal mb-1"
                               >
                                 Confirm Account Number
                               </label>
@@ -2026,7 +2106,7 @@ const EmployeeManage = ({
                             <div className=" w-full  try">
                               <label
                                 for="Branch"
-                                className="block text-md font-normal mb-1"
+                              className="block text-md font-normal mb-1"
                               >
                                 Bank Branch
                               </label>
@@ -2053,7 +2133,7 @@ const EmployeeManage = ({
                   {/* this is button  */}
 
                   <div className=" flex items-center justify-center mt-5">
-                  
+                    
                   </div>
                 </div>
               </form>

@@ -3,6 +3,7 @@ import { GoEyeClosed } from "react-icons/go";
 import { RxEyeOpen } from "react-icons/rx";
 import { useMain } from "../../hooks/UseMain";
 import { useLocation, useNavigate } from "react-router-dom";
+import { NavLink } from "react-bootstrap";
 
 export default function LoginPage() {
   const { login, clientLogin, setUser, loading } = useMain();
@@ -247,7 +248,7 @@ export default function LoginPage() {
               </div>
 
               <div className="mb-6">
-                <a href="#" className="text-blue-600 text-md hover:underline">
+                <a href="/forget" className="text-blue-600 text-md hover:underline">
                   Forgot Password?
                 </a>
               </div>

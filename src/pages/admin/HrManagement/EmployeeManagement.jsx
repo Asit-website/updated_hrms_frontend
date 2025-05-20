@@ -339,7 +339,7 @@ const EmployeeManagement = ({
                                 }
                               }}
                             >
-                              <div className="viewOnwWRAP">
+                              <div className="relative">
 
                                 <td onClick={() => {
                                   if (index == currView) {
@@ -355,7 +355,7 @@ const EmployeeManagement = ({
                                 {
                                   index == currView &&
 
-                                  <div className="absolute -top-[65px] min-w-[120px] border-t border-[#E3E3E3] flex flex-col shadow-[0_4px_12px_0_rgba(26,26,26,0.2)] py-2 gap-[5px] rounded-tl-[8px] z-[1000] bg-white right-[75px]">
+                                  <div className="absolute -top-[59px] min-w-[120px] border-t border-[#E3E3E3] flex flex-col shadow-[0_4px_12px_0_rgba(26,26,26,0.2)] py-2 gap-[5px] rounded-tl-[8px] z-[1000] bg-white right-[62px]">
                                     {/* first  */}
                                     <div onClick={() => navigate("/adminDash/EmployeeDetails", { state: item?._id })} className="flex gap-2 items-center px-2 cursor-pointer">
                                    

@@ -323,7 +323,7 @@ const LeaveRequest = ({
                                 {index === currView && (
                                   <div className="min-w-[120px] h-fit border border-[#E3E3E3] flex flex-col shadow-[0px_4px_12px_0px_#1A1A1A33] 
 py-[8px] gap-[5px] rounded-tl-[8px] z-[1000] bg-white
-" style={{ position: "absolute", zIndex: 999, right: 50, top: -40}}>
+" style={{ position: "absolute", zIndex: 999, right: 72, top: -30}}>
                                     {/* Update Button */}
                                     {(leaveReqestEditPermission || role === "ADMIN") && (
                                       <>
