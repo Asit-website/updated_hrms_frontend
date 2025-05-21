@@ -5,10 +5,15 @@ import ActionMenu from "../../../components/ActionMenu";
 import { FaPlus, FaSearch } from 'react-icons/fa';
 import { useMain } from "../../../hooks/UseMain";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
+import ModalForm from "../../../components/ModalForm";
 
 const Resignation = () => {
 
-  const { getResignation, resignation } = useMain();
+  const { getResignation,allEmp, resignation, createResignation, updateResignation } = useMain();
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isEdit, setIsEdit] = useState(false);
+  const [editData, setEditData] = useState(null);
   const buttonOptions = [
     {
       label: 'Edit',
@@ -22,6 +27,72 @@ const Resignation = () => {
       onClick: () => console.log('Delete clicked'),
     },
   ]
+  const handleFormSubmit = async (data) => {
+    const toastId = toast.loading("Loading...");
+    let res;
+
+    if (isEdit && editData?._id) {
+      console.log(editData?._id)
+      res = await updateResignation({
+        id: editData._id,
+        employee: data.employee,
+        NoticeDate: data.NoticeDate,
+        date: data.date,
+        description: data.description,
+
+      })
+    } else {
+      res = await createResignation(data);
+    }
+
+    if (res.status) {
+      await getResignation();
+      toast.success(`Resignation ${isEdit ? "updated" : "created"} for ${data.employee}`);
+    } else {
+      toast.error(`Failed to ${isEdit ? "update" : "create"} Resignation for ${data.employee}`);
+    }
+
+    setIsEdit(false);
+    setEditData(null);
+    toast.dismiss(toastId);
+  };
+
+   const fields = [
+    {
+      name: "employee",
+      label: "Employee",
+      type: "select",
+      options: allEmp?.map((emp) => ({
+        value: emp?.fullName,
+        label: emp?.fullName,
+      })),
+      ...(isEdit && { defaultValue: editData?.employee })
+    }
+
+    ,
+    {
+      name: "NoticeDate",
+      label: "Notice-date",
+      type: "date",
+      disabled: false,
+      ...(isEdit && { defaultValue: editData?.NoticeDate }),
+    },
+    {
+      name: "date",
+      label: "Resignation Date",
+      type: "date",
+      ...(isEdit && { defaultValue: editData?.date }),
+    },
+  
+    {
+      name: "description",
+      label: "Description",
+      type: "textarea",
+      fullWidth: true,
+      placeholder: "Enter Description",
+      ...(isEdit && { defaultValue: editData?.description }),
+    },
+  ];
 
   useEffect(() => {
     if (!resignation.length) {
@@ -47,6 +118,7 @@ const Resignation = () => {
         </div>
         <button
           type="button"
+           onClick={() => setIsModalOpen(true)}
           className="flex items-center gap-2 text-white bg-blue-700 hover:bg-blue-800   font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 w-fit"
         >
 
@@ -121,6 +193,18 @@ const Resignation = () => {
           </div>
         </div>
       </div>
+      
+            {/* ModalForm call */}
+            <ModalForm
+              isOpen={isModalOpen}
+              onClose={() => {setIsModalOpen(false)
+                setEditData(null); setIsEdit(false)
+              }}
+              onSubmit={handleFormSubmit}
+              fields={fields}
+              title={isEdit ? 'Edit Resignation' : 'Create New Resignation'}
+      
+            />
     </div>
   );
 };

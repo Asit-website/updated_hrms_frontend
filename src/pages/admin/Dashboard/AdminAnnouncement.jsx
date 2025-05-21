@@ -236,7 +236,7 @@ const AdminProfile = ({ pop, setPop, setAlert }) => {
          
           <div className="pt-8 pr-5 pb-8 pl-[20px] relative w-full">
 
-            <div className="w-full flex items-center justify-between">
+            <div className="w-full flex flex-col lg:flex-row items-center justify-between">
 
               {location.state ? (
                 <div className="flex gap-3 justify-center items-center">
@@ -248,8 +248,8 @@ const AdminProfile = ({ pop, setPop, setAlert }) => {
                   </span>{" "}
                   <span className="text-[#1567FF] cursor-pointer">Manage Announcement</span>
                 </div>
-              ) : (<div className="flex flex-col gap-2">
-                <h2 className="text-[24px] font-semibold leading-[32px] text-left text-[#101820]">Manage Announcement</h2>
+              ) : (<div className="flex flex-col items-center lg:items-start gap-2">
+                <h2 className="text-[24px] text-center font-semibold leading-[32px] lg:text-left text-[#101820]">Manage Announcement</h2>
                 <p>
                   Dashboard <span> Announcement</span>{" "}
                 </p>

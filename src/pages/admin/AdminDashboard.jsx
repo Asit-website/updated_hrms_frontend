@@ -4,6 +4,8 @@ import TimerTable from "../../components/DashBoard/TimerTable";
 import { MdCalendarToday, MdEventAvailable } from "react-icons/md";
 import TimeLog from "../../components/DashBoard/TimeLog";
 import ActionMenu from "../../components/ActionMenu";
+import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Dashboard = () => {
   const stats = [
@@ -13,6 +15,7 @@ const Dashboard = () => {
       icon: <User className="text-white" size={20} />,
       bg: "bg-green-700",
       card: "bg-green-50 border-green-300",
+      link:"/adminDash/HRM/activeEmployee"
     },
     {
       title: "Half Day Request",
@@ -20,6 +23,7 @@ const Dashboard = () => {
       icon: <User className="text-white" size={20} />,
       bg: "bg-blue-700",
       card: "bg-blue-100 border-blue-300",
+      link:"/adminDash/HRM/halfDayRequest"
     },
     {
       title: "Leave Request",
@@ -27,6 +31,7 @@ const Dashboard = () => {
       icon: <Settings className="text-white" size={20} />,
       bg: "bg-red-600",
       card: "bg-red-50 border-red-200",
+      link:"/adminDash/HRM/leaveRequest"
     },
     {
       title: "Employee on Leave",
@@ -34,6 +39,7 @@ const Dashboard = () => {
       icon: <Clock className="text-white" size={20} />,
       bg: "bg-yellow-500",
       card: "bg-yellow-50 border-yellow-200",
+      link:"/adminDash/HRM/LeaveEmployee"
     },
     {
       title: "Total Employee",
@@ -41,6 +47,7 @@ const Dashboard = () => {
       icon: <Users className="text-white" size={20} />,
       bg: "bg-blue-600",
       card: "bg-blue-50 border-blue-200",
+      link:"/adminDash/HRM/totalEmployee"
     },
     {
       title: "Deactivated Employee",
@@ -48,6 +55,7 @@ const Dashboard = () => {
       icon: <Users className="text-white" size={20} />,
       bg: "bg-red-600",
       card: "bg-red-50 border-red-200",
+      link:"/adminDash/HRM/deactivate"
     },
   ];
   const theadData = ["TITLE", "START DATE", "END DATE", "ACTION"];
@@ -83,7 +91,7 @@ const Dashboard = () => {
      
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4">
+      {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4">
         {stats.map((stat, index) => (
           <div
             key={index}
@@ -102,7 +110,36 @@ const Dashboard = () => {
             </div>
           </div>
         ))}
-      </div>
+      </div> */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4">
+      {stats.map((stat, index) => {
+        const card = (
+          <div
+            className={`border rounded-lg p-4 ${stat.card} flex flex-col justify-between h-28 shadow-sm hover:shadow-md transition`}
+          >
+            <div className="flex items-center space-x-2">
+              <div className={`p-2 rounded-md ${stat.bg}`}>
+                {stat.icon}
+              </div>
+              <h2 className="text-sm font-semibold text-gray-900">
+                {stat.title}
+              </h2>
+            </div>
+            <div className="text-right text-2xl font-bold text-gray-800">
+              {stat.value}
+            </div>
+          </div>
+        );
+
+        return stat.link ? (
+          <Link to={stat.link} key={index}>
+            {card}
+          </Link>
+        ) : (
+          <div key={index}>{card}</div>
+        );
+      })}
+    </div>
 
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 pt-8">
         <div className="bg-grey rounded-xl border-2 order-3 md:order-1">
@@ -141,7 +178,76 @@ const Dashboard = () => {
               <h2 className="text-xl font-semibold">Mark Attendance</h2>
             </div>
           </div>
-          <TimerTable />
+          {/* <TimerTable /> */}
+            <div className="w-full bg-white">
+        <div className="max-w-6xl mx-auto px-4">
+          <div>
+
+            {/* Input */}
+            <input
+              type="text"
+              placeholder="Today's task"
+              className="w-full border border-gray-300 rounded-md px-4 py-2 text-sm mb-6 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+           
+            <div className="flex sm:flex-row gap-2.5 sm:gap-5 text-center justify-center mb-5">
+  <div className="bg-gray-100 p-4 rounded-md w-full sm:w-24 max-w-full sm:max-w-24">
+    <p className="text-2xl font-bold">00</p>
+    <p className="text-gray-600 text-sm">Hours</p>
+  </div>
+  <div className="bg-gray-100 p-4 rounded-md w-full sm:w-24 max-w-full sm:max-w-24">
+    <p className="text-2xl font-bold">00</p>
+    <p className="text-gray-600 text-sm">Minutes</p>
+  </div>
+  <div className="bg-gray-100 p-4 rounded-md w-full sm:w-24 max-w-full sm:max-w-24">
+    <p className="text-2xl font-bold">00</p>
+    <p className="text-gray-600 text-sm">Seconds</p>
+  </div>
+</div>
+
+  
+            {/* Buttons */}
+            <div className="flex justify-center gap-4">
+            
+            <button className="w-full sm:w-auto flex flex-col sm:flex-row items-center justify-center bg-green-600 hover:bg-green-700 text-white px-4 sm:px-6 py-3 rounded-md text-sm sm:text-base font-medium transition-all text-center">
+  <svg
+    className="w-5 h-5 mb-1 sm:mb-0 sm:mr-2 shrink-0"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth={2}
+    viewBox="0 0 24 24"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M13 16h-1v-4h-1m4 0h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+    />
+  </svg>
+  <span className="truncate">Check-in</span>
+</button>
+
+
+<button className="w-full sm:w-auto flex flex-col sm:flex-row items-center justify-center bg-red-600 hover:bg-red-700 text-white px-4 sm:px-6 py-3 rounded-md text-sm sm:text-base font-medium transition-all text-center">
+  <svg
+    className="w-5 h-5 mb-1 sm:mb-0 sm:mr-2 shrink-0"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth={2}
+    viewBox="0 0 24 24"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M13 16h-1v-4h-1m4 0h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+    />
+  </svg>
+  <span className="truncate">Check-out</span>
+</button>
+
+            </div>
+          </div>
+        </div>
+      </div>
         </div>
 
         <div className="bg-grey rounded-xl border-2 order-4 md:order-3">
@@ -152,12 +258,14 @@ const Dashboard = () => {
               </div>
               <h3 className="text-xl font-semibold">Holiday Lists</h3>
             </div>
-            <button
+          <NavLink to="/adminDash/HRM/holiday">
+              <button
     type="button"
     className="text-white bg-blue-700 hover:bg-blue-800  font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 w-fit"
   >
     View All
   </button>
+          </NavLink>
           </div>
           <hr />
           <CommonTable theadData={theadData1} tbodyData={tbodyData1} />
@@ -187,12 +295,15 @@ const Dashboard = () => {
               </div>
               <h3 className="text-xl font-semibold">Task Assign</h3>
             </div>
-            <button
+            <NavLink to="/adminDash/HRM/taskProjects">
+ <button
     type="button"
     className="text-white bg-blue-700 hover:bg-blue-800   font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 w-fit"
   >
     View All
   </button>
+            </NavLink>
+           
           </div>
           <hr />
           <CommonTable theadData={theadData2} tbodyData={tbodyData2} />
