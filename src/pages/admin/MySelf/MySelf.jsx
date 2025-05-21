@@ -104,7 +104,7 @@ const MySelf = ({ setAlert, pop1, setPop1 }) => {
       
         <div className="w-full bg-[#f5f5f5]"> 
         
-          <div className="w-full relative  md:mt-[69px] pt-[32px] pr-[20px] pb-[32px] pl-[27px] md:pl-[54px] flex flex-col gap-[20px]">
+          <div className="w-full relative  md:mt-[69px] pt-[32px] pr-[20px] pb-[32px] pl-[27px] md:pl-[20px] flex flex-col gap-[20px]">
     
 <nav className="w-full lg:w-[80%] flex flex-col md:flex-row items-start md:items-center justify-between bg-white md:fixed top-[78px] right-0 px-5 md:px-[40px] py-[18px] md:py-[25px] z-20 gap-4">
   <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-5 w-full md:w-auto">

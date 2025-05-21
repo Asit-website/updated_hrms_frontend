@@ -516,7 +516,7 @@ Date
       </div>
 
       <div className="max-w-7xl mx-auto px-6 pb-6">
-        <div className="bg-white rounded-lg shadow mb-6">
+        <div className="bg-white rounded-lg shadow mb-6 pb-3">
           
 
           <h2 className="text-lg font-semibold pl-6 border-b-2 p-5">Additional Fields</h2>

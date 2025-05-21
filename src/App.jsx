@@ -58,7 +58,13 @@ import Appraisal from "./pages/admin/HrManagement/Appraisal";
 import GoalTracking from "./pages/admin/HrManagement/GoalTracking";
 import HRMsystemSetup from "./pages/admin/HrManagement/HRMsystemSetup";
 import EmployeeMan from './pages/admin/HrManagement/EmployeeMan'
+
 import AdminAnnouncement from './pages/admin/Dashboard/AdminAnnouncement'
+import HolidayHrm from './pages/admin/Dashboard/HolidayHrm'
+import ActiveEmplyee from './pages/admin/Dashboard/AdminEmplyee'
+import HalfRequest from "./pages/admin/Dashboard/HalfRequest";
+import TotalEmployee from "./pages/admin/Dashboard/TotalEmployee";
+import DeactivateEmployee from "./pages/admin/Dashboard/DeactivateEmployee";
 var tc;
 function App() {
   const [alertValue, setAlertValue] = useState({
@@ -95,6 +101,11 @@ function App() {
         <Route element={<MainLayout />}>
           <Route path="/adminDash/HRM" element={<AdminDashboard />} />
                         <Route path="/adminDash/announcement" element={<AdminAnnouncement pop={pop} setPop={setPop} setAlert={setAlert} />} />
+             <Route path="/adminDash/HRM/holiday" element={<HolidayHrm/>} />
+                 <Route path="/adminDash/HRM/activeEmployee" element={<ActiveEmplyee pop={pop} setPop={setPop} setAlert={setAlert} />} />
+                 <Route path="/adminDash/HRM/halfDayRequest" element={<HalfRequest pop={pop} setPop={setPop} setAlert={setAlert} />} />
+              <Route path="/adminDash/HRM/totalEmployee" element={<TotalEmployee pop={pop} setPop={setPop} setAlert={setAlert} />} />
+                 <Route path="/adminDash/HRM/deactivate" element={<DeactivateEmployee pop={pop} setPop={setPop} setAlert={setAlert} />} />
           <Route path="/employeeDash" element={<EmployeeDashboard />} />
           <Route path="/client" element={<ClientDashboard />} />
 
@@ -141,14 +152,14 @@ function App() {
             path="/adminDash/HRM/TerminationHRM"
             element={<Termination />}
           />
-          <Route
+          {/* <Route
             path="/adminDash/announcement"
             element={
               <Announcement pop={pop} setPop={setPop} setAlert={setAlert} />
             }
-          />
+          /> */}
              <Route path="/adminDash/editLead" element={<EditLead/>} />
-          <Route path="/adminDash/HRM/holiday" element={<Holiday />} />
+          {/* <Route path="/adminDash/HRM/holiday" element={<Holiday/>} /> */}
           <Route path="/adminDash/HRM/TransferHRM" element={<Transfer />} />
           <Route path="/adminDash/HRM/AwardHRM" element={<AwardHrm />} />
           <Route path="/admin/leadlist" element={<LeadsList />} />
