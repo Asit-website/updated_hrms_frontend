@@ -96,7 +96,7 @@ const CloseLeads = () => {
        
 
         <div className="w-full relative  pr-[15px] pl-[15px] py-[32px]">
-            <div className="flex flex-col lg:flex-row items-center justify-between">
+            <div className="flex items-center justify-between">
                 <div>
                     <h2 className='text-[24px] font-semibold text-[#111827] leading-6'>All Close Deals</h2>
                     <p className='text-[12px] text-[#6B7280] mt-1'>Real-time insights and performance overview</p>
@@ -112,7 +112,7 @@ const CloseLeads = () => {
                 </div>
             </div>
 
-            <div className="flex flex-col lg:flex-row items-center justify-between">
+            <div className="flex flex-col xl:flex-row items-center justify-between">
                 <div>
                     <div className="my-5 flex gap-5 items-center">
                         <div className="flex items-center gap-4 w-[285px] h-12 px-4 py-2 rounded-[15px] bg-white border border-[#D0D4DC]">

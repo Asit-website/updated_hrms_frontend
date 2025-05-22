@@ -1029,7 +1029,7 @@ const profile = () => {
 
                 </div>
 
-                <div className="flex gap-[20px]">
+                <div className="flex gap-[20px] flex-col xl:flex-row">
 
                   <div className="py-[15px] px-0 rounded-[10px] min-w-1/2 mb-4 mt-7">
                     <div className="flex items-center justify-between px-[20px] py-0">
@@ -1043,7 +1043,7 @@ const profile = () => {
                       <div className=" sfgh mt-6">
                         {/* this is first doc row  */}
 
-                        <div className="flex gap-10">
+                        <div className="flex gap-10 flex-col lg:flex-row">
                           {/* fist   */}
                           <div className="flex flex-col w-full">
                             <h4 className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Aadhar Card</h4>
@@ -1128,7 +1128,7 @@ const profile = () => {
 
                         {/* this is second doc row  */}
 
-                        <div className="flex  mt-6 gap-10">
+                        <div className="flex  mt-6 gap-10 flex-col lg:flex-row">
                           {/* frist   */}
                           <div className="flex flex-col gap-[5px] w-full">
                             <h4 className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">10th Certificate</h4>
@@ -1210,7 +1210,7 @@ const profile = () => {
                           </div>
                         </div>
 
-                        <div className="flex  mt-6 gap-10">
+                        <div className="flex  mt-6 gap-10 flex-col lg:flex-row">
                           {/* frist   */}
 
                          <div className="flex flex-col gap-[5px] w-full">
@@ -1301,7 +1301,7 @@ const profile = () => {
                               Last Organization Docs
                             </h1>
 
-                            <div className="flex  mt-6 gap-10">
+                            <div className="flex  mt-6 gap-10 flex-col lg:flex-row">
                               {/* first   */}
 
                               <div className="flex flex-col gap-[5px] w-full">
@@ -1384,7 +1384,7 @@ const profile = () => {
                           </div>
                             </div>
 
-                            <div className="flex  mt-6 gap-10">
+                            <div className="flex  mt-6 gap-10 flex-col lg:flex-row">
                               {/* first   */}
 
                               <div className="flex flex-col gap-[5px] w-full">
@@ -1431,7 +1431,7 @@ const profile = () => {
                           </>
                         )}
 
-                        <div className="flex gap-10 mt-6">
+                        <div className="flex gap-10 mt-6 flex-col lg:flex-row">
 
                            <div className="flex flex-col gap-[5px] w-full">
                             <h4 className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">ITR(Income Tax Return)</h4>

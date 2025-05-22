@@ -601,7 +601,7 @@ mt-5">
                                 </div>
 
                                 <div className="!w-full mx-[10px]">
-                                    <div className="w-full max-w-full rounded-[20px] h-[275px] max-h-full bg-white
+                                    <div className="w-full max-w-full rounded-[20px] h-[275px] max-h-full bg-white mt-5
 ">
                                         <div className="flex items-center justify-between border-b border-b-[#E8E9EB] px-[20px] py-[15px]
 ">

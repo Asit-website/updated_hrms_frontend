@@ -261,7 +261,7 @@ export default function LeadManagement() {
   const navigate = useNavigate();
   return (
     <div className="p-6 bg-[#f9fbfc]">
-      <div className="flex flex-col md:flex-row justify-between items-start mb-5">
+      <div className="flex flex-col md:flex-row justify-between items-start mb-5 overflow-x-scroll xl:overflow-x-hidden gap-3">
         <div>
           <h2 className="text-[24px] font-semibold text-[#111827] leading-6">
             Lead Management

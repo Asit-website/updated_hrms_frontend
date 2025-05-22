@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useMain } from "../../hooks/UseMain";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const ForgotPassword = ({setAlert}) => {
- 
+   const navigate = useNavigate();
   const { forgetPassword,loading } = useMain();
     const [value, setValue] = useState({
     employeeCode: '',
@@ -17,7 +17,7 @@ const ForgotPassword = ({setAlert}) => {
     let ans = await forgetPassword(value);
     if (ans.success) {
       localStorage.setItem('kds-reset-email', ans.email);
-      Navigate("/forget1", {
+      navigate("/forget1", {
         state: { email: value.email }
       });
       setAlert("success", ans.message);
@@ -64,7 +64,12 @@ const ForgotPassword = ({setAlert}) => {
             There is nothing to worry about, we'll send you a message to help you reset your password.
           </p>
 
-      
+       <input
+            type="text"
+            placeholder="Employee Code"
+            className="w-full px-4 py-2 border border-gray-300 rounded-md mb-10 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-100 placeholder:text-gray-700 font-normal text-base"
+            onChange={handleChange} name="employeeCode" value={value.employeeCode}
+          />
           <input
             type="email"
             placeholder="info@kushel.com"
@@ -74,9 +79,7 @@ const ForgotPassword = ({setAlert}) => {
 
          
           <button
-          
-
-          type='submit' disabled={loading} className="yui flex justify-center items-center p-2 bg-blue-500 text-white rounded-lg w-full transition-all duration-300 ease-in-out">
+            type='submit' disabled={loading} className="yui flex justify-center items-center p-2 bg-blue-500 text-white rounded-lg w-full transition-all duration-300 ease-in-out">
                   {loading ? ( <div className="w-6 h-6 border-4 border-white border-t-transparent rounded-full animate-spin"></div>)
                   : ('Send Reset Link')}
          

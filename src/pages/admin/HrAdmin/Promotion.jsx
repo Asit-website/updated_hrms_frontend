@@ -5,11 +5,16 @@ import ActionMenu from "../../../components/ActionMenu";
 import { FaPlus, FaSearch } from 'react-icons/fa';
 import { useMain } from "../../../hooks/UseMain";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
+import ModalForm from "../../../components/ModalForm";
 
 const Promotion = () => {
 
 
-  const { getPromotion, promotion } = useMain();
+  const { getPromotion,allEmp, promotion, updatePromotion,  createPromotion } = useMain();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
+  const [editData, setEditData] = useState(null);
   const buttonOptions = [
     {
       label: 'Edit',
@@ -28,6 +33,53 @@ const Promotion = () => {
       getPromotion()
     }
   }, []);
+    const fields = [
+    {
+      name: "employee",
+      label: "Employee",
+      type: "select",
+      options: allEmp?.map((emp) => ({
+        value: emp?.fullName,
+        label: emp?.fullName,
+      })),
+      ...(isEdit && { defaultValue: editData?.employee })
+    }
+
+    ,
+    // {
+    //   name: "Designation",
+    //   label: "Designation",
+    //   type: "select",
+    //  options: allEmp?.map((emp) => ({
+    //     value: emp?.fullName,
+    //     label: emp?.fullName,
+    //   })),
+    
+    //   ...(isEdit && { defaultValue: editData?.Designation }),
+    // },
+      {
+      name: "promotionTitle",
+      label: "Promotion Title",
+      type: "text",
+     
+      ...(isEdit && { defaultValue: editData?.promotionTitle}),
+    },
+    {
+      name: "date",
+      label: "Promotion date",
+      type: "date",
+      ...(isEdit && { defaultValue: editData?.date }),
+    },
+  
+    {
+      name: "description",
+      label: "Description",
+      type: "textarea",
+      fullWidth: true,
+      placeholder: "Enter Description",
+      ...(isEdit && { defaultValue: editData?.description }),
+    },
+  ];
   const theadData2 = [
     "EMPLOYEE",
     "DESIGNATION",
@@ -37,6 +89,36 @@ const Promotion = () => {
     "ACTION"
   ];
 
+  const handleFormSubmit = async (data) => {
+    const toastId = toast.loading("Loading...");
+    let res;
+
+    if (isEdit && editData?._id) {
+      console.log(editData?._id)
+      res = await updatePromotion({
+        id: editData._id,
+        employee: data.employee,
+      promotionTitle:data.promotionTitle,
+        date: data.date,
+      Designation:data.Designation,
+        description: data.description,
+       
+      })
+    } else {
+      res = await  createPromotion(data);
+    }
+
+    if (res.status) {
+      await getPromotion();
+      toast.success(`Promotion ${isEdit ? "updated" : "created"} for ${data.employee}`);
+    } else {
+      toast.error(`Failed to ${isEdit ? "update" : "create"} Promotion for ${data.employee}`);
+    }
+
+    setIsEdit(false);
+    setEditData(null);
+    toast.dismiss(toastId);
+  };
 
   return (
     <div className="p-6">
@@ -46,7 +128,8 @@ const Promotion = () => {
         </div>
         <button
           type="button"
-          className="flex items-center gap-2 text-white bg-blue-700 hover:bg-blue-800   font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 w-fit"
+           onClick={() => setIsModalOpen(true)}
+          className="flex items-center gap-2 text-white bg-blue-700 hover:bg-blue-800   font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 w-fit mt-2"
         >
 
           Create Promotion
@@ -126,6 +209,17 @@ const Promotion = () => {
           </div>
         </div>
       </div>
+        {/* ModalForm call */}
+            <ModalForm
+              isOpen={isModalOpen}
+              onClose={() => {setIsModalOpen(false)
+                setEditData(null); setIsEdit(false)
+              }}
+              onSubmit={handleFormSubmit}
+              fields={fields}
+              title={isEdit ? 'Edit Award' : 'Create New Award'}
+      
+            />
     </div>
   );
 };

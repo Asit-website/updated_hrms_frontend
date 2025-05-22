@@ -563,7 +563,7 @@ const MarkAttendance = ({
 
               </div>
 
-              <div className="w-full flex items-center justify-between p-6 pb-12 bg-white rounded-[5px]">
+              <div className="w-full flex items-center justify-between p-6 pb-12 bg-white rounded-[5px] overflow-x-scroll gap-5 xl:overflow-x-hidden">
                 <div className="flex items-center gap-[15px]">
                   <button
                     onClick={() => {
@@ -668,9 +668,9 @@ const MarkAttendance = ({
               </div>
 
               <main className="bg-white border-t border-[#D8D8D8] -translate-y-[25px]">
-                <div className="w-full flex items-center justify-between py-2.5 px-5 bg-white border-b-[1px] pb-7">
+                <div className="w-full flex items-center justify-between py-2.5 px-5 bg-white border-b-[1px] pb-7 overflow-x-scroll xl:overflow-x-hidden">
                   <div className="flex items-center justify-between w-full gap-[10px] translate-y-[10px] ">
-                    <h3 className="text-[#1B2533] text-base font-semibold leading-6 tracking-[0.0015em] text-left">Daily Attendance</h3>
+                    <h3 className="text-[#1B2533] text-base font-semibold leading-6 tracking-[0.0015em] text-left min-w-fit">Daily Attendance</h3>
 
                     <div className="flex items-center gap-[17px]">
 
@@ -693,7 +693,7 @@ const MarkAttendance = ({
                         headers={headers}
                         data={normalizedData}
                         filename={"daily-attendance.csv"}
-                        className="px-5 py-2 border border-green-500 text-green-600 rounded hover:bg-green-50 text-sm"
+                        className="px-5 py-2 border border-green-500 text-green-600 rounded hover:bg-green-50 text-sm mr-4"
                       >
                         Export
                       </CSVLink>

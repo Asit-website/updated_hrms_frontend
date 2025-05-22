@@ -7,7 +7,7 @@ import { MdDeleteOutline, MdOutlineEdit } from "react-icons/md";
 import { useMain } from "../../../hooks/UseMain";
 import { useOutsideClick } from "../../../hooks/UseOutsideClick";
 
-const Appraisal = ({ pop, setPop, setAlert }) => {
+const   Appraisal = ({ pop, setPop, setAlert }) => {
   const {
     user,
     getAppraisal,
@@ -213,11 +213,11 @@ const Appraisal = ({ pop, setPop, setAlert }) => {
         <div className="bg-[#f5f5f5] w-full">
           
           <div className="pt-8 pb-8 pr-5 pl-5 relative w-full">
-            <div className="w-full flex items-center justify-between flex-col sm:flex-row">
+            <div className="w-full flex items-center justify-between flex-col lg:flex-row">
               {/* left sie */}
               <div className="anNavLeft">
                 <h2 className="text-2xl font-semibold leading-8 text-left text-[#101820]">Manage Appraisal</h2>
-                <p className="text-xs font-medium leading-4 text-left mt-1">
+                <p className="text-xs font-medium leading-4 lg:text-left mt-1 text-center">
                   Dashboard <span> Appraisal</span>{" "}
                 </p>
               </div>
@@ -229,7 +229,7 @@ const Appraisal = ({ pop, setPop, setAlert }) => {
               </div> */}
               <button
                 onClick={() => setOpenForm(true)}
-                className="flex items-center justify-center bg-[#0B56E4] w-[65px] h-[40px] gap-2.5 rounded-[10px] min-w-fit"
+                className="flex items-center justify-center bg-[#0B56E4] w-[65px] h-[40px] gap-2.5 rounded-[10px] min-w-fit mt-4 lg:mt-0"
                 style={{
                   color: "white",
                   padding: "10px 20px",

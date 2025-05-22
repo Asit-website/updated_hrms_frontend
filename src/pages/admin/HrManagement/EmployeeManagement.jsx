@@ -207,7 +207,7 @@ const EmployeeManagement = ({
 
               <div className="flex items-center justify-between flex-col gap-3 md:flex-row">
 
-                <h2 className="text-[#101820] text-[24px] font-semibold leading-[32px] text-left">Employee Management</h2>
+                <h2 className="text-[#101820] text-[24px] font-semibold leading-[32px] text-center lg:text-left">Employee Management</h2>
 
 
 
@@ -274,16 +274,16 @@ const EmployeeManagement = ({
               <div className="flex justify-between mt-[10px] mb-[10px]">
                 <p className="pt-6 pb-2 text-[#1B2533] text-[12px] font-medium leading-[16px] tracking-[0.004em] text-left">Total Records {data?.length}</p>
               </div>
-              <main className="flex flex-col w-full bg-white py-4 border border-[#E8E9EB] rounded-[10px] overflow-x-scroll">
+              <main className="flex flex-col w-full bg-white py-4 border border-[#E8E9EB] rounded-[10px] overflow-x-scroll lg:overflow-x-hidden">
 
-                <div className="border-b border-[#E8E9EB] h-[44px]">
+                <div className="border-b border-[#E8E9EB] h-[44px] overflow-x-scroll lg:overflow-x-hidden">
 
-                  <div className="flex items-center justify-between pl-[16px] pr-[16px]">
-                    <p className="text-[#1B2533] text-[16px] font-semibold leading-[24px] tracking-[0.0015em] text-left">All Employee</p>
+                  <div className="flex items-center justify-between pl-[16px] pr-[16px] gap-3">
+                    <p className="text-[#1B2533] text-[16px] font-semibold leading-[24px] min-w-fit tracking-[0.0015em] text-left">All Employee</p>
 
                     <div className="flex gap-[10px] items-center cursor-pointer">
 
-                      <input type="text" placeholder="Search..." className="border border-[#D0D4DC] w-[200px] px-2.5 h-[38px] rounded-[10px]" onChange={(e) => srchEmpFunction(e)} />
+                      <input type="text" placeholder="Search..." className="border border-[#D0D4DC] w-[200px] px-2.5 h-[38px] rounded-[10px] mr-3" onChange={(e) => srchEmpFunction(e)} />
                     </div>
                   </div>
 
