@@ -466,7 +466,7 @@ const ProjectOverview2 = ({ allTasks, getProjectTaskapi }) => {
                         key={index}
                         className="border-b border-gray-200 hover:bg-gray-50 transition duration-150"
                       >
-                        <td className="border-b border-gray-200 hover:bg-gray-50 transition duration-150">{task?.taskName}</td>
+                        <td className="border-b px-4 border-gray-200 hover:bg-gray-50 transition duration-150">{task?.taskName}</td>
                         <td style={{ display: "flex", gap: "-2px" }} className="borderNone">
                           {
                             task?.Members?.map((item, index) => (

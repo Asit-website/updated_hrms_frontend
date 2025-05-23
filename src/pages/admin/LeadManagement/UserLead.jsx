@@ -309,15 +309,15 @@
             
 
             <div className="w-full relative mt-[40px] px-[20px] pb-[32px] pl-[30px]">
-                <div className="flex items-center justify-between">
+                <div className="flex flex-col lg:flex-row items-center justify-between">
                 <div>
-                    <h2 className="text-[24px] font-semibold text-[#111827] leading-6">Lead Management</h2>
-                    <p className="text-[12px] text-[#6B7280] mt-1">Real-time insights and performance overview</p>
+                    <h2 className="text-[24px] font-semibold text-[#111827] leading-6 text-center lg:text-left">Lead Management</h2>
+                    <p className="text-[12px] text-[#6B7280] mt-1 text-center lg:text-left">Real-time insights and performance overview</p>
                 </div>
                 <div className="lead_content2">
                     <div className="flex items-center justify-center gap-[10px]">
                     <NavLink to="/adminDash/leadFile">
-                        <button className="flex items-center justify-evenly w-[162px] h-[40px] border border-[#0B56E4] rounded-[10px] bg-[linear-gradient(131.78deg,_#D1E8FD_6.87%,_#EDEFFF_91.67%)]">
+                        <button className="flex items-center justify-evenly w-[162px] h-[40px] border border-[#0B56E4] rounded-[10px] bg-[linear-gradient(131.78deg,_#D1E8FD_6.87%,_#EDEFFF_91.67%)] mt-2 lg:mt-0">
                         <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746687192/donwlaond_d9hrjl.png" alt="download" />
                         <span className="text-[#0B56E4] font-medium text-[16px]"> Import Leads</span>
                         </button>
@@ -326,7 +326,7 @@
                 </div>
                 </div>
 
-                <div className="flex items-center justify-between">
+                <div className="flex flex-col lg:flex-row items-center justify-between overflow-x-scroll xl:overflow-x-hidden">
                 <div>
                     <div className="my-[20px] flex items-center gap-[20px]">
                     {/* <img src={fff} alt="" /> */}
@@ -348,7 +348,7 @@
                 
                 </div>
 
-                <div className="flex items-center gap-5">
+                <div className="flex flex-col lg:flex-row items-center gap-5">
                     <span className="text-[#666D76] text-[14px] font-normal leading-[20px] tracking-[0.0025em] text-left">Sort by</span>
 
                     <input className="w-[265px] h-[48px] px-[16px] py-[8px] gap-[8px] border-t rounded-[10px] text-[#1B2533]"
@@ -373,7 +373,7 @@
 
                 <div className="w-full bg-white border border-gray-400 shadow-[0px_8px_32px_-2px_#1B25330F] py-[15px] mt-[20px] min-h-[250px] rounded-xl ">
                     <div className="px-[20px] ">
-                    <div className="flex items-center justify-between px-[20px] ">
+                    <div className="flex items-center justify-between px-[10px] overflow-x-scroll lg:overflow-x-hidden">
                     <div className=" flex gap-2 items-center">
                         <h3 className="text-[#1B2533] font-semibold text-[16px]">User Leads</h3>
 
@@ -423,7 +423,7 @@
                     </div>
                     </div>
 
-                    <div className="relative w-full bg-white overflow-x-scroll md:overflow-visible">
+                    <div className="relative w-full bg-white overflow-x-scroll">
                     <table className="w-full text-sm text-gray-700">
                         <thead className="bg-white font-semibold">
                         <tr>
@@ -553,7 +553,7 @@
                                 
 
                                 {index === currView && (
-                                    <div className="viewOne">
+                                    <div className="absolute -top-16 min-w-[120px] h-fit border border-[#E3E3E3] flex flex-col shadow-[0px_4px_12px_0px_#1A1A1A33] py-2 gap-[5px] rounded-tl-[8px] z-[1000] bg-white right-[75px]">
                                     <div className="flex gap-4 items-center px-2 cursor-pointer" onClick={() =>
                                         navigate("/adminDash/editLead", {
                                         state: item,

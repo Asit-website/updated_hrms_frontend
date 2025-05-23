@@ -303,10 +303,10 @@ const AdminProfile = ({ pop, setPop, setAlert }) => {
                   <tbody className="text-gray-700">
                     {paginatedAnnouncements?.map((item, index) => (
                       <tr key={index}  className="border-b border-gray-200 hover:bg-gray-50 transition duration-150">
-                        <td class="px-6 py-4 text-gray-800">{item.title?.slice(0, 30)}...</td>
-                        <td class="px-6 py-4 text-gray-800">{item.startDate}</td>
-                        <td class="px-6 py-4 text-gray-800">{item.endDate}</td>
-                        <td class="px-6 py-4 text-gray-800">{item.description?.slice(0, 50)}...</td>
+                        <td className="px-6 py-4 text-gray-800">{item.title?.slice(0, 30)}...</td>
+                        <td className="px-6 py-4 text-gray-800">{item.startDate}</td>
+                        <td className="px-6 py-4 text-gray-800">{item.endDate}</td>
+                        <td className="px-6 py-4 text-gray-800">{item.description?.slice(0, 50)}...</td>
 
                         <td className="px-6 py-4 text-gray-800">
                           <div className="flex items-center sk relative">

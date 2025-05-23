@@ -305,12 +305,12 @@ const EmployeeSelf = ({ setAlert, pop1, setPop1 }) => {
         <div className="w-full bg-[#f5f5f5]">
           
 
-          <div className="px-[20px] pr-[54px] py-[32px] mt-[69px] relative w-full flex flex-col gap-[20px]">
-            <nav className="fixed top-[78px] right-0 w-[81%] flex items-center justify-between bg-white px-[40px] pr-[20px] pt-[18px] pb-[15px] z-[20]">
+          <div className="px-[20px] pr-[20px] py-[32px] mt-[120px] lg:mt-[69px] relative w-full flex flex-col gap-[20px]">
+            <nav className="fixed top-[78px] right-0 w-[100%] md:w-[59%] lg:w-[69%] xl:w-[80%] flex flex-col md:flex-row items-center justify-between bg-white px-[20px] pr-[20px] pt-[18px] pb-[15px] z-[20]">
               <h2 className="text-[#101820] text-[24px] font-semibold leading-[32px] text-left">{user1?.fullName} Details</h2>
 
               <select
-              className="w-[170px] h-[40px] border border-[#0B56E4] bg-gradient-to-r from-[#D1E8FD] via-[#D1E8FD] to-[#EDEFFF] text-[#0B56E4] text-[16px] font-medium leading-[24px] tracking-[0.005em] text-left outline-none rounded-lg px-[5px]"
+              className="w-[170px] h-[40px] border border-[#0B56E4] bg-gradient-to-r from-[#D1E8FD] via-[#D1E8FD] to-[#EDEFFF] text-[#0B56E4] text-[16px] font-medium leading-[24px] tracking-[0.005em] text-left outline-none rounded-lg px-[5px] mt-4 lg:mt-0"
                 value={curenpage}
                 onChange={(e) => setCurrPage(e.target.value)}
                 name=""
@@ -327,137 +327,137 @@ const EmployeeSelf = ({ setAlert, pop1, setPop1 }) => {
             {curenpage === "Document" && (
               <>
                 {/* first section  */}
-                <div className="w-full p-[20px] pb-[30px] rounded-[18px] bg-white border border-[#E8E9EB] flex flex-col gap-[18px]">
+                <div className="w-full p-[20px] pb-[30px] rounded-[18px] bg-white border border-[#E8E9EB] flex flex-col gap-[18px] overflow-x-scroll">
                   <h3 className="text-[#101820] text-base font-bold leading-6 tracking-[0.0015em] text-left">Employee Detail</h3>
 
                   <hr />
 
-                  <div className="grid grid-cols-2 gap-[22px]">
-                    <div className="flex items-center">
-                      <p className="text-[#1B2533] text-sm font-normal leading-[20px] tracking-[0.0025em] w-[140px] text-left">Employee ID :</p>
+                  <div className="grid-cols-2 lg:grid gap-[22px]">
+                    <div className="flex items-center gap-3">
+                      <p className="text-[#1B2533] text-sm font-normal leading-[20px] tracking-[0.0025em] text-left">Employee ID :</p>
                       <span className="text-[#1B2533] text-sm font-medium leading-6 tracking-[0.005em] text-left">KDS{user1?.employeeCode}</span>
                     </div>
 
-                    <div className="flex items-center">
-                      <p className="text-[#1B2533] text-sm font-normal leading-[20px] tracking-[0.0025em] w-[140px] text-left">Name :</p>
+                    <div className="flex items-center mt-2 lg:mt-0 gap-3">
+                      <p className="text-[#1B2533] text-sm font-normal leading-[20px] tracking-[0.0025em] text-left">Name :</p>
                       <span className="text-[#1B2533] text-sm font-medium leading-6 tracking-[0.005em] text-left">{user1?.fullName}</span>
                     </div>
 
-                    <div className="flex items-center">
-                      <p className="text-[#1B2533] text-sm font-normal leading-[20px] tracking-[0.0025em] w-[140px] text-left">Department :</p>
+                    <div className="flex items-center mt-2 lg:mt-0 gap-3">
+                      <p className="text-[#1B2533] text-sm font-normal leading-[20px] tracking-[0.0025em]  text-left">Department :</p>
                       <span className="text-[#1B2533] text-sm font-medium leading-6 tracking-[0.005em] text-left">{user1?.department}</span>
                     </div>
 
-                    <div className="flex items-center">
-                      <p className="text-[#1B2533] text-sm font-normal leading-[20px] tracking-[0.0025em] w-[140px] text-left">Designation :</p>
+                    <div className="flex items-center mt-2 lg:mt-0 gap-3">
+                      <p className="text-[#1B2533] text-sm font-normal leading-[20px] tracking-[0.0025em]  text-left">Designation :</p>
                       <span className="text-[#1B2533] text-sm font-medium leading-6 tracking-[0.005em] text-left">{user1?.designation}</span>
                     </div>
 
-                    <div className="flex items-center">
-                      <p className="text-[#1B2533] text-sm font-normal leading-[20px] tracking-[0.0025em] w-[140px] text-left">Date of Joining :</p>
+                    <div className="flex items-center mt-2 lg:mt-0 gap-3">
+                      <p className="text-[#1B2533] text-sm font-normal leading-[20px] tracking-[0.0025em] text-left">Date of Joining :</p>
                       <span className="text-[#1B2533] text-sm font-medium leading-6 tracking-[0.005em] text-left">{user1?.joiningDate}</span>
                     </div>
 
-                    <div className="flex items-center">
-                      <p className="text-[#1B2533] text-sm font-normal leading-[20px] tracking-[0.0025em] w-[140px] text-left">Office Email :</p>
+                    <div className="flex items-center mt-2 lg:mt-0 gap-3">
+                      <p className="text-[#1B2533] text-sm font-normal leading-[20px] tracking-[0.0025em] text-left">Office Email :</p>
                       <span className="text-[#1B2533] text-sm font-medium leading-6 tracking-[0.005em] text-left">{user1?.email}</span>
                     </div>
                   </div>
                 </div>
 
                 {/* second section  */}
-                <div className="w-full p-[20px_20px_30px_20px] rounded-[18px] bg-white border border-[#E8E9EB] flex flex-col gap-[18px]">
+                <div className="w-full p-[20px_20px_30px_20px] rounded-[18px] bg-white border border-[#E8E9EB] flex flex-col gap-[18px] overflow-x-scroll">
                   <h3 className="text-[#101820] text-base font-bold leading-6 tracking-[0.0015em] text-left">Other Detail</h3>
 
                   <hr />
 
-                  <div className="grid grid-cols-2 gap-[22px]">
-                    <div className="singfirst1">
+                  <div className="grid-cols-2 lg:grid gap-[22px]">
+                    <div className="flex gap-3">
                       <p>Address :</p>
                       <span>{user1?.currentAddress}</span>
                     </div>
 
-                    <div className="singfirst1">
+                    <div className="flex gap-3 mt-3 lg:mt-0">
                       <p>Mobile :</p>
                       <span>{user1?.mobile}</span>
                     </div>
 
-                    <div className="singfirst1">
+                    <div className="flex gap-3 mt-3 lg:mt-0">
                       <p>Personal ID :</p>
                       <span>{user1?.email1}</span>
                     </div>
 
-                    <div className="singfirst1">
+                    <div className="flex gap-3 mt-3 lg:mt-0">
                       <p>Gender :</p>
                       <span>{user1?.gender}</span>
                     </div>
 
-                    <div className="singfirst1">
+                    <div className="flex gap-3 mt-3 lg:mt-0">
                       <p>Pan Number :</p>
                       <span>{user1?.pan}</span>
                     </div>
 
-                    <div className="singfirst1">
+                    <div className="flex gap-3 mt-3 lg:mt-0">
                       <p>Adhar Number :</p>
                       <span>{user1?.adhar}</span>
                     </div>
 
-                    <div className="singfirst1">
+                    <div className="flex gap-3 mt-3 lg:mt-0">
                       <p>Father Name :</p>
                       <span>{user1?.father}</span>
                     </div>
 
-                    <div className="singfirst1">
+                    <div className="flex gap-3 mt-3 lg:mt-0">
                       <p>Current Address :</p>
                       <span>{user1?.currentAddress}</span>
                     </div>
 
-                    <div className="singfirst1">
+                    <div className="flex gap-3 mt-3 lg:mt-0">
                       <p>Current State :</p>
                       <span>{user1?.currentState}</span>
                     </div>
 
-                    <div className="singfirst1">
+                    <div className="flex gap-3 mt-3 lg:mt-0">
                       <p>Current City :</p>
                       <span>{user1?.currentCity}</span>
                     </div>
 
-                    <div className="singfirst1">
+                    <div className="flex gap-3 mt-3 lg:mt-0">
                       <p>Area Pincode :</p>
                       <span>{user1?.currentPin}</span>
                     </div>
 
-                    <div className="singfirst1">
+                    <div className="flex gap-3 mt-3 lg:mt-0">
                       <p>Permanent Address :</p>
                       <span>{user1?.residence}</span>
                     </div>
 
-                    <div className="singfirst1">
+                    <div className="flex gap-3 mt-3 lg:mt-0">
                       <p>Permanent State :</p>
                       <span>{user1?.perState}</span>
                     </div>
 
-                    <div className="singfirst1">
+                    <div className="flex gap-3 mt-3 lg:mt-0">
                       <p>Permanent City :</p>
                       <span>{user1?.perCity}</span>
                     </div>
 
-                    <div className="singfirst1">
+                    <div className="flex gap-3 mt-3 lg:mt-0">
                       <p>Permanent Pin :</p>
                       <span>{user1?.perPin}</span>
                     </div>
 
-                    <div className="singfirst1">
+                    <div className="flex gap-3 mt-3 lg:mt-0">
                       <p>Marital status :</p>
                       <span>{user1?.Martial}</span>
                     </div>
 
-                    <div className="singfirst1">
+                    <div className="flex gap-3 mt-3 lg:mt-0">
                       <p>Nationality :</p>
                       <span>{user1?.nationality}</span>
                     </div>
 
-                    <div className="singfirst1">
+                    <div className="flex gap-3 mt-3 lg:mt-0">
                       <p>Mother name :</p>
                       <span>{user1?.Mother}</span>
                     </div>
@@ -465,7 +465,7 @@ const EmployeeSelf = ({ setAlert, pop1, setPop1 }) => {
                 </div>
 
                 {/* thid  section  */}
-                <div className="w-full p-[20px_20px_30px_20px] rounded-[18px] bg-white border border-[#E8E9EB] flex flex-col gap-[18px]">
+                <div className="w-full p-[20px_20px_30px_20px] rounded-[18px] bg-white border border-[#E8E9EB] flex flex-col gap-[18px] overflow-x-scroll">
                   <h3 className="text-[#101820] text-base font-bold leading-6 tracking-[0.0015em] text-left">Document Upload</h3>
 
                   <hr />
@@ -505,37 +505,37 @@ const EmployeeSelf = ({ setAlert, pop1, setPop1 }) => {
                 </div>
 
                 {/* fourth section  */}
-                <div className="w-full p-[20px_20px_30px_20px] rounded-[18px] bg-white border border-[#E8E9EB] flex flex-col gap-[18px]">
+                <div className="w-full p-[20px_20px_30px_20px] rounded-[18px] bg-white border border-[#E8E9EB] flex flex-col gap-[18px] overflow-x-scroll">
                   <h3 className="text-[#101820] text-base font-bold leading-6 tracking-[0.0015em] text-left">Bank Account Detail</h3>
 
                   <hr />
 
                   <div className="grid grid-cols-2 gap-[22px]">
-                    <div className="singfirst1">
+                    <div className="flex gap-3">
                       <p>Salary Pay Mode</p>
                       <span>{user1?.SalaryPay}</span>
                     </div>
 
-                    <div className="singfirst1">
+                    <div className="flex gap-3">
                       <p>Account No :</p>
                       <span>{user1?.AccountNumber}</span>
                     </div>
 
-                    <div className="singfirst1">
+                    <div className="flex gap-3">
                       <p> Bank Name :</p>
                       <span>{user1?.SalaryBankName}</span>
                     </div>
 
-                    <div className="singfirst1">
+                    <div className="flex gap-3">
                       <p>Beneficiary Name :</p>
                       <span>{user1?.BeneficiaryName}</span>
                     </div>
 
-                    <div className="singfirst1">
+                    <div className="flex gap-3">
                       <p>Branch Ifsc Code :</p>
                       <span>{user1?.BankIfsc}</span>
                     </div>
-                    <div className="singfirst1">
+                    <div className="flex gap-3">
                       <p>Bank Branch Name :</p>
                       <span>{user1?.Branch}</span>
                     </div>
@@ -543,7 +543,7 @@ const EmployeeSelf = ({ setAlert, pop1, setPop1 }) => {
                 </div>
 
                 {/* fivth section  */}
-                <div className="w-full p-[20px_20px_30px_20px] rounded-[18px] bg-white border border-[#E8E9EB] flex flex-col gap-[18px]">
+                <div className="w-full p-[20px_20px_30px_20px] rounded-[18px] bg-white border border-[#E8E9EB] flex flex-col gap-[18px] overflow-x-scroll">
                   <h3 className="text-[#101820] text-base font-bold leading-6 tracking-[0.0015em] text-left">Leave Details</h3>
 
                   <hr />
@@ -579,7 +579,7 @@ const EmployeeSelf = ({ setAlert, pop1, setPop1 }) => {
                   </div>
                 </div>
 
-                <div className="w-full p-[20px_20px_30px_20px] rounded-[18px] bg-white border border-[#E8E9EB] flex flex-col gap-[18px]">
+                <div className="w-full p-[20px_20px_30px_20px] rounded-[18px] bg-white border border-[#E8E9EB] flex flex-col gap-[18px] overflow-x-scroll">
                   <h3 className="text-[#101820] text-base font-bold leading-6 tracking-[0.0015em] text-left">Document Permission</h3>
 
                   <hr />

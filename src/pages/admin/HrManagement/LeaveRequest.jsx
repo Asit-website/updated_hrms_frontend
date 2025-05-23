@@ -496,7 +496,7 @@ py-[8px] gap-[5px] rounded-tl-[8px] z-[1000] bg-white
             aria-hidden="true"
             className="fixed inset-0 bg-[rgba(0,0,0,0.2)] flex items-center justify-center h-screen"
           >
-            <div className="relative w-full h-[500px] mt-8 custom-scroll-hidden overflow-auto max-w-2xl mx-auto p-4 bg-white rounded-2xl shadow-lg space-y-6" ref={formRef}>
+            <div className="relative w-full h-[500px] mt-8 custom-scroll-hidden overflow-auto max-w-2xl mx-auto p-4 bg-white rounded-2xl shadow-lg space-y-6 mx-3" ref={formRef}>
               {/* <!-- Modal content --> */}
               <div className="">
                 {/* <!-- Modal header --> */}
