@@ -38,48 +38,7 @@ export default function LeadManagement() {
     "Time",
     "Action",
   ];
-  // const tbodyData = [
-  //   [
-  //     "Follow up WhatsApp Message",
-  //     "31/05/2023",
-  //     "Not Started",
-  //     "High",
-  //     "Machi Gulinski",
-  //     "Kris Marrier",
-  //   ],
-  //   [
-  //     "Follow up WhatsApp Message",
-  //     "31/05/2023",
-  //     "Not Started",
-  //     "High",
-  //     "Machi Gulinski",
-  //     "Kris Marrier",
-  //   ],
-  //   [
-  //     "Follow up WhatsApp Message",
-  //     "31/05/2023",
-  //     "Not Started",
-  //     "High",
-  //     "Machi Gulinski",
-  //     "Kris Marrier",
-  //   ],
-  //   [
-  //     "Follow up WhatsApp Message",
-  //     "31/05/2023",
-  //     "Not Started",
-  //     "High",
-  //     "Machi Gulinski",
-  //     "Kris Marrier",
-  //   ],
-  //   [
-  //     "Follow up WhatsApp Message",
-  //     "31/05/2023",
-  //     "Not Started",
-  //     "High",
-  //     "Machi Gulinski",
-  //     "Kris Marrier",
-  //   ],
-  // ];
+
 
   const theadData1 = [
     "Company",
@@ -179,17 +138,17 @@ export default function LeadManagement() {
   const stats = [
     {
       img: "https://res.cloudinary.com/dd9tagtiw/image/upload/v1746188858/Frame_9688_zhh0hh.png",
-      label: "Total Deals",
+      label: "Total Leads",
       value: totalMyLead,
     },
     {
       img: "https://res.cloudinary.com/dd9tagtiw/image/upload/v1746188839/Frame_9688_ddpeva.png",
-      label: "User Deals",
+      label: "User Leads",
       value: userLeads,
     },
     {
       img: "https://res.cloudinary.com/dd9tagtiw/image/upload/v1746188816/Frame_9688_tazycu.png",
-      label: "Closed",
+      label: "Closed Leads",
       value: allCloseLead.length,
     },
   ];
@@ -295,7 +254,7 @@ export default function LeadManagement() {
         {stats.map((stat, i) => (
           <div
             key={i}
-            className="bg-white rounded-lg p-4 shadow-sm border border-[#f3f4f6]"
+            className="bg-white rounded-lg p-4 border border-[#f3f4f6] shadow-md hover:bg-blue-100 cursor-pointer transition-all ease-in-out"
           >
             <div className="flex  items-center justify-between">
               <div>
@@ -313,257 +272,7 @@ export default function LeadManagement() {
         ))}
       </div>
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 pt-8">
-        <div className="bg-grey rounded-xl border-2 overflow-hidden">
-          <div className="flex justify-between p-4 sm:items-center bg-white">
-            <div className="flex items-center gap-2 ">
-              <h3 className="text-xl font-semibold ">My Follow Up</h3>
-            </div>
-            {/* 
-            <div className="mt-2 sm:mt-0 sm:self-end self-end">
-              <button>
-               <ActionMenu/>
-              </button>
-            </div> */}
-          </div>
-
-          <hr />
-
-          {/* <CommonTableLead theadData={theadData} tbodyData={tbodyData} /> */}
-          <div className="w-full overflow-x-auto bg-white  border border-gray-200 shadow-sm">
-            <table className="w-full text-sm text-gray-700">
-              {/* Table Head */}
-              <thead className="bg-white font-semibold">
-                <tr>
-                  {theadData.map((head, idx) => (
-                    <th
-                      key={idx}
-                      className="text-left font-bold text-gray-900 py-3 px-4 border-b border-gray-200 whitespace-nowrap"
-                    >
-                      {head}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-
-            
-             <tbody>
-                {allTask && allTask.length > 0 ? (
-                  allTask.map((task, index) => (
-                    <tr
-                      key={index}
-                      className="border-b border-gray-200 hover:bg-gray-50 transition duration-150"
-                    >
-                      <td
-                        scope="row"
-                        className="px-6 py-4 text-gray-800"
-                      >
-                        {task?.LeadName}
-                      </td>
-                      <td className="px-6 py-4 text-gray-800">
-                        {new Date(task?.Date).toLocaleDateString("en-GB")}
-                      </td>
-                      <td className="px-6 py-4 text-gray-800">
-                        {task?.FollowUpType}
-                      </td>
-                      <td className="px-6 py-4 text-gray-800">
-                        {task?.FollowUpType}
-                      </td>
-                      <td className="px-6 py-4 text-gray-800">
-                        {task?.Time && convertTo12HourFormat(task.Time)}
-                      </td>
-                      <td className="px-6 py-4 text-gray-800">
-                        <div className="testok">
-                          <svg
-                            className="cursor-pointer"
-                            onClick={() => {
-                              navigate(
-                                `/adminDash/importLead/${task?.LeadId}`,
-                                {
-                                  state: {
-                                    type: "task",
-                                    data1: task,
-                                  },
-                                }
-                              );
-                            }}
-                            width="16"
-                            height="16"
-                            viewBox="0 0 16 16"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M9.71569 5.51667L10.4824 6.28333L2.93236 13.8333H2.16569V13.0667L9.71569 5.51667ZM12.7157 0.5C12.5074 0.5 12.2907 0.583333 12.1324 0.741667L10.6074 2.26667L13.7324 5.39167L15.2574 3.86667C15.5824 3.54167 15.5824 3.01667 15.2574 2.69167L13.3074 0.741667C13.1407 0.575 12.9324 0.5 12.7157 0.5ZM9.71569 3.15833L0.499023 12.375V15.5H3.62402L12.8407 6.28333L9.71569 3.15833Z"
-                              fill="#383838"
-                            />
-                          </svg>
-                           {/* <svg className="cursor-pointer" onClick={() => {
-                                      navigate("/adminDash/taskLead", {
-                                        state: task,
-                                      });
-                                    }} width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                      <path d="M10.0002 2.41667C13.1585 2.41667 15.9752 4.19167 17.3502 7C15.9752 9.80833 13.1585 11.5833 10.0002 11.5833C6.84183 11.5833 4.02516 9.80833 2.65016 7C4.02516 4.19167 6.84183 2.41667 10.0002 2.41667ZM10.0002 0.75C5.8335 0.75 2.27516 3.34167 0.833496 7C2.27516 10.6583 5.8335 13.25 10.0002 13.25C14.1668 13.25 17.7252 10.6583 19.1668 7C17.7252 3.34167 14.1668 0.75 10.0002 0.75ZM10.0002 4.91667C11.1502 4.91667 12.0835 5.85 12.0835 7C12.0835 8.15 11.1502 9.08333 10.0002 9.08333C8.85016 9.08333 7.91683 8.15 7.91683 7C7.91683 5.85 8.85016 4.91667 10.0002 4.91667ZM10.0002 3.25C7.9335 3.25 6.25016 4.93333 6.25016 7C6.25016 9.06667 7.9335 10.75 10.0002 10.75C12.0668 10.75 13.7502 9.06667 13.7502 7C13.7502 4.93333 12.0668 3.25 10.0002 3.25Z" fill="#383838" />
-                                    </svg> */}
-                        {/* 
-                                    <svg onClick={() => {
-                                      deleteTask(task?._id);
-                                    }}
-                                      className="cursor-pointer" width="12" height="16" viewBox="0 0 12 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                      <path d="M9.33317 5.5V13.8333H2.6665V5.5H9.33317ZM8.08317 0.5H3.9165L3.08317 1.33333H0.166504V3H11.8332V1.33333H8.9165L8.08317 0.5ZM10.9998 3.83333H0.999837V13.8333C0.999837 14.75 1.74984 15.5 2.6665 15.5H9.33317C10.2498 15.5 10.9998 14.75 10.9998 13.8333V3.83333Z" fill="#DE3730" />
-                                    </svg> */}
-                        </div>
-                      </td>
-                    </tr>
-                  ))
-                ) : (
-                  <tr>
-                    <td colSpan="6" className="text-center text-gray-400 px-6 py-4">
-                      No data available !!
-                    </td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <div className="bg-grey rounded-xl border-2 overflow-hidden">
-          <div className="flex p-4 justify-between sm:items-center bg-white">
-            <div className="flex items-center gap-2 ">
-              <h3 className="text-xl font-semibold ">My Meeting</h3>
-            </div>
-
-            <div className="mt-2 sm:mt-0 sm:self-end self-end">
-              {/* <button>
-                <ActionMenu />
-              </button> */}
-            </div>
-          </div>
-
-          <hr />
-
-          {/* <CommonTableLead theadData={theadData1} tbodyData={tbodyData1} /> */}
-          <div className="w-full overflow-x-auto bg-white  border border-gray-200 shadow-sm">
-            <table className="w-full text-sm text-gray-700">
-              {/* Table Head */}
-              <thead className="bg-white font-semibold">
-                <tr>
-                  {theadData1.map((head, idx) => (
-                    <th
-                      key={idx}
-                      className="text-left font-bold text-gray-900 py-3 px-4 border-b border-gray-200 whitespace-nowrap"
-                    >
-                      {head}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-
-         
-              
-                          <tbody>
-                {allMeet && allMeet.length > 0 ? (
-    allMeet.map((meet, index) => (
-      <tr
-        key={index}
-        className="border-b border-gray-200 hover:bg-gray-50 transition duration-150"
-      >
-        <td className="px-6 py-4 text-gray-800">{meet?.title}</td>
-        <td className="px-6 py-4 text-gray-800">
-          {meet?.meetDateFrom}{" "}
-          {new Date(`1970-01-01T${meet?.meetTimeFrom}`).toLocaleTimeString(
-            "en-US",
-            {
-              hour: "2-digit",
-              minute: "2-digit",
-              hour12: true,
-            }
-          )}
-        </td>
-        <td className="px-6 py-4 text-gray-800">
-          {meet?.meetDateTo}{" "}
-          {new Date(`1970-01-01T${meet?.meetTimeTo}`).toLocaleTimeString(
-            "en-US",
-            {
-              hour: "2-digit",
-              minute: "2-digit",
-              hour12: true,
-            }
-          )}
-        </td>
-        <td className="px-6 py-4 text-gray-800">{meet?.RelatedTo}</td>
-        <td className="px-6 py-4 text-gray-800">{meet?.Participant}</td>
-        <td className="relative">
-          <div className="testok flex gap-2">
-            <svg
-              className="cursor-pointer"
-              onClick={() => {
-                navigate(`/adminDash/importLead/${meet?.LeadId}`, {
-                  state: { type: "meet", data1: meet },
-                });
-              }}
-              width="16"
-              height="16"
-              viewBox="0 0 16 16"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M9.71569 5.51667L10.4824 6.28333L2.93236 13.8333H2.16569V13.0667L9.71569 5.51667ZM12.7157 0.5C12.5074 0.5 12.2907 0.583333 12.1324 0.741667L10.6074 2.26667L13.7324 5.39167L15.2574 3.86667C15.5824 3.54167 15.5824 3.01667 15.2574 2.69167L13.3074 0.741667C13.1407 0.575 12.9324 0.5 12.7157 0.5ZM9.71569 3.15833L0.499023 12.375V15.5H3.62402L12.8407 6.28333L9.71569 3.15833Z"
-                fill="#383838"
-              />
-            </svg>
-
-            <svg
-              className="cursor-pointer"
-              onClick={() => {
-                navigate("/adminDash/meetLead", {
-                  state: meet,
-                });
-              }}
-              width="20"
-              height="14"
-              viewBox="0 0 20 14"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M10.0002 2.41667C13.1585 2.41667 15.9752 4.19167 17.3502 7C15.9752 9.80833 13.1585 11.5833 10.0002 11.5833C6.84183 11.5833 4.02516 9.80833 2.65016 7C4.02516 4.19167 6.84183 2.41667 10.0002 2.41667ZM10.0002 0.75C5.8335 0.75 2.27516 3.34167 0.833496 7C2.27516 10.6583 5.8335 13.25 10.0002 13.25C14.1668 13.25 17.7252 10.6583 19.1668 7C17.7252 3.34167 14.1668 0.75 10.0002 0.75ZM10.0002 4.91667C11.1502 4.91667 12.0835 5.85 12.0835 7C12.0835 8.15 11.1502 9.08333 10.0002 9.08333C8.85016 9.08333 7.91683 8.15 7.91683 7C7.91683 5.85 8.85016 4.91667 10.0002 4.91667ZM10.0002 3.25C7.9335 3.25 6.25016 4.93333 6.25016 7C6.25016 9.06667 7.9335 10.75 10.0002 10.75C12.0668 10.75 13.7502 9.06667 13.7502 7C13.7502 4.93333 12.0668 3.25 10.0002 3.25Z"
-                fill="#383838"
-              />
-            </svg>
-
-            <svg
-              onClick={() => {
-                deleteMeet(meet?._id);
-              }}
-              className="cursor-pointer"
-              width="12"
-              height="16"
-              viewBox="0 0 12 16"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M9.33317 5.5V13.8333H2.6665V5.5H9.33317ZM8.08317 0.5H3.9165L3.08317 1.33333H0.166504V3H11.8332V1.33333H8.9165L8.08317 0.5ZM10.9998 3.83333H0.999837V13.8333C0.999837 14.75 1.74984 15.5 2.6665 15.5H9.33317C10.2498 15.5 10.9998 14.75 10.9998 13.8333V3.83333Z"
-                fill="#DE3730"
-              />
-            </svg>
-          </div>
-        </td>
-      </tr>
-    ))
-  ) : (
-    <tr>
-      <td colSpan="6" className="text-center text-gray-400 px-6 py-4">
-        No data available !!
-      </td>
-    </tr>
-  )}
-</tbody>
-
-            </table>
-          </div>
-        </div>
+       
         <div className="bg-grey rounded-xl border-2 overflow-x-auto overflow-hidden  xl:col-span-2">
           <div className="flex p-4 justify-between sm:items-center bg-white flex-wrap">
             <div className="flex items-center">
@@ -707,7 +416,7 @@ export default function LeadManagement() {
           <div className="flex  p-4 justify-between sm:items-center bg-white flex-wrap">
             <div className="flex items-center gap-2 ">
               <h3 className="text-xl font-semibold ">
-                My Deals Closing This Month
+                My Leads Closing This Month
               </h3>
             </div>
 

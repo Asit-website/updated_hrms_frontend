@@ -1,19 +1,16 @@
 import { useEffect, useRef, useState } from "react";
 import "react-calendar/dist/Calendar.css";
 import toast from "react-hot-toast";
-// import { Avatar } from "react-profile-avatar";
-// import "react-profile-avatar/dist/index.css";
 import { useNavigate } from "react-router-dom";
 import * as XLSX from "xlsx";
 import { useMain } from "../../../hooks/UseMain";
 import { useOutsideClick } from "../../../hooks/UseOutsideClick";
+import InitialsAvatar from "../../../components/InitialAvatar";
 
-
-const TaskClients = ({ setAlert, pop, setPop }) => {
+const TaskClients = () => {
   const { user, createClientapi, getClientapi, editTaskapi, disableClientapi } =
     useMain();
   const navigate = useNavigate();
-  // alert('this')
 
   let hrms_user = JSON.parse(localStorage.getItem("hrms_user")) || '';
 
@@ -293,10 +290,10 @@ const TaskClients = ({ setAlert, pop, setPop }) => {
   return (
     <>
       <div className="flex relative bg-[#f5f5f5] h-full">
-      
+
 
         <div className="w-full bg-[#f5f5f5] ">
-         
+
           <div className="pt-8 pr-5 pb-8 pl-[20px] relative w-full">
             <div className="relative flex flex-col gap-[20px]">
               <nav className="flex items-center justify-between">
@@ -311,15 +308,15 @@ const TaskClients = ({ setAlert, pop, setPop }) => {
                   >
                     <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747201651/pluss_wqvd9q.png" alt="" /> <span>New Client</span>
                   </button>
-                
+
                 </div>
               </nav>
 
               <div className="flex flex-col">
-          
+
                 <input type="text" placeholder="Search..." onChange={(e) => setSearchInput(e.target.value)}
                   value={searchInput} className="border border-[#D0D4DC] w-[200px] px-2.5 h-[38px] rounded-[10px]" />
-              
+
                 <p className="py-[24px] pt-0 pb-8 text-[#1B2533] text-[12px] font-medium leading-[16px] tracking-[0.004em] text-left mt-4">Total Records: {allClient?.length || 0}</p>
               </div>
 
@@ -341,16 +338,7 @@ const TaskClients = ({ setAlert, pop, setPop }) => {
                       <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747201690/thredonts_snuk81.png" alt="" />
                     </div>
 
-                    {/* <Avatar
-                      name={client?.Name}
-                      colour={
-                        index % 3 == 0
-                          ? "#3C78E9"
-                          : `${index % 2 == 0 ? "#E45D3A" : "#F7A539"}`
-                      }
-                      size={60}
-                      className="text-[24px] font-semibold leading-[32px] text-[#F3F3F4]"
-                    /> */}
+                    <InitialsAvatar name={client?.Name} size={60} />
 
                     <h3 className="text-[18px] font-semibold leading-[32px] text-[#1B2533]">{client?.Name}</h3>
                     <p className="text-[14px] font-normal leading-[24px] tracking-[0.0015em] text-[#666D76]">
@@ -436,7 +424,7 @@ const TaskClients = ({ setAlert, pop, setPop }) => {
           <div ref={popupwrapper} className="w-[599px] p-[24px] h-fit flex flex-col gap-[16px] rounded-[18px] bg-white">
             <nav>
               <p>{isEdit ? "Edit Client" : 'Add Client'}</p>
-              
+
             </nav>
 
             <hr />
@@ -449,7 +437,7 @@ const TaskClients = ({ setAlert, pop, setPop }) => {
                 <label className="block text-md font-normal mb-1">
                   <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Name <span className="text-red-500">*</span></p>
                   <input
-                   className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                    className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                     type="text"
                     name="Name"
                     value={formdata.Name}
@@ -492,7 +480,7 @@ const TaskClients = ({ setAlert, pop, setPop }) => {
                   <label className="block text-md font-normal mb-1">
                     <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">City <span className="text-red-500">*</span></p>
                     <input
-                     className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                      className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                       type="text"
                       name="City"
                       value={formdata.City}
@@ -505,7 +493,7 @@ const TaskClients = ({ setAlert, pop, setPop }) => {
                   <label className="block text-md font-normal mb-1">
                     <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">State <span className="text-red-500">*</span></p>
                     <input
-                     className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                      className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                       type="text"
                       name="State"
                       value={formdata.State}
@@ -520,7 +508,7 @@ const TaskClients = ({ setAlert, pop, setPop }) => {
                   <label className="block text-md font-normal mb-1">
                     <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Zip/Post Code <span className="text-red-500">*</span></p>
                     <input
-                     className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                      className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                       type="text"
                       name="ZipCode"
                       value={formdata.ZipCode}
@@ -533,7 +521,7 @@ const TaskClients = ({ setAlert, pop, setPop }) => {
                   <label className="block text-md font-normal mb-1">
                     <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Country <span className="text-red-500">*</span></p>
                     <input
-                     className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                      className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                       type="text"
                       name="Country"
                       value={formdata.Country}
@@ -547,14 +535,14 @@ const TaskClients = ({ setAlert, pop, setPop }) => {
                 <label className="block text-md font-normal mb-1">
                   <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Phone Number <span className="text-red-500">*</span></p>
                   <input
-                   className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                    className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                     type="number"
                     name="PhoneNumber"
                     value={formdata.PhoneNumber}
                     onChange={changeHandler}
                     placeholder="Phone Number"
                     maxLength="10"
-              
+
                     required
                   />
                 </label>
@@ -565,7 +553,7 @@ const TaskClients = ({ setAlert, pop, setPop }) => {
                 <label clasName="block text-md font-normal mb-1">
                   <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Address</p>
                   <input
-                   className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                    className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                     type="text"
                     name="Address"
                     value={formdata.Address}

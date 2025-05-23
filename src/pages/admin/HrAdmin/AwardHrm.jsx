@@ -1,5 +1,4 @@
 import ActionMenu from "../../../components/ActionMenu";
-import { ToastContainer, toast } from "react-toastify";
 import { FaPlus, FaSearch } from "react-icons/fa";
 import { useMain } from "../../../hooks/UseMain";
 import { useEffect, useState } from "react";
@@ -150,18 +149,7 @@ const Award = () => {
 
   return (
     <div className="p-6">
-      <ToastContainer
-        position="top-center"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        theme="colored"
-        closeButton
-      />
+      
       <div className="flex flex-col sm:flex-row justify-between items-start">
         <h1 className="text-2xl font-semibold">Manage Award</h1>
         <button

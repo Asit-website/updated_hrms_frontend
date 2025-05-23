@@ -10,6 +10,27 @@ import {
 import { NavLink, useNavigate } from "react-router-dom";
 
 const Sidebar = ({ showSidebar, setShowSidebar }) => {
+
+  let hrms_user = JSON?.parse(localStorage.getItem("hrms_user")) || '';
+  const { role } = hrms_user;
+
+  let hrms_permission = JSON?.parse(localStorage.getItem("hrms_permission"));
+
+  const {
+    leadPermission,
+    hrmsSetUpPermission,
+    payrollPermission,
+    leadSystemPermission,
+    attendencePermission,
+    assetsPermission,
+    documentPermission,
+    leaveManagePermission,
+    performancePermission,
+    employeeManagePermission,
+    hrAdminSetupPermission,
+    trainingSetupPermission,
+  } = hrms_permission;
+
   const [showLeadLi, setShowLeadLi] = useState(false);
   const [showTaskLi, setShowTaskLi] = useState(false);
   const [showTaskMa, setShowTaskMa] = useState(false);
@@ -20,10 +41,11 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
 
   const [openHr, setOpenHr] = useState(false);
   const [openLeaveManagement, setLeaveManagement] = useState(false);
-    const [payrollManagement, setPayRollManagement] = useState(false);
-      const [performaneManagement, setPerformaneManagement] = useState(false);
+  const [payrollManagement, setPayRollManagement] = useState(false);
+  const [performaneManagement, setPerformaneManagement] = useState(false);
 
   const [hrItem, setHrItem] = useState(0);
+
   const hrAdminItems = [
     {
       title: "Award",
@@ -72,25 +94,24 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
     <>
       <div
         id="drawer-navigation"
-        className={`fixed top-[57px] left-0 z-40 w-80 h-screen p-4 shadow-xl border border-r-2 overflow-y-auto transition-transform bg-white dark:bg-gray-800 ${
-          showSidebar ? "translate-x-0" : "-translate-x-full"
-        }`}
+        className={`fixed top-[57px] left-0 z-40 w-80 h-screen p-4 shadow-xl border border-r-2 overflow-y-auto transition-transform bg-white dark:bg-gray-800 ${showSidebar ? "translate-x-0" : "-translate-x-full"
+          }`}
         tabIndex="-1"
         aria-labelledby="drawer-navigation-label"
       >
-       
-       <div className="py-4 overflow-y-auto">
+
+        <div className="py-4 overflow-y-auto">
           <ul className=" font-medium">
             <li>
               <NavLink
                 to="/adminDash/HRM"
                 className={({ isActive }) =>
-                  `flex items-center p-2 py-3 rounded-lg group
-      ${
-        isActive
-          ? "bg-[#F5F9FF] text-[#0B56E4]"
-          : "text-black hover:bg-gray-100"
-      }`
+                  `flex items-center p-2 py-3 mt-4
+                 rounded-lg group
+                  ${isActive
+                    ? "bg-[#F5F9FF] text-[#0B56E4]"
+                    : "text-black hover:bg-gray-100"
+                  }`
                 }
               >
                 <MdDashboard
@@ -101,64 +122,77 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
               </NavLink>
             </li>
 
-            <li>
-              <a
-                href="#"
-                className="flex items-center p-2 py-3 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-              >
-                <MdLeaderboard />
-                <span
-                  onClick={() => setShowLeadLi(!showLeadLi)}
-                  className="flex-1 ms-3 whitespace-nowrap"
-                >
-                  Lead Management
-                </span>
-                <span>
-                  <FaAngleDown
-                    className={`transition-all ${
-                      showLeadLi ? "rotate-180" : ""
-                    }`}
-                  />
-                </span>
-              </a>
-            </li>
+            {
+              leadPermission || role === "ADMIN" && (
+                <>
 
-            {showLeadLi && (
-              <div className="pl-4">
-                <li>
-                  <NavLink
-                    to="/adminDash/leadDash"
-                    className={({ isActive }) =>
-                      `flex items-center p-2 py-3 rounded-lg group
-      ${isActive ? "bg-[#F5F9FF] text-[#0B56E4]" : "text-black"}`
-                    }
-                  >
-                    <MdDashboard
-                      className={`${({ isActive }) =>
-                        isActive ? "text-[#0B56E4]" : ""}`}
-                    />
+                  <li>
+                    <a
+                      href="#"
+                      className="flex items-center p-2 py-3 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                    >
+                      <MdLeaderboard />
+                      <span
+                        onClick={() => setShowLeadLi(!showLeadLi)}
+                        className="flex-1 ms-3 whitespace-nowrap"
+                      >
+                        Lead Management
+                      </span>
+                      <span>
+                        <FaAngleDown
+                          className={`transition-all ${showLeadLi ? "rotate-180" : ""
+                            }`}
+                        />
+                      </span>
+                    </a>
+                  </li>
 
-                    <span className="ms-3">Lead</span>
-                  </NavLink>
-                </li>
+                  {showLeadLi && (
+                    <div className="pl-4">
+                      <li>
+                        <NavLink
+                          to="/adminDash/leadDash"
+                          className={({ isActive }) =>
+                            `flex items-center p-2 py-3 rounded-lg group
+                          ${isActive ? "bg-[#F5F9FF] text-[#0B56E4]" : "text-black"}`
+                          }
+                        >
+                          <MdDashboard
+                            className={`${({ isActive }) =>
+                              isActive ? "text-[#0B56E4]" : ""}`}
+                          />
 
-                <li>
-                  <NavLink
-                    to="/adminDash/LeadSystemSetting"
-                    className={({ isActive }) =>
-                      `flex items-center p-2 py-3 rounded-lg group
-      ${isActive ? "bg-[#F5F9FF] text-[#0B56E4]" : "text-black"}`
-                    }
-                  >
-                    <MdDashboard
-                      className={`${({ isActive }) =>
-                        isActive ? "text-[#0B56E4]" : ""}`}
-                    />
-                    <span className="ms-3">Lead System Setting</span>
-                  </NavLink>
-                </li>
-              </div>
-            )}
+                          <span className="ms-3">Lead</span>
+                        </NavLink>
+                      </li>
+
+                      {
+                        leadSystemPermission || role === "ADMIN" && (
+                          <li>
+                            <NavLink
+                              to="/adminDash/LeadSystemSetting"
+                              className={({ isActive }) =>
+                                `flex items-center p-2 py-3 rounded-lg group
+                             ${isActive ? "bg-[#F5F9FF] text-[#0B56E4]" : "text-black"}`
+                              }
+                            >
+                              <MdDashboard
+                                className={`${({ isActive }) =>
+                                  isActive ? "text-[#0B56E4]" : ""}`}
+                              />
+                              <span className="ms-3">Lead System Setting</span>
+                            </NavLink>
+                          </li>
+                        )
+                      }
+                    </div>
+                  )}
+                </>
+              )
+            }
+
+
+
             <li>
               <a
                 href="#"
@@ -173,9 +207,8 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
                 </span>
                 <span>
                   <FaAngleDown
-                    className={`transition-all ${
-                      showTaskLi ? "rotate-180" : ""
-                    }`}
+                    className={`transition-all ${showTaskLi ? "rotate-180" : ""
+                      }`}
                   />
                 </span>
               </a>
@@ -231,9 +264,8 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
                 </span>
                 <span>
                   <FaAngleDown
-                    className={`transition-all ${
-                      showTaskMa ? "rotate-180" : ""
-                    }`}
+                    className={`transition-all ${showTaskMa ? "rotate-180" : ""
+                      }`}
                   />
                 </span>
               </a>
@@ -246,11 +278,10 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
                     to="/adminDash/HRM/employeeManagement"
                     className={({ isActive }) =>
                       `flex items-center p-2 py-3 rounded-lg group
-      ${
-        isActive
-          ? "bg-[#F5F9FF] text-[#0B56E4]"
-          : "text-black hover:bg-gray-100"
-      }`
+      ${isActive
+                        ? "bg-[#F5F9FF] text-[#0B56E4]"
+                        : "text-black hover:bg-gray-100"
+                      }`
                     }
                   >
                     <MdDashboard
@@ -266,11 +297,10 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
                     to="/adminDash/HRM/markAttendance"
                     className={({ isActive }) =>
                       `flex items-center p-2 py-3 rounded-lg group
-      ${
-        isActive
-          ? "bg-[#F5F9FF] text-[#0B56E4]"
-          : "text-black hover:bg-gray-100"
-      }`
+      ${isActive
+                        ? "bg-[#F5F9FF] text-[#0B56E4]"
+                        : "text-black hover:bg-gray-100"
+                      }`
                     }
                   >
                     <MdDashboard
@@ -286,11 +316,11 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
 
 
 
-                <li 
-              
-                onClick={()=> setLeaveManagement(!openLeaveManagement)}>
+                <li
+
+                  onClick={() => setLeaveManagement(!openLeaveManagement)}>
                   <p className="flex items-center p-2 py-3 rounded-lg group cursor-pointer hover:bg-gray-100"
-                    
+
                   >
                     <MdDashboard
                       className={`${({ isActive }) =>
@@ -301,58 +331,56 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
                 </li>
 
                 {
-                openLeaveManagement && (
-                  <div className="pl-4">
+                  openLeaveManagement && (
+                    <div className="pl-4">
                       <li>
-                  <NavLink
-                    to="/adminDash/HRM/LeaveEmployee"
-                    className={({ isActive }) =>
-                      `flex items-center p-2 py-3 rounded-lg group
-                      ${
-                        isActive
-                          ? "bg-[#F5F9FF] text-[#0B56E4]"
-                          : "text-black hover:bg-gray-100"
-                      }`
-                    }
-                  >
-                    <MdDashboard
-                      className={`${({ isActive }) =>
-                        isActive ? "text-[#0B56E4]" : ""}`}
-                    />
-                    <span className="ms-3">Employees on Leave</span>
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/adminDash/HRM/leaveRequest"
-                    className={({ isActive }) =>
-                      `flex items-center p-2 py-3 rounded-lg group
-                      ${
-                        isActive
-                          ? "bg-[#F5F9FF] text-[#0B56E4]"
-                          : "text-black hover:bg-gray-100"
-                      }`
-                    }
-                  >
-                    <MdDashboard
-                      className={`${({ isActive }) =>
-                        isActive ? "text-[#0B56E4]" : ""}`}
-                    />
-                    <span className="ms-3">Leave Request</span>
-                  </NavLink>
-                </li>
-                  </div>
-                )
+                        <NavLink
+                          to="/adminDash/HRM/LeaveEmployee"
+                          className={({ isActive }) =>
+                            `flex items-center p-2 py-3 rounded-lg group
+                      ${isActive
+                              ? "bg-[#F5F9FF] text-[#0B56E4]"
+                              : "text-black hover:bg-gray-100"
+                            }`
+                          }
+                        >
+                          <MdDashboard
+                            className={`${({ isActive }) =>
+                              isActive ? "text-[#0B56E4]" : ""}`}
+                          />
+                          <span className="ms-3">Employees on Leave</span>
+                        </NavLink>
+                      </li>
+                      <li>
+                        <NavLink
+                          to="/adminDash/HRM/leaveRequest"
+                          className={({ isActive }) =>
+                            `flex items-center p-2 py-3 rounded-lg group
+                      ${isActive
+                              ? "bg-[#F5F9FF] text-[#0B56E4]"
+                              : "text-black hover:bg-gray-100"
+                            }`
+                          }
+                        >
+                          <MdDashboard
+                            className={`${({ isActive }) =>
+                              isActive ? "text-[#0B56E4]" : ""}`}
+                          />
+                          <span className="ms-3">Leave Request</span>
+                        </NavLink>
+                      </li>
+                    </div>
+                  )
                 }
 
-               
 
 
-   <li 
-              
-                onClick={()=> setPayRollManagement(!payrollManagement)}>
+
+                <li
+
+                  onClick={() => setPayRollManagement(!payrollManagement)}>
                   <p className="flex items-center p-2 py-3 rounded-lg group cursor-pointer hover:bg-gray-100"
-                    
+
                   >
                     <MdDashboard
                       className={`${({ isActive }) =>
@@ -363,48 +391,46 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
                 </li>
 
                 {
-                payrollManagement && (
-                  <div className="pl-4">
+                  payrollManagement && (
+                    <div className="pl-4">
                       <li>
-                  <NavLink
-                    to="/adminDash/setSallary"
-                    className={({ isActive }) =>
-                      `flex items-center p-2 py-3 rounded-lg group
-                      ${
-                        isActive
-                          ? "bg-[#F5F9FF] text-[#0B56E4]"
-                          : "text-black hover:bg-gray-100"
-                      }`
-                    }
-                  >
-                    <MdDashboard
-                      className={`${({ isActive }) =>
-                        isActive ? "text-[#0B56E4]" : ""}`}
-                    />
-                    <span className="ms-3">Set Salary</span>
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/adminDash/payslip"
-                    className={({ isActive }) =>
-                      `flex items-center p-2 py-3 rounded-lg group
-                      ${
-                        isActive
-                          ? "bg-[#F5F9FF] text-[#0B56E4]"
-                          : "text-black hover:bg-gray-100"
-                      }`
-                    }
-                  >
-                    <MdDashboard
-                      className={`${({ isActive }) =>
-                        isActive ? "text-[#0B56E4]" : ""}`}
-                    />
-                    <span className="ms-3">Payslip</span>
-                  </NavLink>
-                </li>
-                  </div>
-                )
+                        <NavLink
+                          to="/adminDash/setSallary"
+                          className={({ isActive }) =>
+                            `flex items-center p-2 py-3 rounded-lg group
+                      ${isActive
+                              ? "bg-[#F5F9FF] text-[#0B56E4]"
+                              : "text-black hover:bg-gray-100"
+                            }`
+                          }
+                        >
+                          <MdDashboard
+                            className={`${({ isActive }) =>
+                              isActive ? "text-[#0B56E4]" : ""}`}
+                          />
+                          <span className="ms-3">Set Salary</span>
+                        </NavLink>
+                      </li>
+                      <li>
+                        <NavLink
+                          to="/adminDash/payslip"
+                          className={({ isActive }) =>
+                            `flex items-center p-2 py-3 rounded-lg group
+                      ${isActive
+                              ? "bg-[#F5F9FF] text-[#0B56E4]"
+                              : "text-black hover:bg-gray-100"
+                            }`
+                          }
+                        >
+                          <MdDashboard
+                            className={`${({ isActive }) =>
+                              isActive ? "text-[#0B56E4]" : ""}`}
+                          />
+                          <span className="ms-3">Payslip</span>
+                        </NavLink>
+                      </li>
+                    </div>
+                  )
                 }
 
 
@@ -415,11 +441,10 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
                     to="/adminDash/documentManagement"
                     className={({ isActive }) =>
                       `flex items-center p-2 py-3 rounded-lg group
-      ${
-        isActive
-          ? "bg-[#F5F9FF] text-[#0B56E4]"
-          : "text-black hover:bg-gray-100"
-      }`
+      ${isActive
+                        ? "bg-[#F5F9FF] text-[#0B56E4]"
+                        : "text-black hover:bg-gray-100"
+                      }`
                     }
                   >
                     <MdDashboard
@@ -432,12 +457,12 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
 
 
 
-              
-   <li 
-              
-                onClick={()=> setPerformaneManagement(!performaneManagement)}>
+
+                <li
+
+                  onClick={() => setPerformaneManagement(!performaneManagement)}>
                   <p className="flex items-center p-2 py-3 rounded-lg group cursor-pointer hover:bg-gray-100"
-                    
+
                   >
                     <MdDashboard
                       className={`${({ isActive }) =>
@@ -448,48 +473,46 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
                 </li>
 
                 {
-              performaneManagement && (
-                  <div className="pl-4">
+                  performaneManagement && (
+                    <div className="pl-4">
                       <li>
-                  <NavLink
-                    to="/performance/appraisal"
-                    className={({ isActive }) =>
-                      `flex items-center p-2 py-3 rounded-lg group
-                      ${
-                        isActive
-                          ? "bg-[#F5F9FF] text-[#0B56E4]"
-                          : "text-black hover:bg-gray-100"
-                      }`
-                    }
-                  >
-                    <MdDashboard
-                      className={`${({ isActive }) =>
-                        isActive ? "text-[#0B56E4]" : ""}`}
-                    />
-                    <span className="ms-3">Appraisal</span>
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/performance/goalTracking"
-                    className={({ isActive }) =>
-                      `flex items-center p-2 py-3 rounded-lg group
-                      ${
-                        isActive
-                          ? "bg-[#F5F9FF] text-[#0B56E4]"
-                          : "text-black hover:bg-gray-100"
-                      }`
-                    }
-                  >
-                    <MdDashboard
-                      className={`${({ isActive }) =>
-                        isActive ? "text-[#0B56E4]" : ""}`}
-                    />
-                    <span className="ms-3">Goal Tracking</span>
-                  </NavLink>
-                </li>
-                  </div>
-                )
+                        <NavLink
+                          to="/performance/appraisal"
+                          className={({ isActive }) =>
+                            `flex items-center p-2 py-3 rounded-lg group
+                      ${isActive
+                              ? "bg-[#F5F9FF] text-[#0B56E4]"
+                              : "text-black hover:bg-gray-100"
+                            }`
+                          }
+                        >
+                          <MdDashboard
+                            className={`${({ isActive }) =>
+                              isActive ? "text-[#0B56E4]" : ""}`}
+                          />
+                          <span className="ms-3">Appraisal</span>
+                        </NavLink>
+                      </li>
+                      <li>
+                        <NavLink
+                          to="/performance/goalTracking"
+                          className={({ isActive }) =>
+                            `flex items-center p-2 py-3 rounded-lg group
+                      ${isActive
+                              ? "bg-[#F5F9FF] text-[#0B56E4]"
+                              : "text-black hover:bg-gray-100"
+                            }`
+                          }
+                        >
+                          <MdDashboard
+                            className={`${({ isActive }) =>
+                              isActive ? "text-[#0B56E4]" : ""}`}
+                          />
+                          <span className="ms-3">Goal Tracking</span>
+                        </NavLink>
+                      </li>
+                    </div>
+                  )
                 }
 
 
@@ -499,11 +522,10 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
                     to="/adminDash/HRM/HRMsystemSetup"
                     className={({ isActive }) =>
                       `flex items-center p-2 py-3 rounded-lg group
-      ${
-        isActive
-          ? "bg-[#F5F9FF] text-[#0B56E4]"
-          : "text-black hover:bg-gray-100"
-      }`
+      ${isActive
+                        ? "bg-[#F5F9FF] text-[#0B56E4]"
+                        : "text-black hover:bg-gray-100"
+                      }`
                     }
                   >
                     <MdDashboard
@@ -530,9 +552,8 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
                 </span>
                 <span>
                   <FaAngleDown
-                    className={`transition-all ${
-                      assetsItem ? "rotate-180" : ""
-                    }`}
+                    className={`transition-all ${assetsItem ? "rotate-180" : ""
+                      }`}
                   />
                 </span>
               </a>
@@ -545,11 +566,10 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
                     to="/performance/Assets"
                     className={({ isActive }) =>
                       `flex items-center p-2 py-3 rounded-lg group
-      ${
-        isActive
-          ? "bg-[#F5F9FF] text-[#0B56E4]"
-          : "text-black hover:bg-gray-100"
-      }`
+      ${isActive
+                        ? "bg-[#F5F9FF] text-[#0B56E4]"
+                        : "text-black hover:bg-gray-100"
+                      }`
                     }
                   >
                     <MdDashboard
@@ -565,11 +585,10 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
                     to="/adminDash/HRM/Expense"
                     className={({ isActive }) =>
                       `flex items-center p-2 py-3 rounded-lg group
-      ${
-        isActive
-          ? "bg-[#F5F9FF] text-[#0B56E4]"
-          : "text-black hover:bg-gray-100"
-      }`
+      ${isActive
+                        ? "bg-[#F5F9FF] text-[#0B56E4]"
+                        : "text-black hover:bg-gray-100"
+                      }`
                     }
                   >
                     <MdDashboard
@@ -609,11 +628,10 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
                     to="/adminDash/HRM/AwardHRM"
                     className={({ isActive }) =>
                       `flex items-center p-2 py-3 rounded-lg group
-      ${
-        isActive
-          ? "bg-[#F5F9FF] text-[#0B56E4]"
-          : "text-black hover:bg-gray-100"
-      }`
+      ${isActive
+                        ? "bg-[#F5F9FF] text-[#0B56E4]"
+                        : "text-black hover:bg-gray-100"
+                      }`
                     }
                   >
                     <MdDashboard
@@ -629,11 +647,10 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
                     to="/adminDash/HRM/TransferHRM"
                     className={({ isActive }) =>
                       `flex items-center p-2 py-3 rounded-lg group
-      ${
-        isActive
-          ? "bg-[#F5F9FF] text-[#0B56E4]"
-          : "text-black hover:bg-gray-100"
-      }`
+      ${isActive
+                        ? "bg-[#F5F9FF] text-[#0B56E4]"
+                        : "text-black hover:bg-gray-100"
+                      }`
                     }
                   >
                     <MdDashboard
@@ -648,11 +665,10 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
                     to="/adminDash/HRM/ResignationHRM"
                     className={({ isActive }) =>
                       `flex items-center p-2 py-3 rounded-lg group
-      ${
-        isActive
-          ? "bg-[#F5F9FF] text-[#0B56E4]"
-          : "text-black hover:bg-gray-100"
-      }`
+      ${isActive
+                        ? "bg-[#F5F9FF] text-[#0B56E4]"
+                        : "text-black hover:bg-gray-100"
+                      }`
                     }
                   >
                     <MdDashboard
@@ -668,11 +684,10 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
                     to="/adminDash/HRM/PromotionHRM"
                     className={({ isActive }) =>
                       `flex items-center p-2 py-3 rounded-lg group
-      ${
-        isActive
-          ? "bg-[#F5F9FF] text-[#0B56E4]"
-          : "text-black hover:bg-gray-100"
-      }`
+      ${isActive
+                        ? "bg-[#F5F9FF] text-[#0B56E4]"
+                        : "text-black hover:bg-gray-100"
+                      }`
                     }
                   >
                     <MdDashboard
@@ -688,11 +703,10 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
                     to="/adminDash/HRM/ComplaintsHRM"
                     className={({ isActive }) =>
                       `flex items-center p-2 py-3 rounded-lg group
-      ${
-        isActive
-          ? "bg-[#F5F9FF] text-[#0B56E4]"
-          : "text-black hover:bg-gray-100"
-      }`
+      ${isActive
+                        ? "bg-[#F5F9FF] text-[#0B56E4]"
+                        : "text-black hover:bg-gray-100"
+                      }`
                     }
                   >
                     <MdDashboard
@@ -707,11 +721,10 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
                     to="/adminDash/HRM/WarningHRM"
                     className={({ isActive }) =>
                       `flex items-center p-2 py-3 rounded-lg group
-      ${
-        isActive
-          ? "bg-[#F5F9FF] text-[#0B56E4]"
-          : "text-black hover:bg-gray-100"
-      }`
+      ${isActive
+                        ? "bg-[#F5F9FF] text-[#0B56E4]"
+                        : "text-black hover:bg-gray-100"
+                      }`
                     }
                   >
                     <MdDashboard
@@ -735,11 +748,10 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
                     to="/adminDash/HRM/holiday"
                     className={({ isActive }) =>
                       `flex items-center p-2 py-3 rounded-lg group
-      ${
-        isActive
-          ? "bg-[#F5F9FF] text-[#0B56E4]"
-          : "text-black hover:bg-gray-100"
-      }`
+      ${isActive
+                        ? "bg-[#F5F9FF] text-[#0B56E4]"
+                        : "text-black hover:bg-gray-100"
+                      }`
                     }
                   >
                     <MdDashboard
@@ -755,11 +767,10 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
                     to="/adminDash/announcement"
                     className={({ isActive }) =>
                       `flex items-center p-2 py-3 rounded-lg group
-      ${
-        isActive
-          ? "bg-[#F5F9FF] text-[#0B56E4]"
-          : "text-black hover:bg-gray-100"
-      }`
+      ${isActive
+                        ? "bg-[#F5F9FF] text-[#0B56E4]"
+                        : "text-black hover:bg-gray-100"
+                      }`
                     }
                   >
                     <MdDashboard
