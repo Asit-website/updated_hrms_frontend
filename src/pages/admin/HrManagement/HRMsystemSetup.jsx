@@ -732,7 +732,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                                         <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747634200/acy_ah4jhd.svg" alt="" className="cursor-pointer" onClick={() => setShowIndex(showIndex === index ? null : index)} />
                                         {
                                           showIndex === index && (
-                                            <div ref={wrapperRef} className="absolute bg-white p-2 rounded-md border border-gray-300 right-7 -top-14">
+                                            <div ref={wrapperRef} className="absolute bg-white p-2 rounded-md border border-gray-300 right-52 -top-14">
                                               {(hrmsSetupEditPermission ||
                                                 role === "ADMIN") && (
                                                   <>
@@ -820,7 +820,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                                         <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747634200/acy_ah4jhd.svg" alt="" className="cursor-pointer" onClick={() => setShowIndex(showIndex === index ? null : index)} />
                                         {
                                           showIndex === index && (
-                                            <div ref={wrapperRef} className="absolute bg-white p-2 rounded-md border border-gray-300 right-7 -top-14">
+                                            <div ref={wrapperRef} className="absolute bg-white p-2 rounded-md border border-gray-300 right-28 -top-14">
                                               {(hrmsSetupEditPermission ||
                                                 role === "ADMIN") && (
                                                   <> <div className="cursor-pointer flex items-center gap-3 p-1" onClick={() => {
@@ -910,7 +910,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                                         <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747634200/acy_ah4jhd.svg" alt="" className="cursor-pointer" onClick={() => setShowIndex(showIndex === index ? null : index)} />
                                         {
                                           showIndex === index && (
-                                            <div ref={wrapperRef} className="absolute bg-white p-2 rounded-md border border-gray-300 right-7 -top-14">
+                                            <div ref={wrapperRef} className="absolute bg-white p-2 rounded-md border border-gray-300 right-16 -top-14">
                                               {(hrmsSetupEditPermission ||
                                                 role === "ADMIN") && (
                                                   <> <div className="cursor-pointer flex items-center gap-3 p-1" onClick={() => {
@@ -997,7 +997,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                                         <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747634200/acy_ah4jhd.svg" alt="" className="cursor-pointer" onClick={() => setShowIndex(showIndex === index ? null : index)} />
                                         {
                                           showIndex === index && (
-                                            <div ref={wrapperRef} className="absolute bg-white p-2 rounded-md border border-gray-300 right-7 -top-14">
+                                            <div ref={wrapperRef} className="absolute bg-white p-2 rounded-md border border-gray-300 right-44 -top-14">
                                               {(hrmsSetupEditPermission ||
                                                 role === "ADMIN") && (
                                                   <> <div className="cursor-pointer flex items-center gap-3 p-1" onClick={() => {
@@ -1251,7 +1251,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                                     <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747634200/acy_ah4jhd.svg" alt="" className="cursor-pointer" onClick={() => setShowIndex1(showIndex1 === index ? null : index)} />
                                     {
                                       showIndex1 === index && (
-                                        <div ref={wrapperRef} className="absolute bg-white p-2 rounded-md border border-gray-300 right-7 -top-14">
+                                        <div ref={wrapperRef} className="absolute bg-white p-2 rounded-md border border-gray-300 right-32 -top-14">
 
                                           <div className="cursor-pointer flex items-center gap-3 p-1" onClick={() => {
                                             setDocPop(true);

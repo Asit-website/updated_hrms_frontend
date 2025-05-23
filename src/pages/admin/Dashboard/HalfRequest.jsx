@@ -435,7 +435,7 @@ const HalfRequest = ({
             className="fixed inset-0 bg-black bg-opacity-20 flex items-center justify-center h-screen z-[3000] backdrop-blur-[1px]"
           >
             <div
-              className="relative w-full h-[500px] mt-32 custom-scroll-hidden overflow-auto max-w-2xl mx-auto p-4 bg-white rounded-2xl shadow-lg space-y-6" ref={formRef}
+              className="relative w-full h-[500px] mt-32 custom-scroll-hidden overflow-auto max-w-2xl p-4 bg-white rounded-2xl shadow-lg space-y-6" ref={formRef}
             >
               {/* <!-- Modal content --> */}
               <div
@@ -468,7 +468,7 @@ className="Resig-employ block text-gray-700 mb-1 w-full"
                         type="text"
                         name="employeeName"
                         id="text"
-                        className=""
+                    
                         placeholder="Enter the name"
                         required
                           className="ml-[3px] w-full border rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"

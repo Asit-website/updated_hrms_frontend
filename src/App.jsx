@@ -102,7 +102,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route element={<MainLayout />}>
           <Route path="/adminDash/HRM" element={<AdminDashboard />} />
-                        <Route path="/adminDash/announcement" element={<AdminAnnouncement pop={pop} setPop={setPop} setAlert={setAlert} />} />
+   <Route path="/adminDash/announcement" element={<AdminAnnouncement pop={pop} setPop={setPop} setAlert={setAlert} />} />
              <Route path="/adminDash/HRM/holiday" element={<HolidayHrm/>} />
                  <Route path="/adminDash/HRM/activeEmployee" element={<ActiveEmplyee pop={pop} setPop={setPop} setAlert={setAlert} />} />
                  <Route path="/adminDash/HRM/halfDayRequest" element={<HalfRequest pop={pop} setPop={setPop} setAlert={setAlert} />} />

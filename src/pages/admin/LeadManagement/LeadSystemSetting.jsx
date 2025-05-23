@@ -527,7 +527,7 @@ const LeadSystemSetting = ({ setAlert, pop, setPop }) => {
                           {showcategoryaction === index && (
                             <div
                               ref={wrapperRef}
-                              className="bg-white border border-gray-300 p-2 rounded-md absolute z-[2999] right-4 -top-14"
+                              className="absolute z-[1000] right-[15px] -top-[52px] w-[125px] bg-white border border-gray-200 shadow-lg flex flex-col"
                             >
                               <div
                                 onClick={() => {
@@ -542,7 +542,7 @@ const LeadSystemSetting = ({ setAlert, pop, setPop }) => {
                                   setshowcategoryaction(null);
                                   setCatPop(true);
                                 }}
-                                className="flex items-center gap-3 p-1"
+                                className="items-center w-full px-4 py-2 text-sm flex gap-2 text-gray-700 hover:bg-gray-100 "
                               >
                                 <svg
                                   width="16"
@@ -570,7 +570,7 @@ const LeadSystemSetting = ({ setAlert, pop, setPop }) => {
                                   deleteCategory(item?._id);
                                   setshowcategoryaction(null);
                                 }}
-                                className="flex items-center gap-3 p-1"
+                                className="items-center w-full px-4 py-2 text-sm flex gap-2 text-red-600 hover:bg-red-100"
                               >
                                 <svg
                                   className="cursor-pointer"
@@ -663,7 +663,7 @@ const LeadSystemSetting = ({ setAlert, pop, setPop }) => {
                                                   status: item?.name,
                                                 }));
                                               }}
-                                              className="flex items-center gap-3 p-2 cursor-pointer transition "
+                                              className="items-center w-full px-4 py-2 text-sm flex gap-2 text-gray-700 hover:bg-gray-100 "
                                             >
                                               <MdOutlineEdit className="text-[18px]" />
                                               <span className="text-sm font-medium text-gray-700">
@@ -722,7 +722,7 @@ const LeadSystemSetting = ({ setAlert, pop, setPop }) => {
                                                   ],
                                                 });
                                               }}
-                                              className="flex items-center gap-3 p-2 cursor-pointer transition"
+                                              className="items-center w-full px-4 py-2 text-sm flex gap-2 text-red-600 hover:bg-red-100"
                                             >
                                               {/* <img src={deleted} alt="Delete Icon" className="w-6 h-6" /> */}
                                               <MdDeleteOutline className="text-[18px]" />
@@ -785,7 +785,7 @@ const LeadSystemSetting = ({ setAlert, pop, setPop }) => {
                                                   status: item?.name,
                                                 }));
                                               }}
-                                              className="flex items-center gap-3 p-2 cursor-pointer transition"
+                                              className="items-center w-full px-4 py-2 text-sm flex gap-2 text-gray-700 hover:bg-gray-100"
                                             >
                                               <MdOutlineEdit className="text-[18px]" />
                                               <span className="text-sm font-medium text-gray-700">
@@ -844,7 +844,7 @@ const LeadSystemSetting = ({ setAlert, pop, setPop }) => {
                                                   ],
                                                 });
                                               }}
-                                              className="flex items-center gap-3 p-2 cursor-pointer transition"
+                                              className="items-center w-full px-4 py-2 text-sm flex gap-2 text-red-600 hover:bg-red-100"
                                             >
                                               <MdDeleteOutline className="text-[18px]" />
                                               <span className="text-sm font-medium ">
@@ -906,7 +906,7 @@ const LeadSystemSetting = ({ setAlert, pop, setPop }) => {
                                                   name: item?.name,
                                                 }));
                                               }}
-                                              className="flex items-center gap-3 p-2 cursor-pointer transition"
+                                              className="items-center w-full px-4 py-2 text-sm flex gap-2 text-gray-700 hover:bg-gray-100 "
                                             >
                                               <MdOutlineEdit className="text-[18px]" />
                                               <span className="text-sm font-medium text-gray-700">
@@ -965,7 +965,7 @@ const LeadSystemSetting = ({ setAlert, pop, setPop }) => {
                                                   ],
                                                 });
                                               }}
-                                              className="flex items-center gap-3 p-2 cursor-pointer transition"
+                                              className="items-center w-full px-4 py-2 text-sm flex gap-2 text-red-600 hover:bg-red-100"
                                             >
                                               {/* <img src={deleted} alt="Delete Icon" className="w-6 h-6" /> */}
                                               <MdDeleteOutline className="text-[18px]" />
@@ -1016,7 +1016,7 @@ const LeadSystemSetting = ({ setAlert, pop, setPop }) => {
                                         {showIndex === index && (
                                           <div
                                             ref={wrapperRef}
-                                            className="absolute z-[1000] right-[27px] -top-[60px] w-[125px]  bg-white border border-gray-200 shadow-lg flex flex-col"
+                                            className="absolute z-[1000] right-[105px] -top-[60px] w-[125px]  bg-white border border-gray-200 shadow-lg flex flex-col"
                                           >
                                             {/* Edit Button */}
                                             <div
@@ -1028,7 +1028,7 @@ const LeadSystemSetting = ({ setAlert, pop, setPop }) => {
                                                   name: item?.name,
                                                 }));
                                               }}
-                                              className="flex items-center gap-3 p-2 rounded-lg cursor-pointer transition"
+                                              className="items-center w-full px-4 py-2 text-sm flex gap-2 text-gray-700 hover:bg-gray-100 "
                                             >
                                               <MdOutlineEdit className="text-[18px]" />
                                               <span className="text-sm font-medium text-gray-700">
@@ -1087,7 +1087,7 @@ const LeadSystemSetting = ({ setAlert, pop, setPop }) => {
                                                   ],
                                                 });
                                               }}
-                                              className="flex items-center gap-3 p-2 rounded-lg cursor-pointer transition"
+                                              className="items-center w-full px-4 py-2 text-sm flex gap-2 text-red-600 hover:bg-red-100"
                                             >
                                               {/* <img src={deleted} alt="Delete Icon" className="w-6 h-6" /> */}
                                               <MdDeleteOutline className="text-[18px]" />
@@ -1142,7 +1142,7 @@ const LeadSystemSetting = ({ setAlert, pop, setPop }) => {
                                           {showIndex === index && (
                                             <div
                                               ref={wrapperRef}
-                                              className="absolute z-[1000] right-[100px] -top-[52px] w-[125px] bg-white border border-gray-200 shadow-lg flex flex-col"
+                                              className="absolute z-[1000] right-[110px] -top-[52px] w-[125px] bg-white border border-gray-200 shadow-lg flex flex-col"
                                             >
                                               {/* Edit Button */}
                                               <div
@@ -1156,7 +1156,7 @@ const LeadSystemSetting = ({ setAlert, pop, setPop }) => {
                                                     id: item?._id || "",
                                                   });
                                                 }}
-                                                className="flex items-center gap-3 p-2 rounded-lg cursor-pointer transition"
+                                                className="items-center w-full px-4 py-2 text-sm flex gap-2 text-gray-700 hover:bg-gray-100"
                                               >
                                                 <MdOutlineEdit className="text-[18px]" />
                                                 <span className="text-sm font-medium text-gray-700">
@@ -1205,7 +1205,7 @@ const LeadSystemSetting = ({ setAlert, pop, setPop }) => {
                                                     ],
                                                   });
                                                 }}
-                                                className="flex items-center gap-3 p-2 rounded-lg cursor-pointer transition"
+                                                className="items-center w-full px-4 py-2 text-sm flex gap-2 text-red-600 hover:bg-red-100"
                                               >
                                                 {/* <img src={deleted} alt="Delete Icon" className="w-6 h-6" /> */}
                                                 <MdDeleteOutline className="text-[18px]" />
@@ -1408,7 +1408,7 @@ const LeadSystemSetting = ({ setAlert, pop, setPop }) => {
                                                   status: item?.name,
                                                 }));
                                               }}
-                                              className="flex items-center gap-3 p-2 rounded-lg cursor-pointer transition"
+                                              className="items-center w-full px-4 py-2 text-sm flex gap-2 text-gray-700 hover:bg-gray-100 "
                                             >
                                               <img
                                                 src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747027279/edited_bv9sy6.png"

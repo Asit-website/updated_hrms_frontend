@@ -311,6 +311,7 @@ const EmployeeManagement = ({
                           DESIGNATION
                         </th>
                         <th scope="col" className="text-left font-bold text-gray-900 py-3 px-4 border-b border-gray-200 whitespace-nowrap">
+                          DATE OF JOIN
                         </th>
 
                         <th scope="col" className="text-left font-bold text-gray-900 py-3 px-4 border-b border-gray-200 whitespace-nowrap">

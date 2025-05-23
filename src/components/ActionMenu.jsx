@@ -32,8 +32,8 @@ export default function ActionMenu({ options = [] }) {
               <button
                 key={index}
                 onClick={() => {
-                  option.onClick(); // call the function
-                  setIsOpen(false); // close menu
+                  option.onClick(); 
+                  setIsOpen(false); 
                 }}
                 className={`items-center w-full px-4 py-2 text-sm flex gap-2 ${option.danger
                   ? 'text-red-600 hover:bg-red-100'

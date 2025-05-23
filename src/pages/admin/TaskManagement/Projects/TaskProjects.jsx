@@ -593,7 +593,7 @@ const TaskProjects = ({ setAlert, pop, setPop }) => {
 
       {addClientPop && (
         <div className="fixed inset-0 z-[3000] w-full h-full px-0 py-5 flex items-center justify-center bg-[#40404066] backdrop-blur-[1px]">
-          <div ref={popupWrapper} className="w-[599px] p-6 h-fit flex flex-col gap-4 rounded-[18px] bg-white min-h-[400px] h-fit">
+          <div ref={popupWrapper} className="w-[599px] p-6 h-fit flex flex-col gap-4 rounded-[18px] bg-white min-h-[400px] h-fit m-3">
             <nav>
               <p>{isEdit ? "Edit Project" : "Create New Project"}</p>
             
