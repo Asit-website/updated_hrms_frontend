@@ -644,13 +644,13 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
 
           <div className="pt-8 pr-5 pb-8 pl-[20px] relative w-full">
             <div className="flex-col">
-              <div className="p-5 flex flex-col gap-2 bg-transparent">
-                <div className="flex w-full items-center justify-between">
+              <div className="flex flex-col gap-2 bg-transparent">
+                <div className="flex w-full items-center justify-between flex-col lg:flex-row">
                   <h3 className="text-[#101820] text-[24px] font-semibold leading-[32px] text-left">HRM System Setup</h3>
 
                   {(hrmsSetupCreatePermission || role === "ADMIN") && (
                     <button
-                    className="flex items-center h-[40px] px-4 pr-[16px] pl-[12px] py-[10px] gap-[10px] rounded-[10px] bg-[#0B56E4] min-w-fit"
+                    className="flex items-center h-[40px] px-4 pr-[16px] pl-[12px] py-[10px] gap-[10px] rounded-[10px] bg-[#0B56E4] min-w-fit mt-3 lg:mt-0"
                       onClick={() => {
                         if (open === 0) {
                           setPopup1(true);
@@ -1192,9 +1192,9 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                 </div>
 
                 <div className="w-full flex flex-col gap-4">
-                  <nav className="flex items-center justify-between">
+                  <nav className="flex items-center justify-between flex-col lg:flex-row">
                     <h2 className="text-[#101820] font-inter text-2xl font-semibold leading-8 text-left">Documents Type</h2>
-                    <button onClick={() => setDocPop(true)} className="flex items-center justify-center w-[123px] h-[40px] rounded-[10px] bg-[#0B56E4]">
+                    <button onClick={() => setDocPop(true)} className="flex items-center justify-center w-[123px] h-[40px] rounded-[10px] bg-[#0B56E4] mt-3 lg:mt-0">
                       <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747717020/pluss_mq4vay.png" alt="" /> <span className="text-white text-[16px] font-medium leading-[24px] tracking-[0.005em]">Add New</span>
                     </button>
                   </nav>
@@ -1353,7 +1353,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
               <hr />
 
               <label className="block text-md font-normal mb-1">
-                <p className="popTitl text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Branch</p>
+                <p className="popTitl text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em] py-2">Branch</p>
                 <input
                    className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                   type="text"
@@ -1381,7 +1381,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
 
         {docPop && (
           <div className="fixed inset-0 bg-black/20 flex items-center justify-center h-screen z-[3000] backdrop-blur-[1px]">
-            <div ref={docPopwrapper} className="popup1 max-w-[500px] max-h-[426px] gap-4 rounded-[18px] bg-white h-auto p-5 w-full">
+            <div ref={docPopwrapper} className="popup1 max-w-[500px] max-h-[426px] gap-4 rounded-[18px] bg-white h-auto p-5 w-full m-3">
               <div className="py-[10px] px-0">
                 <h2 className="text-[#1B2533] text-[16px] font-semibold leading-[24px] tracking-[0.0015em] text-left">{isUpdate ? "Update Document" :  "Create New Document"}</h2>
                
@@ -1390,7 +1390,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
               <div style={{ overflowY: "auto" }}>
 
                 <label className="block text-md font-normal mb-1">
-                  <p className="popTitl text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Document Name</p>
+                  <p className="popTitl text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em] py-2">Document Name</p>
                   <input
                      className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                     type="text"
@@ -1406,7 +1406,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                 </label>
 
                 <label className="block text-md font-normal mb-1">
-                  <p className="popTitl text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]" >
+                  <p className="popTitl text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em] py-2" >
                     Required Field
                   </p>
                   <div style={{ position: "relative" }}>
@@ -1461,7 +1461,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
               <hr />
 
               <label htmlFor="" className="block text-md font-normal mb-1">
-                <p className="popTitl text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Name</p>
+                <p className="popTitl text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em] py-2">Name</p>
                 <input
                    className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                   type="text"
@@ -1521,7 +1521,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
               </select>
 
               <label className="block text-md font-normal mb-1">
-                <p className="popTitl text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Name</p>
+                <p className="popTitl text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em] py-2">Name</p>
                 <input
                    className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                   type="text"
@@ -1582,7 +1582,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
               </select>
 
               <label className="block text-md font-normal mb-1">
-                <p className="popTitl text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Name</p>
+                <p className="popTitl text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em] py-2">Name</p>
                 <input
                    className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                   type="text"
@@ -1621,7 +1621,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
 
               <hr />
               <label className="block text-md font-normal mb-1">
-                <p className="popTitl text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Department</p>
+                <p className="popTitl text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em] py-2">Department</p>
                 <select
                    className="selectBRANCH w-full border rounded p-2 text-sm font-normal text-gray-500"
               
@@ -1646,7 +1646,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                 </select>
               </label>
               <label htmlFor="" className="block text-md font-normal mb-1">
-                <p className="popTitl text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Name</p>
+                <p className="popTitl text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em] py-2">Name</p>
                 <input
                                 className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                   type="text"
@@ -1684,7 +1684,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
 
               <hr />
               <label htmlFor="" className="block text-md font-normal mb-1">
-                <p className="popTitl text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Department</p>
+                <p className="popTitl text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em] py-2">Department</p>
                 <select
               className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                   value={designationValue1?.department}
@@ -1708,7 +1708,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                 </select>
               </label>
               <label htmlFor="" className="block text-md font-normal mb-1">
-                <p className="popTitl text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Name</p>
+                <p className="popTitl text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em] py-2">Name</p>
                 <input
                  className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                   type="text"
@@ -1745,7 +1745,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
               </div>
               <hr />
               <label htmlFor="" className="block text-md font-normal mb-1">
-                <p className="popTitl text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Leave Type</p>
+                <p className="popTitl text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em] py-2">Leave Type</p>
                 <input
                                 className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                   type="text"
@@ -1762,7 +1762,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
               </label>
 
               <label htmlFor="" className="block text-md font-normal mb-1">
-                <p className="popTitl text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Days Per Year</p>
+                <p className="popTitl text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em] py-2">Days Per Year</p>
                 <input
                                 className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                   type="text"
@@ -1801,7 +1801,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
 
               <hr />
               <label htmlFor="" className="block text-md font-normal mb-1">
-                <p className="popTitl text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Leave Type</p>
+                <p className="popTitl text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em] py-2">Leave Type</p>
                 <input
                                 className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                   type="text"
@@ -1818,7 +1818,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
               </label>
 
               <label htmlFor="" className="block text-md font-normal mb-1">
-                <p className="popTitl text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Days Per Year</p>
+                <p className="popTitl text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em] py-2">Days Per Year</p>
                 <input
                                 className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                   type="text"
@@ -1856,7 +1856,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
               </div>
               <hr />
               <label className="block text-md font-normal mb-1">
-                <p className="popTitl text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Lead Status</p>
+                <p className="popTitl text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em] py-2">Lead Status</p>
 
                 <input
                                 className="w-full border rounded p-2 text-sm font-normal text-gray-500"
@@ -1895,7 +1895,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
               </div>
               <hr />
               <label className="block text-md font-normal mb-1">
-                <p className="popTitl text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Lead Source</p>
+                <p className="popTitl text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em] py-2">Lead Source</p>
 
                 <input
                  className="w-full border rounded p-2 text-sm font-normal text-gray-500"

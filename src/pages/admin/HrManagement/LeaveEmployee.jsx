@@ -60,7 +60,7 @@ const LeaveEmployee = ({
               {/* Second */}
               <main className="flex flex-wrap gap-7 mt-4 ">
                 {data?.length > 0 ? data?.map((employ, index) => (
-                  <div key={index} className="rounded-[10px] bg-white flex flex-col items-center py-4 px-4 gap-[15px] max-w-[350px]">
+                  <div key={index} className="rounded-[10px] bg-white flex flex-col items-center py-4 px-4 gap-[15px] max-w-[350px] w-full">
                     <div className="flex flex-col items-center gap-[10px]">
                       <img
                       className="w-[65px] h-[65px] rounded-full"

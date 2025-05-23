@@ -247,8 +247,8 @@ const Payslip = ({ pop, setPop }) => {
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between px-[25px] mb-5 mt-4">
-                  <h3 className="font-semibold">Employee Payslip</h3>
+                <div className="flex items-center justify-between px-[25px] mb-5 mt-4 gap-3">
+                  <h3 className="font-semibold min-w-fit">Employee Payslip</h3>
 
                   <form className="max-w-md">
                     <label

@@ -41,7 +41,7 @@ export default function ModalForm({ isOpen, onClose, onSubmit, fields, title }) 
 
     return (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-            <div className="bg-white rounded-lg shadow-lg w-full max-w-2xl p-6">
+            <div className="bg-white rounded-lg shadow-lg w-full max-w-2xl p-6 m-3">
                 <h2 className="text-xl font-semibold mb-4">{title || "Modal Form"}</h2>
                 <form ref={menuRef} onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {fields.map((field) => {

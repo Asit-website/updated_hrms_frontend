@@ -455,7 +455,7 @@ Rating
   <label htmlFor='' className="block text-md font-normal mb-1">
   Email Otp
   </label>
-  <input className="w-full border rounded p-2" value={formdata.EmailOptOut} name="EmailOptOut" onChange={changeHandler} type="checkbox" />
+  <input className="border rounded p-2" value={formdata.EmailOptOut} name="EmailOptOut" onChange={changeHandler} type="checkbox" />
 </div>
 
             <div>

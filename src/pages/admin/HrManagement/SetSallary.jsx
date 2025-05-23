@@ -84,7 +84,7 @@ const EmployeeSalary = ({ pop, setPop }) => {
 
               <div className="bg-white border border-[#d8dbdf] rounded-[10px] shadow-[0px_8px_24px_rgba(208,212,216,0.2)] pt-[5px] pb-[20px]
 ">
-                <div className="flex items-center justify-between px-[25px]
+                <div className="flex items-center justify-between px-[25px] gap-3
 ">
                   <h3 className="font-medium">Employee</h3>
 

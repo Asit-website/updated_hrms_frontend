@@ -7,25 +7,57 @@ import { useMain } from "../../../hooks/UseMain";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import ModalForm from "../../../components/ModalForm";
+import { confirmAlert } from "react-confirm-alert";
 
 const Resignation = () => {
 
-  const { getResignation,allEmp, resignation, createResignation, updateResignation } = useMain();
+  const { getResignation,allEmp, resignation, createResignation,deleteResignation, updateResignation } = useMain();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isEdit, setIsEdit] = useState(false);
   const [editData, setEditData] = useState(null);
-  const buttonOptions = [
+  const buttonOptions =(item) => [
     {
       label: 'Edit',
       icon: 'https://res.cloudinary.com/dd9tagtiw/image/upload/v1746260260/Vector_zah5tt.svg',
-      onClick: () => console.log('Edit clicked'),
+      onClick: () => {
+        console.log(item);
+        setIsEdit(true);
+        setEditData(item);
+        setIsModalOpen(true);
+      },
     },
     {
       label: 'Delete',
       icon: 'https://res.cloudinary.com/dd9tagtiw/image/upload/v1746260280/delete_sgefhv.png',
       danger: true,
-      onClick: () => console.log('Delete clicked'),
-    },
+          onClick: () => {
+            console.log(item);
+            confirmAlert({
+              title: "Are you sure to delete this data?",
+              message: "All related data to this will be deleted",
+              buttons: [
+                {
+                  label: "Yes, Go Ahead!",
+                  style: {
+                    background: "#FF5449",
+                  },
+                  onClick: async () => {
+                    let res = await deleteResignation(item?._id);
+                    if (res.success) {
+                      await getResignation();
+                      toast.success("Deleted successfully");
+                      setRefreshFlag(!refreshFlag);
+                    }
+                  },
+                },
+                {
+                  label: "Cancel",
+                  onClick: () => null,
+                },
+              ],
+            });
+          },
+        }
   ]
   const handleFormSubmit = async (data) => {
     const toastId = toast.loading("Loading...");
@@ -119,7 +151,7 @@ const Resignation = () => {
         <button
           type="button"
            onClick={() => setIsModalOpen(true)}
-          className="flex items-center gap-2 text-white bg-blue-700 hover:bg-blue-800   font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 w-fit"
+          className="flex items-center gap-2 text-white bg-blue-700 hover:bg-blue-800   font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 w-fit mt-2"
         >
 
           Create Resignation
@@ -183,7 +215,7 @@ const Resignation = () => {
                         {item?.description?.length > 30 ? item?.description?.slice(0, 30) : item?.description}
                       </td>
                       <td  className="px-6 py-4 text-gray-800">
-                        <ActionMenu options={buttonOptions}/>
+                        <ActionMenu options={buttonOptions(item)}/>
                       </td>
                     </tr>
                   ))

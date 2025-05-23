@@ -65,6 +65,7 @@ import ActiveEmplyee from './pages/admin/Dashboard/AdminEmplyee'
 import HalfRequest from "./pages/admin/Dashboard/HalfRequest";
 import TotalEmployee from "./pages/admin/Dashboard/TotalEmployee";
 import DeactivateEmployee from "./pages/admin/Dashboard/DeactivateEmployee";
+import ForgetPassword1 from "./pages/auth/ForgetPassword1";
 var tc;
 function App() {
   const [alertValue, setAlertValue] = useState({
@@ -94,8 +95,9 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Navigate to="/login" replace />} />
-        <Route path="/create" element={<Create />} />
+        <Route path="/forget2" element={<Create />} />
         <Route path="/forget" element={<Forget setAlert={setAlert}/>} />
+          <Route path="/forget1" element={<ForgetPassword1 setAlert={setAlert} />} />
 
         <Route path="/login" element={<Login />} />
         <Route element={<MainLayout />}>
