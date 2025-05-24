@@ -151,12 +151,12 @@ const Permission = ({ pop1,
                             {" "}
                             <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746769960/thredonts_lnqxqd.png" alt="action" />
                             {showIndex === index && (
-                            <div ref={wrapperRef} className="absolute z-[1000] right-[337px] -top-[55px] w-[125px] rounded-xl bg-white border border-gray-200 shadow-lg flex flex-col">
+                            <div ref={wrapperRef} className="absolute z-[1000] right-[282px] -top-[55px] w-[125px] bg-white border border-gray-200 shadow-lg flex flex-col">
 
                               {/* Edit Button */}
                               <div
                                 onClick={() => navigate("/adminDash/PermissionDetail", { state: roles })}
-                                className="flex items-center gap-3 p-2 rounded-lg  cursor-pointer transition"
+                                className="items-center w-full px-4 py-2 text-sm flex gap-2 text-gray-700 hover:bg-gray-100 "
                               >
                                 <img
                                   src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746260260/Vector_zah5tt.svg"
@@ -174,7 +174,7 @@ const Permission = ({ pop1,
                                 onClick={() => {
                                   deleteProject(roles?._id);
                                 }}
-                                className="flex items-center gap-3 p-2 rounded-lg  cursor-pointer transition"
+                                className="items-center w-full px-4 py-2 text-sm flex gap-2 text-red-600 hover:bg-red-100"
                               >
                                 <img
                                   src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746514711/delete_ooouky.png"

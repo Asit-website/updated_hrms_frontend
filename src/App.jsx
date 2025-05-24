@@ -61,9 +61,12 @@ import HalfRequest from "./pages/admin/Dashboard/HalfRequest";
 import TotalEmployee from "./pages/admin/Dashboard/TotalEmployee";
 import DeactivateEmployee from "./pages/admin/Dashboard/DeactivateEmployee";
 import ForgetPassword1 from "./pages/auth/ForgetPassword1";
-
+import MyProject from './pages/employee/Task Mangement/MyProject'
+import ProjectDetails2 from "./pages/employee/Task Mangement/ProjectDetail2";
+import MyLeaves from "./pages/employee/MyLeave";
 function App() {
-  
+    
+
   return (
     <Router>
       <Routes>
@@ -130,6 +133,13 @@ function App() {
           <Route path="/performance/goalTracking" element={<GoalTracking  />} />
           <Route path="/adminDash/HRM/HRMsystemSetup" element={<HRMsystemSetup />} />
           <Route path="/adminDash/EmployeeMan" element={<EmployeeMan  />} />
+
+
+          {/* Employee Dashboard */}
+          {/* Task management */}
+             <Route path="/employeeDash/HRM/myProjects" element={<MyProject/>} />
+              <Route path="/employeeDash/HRM/projectDetails" element={<ProjectDetails2/>} />
+               <Route path="/employeeDash/employeeLeave" element={<MyLeaves/>} />
         </Route>
       </Routes>
     </Router>
