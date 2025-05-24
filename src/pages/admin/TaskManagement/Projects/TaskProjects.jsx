@@ -19,7 +19,7 @@ import { useOutsideClick } from "../../../../hooks/UseOutsideClick";
 
 const projectOpt = ["All", "Ongoing", "Finished", "OnHold", "Canceled"];
 
-const TaskProjects = ({ setAlert, pop, setPop }) => {
+const TaskProjects = () => {
   const {
     user,
     allEmployee,
