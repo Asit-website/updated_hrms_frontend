@@ -46,17 +46,7 @@ const Promotion = () => {
     }
 
     ,
-    // {
-    //   name: "Designation",
-    //   label: "Designation",
-    //   type: "select",
-    //  options: allEmp?.map((emp) => ({
-    //     value: emp?.fullName,
-    //     label: emp?.fullName,
-    //   })),
     
-    //   ...(isEdit && { defaultValue: editData?.Designation }),
-    // },
       {
       name: "promotionTitle",
       label: "Promotion Title",
