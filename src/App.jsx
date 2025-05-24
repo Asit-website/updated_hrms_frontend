@@ -3,6 +3,7 @@ import {
   Routes,
   Route,
   Navigate,
+  useNavigate,
 } from "react-router-dom";
 import MainLayout from "./layout/MainLayout";
 import AdminDashboard from "./pages/admin/AdminDashboard";
@@ -64,43 +65,47 @@ import ForgetPassword1 from "./pages/auth/ForgetPassword1";
 import MyProject from './pages/employee/Task Mangement/MyProject'
 import ProjectDetails2 from "./pages/employee/Task Mangement/ProjectDetail2";
 import MyLeaves from "./pages/employee/MyLeave";
+import PrivateRoute from "./pages/auth/PrivateRoute";
+import Unauthorized from "./pages/auth/Unauthorized";
+import NotFound from "./components/NotFound";
+import HomeRedirect from "./pages/auth/HomeRedirect";
+
 function App() {
-    
 
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Navigate to="/login" replace />} />
+        <Route path="/" element={<HomeRedirect />} />
         <Route path="/forget2" element={<Create />} />
-        <Route path="/forget" element={<Forget  />} />
-        <Route path="/forget1" element={<ForgetPassword1  />} />
+        <Route path="/forget" element={<Forget />} />
+        <Route path="/forget1" element={<ForgetPassword1 />} />
         <Route path="/login" element={<Login />} />
 
         <Route element={<MainLayout />}>
-          <Route path="/adminDash/HRM" element={<AdminDashboard />} />
+          <Route path="/adminDash/HRM" element={<PrivateRoute allowedRoles={["ADMIN"]}> <AdminDashboard /></PrivateRoute>} />
+          <Route path="/employeeDash" element={<PrivateRoute allowedRoles={["EMPLOYEE"]}> <AdminDashboard /></PrivateRoute>} />
           <Route path="/adminDash/announcement" element={<AdminAnnouncement />} />
           <Route path="/adminDash/HRM/holiday" element={<HolidayHrm />} />
-          <Route path="/adminDash/HRM/activeEmployee" element={<ActiveEmplyee  />} />
-          <Route path="/adminDash/HRM/halfDayRequest" element={<HalfRequest  />} />
-          <Route path="/adminDash/HRM/totalEmployee" element={<TotalEmployee  />} />
-          <Route path="/adminDash/HRM/deactivate" element={<DeactivateEmployee  />} />
-          <Route path="/employeeDash" element={<EmployeeDashboard />} />
+          <Route path="/adminDash/HRM/activeEmployee" element={<ActiveEmplyee />} />
+          <Route path="/adminDash/HRM/halfDayRequest" element={<HalfRequest />} />
+          <Route path="/adminDash/HRM/totalEmployee" element={<TotalEmployee />} />
+          <Route path="/adminDash/HRM/deactivate" element={<DeactivateEmployee />} />
           <Route path="/client" element={<ClientDashboard />} />
           <Route path="/adminDash/leadFile" element={<LeadFile2 />} />
           <Route path="/adminDash/userLead" element={<UserLead />} />
           <Route path="/adminDash/leadDash" element={<LeadManagement />} />
-          <Route path="/adminDash/HRM/ResignationHRM" element={<Resignation />}/>
+          <Route path="/adminDash/HRM/ResignationHRM" element={<Resignation />} />
           <Route path="/adminDash/HRM/PromotionHRM" element={<Promotion />} />
           <Route path="/adminDash/HRM/ComplaintsHRM" element={<Complaints />} />
           <Route path="/adminDash/closeLeads" element={<CloseLeads />} />
-          <Route path="/adminDash/Permission" element={ <Permission  /> } />
-          <Route path="/adminDash/PermissionDetail" element={ <PermissionDetail  />} />
+          <Route path="/adminDash/Permission" element={<Permission />} />
+          <Route path="/adminDash/PermissionDetail" element={<PermissionDetail />} />
           <Route path="/adminDash/myLead" element={<MyLead />} />
           <Route path="/adminDash/importLead/:id" element={<ImportLead />} />
-          <Route path="/adminDash/profile" element={<Profile  />} />
+          <Route path="/adminDash/profile" element={<Profile />} />
           <Route path="/adminDash/createLead" element={<CreateLead />} />
-          <Route path="/adminDash/mySelf" element={<MySelf  />}/>
-          <Route path="/performance/Assets" element={<Assets  />} />
+          <Route path="/adminDash/mySelf" element={<MySelf />} />
+          <Route path="/performance/Assets" element={<Assets />} />
           <Route path="/adminDash/HRM/Expense" element={<Items />} />
           <Route path="/adminDash/HRM/WarningHRM" element={<Warning />} />
           <Route path="/adminDash/HRM/TerminationHRM" element={<Termination />} />
@@ -119,28 +124,31 @@ function App() {
           <Route path="/adminDash/HRM/taskProjects" element={<TaskProjects />} />
 
           {/* Employee Management */}
-          <Route path="/adminDash/HRM/EmployeeManagement" element={<EmployeeManagement  />} />
+          <Route path="/adminDash/HRM/EmployeeManagement" element={<EmployeeManagement />} />
           <Route path="/adminDash/EmployeeDetails" element={<EmployeeDetail />} />
-          <Route path="/adminDash/EmployeeMan/:id" element={<EmployeeManage  />} />
-          <Route path="/adminDash/HRM/markAttendance" element={<MarkAttendance  />} />
-          <Route path="/adminDash/HRM/LeaveEmployee" element={<LeaveEmployee  />} />
-          <Route path="/adminDash/HRM/leaveRequest" element={<LeaveRequest  />} />
-          <Route path="/adminDash/setSallary" element={<SetSallary  />} />
-          <Route path="/adminDash/setAll/:id" element={<SetSalaryId  />} />
-          <Route path="/adminDash/payslip" element={<Payslip  />} />
+          <Route path="/adminDash/EmployeeMan/:id" element={<EmployeeManage />} />
+          <Route path="/adminDash/HRM/markAttendance" element={<MarkAttendance />} />
+          <Route path="/adminDash/HRM/LeaveEmployee" element={<LeaveEmployee />} />
+          <Route path="/adminDash/HRM/leaveRequest" element={<LeaveRequest />} />
+          <Route path="/adminDash/setSallary" element={<SetSallary />} />
+          <Route path="/adminDash/setAll/:id" element={<SetSalaryId />} />
+          <Route path="/adminDash/payslip" element={<Payslip />} />
           <Route path="/adminDash/documentManagement" element={<DocumentManagement />} />
-          <Route path="/performance/appraisal" element={<Appraisal  />} />
-          <Route path="/performance/goalTracking" element={<GoalTracking  />} />
+          <Route path="/performance/appraisal" element={<Appraisal />} />
+          <Route path="/performance/goalTracking" element={<GoalTracking />} />
           <Route path="/adminDash/HRM/HRMsystemSetup" element={<HRMsystemSetup />} />
-          <Route path="/adminDash/EmployeeMan" element={<EmployeeMan  />} />
+          <Route path="/adminDash/EmployeeMan" element={<EmployeeMan />} />
 
 
           {/* Employee Dashboard */}
           {/* Task management */}
-             <Route path="/employeeDash/HRM/myProjects" element={<MyProject/>} />
-              <Route path="/employeeDash/HRM/projectDetails" element={<ProjectDetails2/>} />
-               <Route path="/employeeDash/employeeLeave" element={<MyLeaves/>} />
+          <Route path="/employeeDash/HRM/myProjects" element={<MyProject />} />
+          <Route path="/employeeDash/HRM/projectDetails" element={<ProjectDetails2 />} />
+          <Route path="/employeeDash/employeeLeave" element={<MyLeaves />} />
         </Route>
+
+        <Route path="/unauthorized" element={<Unauthorized />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );
