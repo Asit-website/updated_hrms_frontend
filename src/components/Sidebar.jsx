@@ -127,8 +127,7 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
                 <>
 
                   <li>
-                    <a
-                      href="#"
+                    <div
                       className="flex items-center p-2 py-3 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                     >
                       <MdLeaderboard />
@@ -144,7 +143,7 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
                             }`}
                         />
                       </span>
-                    </a>
+                    </div>
                   </li>
 
                   {showLeadLi && (
@@ -194,8 +193,7 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
 
 
             <li>
-              <a
-                href="#"
+              <NavLink to="#"
                 className="flex items-center p-2 py-3  rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
                 <FaTasks />
@@ -211,7 +209,7 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
                       }`}
                   />
                 </span>
-              </a>
+              </NavLink>
             </li>
 
             {showTaskLi && (
@@ -251,8 +249,8 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
             )}
 
             <li>
-              <a
-                href="#"
+              <NavLink
+                to="#"
                 className="flex items-center p-2 py-3  rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
                 <FaTasks />
@@ -268,7 +266,7 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
                       }`}
                   />
                 </span>
-              </a>
+              </NavLink>
             </li>
 
             {showTaskMa && (
@@ -539,8 +537,8 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
             )}
 
             <li>
-              <a
-                href="#"
+              <NavLink
+                to="#"
                 className="flex items-center p-2 py-3  rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
                 <FaTasks />
@@ -556,7 +554,7 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
                       }`}
                   />
                 </span>
-              </a>
+              </NavLink>
             </li>
 
             {assetsItem && (
@@ -602,8 +600,7 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
             )}
 
             <li>
-              <a
-                href="#"
+              <div
                 className="flex items-center p-2 py-3  rounded-lg dark:text-white  dark:hover:bg-gray-700 group"
               >
                 <FaTasks />
@@ -618,7 +615,7 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
                     className={`transition-all ${openHr ? "rotate-180" : ""}`}
                   />
                 </span>
-              </a>
+              </div>
             </li>
 
             {openHr && (

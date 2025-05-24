@@ -63,6 +63,7 @@ import DeactivateEmployee from "./pages/admin/Dashboard/DeactivateEmployee";
 import ForgetPassword1 from "./pages/auth/ForgetPassword1";
 import MyProject from './pages/employee/Task Mangement/MyProject'
 import ProjectDetails2 from "./pages/employee/Task Mangement/ProjectDetail2";
+import MyLeaves from "./pages/employee/MyLeave";
 function App() {
     
 
@@ -138,6 +139,7 @@ function App() {
           {/* Task management */}
              <Route path="/employeeDash/HRM/myProjects" element={<MyProject/>} />
               <Route path="/employeeDash/HRM/projectDetails" element={<ProjectDetails2/>} />
+               <Route path="/employeeDash/employeeLeave" element={<MyLeaves/>} />
         </Route>
       </Routes>
     </Router>
