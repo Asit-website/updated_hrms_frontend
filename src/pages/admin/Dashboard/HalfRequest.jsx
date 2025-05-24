@@ -8,17 +8,10 @@ import OutsideClickHandler from "react-outside-click-handler";
 import { CiPlay1 } from "react-icons/ci";
 import {useMain} from "../../../hooks/UseMain"
 import {useOutsideClick} from '../../../hooks/UseOutsideClick'
-const HalfRequest = ({
-  pop1,
-  setPop1,
-  pop,
-  setPop,
-  setAlert,
-  isHr = false,
-}) => {
+
+const HalfRequest = () => {
 
   const [star1, setStar1] = useState(false);
-
 
   const styleThing = {
     display: star1 ? "block" : "none",
@@ -236,9 +229,7 @@ const HalfRequest = ({
                         <th scope="col" className="py-3 px-6 min-w-36 text-left w-full md:w-auto bg-white">
                           START DATE
                         </th>
-                        <th scope="col" className="py-3 px-6 min-w-36 text-left w-full md:w-auto bg-white">
-                          END DATE
-                        </th>
+                        
                         <th scope="col" className="py-3 px-6 min-w-36 text-left w-full md:w-auto bg-white">
                           TOTAL DAYS
                         </th>
@@ -263,7 +254,6 @@ const HalfRequest = ({
                             {/* <td className="px-3 py-3 taskAns">{e?.leaveType}</td> */}
                             <td className="py-4 px-6">{formatDate(e?.appliedOn)}</td>
                             <td className="py-4 px-6">  {e?.from}</td>
-                            <td className="py-4 px-6"> {e?.to} </td>
                             <td className="py-4 px-6"> {(e?.days)} </td>
 
                             <td className="py-4 px-6">{e?.reason}</td>
