@@ -61,7 +61,6 @@ import HalfRequest from "./pages/admin/Dashboard/HalfRequest";
 import TotalEmployee from "./pages/admin/Dashboard/TotalEmployee";
 import DeactivateEmployee from "./pages/admin/Dashboard/DeactivateEmployee";
 import ForgetPassword1 from "./pages/auth/ForgetPassword1";
-import MyProject from './pages/employee/Task Mangement/MyProject'
 import ProjectDetails2 from "./pages/employee/Task Mangement/ProjectDetail2";
 import MyLeaves from "./pages/employee/MyLeave";
 function App() {
@@ -73,10 +72,10 @@ function App() {
         <Route path="/" element={<Navigate to="/login" replace />} />
         <Route path="/forget2" element={<Create />} />
         <Route path="/forget" element={<Forget  />} />
-        <Route path="/forget1" element={<ForgetPassword1  />} />
-        <Route path="/login" element={<Login />} />
+            <Route path="/forget1" element={<ForgetPassword1  />} />
+             <Route path="/login" element={<Login />} />
 
-        <Route element={<MainLayout />}>
+               <Route element={<MainLayout />}>
           <Route path="/adminDash/HRM" element={<AdminDashboard />} />
           <Route path="/adminDash/announcement" element={<AdminAnnouncement />} />
           <Route path="/adminDash/HRM/holiday" element={<HolidayHrm />} />
@@ -134,11 +133,11 @@ function App() {
           <Route path="/adminDash/HRM/HRMsystemSetup" element={<HRMsystemSetup />} />
           <Route path="/adminDash/EmployeeMan" element={<EmployeeMan  />} />
 
-
-          {/* Employee Dashboard */}
+                      {/* Employee Dashboard */}
           {/* Task management */}
-             <Route path="/employeeDash/HRM/myProjects" element={<MyProject/>} />
+             <Route path="/employeeDash/HRM/myProjects" element={<TaskProjects/>} />
               <Route path="/employeeDash/HRM/projectDetails" element={<ProjectDetails2/>} />
+               <Route path="/employeeDash/HRM/projectOverview" element={<ProjectOverView />} /> 
                <Route path="/employeeDash/employeeLeave" element={<MyLeaves/>} />
         </Route>
       </Routes>
