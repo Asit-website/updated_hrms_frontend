@@ -439,7 +439,7 @@ const LeadSystemSetting = ({ setAlert, pop, setPop }) => {
     <>
       <div className="flex relative bg-[#f5f5f5] h-full">
         <div className="w-full bg-[#f5f5f5] ">
-          <div className="pt-[32px] pr-0 lg:pr-[20px] pb-[32px] pl-0 lg:pl-[54px]  relative w-full">
+          <div className="pt-[32px] pr-0 lg:pr-[20px] pb-[32px] pl-[20px]  relative w-full">
             <div className="flex-col">
               <div className="min-h-[calc(100vh-80px)] h-auto bg-transparent rounded-[10px] mx-[10px] relative">
                 <div className="flex flex-col lg:flex-row w-full items-center justify-between">

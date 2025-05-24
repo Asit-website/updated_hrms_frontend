@@ -221,12 +221,12 @@ const HolidayHRM = ({ setAlert, pop, setPop }) => {
 
                                 {
                                   showIndex === index && (
-                                    <div ref={wrapperRef} className="absolute right-7 -top-12 p-2 bg-white border border-gray-400 rounded-md">
+                                    <div ref={wrapperRef} className="absolute right-7 -top-12 bg-white border border-gray-400">
                                       <div onClick={() => {
                                         setOnEdit(true);
                                         setEditData(item);
                                         setPopup1(true)
-                                      }} className="flex items-center gap-3 p-1">
+                                      }} className="items-center w-full px-4 py-2 text-sm flex gap-2 text-gray-700 hover:bg-gray-100">
                                         <MdOutlineEdit className="text-[18px]"/>
                                         <span>Edit</span>
                                       </div>
@@ -234,7 +234,7 @@ const HolidayHRM = ({ setAlert, pop, setPop }) => {
 
                                       <div onClick={() => {
                                         deleteProject(item?._id)
-                                      }} className="flex items-center gap-3 p-1">
+                                      }} className="items-center w-full px-4 py-2 text-sm flex gap-2 text-red-600 hover:bg-red-100">
                                         <MdDeleteOutline className="text-[18px]"/>
                                         <span>Delete</span>
                                       </div>
