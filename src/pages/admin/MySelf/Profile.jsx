@@ -21,7 +21,7 @@ const item = [
 
 const profile = () => {
 
-  const { user, updateProfile, postActivity,getUsers, getStatisticsByUser, getBranchs, getDepartments, getDesignations, uploadToCloudinaryImg, uploadOwnDocs } = useMain();
+  const { user, updateProfile,getUsers, getBranchs, getDepartments, getDesignations, uploadToCloudinaryImg, uploadOwnDocs } = useMain();
 
 
   const [value, setValue] = useState({

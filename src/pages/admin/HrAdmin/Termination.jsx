@@ -6,7 +6,7 @@ import { useEffect } from "react";
 const Termination = () => {
 
 
-  const { getTermination, termination, setTermination } = useMain();
+  const { getTermination, termination} = useMain();
 
 
   useEffect(() => {

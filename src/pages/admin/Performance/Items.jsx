@@ -1,8 +1,5 @@
 
-import CommonTable from "../../../components/CommonTable";
-
 import ActionMenu from "../../../components/ActionMenu";
-import { FaPlus, FaSearch } from 'react-icons/fa';
 import { useMain } from "../../../hooks/UseMain";
 import { useEffect, useState } from "react";
 
@@ -15,7 +12,7 @@ const Dashboard = () => {
         const ans = await getExpenseApi();
          if (ans?.status) {
             setItems(ans?.expesnes);
-            // console.log(ans?.statusCode)
+          
           }
         };
     
@@ -50,13 +47,7 @@ const Dashboard = () => {
  
 
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 pt-4">
-       
-
-
-       
-
-      
-        <div className="bg-grey rounded-xl border-2  xl:col-span-2">
+         <div className="bg-grey rounded-xl border-2  xl:col-span-2">
         
           <hr />
          <div className="w-full overflow-x-auto rounded-lg">

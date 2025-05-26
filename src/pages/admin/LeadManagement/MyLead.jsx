@@ -19,7 +19,7 @@ import { useDownloadExcel } from "react-export-table-to-excel";
 const MyLead = () => {
   const navigate = useNavigate();
 
-  const { user, getLead, deleteLeads, getUserByDesignation, closeLead } = useMain();
+  const {  getLead, deleteLeads, getUserByDesignation, closeLead } = useMain();
 
   const [desUsers, setDeUsers] = useState([]);
 

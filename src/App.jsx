@@ -63,6 +63,7 @@ import DeactivateEmployee from "./pages/admin/Dashboard/DeactivateEmployee";
 import ForgetPassword1 from "./pages/auth/ForgetPassword1";
 import ProjectDetails2 from "./pages/employee/Task Mangement/ProjectDetail2";
 import MyLeaves from "./pages/employee/MyLeave";
+import ClientProjectOverview from "./pages/Client/ClientProjectOverview";
 function App() {
     
 
@@ -84,7 +85,7 @@ function App() {
           <Route path="/adminDash/HRM/totalEmployee" element={<TotalEmployee  />} />
           <Route path="/adminDash/HRM/deactivate" element={<DeactivateEmployee  />} />
           <Route path="/employeeDash" element={<EmployeeDashboard />} />
-          <Route path="/client" element={<ClientDashboard />} />
+       
           <Route path="/adminDash/leadFile" element={<LeadFile2 />} />
           <Route path="/adminDash/userLead" element={<UserLead />} />
           <Route path="/adminDash/leadDash" element={<LeadManagement />} />
@@ -139,6 +140,11 @@ function App() {
               <Route path="/employeeDash/HRM/projectDetails" element={<ProjectDetails2/>} />
                <Route path="/employeeDash/HRM/projectOverview" element={<ProjectOverView />} /> 
                <Route path="/employeeDash/employeeLeave" element={<MyLeaves/>} />
+
+
+               {/* Client */}
+                  <Route path="/client" element={<ClientDashboard />} />
+                   <Route path="/client/task" element={<ClientProjectOverview/>}/>
         </Route>
       </Routes>
     </Router>

@@ -121,19 +121,12 @@ const data = [
 
 ]
 
-const AdminEmplyee = ({
-  pop1,
-  setPop1,
-  pop,
-  setPop,
-  setAlert,
-  isHr = false,
-}) => {
+const AdminEmplyee = () => {
 
   const location = useLocation();
   console.log(location.state)
 
-  const { user, getActiveUsers } = useMain();
+  const { getActiveUsers } = useMain();
   const [data1, setData1] = useState([]);
 
   let hrms_user = JSON?.parse(localStorage.getItem("hrms_user"));

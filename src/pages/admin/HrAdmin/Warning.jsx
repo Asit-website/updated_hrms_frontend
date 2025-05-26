@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 const Warning = () => {
 
 
-  const { getWarning, warning, setWarning } = useMain();
+  const { getWarning, warning} = useMain();
   const buttonOptions = [
     {
       label: 'Edit',

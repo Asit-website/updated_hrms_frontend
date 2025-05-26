@@ -4,6 +4,7 @@ import { useMain } from "../../../hooks/UseMain";
 import { useEffect, useState } from "react";
 import ModalForm from "../../../components/ModalForm";
 import { confirmAlert } from "react-confirm-alert";
+import toast from "react-hot-toast";
 
 const Award = () => {
   const { getAward, awards, allEmp, postAward, updateAward, deleteAward } = useMain();

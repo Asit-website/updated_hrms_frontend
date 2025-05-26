@@ -8,9 +8,9 @@ import toast from "react-hot-toast";
 import PhoneInput from "react-phone-input-2";
 import { useMain } from "../../../hooks/UseMain";
 
-const EditLead = ({ setAlert, pop, setPop }) => {
+const EditLead = () => {
   const {
-    user,
+    
     updateLead,
     getEmployees,
     AllLeadSource,

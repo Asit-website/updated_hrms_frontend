@@ -8,7 +8,7 @@ import { useOutsideClick } from "../../../hooks/UseOutsideClick";
 import InitialsAvatar from "../../../components/InitialAvatar";
 
 const TaskClients = () => {
-  const { user, createClientapi, getClientapi, editTaskapi, disableClientapi } =
+  const {createClientapi, getClientapi, editTaskapi, disableClientapi } =
     useMain();
   const navigate = useNavigate();
 

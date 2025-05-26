@@ -9,7 +9,7 @@ import { useOutsideClick } from "../../../hooks/UseOutsideClick";
 import { useMain } from "../../../hooks/UseMain";
 
 
-const EmployeeSalary = ({ pop, setPop }) => {
+const EmployeeSalary = () => {
   const { user, getUsers } = useMain();
 
   let hrms_user = JSON.parse(localStorage.getItem("hrms_user"));

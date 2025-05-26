@@ -7,7 +7,7 @@ import { useMain } from "../../../hooks/UseMain";
 import { useEffect, useState } from "react";
 
 const Announcement = () => {
-  const { fetchAnnoucement, announcement, setAnnouncement } = useMain();
+  const { fetchAnnoucement, announcement } = useMain();
   const buttonOptions = [
     {
       label: 'Edit',

@@ -7,9 +7,9 @@ import { MdDeleteOutline, MdOutlineEdit } from "react-icons/md";
 import { useMain } from "../../../hooks/UseMain";
 import { useOutsideClick } from "../../../hooks/UseOutsideClick";
 
-const   Appraisal = ({ pop, setPop, setAlert }) => {
+const   Appraisal = () => {
   const {
-    user,
+
     getAppraisal,
     createAppraisal,
     allEmployee,

@@ -5,15 +5,8 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useMain } from "../../../hooks/UseMain";
 
-const LeaveEmployee = ({
-  pop1,
-  setPop1,
-  pop,
-  setPop,
-  setAlert,
-  isHr = false,
-}) => {
-  const { user, fetchTodayLeave } = useMain();
+const LeaveEmployee = () => {
+  const {fetchTodayLeave } = useMain();
   const [data, setData] = useState([]);
   let hrms_user = JSON.parse(localStorage.getItem("hrms_user"));
   const location = useLocation();

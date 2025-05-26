@@ -1,6 +1,4 @@
 
-import CommonTable from "../../../components/CommonTable";
-
 import ActionMenu from "../../../components/ActionMenu";
 import { useMain } from "../../../hooks/UseMain";
 import { useEffect, useState } from "react";
@@ -8,7 +6,7 @@ import { useEffect, useState } from "react";
 
 const Complaints = () => {
 
-  const { getComplain, complain,allEmp } = useMain();
+  const { getComplain, complain } = useMain();
   const buttonOptions = [
     {
       label: 'Edit',

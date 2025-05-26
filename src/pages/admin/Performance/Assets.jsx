@@ -1,6 +1,4 @@
 
-import CommonTable from "../../../components/CommonTable";
-
 import ActionMenu from "../../../components/ActionMenu";
 import { FaPlus, FaSearch } from 'react-icons/fa';
 import { useMain } from "../../../hooks/UseMain";
@@ -32,17 +30,7 @@ const Assets = () => {
     "Category",
     "ACTION"
   ];
-  const tbodyData2 = [
-    ["apk","tester","IT","laptop, one mobile","2025-05-03", "work", "Ongoing",<ActionMenu/>],
-   ["apk","tester","IT","laptop, one mobile","2025-05-03", "work", "Ongoing",<ActionMenu/>],
-   ["apk","tester","IT","laptop, one mobile","2025-05-03", "work", "Ongoing",<ActionMenu/>],
-   ["apk","tester","IT","laptop, one mobile","2025-05-03", "work", "Ongoing",<ActionMenu/>],
-   ["apk","tester","IT","laptop, one mobile","2025-05-03", "work", "Ongoing",<ActionMenu/>],
-   ["apk","tester","IT","laptop, one mobile","2025-05-03", "work", "Ongoing",<ActionMenu/>],
-   ["apk","tester","IT","laptop, one mobile","2025-05-03", "work", "Ongoing",<ActionMenu/>],
-   ["apk","tester","IT","laptop, one mobile","2025-05-03", "work", "Ongoing",<ActionMenu/>],
-
-  ];
+ 
  
   return (
     <div className="p-6">
@@ -63,12 +51,7 @@ const Assets = () => {
 
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 pt-4">
        
-
-
-       
-
-      
-        <div className="bg-grey rounded-xl border-2  xl:col-span-2">
+ <div className="bg-grey rounded-xl border-2  xl:col-span-2">
          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 p-4">
    
       <div className="flex items-center gap-2">

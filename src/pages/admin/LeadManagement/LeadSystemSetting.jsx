@@ -65,7 +65,7 @@ const LeadSystemSetting = () => {
   const {
     getLeadCatgory,
     postLeadCategory,
-    user,
+   
     postLeadStatus,
     postLeadSource2,
     AllLeadStatus,

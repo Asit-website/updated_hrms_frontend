@@ -159,8 +159,8 @@ const data = `<h2 style="margin-right: 0in; margin-left: 0in; font-family: &quot
 const config = {
   readonly: false,
 };
-const ProposalForm = ({ setAlert, pop, setPop }) => {
-  const { user, postProposalFormApi, updatePropsalFormApi } = useMain();
+const ProposalForm = () => {
+  const {postProposalFormApi, updatePropsalFormApi } = useMain();
 
   let hrms_user = JSON.parse(localStorage.getItem("hrms_user"));
 
