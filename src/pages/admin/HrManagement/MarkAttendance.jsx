@@ -13,16 +13,9 @@ import { CSVLink } from "react-csv";
 import { useMain } from "../../../hooks/UseMain";
 import { useOutsideClick } from "../../../hooks/UseOutsideClick";
 
-const MarkAttendance = ({
-  pop1,
-  setPop1,
-  pop,
-  setPop,
-  setAlert,
-  isHr = false,
-}) => {
+const MarkAttendance = () => {
   const {
-    user,
+    
     getAllActivities,
     getDepartments,
     allEmployee,

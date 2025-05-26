@@ -12,9 +12,9 @@ import { MdDeleteOutline, MdOutlineEdit } from "react-icons/md";
 import { useMain } from "../../../hooks/UseMain";
 import { useOutsideClick } from "../../../hooks/UseOutsideClick";
 
-const AdminProfile = ({ pop, setPop, setAlert }) => {
+const AdminProfile = () => {
   const {
-    user,
+  
     createAnnouncement,
     fetchAnnoucement,
     allEmployee,

@@ -14,7 +14,7 @@ import { useMain } from "../../../hooks/UseMain";
 
 
 
-const ProjectDetails2 = ({ setAlert, pop, setPop }) => {
+const ProjectDetails2 = () => {
   const {
     user,
     getAllProjectApi,
@@ -612,7 +612,7 @@ const ProjectDetails2 = ({ setAlert, pop, setPop }) => {
       <div className="employee-dash h-full">
       
 
-        <div className="tm">
+        <div className="w-full bg-[#f5f5f5]">
          
 
           <div className="pt-[30px] pr-[20px] pb-[10px] pl-[20px] relative w-full">
@@ -649,7 +649,7 @@ const ProjectDetails2 = ({ setAlert, pop, setPop }) => {
               
             </div>
 
-  <div className="tclwrap ">
+  <div className="relative flex flex-col gap-5">
               {optIndex === 0 && (
                 <>
                   <nav>
@@ -689,13 +689,13 @@ const ProjectDetails2 = ({ setAlert, pop, setPop }) => {
 
                   </nav>
 
-                  <div className="prodlefriwrap">
+                  <div className="w-full h-24 p-6 rounded-xl bg-[#DEF8E4] flex items-center justify-between">
                     {/* left side */}
-                    <div className="leftprodetail">
+                    <div className="flex items-center gap-[60px]">
                       <label>
                         <p className="filn">Start Date:</p>
                         <p className="proand">
-                          {new Date(data?.createdAt).toISOString().split("T")[0]}
+                          {new Date(data?.createdAt).toLocaleDateString("en-in").split("T")[0]}
                         </p>
                       </label>
                       <label>
@@ -704,7 +704,7 @@ const ProjectDetails2 = ({ setAlert, pop, setPop }) => {
                       </label>
                       <label>
                         <p className="filn">Total Members</p>
-                        <p className="proand">{data.Members?.length}</p>
+                        <p className="proand">{data?.Members?.length}</p>
                       </label>
                     </div>
 

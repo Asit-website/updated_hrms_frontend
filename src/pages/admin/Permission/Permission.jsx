@@ -9,13 +9,8 @@ import { useOutsideClick } from "../../../hooks/UseOutsideClick";
 
 
 
-const Permission = ({ pop1,
-  setPop1,
-  pop,
-  setPop,
-  setAlert,
-  isHr = false, }) => {
-  const { user, AllRolesapi, DeleteRoleApi } = useMain();
+const Permission = () => {
+  const { AllRolesapi, DeleteRoleApi } = useMain();
 
   let hrms_user = JSON?.parse(localStorage.getItem("hrms_user"));
   const { role } = hrms_user;

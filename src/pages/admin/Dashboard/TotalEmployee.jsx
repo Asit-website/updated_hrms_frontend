@@ -4,15 +4,8 @@ import { NavLink, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useMain } from "../../../hooks/UseMain";
 
-const TotalEmployee = ({
-  pop1,
-  setPop1,
-  pop,
-  setPop,
-  setAlert,
-  isHr = false,
-}) => {
-  const { user, getUsers } = useMain();
+const TotalEmployee = () => {
+  const { getUsers } = useMain();
 
   const [data, setData] = useState([])
 

@@ -15,9 +15,9 @@ import useOnClickOutside from "../../../hooks/UseOnClickOutside";
 import { useOutsideClick } from "../../../hooks/UseOutsideClick";
 
 
-const ImportLead = ({ setAlert, pop, setPop }) => {
+const ImportLead = () => {
   const {
-    user,
+ 
     getLead2,
     allEmployee,
     updateLeadStatus,

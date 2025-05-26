@@ -29,9 +29,9 @@ coaching, community features, e-commerce, subscription models.
 compatibility, third-party integrations (payments, video)
 <br>● E-commerce: Product list, pricing structure, payment gateways, currencies.</span></span></p>`;
 
-const QuotationForm = ({ setAlert, pop, setPop }) => {
+const QuotationForm = () => {
   const {
-    user,
+  
     uploadSingleImage,
     postQuotationFormApi,
     updateQuotationFormApi,

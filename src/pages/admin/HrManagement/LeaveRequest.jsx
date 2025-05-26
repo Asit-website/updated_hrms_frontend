@@ -8,14 +8,7 @@ import { NavLink, useLocation } from "react-router-dom";
 import { useOutsideClick } from "../../../hooks/UseOutsideClick";
 import { useMain } from "../../../hooks/UseMain";
 
-const LeaveRequest = ({
-  pop1,
-  setPop1,
-  pop,
-  setPop,
-  setAlert,
-  isHr = false,
-}) => {
+const LeaveRequest = () => {
   const [star1, setStar1] = useState(false);
 
   const styleThing = {
@@ -25,7 +18,7 @@ const LeaveRequest = ({
   const {
     user,
     getUserLeaves,
-    deleteLeave,
+   
     updateLeave,
     acceptLeave,
     rejectLeave,

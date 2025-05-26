@@ -20,9 +20,9 @@ export default function LeadManagement() {
     getLead,
     getTaskApi,
     getMeetApi,
-    deleteTaskapi,
+ 
     deleteMeetapi,
-    getAllLeads,
+ 
     getTodayLead,
     deleteLeads,
     GetOpenLeadsApi,
@@ -140,16 +140,19 @@ export default function LeadManagement() {
       img: "https://res.cloudinary.com/dd9tagtiw/image/upload/v1746188858/Frame_9688_zhh0hh.png",
       label: "Total Leads",
       value: totalMyLead,
+      link:"/adminDash/myLead"
     },
     {
       img: "https://res.cloudinary.com/dd9tagtiw/image/upload/v1746188839/Frame_9688_ddpeva.png",
       label: "User Leads",
       value: userLeads,
+      link:"/adminDash/userLead"
     },
     {
       img: "https://res.cloudinary.com/dd9tagtiw/image/upload/v1746188816/Frame_9688_tazycu.png",
       label: "Closed Leads",
       value: allCloseLead.length,
+      link:"/adminDash/leadDash"
     },
   ];
   const convertTo12HourFormat = (time) => {
@@ -250,27 +253,38 @@ export default function LeadManagement() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {stats.map((stat, i) => (
-          <div
-            key={i}
-            className="bg-white rounded-lg p-4 border border-[#f3f4f6] shadow-md hover:bg-blue-100 cursor-pointer transition-all ease-in-out"
-          >
-            <div className="flex  items-center justify-between">
-              <div>
-                <img src={stat.img} alt="icon" />
-              </div>
-              <p className="text-[17px] text-[#374151] font-medium">
-                {stat.label}
-              </p>
-            </div>
-
-            <p className="text-[24px] text-[#111827] font-semibold mt-1 text-end">
-              {stat.value}
-            </p>
+<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
+  {stats.map((stat, i) => {
+    const cardContent = (
+      <div
+        className="bg-white rounded-lg p-4 border border-[#f3f4f6] shadow-md transition-all ease-in-out flex flex-col justify-between h-full hover:bg-blue-200"
+      >
+        <div className="flex items-center justify-between">
+          <div>
+            <img src={stat.img} alt="icon" />
           </div>
-        ))}
+          <p className="text-[17px] text-[#374151] font-medium">{stat.label}</p>
+        </div>
+
+        <p className="text-[24px] text-[#111827] font-semibold mt-1 text-end">
+          {stat.value}
+        </p>
       </div>
+    );
+       return stat.link ? (
+      <NavLink
+        key={i}
+        to={stat.link}
+        className="block hover:bg-blue-100 cursor-pointer rounded-lg"
+      >
+        {cardContent}
+      </NavLink>
+    ) : (
+      <div key={i}>{cardContent}</div>
+    );
+  })}
+</div>
+      
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 pt-8">
        
         <div className="bg-grey rounded-xl border-2 overflow-x-auto overflow-hidden  xl:col-span-2">

@@ -14,10 +14,9 @@ import ViewTask from "./ViewTask";
 const ProjectOverview2 = ({ allTasks, getProjectTaskapi }) => {
   const navigate = useNavigate();
   const {
-    user,
+  
     getAllProjectApi,
     CreateProjectTask,
-    getProjectTask,
     deleteProjectTaskapi22,
     EditProjectTask, postNotifyTask, fetchAllTimesheetapi
   } = useMain();
@@ -518,7 +517,7 @@ const ProjectOverview2 = ({ allTasks, getProjectTaskapi }) => {
                             {
                               index == currView &&
 
-                              <div className="absolute top-[5px] right-[75px] min-w-[120px] h-fit border border-[#E3E3E3] flex flex-col shadow-[0px_4px_12px_0px_#1A1A1A33] p-2 gap-[5px] rounded-tl-[8px] z-[1000] bg-white">
+                              <div className="absolute top-[34px] right-[75px] min-w-[120px] h-fit border border-[#E3E3E3] flex flex-col shadow-[0px_4px_12px_0px_#1A1A1A33] p-2 gap-[5px] rounded-tl-[8px] z-[1000] bg-white">
                                 {/* first  */}
                                 <div className="flex gap-1 p-[5px] cursor-pointer" onClick={() => {
                                   if (role === "ADMIN" || valid) {

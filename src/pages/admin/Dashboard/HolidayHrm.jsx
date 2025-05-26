@@ -10,8 +10,8 @@ import { useMain } from "../../../hooks/UseMain";
 import { useOutsideClick } from "../../../hooks/UseOutsideClick";
 
 
-const HolidayHRM = ({ setAlert, pop, setPop }) => {
-  const { user, createHoliday, getHoliday, deleteHolidays, updateHolidays } = useMain();
+const HolidayHRM = () => {
+  const {createHoliday, getHoliday, deleteHolidays, updateHolidays } = useMain();
   const [popup1, setPopup1] = useState(false);
 
   const [refreshFlag, setRefreshFlag] = useState([]);

@@ -9,9 +9,9 @@ import { MdDeleteOutline, MdOutlineEdit } from "react-icons/md";
 import { useMain } from "../../../hooks/UseMain";
 import { useOutsideClick } from "../../../hooks/UseOutsideClick";
 
-const GoalTracking = ({ pop, setPop, setAlert }) => {
+const GoalTracking = () => {
   const {
-    user,
+
     createTracks,
     getBranchs,
     getTracks,

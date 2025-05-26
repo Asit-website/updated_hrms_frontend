@@ -18,20 +18,7 @@ function Selectmultidropdown({setDocdata , docData}) {
                         <form className="row g-3" method='post'>
                             <div className="col-md-5">
                                 <div className="text-dark">
-                                    {/* <Multiselect 
-                                    selectedValues={docData?.requiredField}
-                                        isObject={false}
-                                        onRemove={(event) => { setDocdata((prev)=>({
-                                            ...prev ,
-                                            requiredField: event
-                                        })) }}
-                                        onSelect={(event) => { setDocdata((prev)=>({
-                                            ...prev ,
-                                            requiredField: event
-                                        })) }}
-                                        options={country}
-                                        showCheckbox
-                                    /> */}
+                                   
                                 </div>
                             </div>
                         </form>
