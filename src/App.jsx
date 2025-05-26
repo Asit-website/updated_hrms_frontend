@@ -68,7 +68,7 @@ import EmployeeMan from './pages/admin/HrManagement/EmployeeMan';
 
 // Employee Pages
 import EmployeeDashboard from "./pages/employee/Dashboard";
-import MyProject from './pages/employee/Task Mangement/MyProject';
+// import MyProject from './pages/employee/Task Mangement/MyProject';
 import ProjectDetails2 from "./pages/employee/Task Mangement/ProjectDetail2";
 import MyLeaves from "./pages/employee/MyLeave";
 
@@ -145,7 +145,7 @@ function App() {
 
           <Route element={<PrivateRoute allowedRoles={["EMPLOYEE"]} />}>
             <Route path="/employeeDash" element={<EmployeeDashboard />} />
-            <Route path="/employeeDash/HRM/myProjects" element={<MyProject />} />
+            {/* <Route path="/employeeDash/HRM/myProjects" element={<MyProject />} /> */}
             <Route path="/employeeDash/HRM/projectDetails" element={<ProjectDetails2 />} />
             <Route path="/employeeDash/employeeLeave" element={<MyLeaves />} />
           </Route>

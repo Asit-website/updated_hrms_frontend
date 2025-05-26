@@ -356,6 +356,13 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
                             isActive ? "text-[#0B56E4]" : ""}`}
                         />
                         <span className="ms-3">Leave Management setup</span>
+                        <span>
+                      <FaAngleDown
+                        className={`transition-all ${
+                          openLeaveManagement ? "rotate-180" : ""
+                        }`}
+                      />
+                    </span>
                       </p>
                     </li>
                   ))}
@@ -413,7 +420,14 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
                           className={`${({ isActive }) =>
                             isActive ? "text-[#0B56E4]" : ""}`}
                         />
-                        <span className="ms-3">Payroll Management</span>
+                        <span className="ms-3 flex-1">Payroll Management</span>
+                        <span>
+                      <FaAngleDown
+                        className={`transition-all ${
+                          payrollManagement ? "rotate-180" : ""
+                        }`}
+                      />
+                    </span>
                       </p>
                     </li>
                   ))}
@@ -496,7 +510,14 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
                           className={`${({ isActive }) =>
                             isActive ? "text-[#0B56E4]" : ""}`}
                         />
-                        <span className="ms-3">Performance Setup</span>
+                        <span className="ms-3 flex-1">Performance Setup</span>
+                        <span>
+                      <FaAngleDown
+                        className={`transition-all ${
+                          performaneManagement ? "rotate-180" : ""
+                        }`}
+                      />
+                    </span>
                       </p>
                     </li>
                   ))}
