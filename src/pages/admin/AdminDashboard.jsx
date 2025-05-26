@@ -98,29 +98,8 @@ const Dashboard = () => {
         </div>
 
       </div>
-  
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4">
-      {stats.map((stat, index) => {
-        const card = (
-          <div
-            className={`border rounded-lg p-4 ${stat.card} flex flex-col justify-between h-28 shadow-sm hover:shadow-md transition`}
 
-          >
-            <div className="flex items-center space-x-2">
-              <div className={`p-2 rounded-md ${stat.bg}`}>
-                {stat.icon}
-
-              </div>
-              <h2 className="text-sm font-semibold text-gray-900">
-                {stat.title}
-              </h2>
-            </div>
-            <div className="text-right text-2xl font-bold text-gray-800">
-              {stat.value}
-            </div>
-          </div>
-        ))}
-      </div> */}
+     
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4">
         {stats.map((stat, index) => {
           const card = (
