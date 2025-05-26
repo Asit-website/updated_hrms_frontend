@@ -12,8 +12,8 @@ import 'react-phone-input-2/lib/style.css'
 import { useMain } from "../../../hooks/UseMain";
 
 
-const CreateLead2 = ({ setAlert, pop, setPop }) => {
-    const { user, createLead, getEmployees, AllLeadSource, AllLeadStatus, getLeadStat, uploadToCloudinaryImg } = useMain();
+const CreateLead2 = () => {
+    const { createLead, getEmployees, AllLeadSource, AllLeadStatus, getLeadStat, uploadToCloudinaryImg } = useMain();
     const [pop1, setPop1] = useState(false);
     const stylePeer = {
         display: pop1 ? "block" : "none"

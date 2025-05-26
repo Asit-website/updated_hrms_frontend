@@ -5,7 +5,7 @@ import { useMain } from "../../../hooks/UseMain";
 import { useEffect, useState } from "react";
 
 const Holiday = () => {
-  const { getHoliday, holiday, setHoliday } = useMain();
+  const { getHoliday, holiday} = useMain();
 
   const buttonOptions = [
     {

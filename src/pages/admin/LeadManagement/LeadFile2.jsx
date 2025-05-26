@@ -8,7 +8,7 @@ import { useMain } from "../../../hooks/UseMain";
 
 const LeadFile2 = () => {
   const navigate = useNavigate();
-    const { user, allEmployee, createExcelLead } = useMain();
+    const {  allEmployee, createExcelLead } = useMain();
 
     const [selectedFiles , setSelectedFiles] = useState("");
 

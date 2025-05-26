@@ -12,9 +12,9 @@ import { confirmAlert } from "react-confirm-alert";
 import { useOutsideClick } from "../../../hooks/UseOutsideClick";
 import { useMain } from "../../../hooks/UseMain";
 
-const EmployeeSelf = ({ setAlert, pop1, setPop1 }) => {
+const EmployeeSelf = () => {
   const {
-    user,
+ 
     deleteOfferLetter,
     deleteRelievingLetter,
     deleteExperienceLetter,

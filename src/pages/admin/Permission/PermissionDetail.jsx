@@ -20,7 +20,7 @@ import { useLocation, useNavigate, NavLink } from "react-router-dom";
 import { useMain } from "../../../hooks/UseMain";
 
 const PermissionDetail = () => {
-  const { user, AllRolesapi, ProvidePermission, UpdatePermission } = useMain();
+  const { AllRolesapi, ProvidePermission, UpdatePermission } = useMain();
 
   let hrms_user = JSON?.parse(localStorage.getItem("hrms_user"));
   const { role } = hrms_user;
@@ -31,7 +31,7 @@ const PermissionDetail = () => {
     name: "",
   });
 
-  const [allRoles, setAllRoles] = useState([]);
+  const [ setAllRoles] = useState([]);
 
   const fetchAllRoles = async () => {
     const ans = await AllRolesapi();
@@ -55,18 +55,6 @@ const PermissionDetail = () => {
 
   const applyPermission = async () => {
     console.log("click");
-
-    // if (roleName?.name === "") {
-    //   return toast.error("Please Enter the name");
-    // }
-    // if (
-    //   allRoles?.filter(
-    //     (item) => item?.name.toLowerCase() === roleName?.name.toLowerCase()
-    //   )
-    // ) {
-    //   return toast.error("Role already exist");
-    // }
-    // const toastId = toast.loading("Loading...");
 
     const ans = await ProvidePermission({
       name: roleName?.name,

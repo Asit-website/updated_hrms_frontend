@@ -16,7 +16,7 @@
     const navigate = useNavigate();
 
     const {
-        user,
+      
         getLead3,
         deleteLeads,
         getUserByDesignation,

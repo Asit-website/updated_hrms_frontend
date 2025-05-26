@@ -21,7 +21,7 @@ const projectOpt = ["All", "Ongoing", "Finished", "OnHold", "Canceled"];
 
 const TaskProjects = () => {
   const {
-    user,
+  
     allEmployee,
     editProjectapi,
     getAllProjectApi,
@@ -51,10 +51,10 @@ const TaskProjects = () => {
   const getAllClient = async () => {
     try {
       const ans = await getClientapi();
-      // console.log("ans", ans);
+      
       if (ans?.status) {
         setAllClient(ans?.data);
-        // console.log(allClient)
+       
       }
     } catch (error) {
       // console.log(error);

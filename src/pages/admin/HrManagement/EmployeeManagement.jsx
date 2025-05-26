@@ -13,14 +13,7 @@ import { MdDeleteOutline, MdOutlineEdit } from "react-icons/md";
 import OutsideClickHandler from "react-outside-click-handler";
 
 
-const EmployeeManagement = ({
-  pop1,
-  setPop1,
-  pop,
-  setPop,
-  setAlert,
-  isHr = false,
-}) => {
+const EmployeeManagement = () => {
 
   const navigate = useNavigate();
 

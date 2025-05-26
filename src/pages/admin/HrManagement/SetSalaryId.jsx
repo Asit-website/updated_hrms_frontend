@@ -6,12 +6,8 @@ import { useLocation, useParams } from 'react-router-dom';
 import toast from "react-hot-toast";
 import { useMain } from "../../../hooks/UseMain";
 import { useOutsideClick } from "../../../hooks/UseOutsideClick";
-const SetSallary = ({
-    pop,
-    setPop
-
-}) => {
-    const { user, salaryCreate, getSallary, userSalaryFetch, createAllowance, allowDeleteHandler, editAllowance, commisionDelteHandler, createCommision, editComApi, createLoan, loanDeleteHandler, editLoanApi, getUsers } = useMain();
+const SetSallary = () => {
+    const { salaryCreate, getSallary, userSalaryFetch, createAllowance, allowDeleteHandler, editAllowance, commisionDelteHandler, createCommision, editComApi, createLoan, loanDeleteHandler, editLoanApi, getUsers } = useMain();
     const [refreshFlag, setRefreshFlag] = useState(false);
 
     const [formdata, setFormdata] = useState({

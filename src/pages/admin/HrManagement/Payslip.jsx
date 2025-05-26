@@ -7,7 +7,7 @@ import { useMain } from "../../../hooks/UseMain";
 import { useOutsideClick } from "../../../hooks/UseOutsideClick";
 
 
-const Payslip = ({ pop, setPop }) => {
+const Payslip = () => {
   const { user, getUserSlip, togglePayslip, buildAPI, setUserTotalLeaveApi } =
     useMain();
 

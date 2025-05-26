@@ -11,14 +11,7 @@ import toast from "react-hot-toast";
 import { useMain } from "../../../hooks/UseMain";
 
 
-const DeactivateEmployee = ({
-  pop1,
-  setPop1,
-  pop,
-  setPop,
-  setAlert,
-  isHr = false,
-}) => {
+const DeactivateEmployee = () => {
 
   const navigate = useNavigate();
   const location = useLocation();

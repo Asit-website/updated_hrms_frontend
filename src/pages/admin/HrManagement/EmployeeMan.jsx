@@ -22,11 +22,6 @@ const item = [
 ];
 
 const EmployeeManage = ({
-  pop1,
-  setPop1,
-  pop,
-  setPop,
-  setAlert,
   isHr = false,
 }) => {
   const { id } = useParams();

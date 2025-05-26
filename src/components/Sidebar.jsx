@@ -127,14 +127,11 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
               leadSystemPermission ||
               (role === "ADMIN" && (
                 <>
-                  <li>
-                    <a
-                      href="#"
-                      className="flex items-center p-2 py-3 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-                    >
+                  <li onClick={() => setShowLeadLi(!showLeadLi)}  className="flex items-center p-2 py-3 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group cursor-pointer">
+                   
                       <MdLeaderboard />
                       <span
-                        onClick={() => setShowLeadLi(!showLeadLi)}
+                      
                         className="flex-1 ms-3 whitespace-nowrap"
                       >
                         Lead Management
@@ -146,7 +143,7 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
                           }`}
                         />
                       </span>
-                    </a>
+                  
                   </li>
 
                   {showLeadLi && (
@@ -201,7 +198,7 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
 
             <li
               onClick={() => setShowTaskLi(!showTaskLi)}
-              className="flex items-center p-2 py-3  rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+              className="flex items-center p-2 py-3  rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group cursor-pointer"
             >
               <FaTasks />
               <span className="flex-1 ms-3 whitespace-nowrap">
@@ -280,14 +277,11 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
               documentPermission ||
               leaveManagePermission ||
               (role === "ADMIN" && (
-                <li>
-                  <a
-                    href="#"
-                    className="flex items-center p-2 py-3  rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-                  >
+                <li   onClick={() => setShowTaskMa(!showTaskMa)} className="flex items-center p-2 py-3  rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group cursor-pointer">
+                 
                     <FaTasks />
                     <span
-                      onClick={() => setShowTaskMa(!showTaskMa)}
+                     
                       className="flex-1 ms-3 whitespace-nowrap"
                     >
                       Hr Management
@@ -299,7 +293,7 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
                         }`}
                       />
                     </span>
-                  </a>
+               
                 </li>
               ))}
 
@@ -577,14 +571,11 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
 
             {assetsPermission ||
               (role === "ADMIN" && (
-                <li>
-                  <a
-                    href="#"
-                    className="flex items-center p-2 py-3  rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-                  >
+                <li onClick={() => setAssetsItem(!assetsItem)} className="flex items-center p-2 py-3  rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group cursor-pointer">
+                 
                     <FaTasks />
                     <span
-                      onClick={() => setAssetsItem(!assetsItem)}
+                  
                       className="flex-1 ms-3 whitespace-nowrap"
                     >
                       Assets
@@ -596,7 +587,7 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
                         }`}
                       />
                     </span>
-                  </a>
+                
                 </li>
               ))}
 
@@ -646,14 +637,11 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
 
             {hrAdminSetupPermission ||
               (role === "ADMIN" && (
-                <li>
-                  <a
-                    href="#"
-                    className="flex items-center p-2 py-3  rounded-lg dark:text-white  dark:hover:bg-gray-700 group"
-                  >
+                <li   onClick={() => setOpenHr(!openHr)} className="flex items-center p-2 py-3  rounded-lg dark:text-white  dark:hover:bg-gray-700 group cursor-pointer">
+                  
                     <FaTasks />
                     <span
-                      onClick={() => setOpenHr(!openHr)}
+                    
                       className="flex-1 ms-3 whitespace-nowrap"
                     >
                       Hr Admin Setup
@@ -665,7 +653,7 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
                         }`}
                       />
                     </span>
-                  </a>
+                
                 </li>
               ))}
 

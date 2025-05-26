@@ -4,9 +4,9 @@ import { useReactToPrint } from "react-to-print";
 import { NavLink } from "react-router-dom";
 import { useMain } from "../../../hooks/UseMain";
 
-const MySelf = ({ setAlert, pop1, setPop1 }) => {
-  // =================punch in punch out concept==========
-  const { postActivity, getStatisticsByUser, getMyOfferLetter } = useMain();
+const MySelf = () => {
+
+  const { getMyOfferLetter } = useMain();
 
   const [user, setUser] = useState();
   const [curenpage, setCurrPage] = useState("Document");

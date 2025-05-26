@@ -14,8 +14,8 @@ import { useMain } from "../../../hooks/UseMain";
 
 
 
-const ProjectOverview = ({ setAlert, pop, setPop }) => {
-  const { user, getProjectTask, getClientapi, UploadFileProjectapi, allfilesproject,deleteProjectFile, fetchAllTimesheetapi, editProjectapi } =
+const ProjectOverview = () => {
+  const { getProjectTask, getClientapi, UploadFileProjectapi, allfilesproject,deleteProjectFile, fetchAllTimesheetapi, editProjectapi } =
     useMain();
 
   const [allTasks, setAllTasks] = useState([]);
