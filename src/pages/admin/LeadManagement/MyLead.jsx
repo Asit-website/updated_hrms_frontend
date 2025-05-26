@@ -9,7 +9,6 @@ import toast from "react-hot-toast";
 // import AdminNavbar from "../Navbar/AdminNavbar";
 import { IoIosCloseCircle } from "react-icons/io";
 
-import OutsideClickHandler from "react-outside-click-handler";
 import { MdOutlineEdit } from "react-icons/md";
 import { FaRegEye } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";

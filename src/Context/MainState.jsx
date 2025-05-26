@@ -31,6 +31,12 @@ const MainState = (props) => {
       return data;
    };
 
+    const getUpcomingBirthdays = async () => {
+      const data = await get(`${baseUrl}/task/getUpcomingBirthdays`, true);
+      console.log("Upcoming Birthdays:", data);
+      return data;
+   }
+
    const employeeLogin = async ({ email, password }) => {
       const data = await post(`${baseUrl}/user/login`, { email, password }, false);
       return data;
@@ -2600,6 +2606,7 @@ const MainState = (props) => {
          transfer, setTransfer, resignation, getResignation, promotion, setPromotion,
          getAllLeads,
          updateDocSetup,
+         getUpcomingBirthdays,
          changeOfferLetterPer,
          fetchAllDocs,
          updateAttendance,

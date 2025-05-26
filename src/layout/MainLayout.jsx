@@ -15,7 +15,6 @@ const MainLayout = () => {
           className={`flex-1 transition-all overflow-hidden pt-20 ${showSidebar ? "md:ml-80" : ""
             }`}
         >
-          {/* {children} */}
           <Outlet />
         </div>
       </div>

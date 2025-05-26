@@ -10,8 +10,6 @@ import {useMain} from '../../../hooks/UseMain'
 import toast from "react-hot-toast";
 import { FaRegEye } from "react-icons/fa";
 import { MdDeleteOutline, MdOutlineEdit } from "react-icons/md";
-import OutsideClickHandler from "react-outside-click-handler";
-
 
 const EmployeeManagement = () => {
 

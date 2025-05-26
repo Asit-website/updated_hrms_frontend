@@ -3,7 +3,6 @@ import { useAuth } from "../../Context/AuthContext";
 
 const HomeRedirect = () => {
   const { user } = useAuth();
-console.log(user)
   if (!user) return <Navigate to="/login" />;
   if (user.role === "ADMIN") return <Navigate to="/adminDash/HRM" />;
   if (user.role === "EMPLOYEE") return <Navigate to="/employeeDash" />;

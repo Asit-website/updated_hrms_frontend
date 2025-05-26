@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 
 import "react-calendar/dist/Calendar.css";
 import { useNavigate } from "react-router-dom";
-import OutsideClickHandler from "react-outside-click-handler";
 import { useLocation } from "react-router-dom";
 import toast from "react-hot-toast";
 import PhoneInput from "react-phone-input-2";

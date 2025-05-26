@@ -3,9 +3,7 @@ import "react-calendar/dist/Calendar.css";
 import toast from "react-hot-toast";
 import { CiPlay1 } from "react-icons/ci";
 import { RxCross2 } from "react-icons/rx";
-import OutsideClickHandler from "react-outside-click-handler";
 import { NavLink, useLocation } from "react-router-dom";
-import { useOutsideClick } from "../../../hooks/UseOutsideClick";
 import { useMain } from "../../../hooks/UseMain";
 
 const LeaveRequest = () => {
