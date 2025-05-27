@@ -4,13 +4,17 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("hrms_user"));
     if (storedUser) {
       setUser(storedUser);
     }
+    setLoading(false);
   }, []);
+
+  if (loading) return null;
 
   return (
     <AuthContext.Provider value={{ user, setUser }}>
@@ -18,5 +22,6 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
+
 
 export const useAuth = () => useContext(AuthContext);

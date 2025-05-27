@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import "react-calendar/dist/Calendar.css";
 import { useNavigate, NavLink } from "react-router-dom";
 
-import OutsideClickHandler from "react-outside-click-handler";
-
 import toast from "react-hot-toast";
 import * as EmailValidator from "email-validator";
 import validator from 'validator';

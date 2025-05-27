@@ -2,8 +2,6 @@ import "react-calendar/dist/Calendar.css";
 import { NavLink, useLocation } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
 import toast from "react-hot-toast";
-
-import OutsideClickHandler from "react-outside-click-handler";
 import { CiPlay1 } from "react-icons/ci";
 import {useMain} from "../../../hooks/UseMain"
 import {useOutsideClick} from '../../../hooks/UseOutsideClick'

@@ -153,7 +153,7 @@ function App() {
           </Route>
 
           <Route element={<PrivateRoute allowedRoles={["EMPLOYEE"]} />}>
-            <Route path="/employeeDash" element={<EmployeeDashboard />} />
+            <Route path="/employeeDash" element={<AdminDashboard />} />
             {/* <Route path="/employeeDash/HRM/myProjects" element={<MyProject />} /> */}
             <Route path="/employeeDash/HRM/projectDetails" element={<ProjectDetails2 />} />
             <Route path="/employeeDash/employeeLeave" element={<MyLeaves />} />

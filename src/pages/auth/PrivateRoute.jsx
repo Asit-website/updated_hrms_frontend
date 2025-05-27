@@ -7,9 +7,14 @@ const PrivateRoute = ({ allowedRoles }) => {
 
   const stored = JSON.parse(localStorage.getItem("hrms_token"));
   const role = stored?.role;
+  const token = stored?.token;
 
-  if (!user) {
+   if (!user) {
     return <Navigate to="/login" state={{ from: location }} replace />;
+  }
+
+  if (!token) {
+    return <Navigate to="/login" replace />;
   }
 
   if (allowedRoles && !allowedRoles.includes(role)) {

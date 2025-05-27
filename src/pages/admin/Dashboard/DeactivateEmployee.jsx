@@ -6,7 +6,6 @@ import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 
-import OutsideClickHandler from "react-outside-click-handler"; 
 import toast from "react-hot-toast";
 import { useMain } from "../../../hooks/UseMain";
 
