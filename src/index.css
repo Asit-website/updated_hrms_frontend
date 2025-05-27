@@ -99,6 +99,10 @@
     background-color: #e6e6e6 ;
 }
 
+.react-datepicker-wrapper {
+    width: 100%;
+}
+
 
 
 input[type=number]::-webkit-inner-spin-button,

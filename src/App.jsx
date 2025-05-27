@@ -67,7 +67,6 @@ import HRMsystemSetup from "./pages/admin/HrManagement/HRMsystemSetup";
 import EmployeeMan from './pages/admin/HrManagement/EmployeeMan';
 
 // Employee Pages
-import EmployeeDashboard from "./pages/employee/Dashboard";
 // import MyProject from './pages/employee/Task Mangement/MyProject';
 import ProjectDetails2 from "./pages/employee/Task Mangement/ProjectDetail2";
 import MyLeaves from "./pages/employee/MyLeave";
@@ -79,11 +78,10 @@ import Tasks from "./pages/admin/TaskManagement/Tasks";
 import EmployeAttendence from "./pages/admin/HrManagement/EmployeAttendence";
 import ProfileManagement from "./pages/admin/HrManagement/ProfileManagement";
 import EditQuotation from "./pages/admin/LeadManagement/EditQuotation";
-function App() {
-
 
 // Client Pages
 import ClientDashboard from "./pages/Client/ClientDashboard";
+import AttendenceCalendar from "./pages/employee/AttendenceCalendar";
 
 function App() {
   return (
@@ -157,6 +155,7 @@ function App() {
             {/* <Route path="/employeeDash/HRM/myProjects" element={<MyProject />} /> */}
             <Route path="/employeeDash/HRM/projectDetails" element={<ProjectDetails2 />} />
             <Route path="/employeeDash/employeeLeave" element={<MyLeaves />} />
+            <Route path="/employeeDash/atten" element={<AttendenceCalendar />} />
           </Route>
 
           <Route path="/client" element={<ClientDashboard />} />
