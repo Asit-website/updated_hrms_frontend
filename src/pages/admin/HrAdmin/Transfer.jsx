@@ -190,8 +190,8 @@ const Transfer = () => {
                           ? row.Description.slice(0, 30) + "..."
                           : row.Description}
                       </td>
-                      <td className="px-6 py-4">
-                        <ActionMenu options={buttonOptions(row)} />
+                      <td className="px-6 py-4 absolute">
+                        <ActionMenu options={buttonOptions(row)} className="relative"/>
                       </td>
                     </tr>
                   ))

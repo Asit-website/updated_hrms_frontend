@@ -64,6 +64,13 @@ import ForgetPassword1 from "./pages/auth/ForgetPassword1";
 import ProjectDetails2 from "./pages/employee/Task Mangement/ProjectDetail2";
 import MyLeaves from "./pages/employee/MyLeave";
 import ClientProjectOverview from "./pages/Client/ClientProjectOverview";
+import CreateEmployee from "./pages/employee/CreateEmployee";
+import UploadITRForm from "./pages/admin/Performance/UploadITRForm";
+import ITRReturn from "./pages/admin/Performance/ITRReturn";
+import Tasks from "./pages/admin/TaskManagement/Tasks";
+import EmployeAttendence from "./pages/admin/HrManagement/EmployeAttendence";
+import ProfileManagement from "./pages/admin/HrManagement/ProfileManagement";
+import EditQuotation from "./pages/admin/LeadManagement/EditQuotation";
 function App() {
     
 
@@ -84,9 +91,13 @@ function App() {
           <Route path="/adminDash/HRM/halfDayRequest" element={<HalfRequest  />} />
           <Route path="/adminDash/HRM/totalEmployee" element={<TotalEmployee  />} />
           <Route path="/adminDash/HRM/deactivate" element={<DeactivateEmployee  />} />
+                        <Route path="/adminDash/HRM/createEmployee" element={<CreateEmployee/>} />
           <Route path="/employeeDash" element={<EmployeeDashboard />} />
        
           <Route path="/adminDash/leadFile" element={<LeadFile2 />} />
+            <Route path="/adminDash/HRM/userAttendence" element={<EmployeAttendence />} />
+                          <Route path="/adminDash/profile-management" element={<ProfileManagement />} />
+                           <Route path="/adminDash/editQuotation" element={<EditQuotation/>} />
           <Route path="/adminDash/userLead" element={<UserLead />} />
           <Route path="/adminDash/leadDash" element={<LeadManagement />} />
           <Route path="/adminDash/HRM/ResignationHRM" element={<Resignation />}/>
@@ -101,7 +112,10 @@ function App() {
           <Route path="/adminDash/createLead" element={<CreateLead />} />
           <Route path="/adminDash/mySelf" element={<MySelf  />}/>
           <Route path="/performance/Assets" element={<Assets  />} />
+             <Route path="/adminDash/HRM/Tasks" element={<Tasks/>} />
           <Route path="/adminDash/HRM/Expense" element={<Items />} />
+           <Route path="/adminDash/HRM/UploadITRForm" element={<UploadITRForm/>} />
+           <Route path="/adminDash/HRM/ITRReturn" element={<ITRReturn/>} />
           <Route path="/adminDash/HRM/WarningHRM" element={<Warning />} />
           <Route path="/adminDash/HRM/TerminationHRM" element={<Termination />} />
           <Route path="/adminDash/editLead" element={<EditLead />} />

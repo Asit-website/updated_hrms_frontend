@@ -214,8 +214,8 @@ const Resignation = () => {
                       <td  className="px-6 py-4 text-gray-800">
                         {item?.description?.length > 30 ? item?.description?.slice(0, 30) : item?.description}
                       </td>
-                      <td  className="px-6 py-4 text-gray-800">
-                        <ActionMenu options={buttonOptions(item)}/>
+                      <td  className="px-6 py-4 text-gray-800 absolute">
+                        <ActionMenu options={buttonOptions(item)} className="relative"/>
                       </td>
                     </tr>
                   ))

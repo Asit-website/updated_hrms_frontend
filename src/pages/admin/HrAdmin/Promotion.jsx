@@ -188,8 +188,8 @@ const Promotion = () => {
                           description
                         }
                       </td>
-                      <td key={i} className="px-6 py-4 text-gray-800">
-                        <ActionMenu options={buttonOptions}/>
+                      <td key={i} className="px-6 py-4 text-gray-800 absolute">
+                        <ActionMenu options={buttonOptions} className="relative"/>
                       </td>
                     </tr>
                   ))
