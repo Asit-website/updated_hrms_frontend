@@ -71,6 +71,16 @@ import EmployeeDashboard from "./pages/employee/Dashboard";
 // import MyProject from './pages/employee/Task Mangement/MyProject';
 import ProjectDetails2 from "./pages/employee/Task Mangement/ProjectDetail2";
 import MyLeaves from "./pages/employee/MyLeave";
+import ClientProjectOverview from "./pages/Client/ClientProjectOverview";
+import CreateEmployee from "./pages/employee/CreateEmployee";
+import UploadITRForm from "./pages/admin/Performance/UploadITRForm";
+import ITRReturn from "./pages/admin/Performance/ITRReturn";
+import Tasks from "./pages/admin/TaskManagement/Tasks";
+import EmployeAttendence from "./pages/admin/HrManagement/EmployeAttendence";
+import ProfileManagement from "./pages/admin/HrManagement/ProfileManagement";
+import EditQuotation from "./pages/admin/LeadManagement/EditQuotation";
+function App() {
+
 
 // Client Pages
 import ClientDashboard from "./pages/Client/ClientDashboard";
@@ -86,7 +96,6 @@ function App() {
         <Route path="/forget1" element={<ForgetPassword1 />} />
         <Route path="/forget2" element={<Create />} />
         <Route path="/unauthorized" element={<Unauthorized />} />
-
 
         <Route element={<MainLayout />}>
 

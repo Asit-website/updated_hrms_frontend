@@ -1,6 +1,4 @@
 
-import CommonTable from "../../../components/CommonTable";
-
 import ActionMenu from "../../../components/ActionMenu";
 import { useMain } from "../../../hooks/UseMain";
 import { useEffect, useState } from "react";
@@ -35,8 +33,6 @@ const Warning = () => {
     "SUBJECT",
     "WARNING DATE",
     "DESCRIPTION",
-
-
     "ACTION"
   ];
 
@@ -117,8 +113,8 @@ const Warning = () => {
                           description
                         }
                       </td>
-                      <td className="px-6 py-4 text-gray-800">
-                        <ActionMenu options={buttonOptions} />
+                      <td className="px-6 py-4 text-gray-800 absolute">
+                        <ActionMenu options={buttonOptions} className="relative"/>
                       </td>
                     </tr>
                   ))

@@ -510,7 +510,7 @@ export default function LeadManagement() {
             </table>
           </div>
          
-          {/* <CommonTable theadData={theadData2} tbodyData={tbodyData2} /> */}
+     
         </div>
        
       </div>
