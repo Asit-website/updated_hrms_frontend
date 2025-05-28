@@ -1,3 +1,4 @@
+import React from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -65,6 +66,8 @@ import Appraisal from "./pages/admin/HrManagement/Appraisal";
 import GoalTracking from "./pages/admin/HrManagement/GoalTracking";
 import HRMsystemSetup from "./pages/admin/HrManagement/HRMsystemSetup";
 import EmployeeMan from './pages/admin/HrManagement/EmployeeMan';
+import MeetLead from "./pages/admin/LeadManagement/MeetLead";
+import Notification from "./pages/admin/Notification";
 
 // Employee Pages
 // import MyProject from './pages/employee/Task Mangement/MyProject';
@@ -82,6 +85,8 @@ import EditQuotation from "./pages/admin/LeadManagement/EditQuotation";
 // Client Pages
 import ClientDashboard from "./pages/Client/ClientDashboard";
 import AttendenceCalendar from "./pages/employee/AttendenceCalendar";
+import AddEmployee from "./pages/admin/LeadManagement/AddEmployee";
+
 
 function App() {
   return (
@@ -99,6 +104,7 @@ function App() {
 
           <Route element={<PrivateRoute allowedRoles={["ADMIN"]} />}>
             <Route path="/adminDash/HRM" element={<AdminDashboard />} />
+             <Route path="/adminDash/addEmployee" element={<AddEmployee/>} />
             <Route path="/adminDash/announcement" element={<AdminAnnouncement />} />
             <Route path="/adminDash/HRM/holiday" element={<HolidayHrm />} />
             <Route path="/adminDash/HRM/activeEmployee" element={<ActiveEmplyee />} />
@@ -113,6 +119,7 @@ function App() {
             <Route path="/admin/leadlist" element={<LeadsList />} />
             <Route path="/adminDash/createLead" element={<CreateLead />} />
             <Route path="/adminDash/editLead" element={<EditLead />} />
+             <Route path="/adminDash/editQuotation" element={<EditQuotation/>} />
             <Route path="/adminDash/importLead/:id" element={<ImportLead />} />
             <Route path="/adminDash/LeadSystemSetting" element={<LeadSystemSetting />} />
             <Route path="/adminDash/HRM/QuotationForm" element={<QuotationForm />} />
@@ -128,6 +135,7 @@ function App() {
             <Route path="/adminDash/HRM/TerminationHRM" element={<Termination />} />
             <Route path="/adminDash/HRM/TransferHRM" element={<Transfer />} />
             <Route path="/adminDash/HRM/AwardHRM" element={<AwardHrm />} />
+             <Route path="/adminDash/meetLead" element={<MeetLead/>} />
             <Route path="/performance/Assets" element={<Assets />} />
             <Route path="/adminDash/HRM/Expense" element={<Items />} />
             <Route path="/performance/appraisal" element={<Appraisal />} />
@@ -148,6 +156,7 @@ function App() {
             <Route path="/adminDash/documentManagement" element={<DocumentManagement />} />
             <Route path="/adminDash/HRM/HRMsystemSetup" element={<HRMsystemSetup />} />
             <Route path="/adminDash/EmployeeMan" element={<EmployeeMan />} />
+             <Route path="/adminDash/notification" element={<Notification/>} />
           </Route>
 
           <Route element={<PrivateRoute allowedRoles={["EMPLOYEE"]} />}>

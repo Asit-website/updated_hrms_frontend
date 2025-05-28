@@ -1,6 +1,4 @@
-
-
-
+import React from "react";
 
 // import "react-profile-avatar/dist/index.css";
 

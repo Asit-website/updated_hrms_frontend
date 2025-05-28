@@ -1,14 +1,11 @@
+import React from "react";
 import ActionMenu from "../../../components/ActionMenu";
 import { useMain } from "../../../hooks/UseMain";
 import { useEffect } from "react";
 
 
 const Termination = () => {
-
-
-  const { getTermination, termination} = useMain();
-
-
+ const { getTermination, termination} = useMain();
   useEffect(() => {
     if (!termination.length) {
       getTermination()
