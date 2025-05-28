@@ -53,7 +53,7 @@ export default function LoginPage() {
 
 
   return (
-    <section className="bg-gray-100 min-h-screen flex flex-col justify-between p-6">
+    <section className="bg-gray-100 min-h-screen flex flex-col justify-around p-6">
       <div className="flex items-center justify-center p-5 py-12">
         <div className="bg-white rounded-2xl shadow-md flex max-w-5xl w-full overflow-hidden">
           <form

@@ -12,11 +12,9 @@ import { useClickOutside } from "../../hooks/useClickOutside";
 const AttendenceCalendar = () => {
     let todayDate = new Date().toLocaleDateString("en-GB");
     const {
-        postActivity,
-        getStatisticsByUser,
+        
         getActivitiesByUser,
         getAttendence,
-        savenoteatt,
     } = useMain();
     const { user } = useAuth();
     const [value, onChange] = useState(new Date());

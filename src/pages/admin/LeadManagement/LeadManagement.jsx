@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Briefcase,
   Settings,
@@ -6,9 +7,6 @@ import {
   RefreshCcw,
   Gift,
 } from "lucide-react";
-import CommonTableLead from "../../../components/CommonTableLead";
-import CommonTable from "../../../components/CommonTable";
-import ActionMenu from "../../../components/ActionMenu";
 import { Navigate, NavLink, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useMain } from "../../../hooks/UseMain";

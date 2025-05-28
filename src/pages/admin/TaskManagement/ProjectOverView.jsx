@@ -1,3 +1,4 @@
+import React from "react";
 import { useLocation } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import CircularProgress from "./CircularProgress";
@@ -6,9 +7,6 @@ import ProjectOverview2 from "./ProjectOverview2";
 import "react-calendar/dist/Calendar.css";
 // import "react-profile-avatar/dist/index.css";
 import toast from "react-hot-toast";
-// import ClientNavbar from "../../Client/ClientNavbar";
-// import ClientSideBar from "../../Client/ClientSideBar";
-
 import { FaFileAlt } from "react-icons/fa";
 import { useMain } from "../../../hooks/UseMain";
 

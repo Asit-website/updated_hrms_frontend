@@ -1,3 +1,4 @@
+import React from 'react';
 import { MdCalendarToday, MdTimer } from 'react-icons/md';
 
 export default function TimeLog({clock,breakClock,totalHours}) {

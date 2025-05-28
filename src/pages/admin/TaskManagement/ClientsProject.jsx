@@ -117,7 +117,7 @@ const AdminClientDashboard = () => {
                     Members: [],
                     Status: "Ongoing",
                     DueDate: "",
-                    Members: "",
+                  
                 });
                 setAddClientPop(false);
                 setProUser([]);

@@ -1,3 +1,4 @@
+import React from "react";
 import "react-calendar/dist/Calendar.css";
 // import "react-profile-avatar/dist/index.css";
 import { useEffect, useState } from "react";
@@ -7,7 +8,7 @@ import { useMain } from "../../../hooks/UseMain";
 
 const projectOpt = ["All", "Ongoing", "Finished", "OnHold"];
 
-const Tasks = ({ setAlert, pop, setPop }) => {
+const Tasks = () => {
 
   const { user , allEmployee , getAllProjectApi , CreateProjectTask , getAllProjectAllTaskApi } = useMain();
 

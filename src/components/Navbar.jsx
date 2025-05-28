@@ -74,7 +74,7 @@ const Navbar = ({ showSidebar, setShowSidebar }) => {
 
     <>
       <nav className="bg-white border-gray-200 dark:bg-gray-900 shadow-md fixed top-0 left-0 right-0 z-50">
-        <div className="max-w-[1720px] flex flex-wrap items-center justify-between mx-auto p-4 md:px-8">
+        <div className="max-w-[1720px] flex items-center justify-between mx-auto p-4 md:px-8">
           <NavLink to="/">
             <img
               src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1739012691/logo_zckmvw.png"

@@ -1,9 +1,9 @@
-
+import React from "react";
 import "react-calendar/dist/Calendar.css";
 import { useMain } from "../../../hooks/UseMain";
 
 
-const ITRReturn = ({ setAlert, pop, setPop }) => {
+const ITRReturn = () => {
   const { user } = useMain();
 
   let hrms_user = JSON.parse(localStorage.getItem("hrms_user"));

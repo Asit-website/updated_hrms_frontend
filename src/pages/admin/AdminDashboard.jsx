@@ -1,3 +1,4 @@
+import React from "react";
 import { RefreshCw, User, Settings, Clock, Users, Gift } from "lucide-react";
 import { MdCalendarToday, MdEventAvailable } from "react-icons/md";
 import TimeLog from "../../components/DashBoard/TimeLog";
