@@ -100,11 +100,14 @@ function App() {
         <Route path="/forget2" element={<Create />} />
         <Route path="/unauthorized" element={<Unauthorized />} />
 
-        <Route element={<MainLayout />}>
 
+        <Route element={<MainLayout />}>
+          <Route path="/performance/appraisal" element={<Appraisal />} />
+          <Route path="/performance/goalTracking" element={<GoalTracking />} />
+          <Route path="/performance/Assets" element={<Assets />} />
           <Route element={<PrivateRoute allowedRoles={["ADMIN"]} />}>
             <Route path="/adminDash/HRM" element={<AdminDashboard />} />
-             <Route path="/adminDash/addEmployee" element={<AddEmployee/>} />
+            <Route path="/adminDash/addEmployee" element={<AddEmployee />} />
             <Route path="/adminDash/announcement" element={<AdminAnnouncement />} />
             <Route path="/adminDash/HRM/holiday" element={<HolidayHrm />} />
             <Route path="/adminDash/HRM/activeEmployee" element={<ActiveEmplyee />} />
@@ -119,7 +122,7 @@ function App() {
             <Route path="/admin/leadlist" element={<LeadsList />} />
             <Route path="/adminDash/createLead" element={<CreateLead />} />
             <Route path="/adminDash/editLead" element={<EditLead />} />
-             <Route path="/adminDash/editQuotation" element={<EditQuotation/>} />
+            <Route path="/adminDash/editQuotation" element={<EditQuotation />} />
             <Route path="/adminDash/importLead/:id" element={<ImportLead />} />
             <Route path="/adminDash/LeadSystemSetting" element={<LeadSystemSetting />} />
             <Route path="/adminDash/HRM/QuotationForm" element={<QuotationForm />} />
@@ -135,11 +138,8 @@ function App() {
             <Route path="/adminDash/HRM/TerminationHRM" element={<Termination />} />
             <Route path="/adminDash/HRM/TransferHRM" element={<Transfer />} />
             <Route path="/adminDash/HRM/AwardHRM" element={<AwardHrm />} />
-             <Route path="/adminDash/meetLead" element={<MeetLead/>} />
-            <Route path="/performance/Assets" element={<Assets />} />
+            <Route path="/adminDash/meetLead" element={<MeetLead />} />
             <Route path="/adminDash/HRM/Expense" element={<Items />} />
-            <Route path="/performance/appraisal" element={<Appraisal />} />
-            <Route path="/performance/goalTracking" element={<GoalTracking />} />
             <Route path="/adminDash/HRM/taskClients" element={<Clients />} />
             <Route path="/adminDash/HRM/clientsProject" element={<ClientsProject />} />
             <Route path="/adminDash/HRM/projectOverview" element={<ProjectOverView />} />
@@ -156,15 +156,44 @@ function App() {
             <Route path="/adminDash/documentManagement" element={<DocumentManagement />} />
             <Route path="/adminDash/HRM/HRMsystemSetup" element={<HRMsystemSetup />} />
             <Route path="/adminDash/EmployeeMan" element={<EmployeeMan />} />
-             <Route path="/adminDash/notification" element={<Notification/>} />
+            <Route path="/adminDash/notification" element={<Notification />} />
           </Route>
 
           <Route element={<PrivateRoute allowedRoles={["EMPLOYEE"]} />}>
             <Route path="/employeeDash" element={<AdminDashboard />} />
-            {/* <Route path="/employeeDash/HRM/myProjects" element={<MyProject />} /> */}
             <Route path="/employeeDash/HRM/projectDetails" element={<ProjectDetails2 />} />
             <Route path="/employeeDash/employeeLeave" element={<MyLeaves />} />
             <Route path="/employeeDash/atten" element={<AttendenceCalendar />} />
+            <Route path="/employeeDash/leadDash" element={<LeadManagement />} />
+            <Route path="/employeeDash/LeadSystemSetting" element={<LeadSystemSetting />} />
+            <Route path="/employeeDash/HRM/taskClients" element={<Clients />} />
+            <Route path="/employeeDash/HRM/taskProjects" element={<TaskProjects />} />
+            {/* <Route path="/employeeDash/HRM/myProjects" element={<MyProjects />} />  ..............Pending */}
+            <Route path="/employeeDash/HRM/EmployeeManagement" element={<EmployeeManagement />} />
+            <Route path="/employeeDash/HRM/markAttendance" element={<MarkAttendance />} />
+            <Route path="/employeeDash/HRM/LeaveEmployee" element={<LeaveEmployee />} />
+            <Route path="/employeeDash/HRM/leaveRequest" element={<LeaveRequest />} />
+            <Route path="/employeeDash/setSallary" element={<SetSallary />} />
+            <Route path="/employeeDash/payslip" element={<Payslip />} />
+            <Route path="/employeeDash/documentManagement" element={<DocumentManagement />} />
+            <Route path="/employeeDash/HRM/HRMsystemSetup" element={<HRMsystemSetup />} />
+            <Route path="/employeeDash/HRM/Expense" element={<Items />} />
+            <Route path="/employeeDash/HRM/AwardHRM" element={<AwardHrm />} />
+            <Route path="/employeeDash/HRM/TransferHRM" element={<Transfer />} />
+            <Route path="/employeeDash/HRM/ResignationHRM" element={<Resignation />} />
+            <Route path="/employeeDash/HRM/PromotionHRM" element={<Promotion />} />
+            <Route path="/employeeDash/HRM/ComplaintsHRM" element={<Complaints />} />
+            <Route path="/employeeDash/HRM/WarningHRM" element={<Warning />} />
+            <Route path="/employeeDash/HRM/TerminationHRM" element={<Termination />} />
+            <Route path="/employeeDash/HRM/holiday" element={<HolidayHrm />} />
+            <Route path="/employeeDash/announcement" element={<AdminAnnouncement />} />
+            <Route path="/employeeDash/myLead" element={<MyLead />} />
+            <Route path="/employeeDash/userLead" element={<UserLead />} />
+            <Route path="/employeeDash/closeLeads" element={<CloseLeads />} />
+            <Route path="/employeeDash/editLead" element={<EditLead />} />
+            <Route path="/employeeDash/importLead/:id" element={<ImportLead />} />
+            <Route path="/employeeDash/createLead" element={<CreateLead />} />
+            <Route path="/employeeDash/leadFile" element={<LeadFile2 />} />
           </Route>
 
           <Route path="/client" element={<ClientDashboard />} />

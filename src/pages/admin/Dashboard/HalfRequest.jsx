@@ -4,15 +4,15 @@ import { NavLink, useLocation } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
 import toast from "react-hot-toast";
 import { CiPlay1 } from "react-icons/ci";
-import {useMain} from "../../../hooks/UseMain"
-import {useOutsideClick} from '../../../hooks/UseOutsideClick'
+import { useMain } from "../../../hooks/UseMain"
+import { useClickOutside } from "../../../hooks/useClickOutside";
 
 const HalfRequest = () => {
 
   const [star1, setStar1] = useState(false);
 
   const styleThing = {
-    display: star1 ? "block" : "none",
+    display: star1 ? "flex" : "none",
   };
 
   const { user, getUserHalfDay, updateLeave, acceptHalf, rejectHalfDay, postNotifyLeavereq } = useMain();
@@ -31,7 +31,7 @@ const HalfRequest = () => {
   const getData = async () => {
     let ans = await getUserHalfDay();
     const reverseArray = ans?.data?.reverse();
-    console.log("half day",reverseArray);
+    console.log("half day", reverseArray);
     setData(reverseArray);
   };
 
@@ -136,48 +136,49 @@ const HalfRequest = () => {
   }
 
   const [currentPage, setCurrentPage] = useState(1);
-    const [searchInput, setSearchInput] = useState("");
-  
-    const leavesPerPage = 7;
-    const filteredLeaves = data?.filter((emp) => {
-      const searchWords = searchInput.toLowerCase().trim().split(/\s+/);
-      const name = emp.user?.fullName.toLowerCase();
-      return searchWords.every((word) => name?.includes(word));
-    });
-  
-    const totalPages = Math.ceil(filteredLeaves?.length / leavesPerPage);
-    const paginatedProjects = filteredLeaves?.slice(
-      (currentPage - 1) * leavesPerPage,
-      currentPage * leavesPerPage
-    );
-  
-    const handlePrev = () => currentPage > 1 && setCurrentPage(currentPage - 1);
-    const handleNext = () => currentPage < totalPages && setCurrentPage(currentPage + 1);
-  
-    useEffect(() => {
-      setCurrentPage(1);
-    }, [searchInput]);
+  const [searchInput, setSearchInput] = useState("");
 
-  const wrapperRef = useRef();
-  const formRef = useRef();
+  const leavesPerPage = 7;
+  const filteredLeaves = data?.filter((emp) => {
+    const searchWords = searchInput.toLowerCase().trim().split(/\s+/);
+    const name = emp.user?.fullName.toLowerCase();
+    return searchWords.every((word) => name?.includes(word));
+  });
+
+  const totalPages = Math.ceil(filteredLeaves?.length / leavesPerPage);
+  const paginatedProjects = filteredLeaves?.slice(
+    (currentPage - 1) * leavesPerPage,
+    currentPage * leavesPerPage
+  );
+
+  const handlePrev = () => currentPage > 1 && setCurrentPage(currentPage - 1);
+  const handleNext = () => currentPage < totalPages && setCurrentPage(currentPage + 1);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchInput]);
+
   const [currView, setCurrView] = useState(-1);
 
-
-  useOutsideClick(wrapperRef, () => {
+  const wrapperRef = useClickOutside(() => {
     setShowPlay(-1)
   });
 
-  useOutsideClick(formRef, () => {
+  const formRef = useClickOutside(() => {
     setStar1(false);
   });
+
+  const ref = useClickOutside(() => {
+    setCurrView(-1);
+  })
 
 
   return (
     <>
       <div className="employee-dash h-full">
-       
+
         <div className="w-full bg-[#f5f5f5]">
-          
+
 
           <div className="w-full relative pt-8 pb-8 pr-5 pl-[20px]">
             <div className="flex-col">
@@ -186,7 +187,7 @@ const HalfRequest = () => {
               <div className="hrmDasTxtFir">
                 {/* <p className="hrmHed">Dashboard</p> */}
                 {location.state ? (<div className="hrDsPa">
-                 
+
                   <NavLink to={`/adminDash/HRM`}>
                     <span className="hover:text-[#1567FF] cursor-pointer text-xl">Dashboard</span>
                   </NavLink>
@@ -203,11 +204,11 @@ const HalfRequest = () => {
 
               </div>
               <main className="pt-[10px] pb-[30px] px-0">
-              <input className="border border-[#D0D4DC] w-[200px] h-[38px] px-[10px] rounded-[10px] mb-5" onChange={(e) => setSearchInput(e.target.value)}
-                value={searchInput} placeholder="Search Employee" />
+                <input className="border border-[#D0D4DC] w-[200px] h-[38px] px-[10px] rounded-[10px] mb-5" onChange={(e) => setSearchInput(e.target.value)}
+                  value={searchInput} placeholder="Search Employee" />
 
 
-              {/* second  */}
+                {/* second  */}
 
                 <div className="w-full overflow-x-auto rounded-lg md:overflow-x-scroll md:overflow-y-auto">
                   <table className="min-w-full text-sm text-gray-700">
@@ -227,7 +228,7 @@ const HalfRequest = () => {
                         <th scope="col" className="py-3 px-6 min-w-36 text-left w-full md:w-auto bg-white">
                           START DATE
                         </th>
-                        
+
                         <th scope="col" className="py-3 px-6 min-w-36 text-left w-full md:w-auto bg-white">
                           TOTAL DAYS
                         </th>
@@ -262,74 +263,64 @@ const HalfRequest = () => {
                               }</div>
                             </td>
 
-                            <OutsideClickHandler
-                              onOutsideClick={() => {
-                                if (index === currView) {
-                                  setCurrView(-1);
-                                }
-                              }}
-                            >
+                            <div className="viewOnwWRAP" style={{ position: "relative" }}>
+                              <td
+                                onClick={() => {
+                                  setCurrView(currView === index ? -1 : index);
+                                  setShowPlay(-1);
+                                }}
+                                className="px-3 py-3 flex items-center justify-center hiii_gap cursor-pointer"
+                              >
+                                <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747813854/actions_nwb36s.png" alt="" />
+                              </td>
 
-                              <div className="viewOnwWRAP" style={{ position: "relative" }}>
-                                <td
-                                  onClick={() => {
-                                    setCurrView(currView === index ? -1 : index);
-                                    setShowPlay(-1);
-                                  }}
-                                  className="px-3 py-3 flex items-center justify-center hiii_gap cursor-pointer"
-                                >
-                                  <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747813854/actions_nwb36s.png" alt="" />
-                                </td>
+                              {index === currView && (
+                                <div  ref={ref} className="absolute top-[-55px] min-w-[120px] h-fit border border-[#E3E3E3] flex flex-col shadow-[0px_4px_12px_0px_#1A1A1A33] px-0 py-2 gap-[5px] rounded-tl-[8px] rounded-tr-none rounded-br-none rounded-bl-none z-[1000] bg-white" style={{ position: "absolute", zIndex: 999, right: 80 }}>
+                                  {/* Update Button */}
+                                  {(leaveReqestEditPermission || role === "ADMIN") && (
+                                    <>
+                                      <div
+                                        className="flex gap-1 p-[5px] cursor-pointer"
+                                        onClick={() => {
+                                          setShowPlay(showPlay === index ? -1 : index);
+                                          setCurrView(-1);
 
-                                {index === currView && (
-                                  <div className="absolute top-[-55px] min-w-[120px] h-fit border border-[#E3E3E3] flex flex-col shadow-[0px_4px_12px_0px_#1A1A1A33] px-0 py-2 gap-[5px] rounded-tl-[8px] rounded-tr-none rounded-br-none rounded-bl-none z-[1000] bg-white" style={{ position: "absolute", zIndex: 999, right: 80 }}>
-                                    {/* Update Button */}
-                                    {(leaveReqestEditPermission || role === "ADMIN") && (
-                                      <>
-                                        <div
-                                          className="flex gap-1 p-[5px] cursor-pointer"
-                                          onClick={() => {
-                                            setShowPlay(showPlay === index ? -1 : index);
-                                            setCurrView(-1);
+                                        }}
+                                      >
+                                        <CiPlay1 className="h-5 w-5 text-black font-bold" />
+                                        <p>Update</p>
+                                      </div>
 
-                                          }}
-                                        >
-                                          <CiPlay1 className="h-5 w-5 text-black font-bold" />
-                                          <p>Update</p>
-                                        </div>
-
-                                        {/* Dropdown (Accept/Reject) */}
+                                      {/* Dropdown (Accept/Reject) */}
 
 
-                                        <hr />
+                                      <hr />
 
-                                        {/* Edit */}
-                                        <div
-                                          className="flex gap-1 p-[5px] cursor-pointer"
-                                          onClick={() => {
-                                            setCurrView(-1);
-                                            setFormdata((prev) => ({
-                                              ...prev,
-                                              reason: e.reason,
-                                              leaveType: e.leaveType,
-                                              employeeName: e?.user?.fullName,
-                                              start: e.from,
-                                              end: e.to,
-                                              id: e._id,
-                                            }));
-                                            setStar1((prev) => !prev);
-                                          }}
-                                        >
-                                          <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747814038/edit22_gcmjla.png" alt="" />
-                                          <p>Edit</p>
-                                        </div>
-                                      </>
-                                    )}
-                                  </div>
-                                )}
-                              </div>
-                            </OutsideClickHandler>
-
+                                      {/* Edit */}
+                                      <div
+                                        className="flex gap-1 p-[5px] cursor-pointer"
+                                        onClick={() => {
+                                          setCurrView(-1);
+                                          setFormdata((prev) => ({
+                                            ...prev,
+                                            reason: e.reason,
+                                            leaveType: e.leaveType,
+                                            employeeName: e?.user?.fullName,
+                                            start: e.from,
+                                            end: e.to,
+                                            id: e._id,
+                                          }));
+                                          setStar1((prev) => !prev);
+                                        }}
+                                      >
+                                        <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747814038/edit22_gcmjla.png" alt="" />
+                                        <p>Edit</p>
+                                      </div>
+                                    </>
+                                  )}
+                                </div>
+                              )}
+                            </div>
 
                             <div style={{ position: "relative", bottom: "7px" }} >
 
@@ -417,24 +408,20 @@ const HalfRequest = () => {
 
           <div
             style={styleThing}
-            id="authentication-modal"
-            tabindex="-1"
-            aria-hidden="true"
             className="fixed inset-0 bg-black bg-opacity-20 flex items-center justify-center h-screen z-[3000] backdrop-blur-[1px]"
           >
             <div
-              className="relative w-full h-[500px] mt-32 custom-scroll-hidden overflow-auto max-w-2xl p-4 bg-white rounded-2xl shadow-lg space-y-6" ref={formRef}
+              className="w-full h-[500px] custom-scroll-hidden overflow-auto max-w-2xl p-4 bg-white rounded-2xl shadow-lg space-y-6" ref={formRef}
             >
               {/* <!-- Modal content --> */}
               <div
-             
+
               >
                 {/* <!-- Modal header --> */}
                 <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                   <h3 className="editLeadreq">
                     Edit Leave Request
                   </h3>
-                  <img onClick={() => setStar1(false)} src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747813803/cancell_izt3hj.png" alt="" />
 
                 </div>
                 {/* <!-- Modal body --> */}
@@ -444,7 +431,7 @@ const HalfRequest = () => {
 
                     <div className="mt-2 user_class_input">
                       <label
-className="Resig-employ block text-gray-700 mb-1 w-full"
+                        className="Resig-employ block text-gray-700 mb-1 w-full"
                       >
                         Employee Name
                       </label>
@@ -456,16 +443,16 @@ className="Resig-employ block text-gray-700 mb-1 w-full"
                         type="text"
                         name="employeeName"
                         id="text"
-                    
+
                         placeholder="Enter the name"
                         required
-                          className="ml-[3px] w-full border rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="ml-[3px] w-full border rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                       />
                     </div>
 
                     <div className="mt-2 user_class_input">
-                      <label   
-                      className="Resig-employ block text-gray-700 mb-1 w-full"  >
+                      <label
+                        className="Resig-employ block text-gray-700 mb-1 w-full"  >
                         Leave type
                       </label>
                       <input
@@ -495,7 +482,7 @@ className="Resig-employ block text-gray-700 mb-1 w-full"
                           type="date"
                           name="start"
                           id="text"
-  className="ml-[3px] w-full border rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="ml-[3px] w-full border rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                           required
                         />
                       </div>
@@ -503,7 +490,7 @@ className="Resig-employ block text-gray-700 mb-1 w-full"
                       <div className="user_class_input w-full ml-2  mt-2">
                         <label
                           for="text"
-                       className="Resig-employ block text-gray-700 mb-1 w-full"
+                          className="Resig-employ block text-gray-700 mb-1 w-full"
                         >
                           End
                         </label>
@@ -513,7 +500,7 @@ className="Resig-employ block text-gray-700 mb-1 w-full"
                           type="date"
                           name="end"
                           id="text"
-  className="ml-[3px] w-full border rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="ml-[3px] w-full border rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                           required
                         />
                       </div>
@@ -523,7 +510,7 @@ className="Resig-employ block text-gray-700 mb-1 w-full"
                     <div className="user_class_input">
                       <label
                         for="message"
-                       className="Resig-employ block text-gray-700 mb-1 w-full"
+                        className="Resig-employ block text-gray-700 mb-1 w-full"
                       >
                         Reason
                       </label>

@@ -1,3 +1,4 @@
+import React from "react";
 const InitialsAvatar = ({ name, size = 50, textColor = '#fff', customColors }) => {
   const defaultColors = [
     '#F44336',

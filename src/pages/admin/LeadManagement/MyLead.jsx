@@ -14,11 +14,13 @@ import { FaRegEye } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";
 import { useMain } from "../../../hooks/UseMain";
 import { useDownloadExcel } from "react-export-table-to-excel";
+import { useAuth } from "../../../Context/AuthContext";
 
 const MyLead = () => {
   const navigate = useNavigate();
 
-  const {  getLead, deleteLeads, getUserByDesignation, closeLead } = useMain();
+  const { getLead, deleteLeads, getUserByDesignation, closeLead } = useMain();
+  const { user } = useAuth();
 
   const [desUsers, setDeUsers] = useState([]);
 
@@ -294,80 +296,49 @@ const MyLead = () => {
         <div className="w-full">
 
           <div className="pt-[10px] px-[20px] pb-[30px]">
-           {/* <div className="flex items-center justify-between">
+            <div className="flex flex-col xl:flex-row items-start lg:items-center justify-between gap-4 xl:gap-0">
               <div className="lead_content1">
-                <h2 className="text-[#101820] font-semibold text-[24px]">Lead Management</h2>
-                <p className="text-[12px] text-[#6B7280] mt-1">Real-time insights and performance overview</p>
+                <h2 className="text-[#101820] font-semibold text-[20px] lg:text-[24px]">
+                  Lead Management
+                </h2>
+                <p className="text-[12px] text-[#6B7280] mt-1">
+                  Real-time insights and performance overview
+                </p>
               </div>
-              <div>
-                <div className="flex items-center justify-center gap-[10px]">
-                  <button className="bg-[#0B56E4] w-[186px] h-[40px] rounded-[10px] text-white font-inter font-medium text-[16px] ml-[15px] flex items-center px-[10px] py-[0px] gap-[3px]">
-                    <NavLink className="flex items-center" to="/adminDash/createLead">
-                      {" "}
-                      <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746536488/pluss_syd720.png" alt="" />{" "}
-                      <span className="text-[16px] font-medium text-white"> Create New Lead </span>{" "}
-                    </NavLink>
-                  </button>
 
-                  <NavLink to="/adminDash/leadFile">
-                    <button className="flex items-center justify-evenly w-[162px] h-[40px] border border-[#0B56E4] rounded-[10px] bg-[linear-gradient(131.78deg,_#D1E8FD_6.87%,_#EDEFFF_91.67%)]">
-                      <span className="text-[#0B56E4] font-medium text-[16px]">Import Leads</span>
+              <div>
+                <div className="flex flex-col lg:flex-row items-start lg:items-center justify-start lg:justify-center gap-3 lg:gap-[10px]">
+                  <NavLink to={user?.role === "ADMIN" ? "/adminDash/createLead" : "/employeeDash/createLead"}>
+                    <button className="bg-[#0B56E4] w-full sm:w-[186px] h-[40px] rounded-[10px] text-white font-inter font-medium text-[16px] flex items-center justify-center px-[10px] py-[0px] gap-[3px]">
+                      <img
+                        src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746536488/pluss_syd720.png"
+                        alt=""
+                      />
+                      <span className="text-[16px] font-medium text-white">
+                        Create New Lead
+                      </span>
                     </button>
                   </NavLink>
 
-
-                  <button onClick={onDownload} className="flex items-center justify-evenly w-[162px] h-[40px] border border-[#0B56E4] rounded-[10px] bg-[linear-gradient(131.78deg,_#D1E8FD_6.87%,_#EDEFFF_91.67%)]">
-                      <span className="text-[#0B56E4] font-medium text-[16px]">Export Leads</span>
+                  <NavLink to={user?.role === "ADMIN" ? "/adminDash/leadFile" : "/employeeDash/leadFile"}>
+                    <button className="flex items-center justify-center w-full sm:w-[162px] h-[40px] border border-[#0B56E4] rounded-[10px] bg-[linear-gradient(131.78deg,_#D1E8FD_6.87%,_#EDEFFF_91.67%)]">
+                      <span className="text-[#0B56E4] font-medium text-[16px] px-5">
+                        Import Leads
+                      </span>
                     </button>
+                  </NavLink>
 
-
-
+                  <button
+                    onClick={onDownload}
+                    className="flex items-center justify-center w-full sm:w-[162px] h-[40px] border border-[#0B56E4] rounded-[10px] bg-[linear-gradient(131.78deg,_#D1E8FD_6.87%,_#EDEFFF_91.67%)]"
+                  >
+                    <span className="text-[#0B56E4] font-medium text-[16px]">
+                      Export Leads
+                    </span>
+                  </button>
                 </div>
               </div>
-            </div>  */}
-            <div className="flex flex-col xl:flex-row items-start lg:items-center justify-between gap-4 xl:gap-0">
-  <div className="lead_content1">
-    <h2 className="text-[#101820] font-semibold text-[20px] lg:text-[24px]">
-      Lead Management
-    </h2>
-    <p className="text-[12px] text-[#6B7280] mt-1">
-      Real-time insights and performance overview
-    </p>
-  </div>
-
-  <div>
-    <div className="flex flex-col lg:flex-row items-start lg:items-center justify-start lg:justify-center gap-3 lg:gap-[10px]">
-      <NavLink to="/adminDash/createLead">
-        <button className="bg-[#0B56E4] w-full sm:w-[186px] h-[40px] rounded-[10px] text-white font-inter font-medium text-[16px] flex items-center justify-center px-[10px] py-[0px] gap-[3px]">
-          <img
-            src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746536488/pluss_syd720.png"
-            alt=""
-          />
-          <span className="text-[16px] font-medium text-white">
-            Create New Lead
-          </span>
-        </button>
-      </NavLink>
-
-      <NavLink to="/adminDash/leadFile">
-        <button className="flex items-center justify-center w-full sm:w-[162px] h-[40px] border border-[#0B56E4] rounded-[10px] bg-[linear-gradient(131.78deg,_#D1E8FD_6.87%,_#EDEFFF_91.67%)]">
-          <span className="text-[#0B56E4] font-medium text-[16px] px-5">
-            Import Leads
-          </span>
-        </button>
-      </NavLink>
-
-      <button
-        onClick={onDownload}
-        className="flex items-center justify-center w-full sm:w-[162px] h-[40px] border border-[#0B56E4] rounded-[10px] bg-[linear-gradient(131.78deg,_#D1E8FD_6.87%,_#EDEFFF_91.67%)]"
-      >
-        <span className="text-[#0B56E4] font-medium text-[16px]">
-          Export Leads
-        </span>
-      </button>
-    </div>
-  </div>
-</div>
+            </div>
 
 
             <div className="flex justify-between items-center flex-wrap">
@@ -376,7 +347,7 @@ const MyLead = () => {
                 <div className="my-[20px] flex gap-[20px] items-center">
                   <div className="flex items-center gap-[8px] w-[285px] h-[48px] px-[16px] py-[8px] rounded-[15px] bg-white border border-[#D0D4DC]">
                     <input
-                    className="w-[288px] h-[46px] px-[16px] py-[8px] gap-[8px] border border-t border-none outline-none text-[14px] font-normal leading-[20px] tracking-[0.0025em] text-left"
+                      className="w-[288px] h-[46px] px-[16px] py-[8px] gap-[8px] border border-t border-none outline-none text-[14px] font-normal leading-[20px] tracking-[0.0025em] text-left"
                       value={searchText}
                       onChange={(e) => setSrchText(e.target.value)}
                       type="text"
@@ -396,7 +367,7 @@ const MyLead = () => {
                 <span className="text-[#666D76] text-[14px] font-normal leading-[20px] tracking-[0.0025em] text-left">Sort by</span>
 
                 <input
-                className="w-[265px] h-[48px] px-[16px] py-[8px] gap-[8px]  border-[#1B2533] rounded-[10px] text-[#1B2533"
+                  className="w-[265px] h-[48px] px-[16px] py-[8px] gap-[8px]  border-[#1B2533] rounded-[10px] text-[#1B2533"
                   type="date"
                   value={sortDate}
                   onChange={(e) => setSortDate(e.target.value)}
@@ -405,7 +376,7 @@ const MyLead = () => {
                 <span className="text-[#666D76] text-[14px] font-normal leading-[20px] tracking-[0.0025em] text-left">TO</span>
 
                 <input
-                className="w-[265px] h-[48px] px-[16px] py-[8px] gap-[8px] border-[#1B2533] rounded-[10px] text-[#1B2533"
+                  className="w-[265px] h-[48px] px-[16px] py-[8px] gap-[8px] border-[#1B2533] rounded-[10px] text-[#1B2533"
                   type="date"
                   value={sortDate2}
                   onChange={(e) => setSortDate2(e.target.value)}
@@ -432,63 +403,63 @@ const MyLead = () => {
                   <option value="Last 14 Days">Last 14 Days</option>
                   <option value="This Month">This Month</option>
                 </select>
-               
+
               </div>
 
-           <div className="bg-grey rounded-xl border-2">
-           <div className="w-full border-gray-200 bg-white border overflow-x-scroll">
-                <table className="w-full text-sm text-gray-700 overflow-x-auto">
-                  <thead className="bg-white font-semibold">
-                    <tr>
-                      <th scope="col" className="text-left font-bold text-gray-900 py-3 px-4 border-b border-gray-200 whitespace-nowrap">
-                       
-                        S/N
-                      </th>
-                      <th scope="col" className="text-left font-bold text-gray-900 py-3 px-4 border-b border-gray-200 whitespace-nowrap">
-                        Company Name
-                      </th>
-                      <th scope="col" className="text-left font-bold text-gray-900 py-3 px-4 border-b border-gray-200 whitespace-nowrap ">
-                        LeadName
-                      </th>
-                     
-                      <th scope="col" className="text-left font-bold text-gray-900 py-3 px-4 border-b border-gray-200 whitespace-nowrap ">
-                        Website
-                      </th>
-                      <th scope="col" className="text-left font-bold text-gray-900 py-3 px-4 border-b border-gray-200 whitespace-nowrap">
-                        Status
-                      </th>
-                      <th scope="col" className="text-left font-bold text-gray-900 py-3 px-4 border-b border-gray-200 whitespace-nowrap ">
-                        Lead Date
-                      </th>
+              <div className="bg-grey rounded-xl border-2">
+                <div className="w-full border-gray-200 bg-white border overflow-x-scroll">
+                  <table className="w-full text-sm text-gray-700 overflow-x-auto">
+                    <thead className="bg-white font-semibold">
+                      <tr>
+                        <th scope="col" className="text-left font-bold text-gray-900 py-3 px-4 border-b border-gray-200 whitespace-nowrap">
 
-                      <th scope="col" className="text-left font-bold text-gray-900 py-3 px-4 border-b border-gray-200 whitespace-nowrap">
-                        ACTION
-                      </th>
-                    </tr>
-                  </thead>
+                          S/N
+                        </th>
+                        <th scope="col" className="text-left font-bold text-gray-900 py-3 px-4 border-b border-gray-200 whitespace-nowrap">
+                          Company Name
+                        </th>
+                        <th scope="col" className="text-left font-bold text-gray-900 py-3 px-4 border-b border-gray-200 whitespace-nowrap ">
+                          LeadName
+                        </th>
 
-                  <tbody>
-                    {currentItems.map((item, index) => (
-                      <tr key={index} className="border-b border-gray-200 hover:bg-gray-50 transition duration-150">
-                        <td scope="col" className="px-6 py-4 text-gray-800">
-                        
-                          {
-                            index + 1
-                          }
-                          {console.log(currentItems, currentFilteredItems)}
-                        </td>
+                        <th scope="col" className="text-left font-bold text-gray-900 py-3 px-4 border-b border-gray-200 whitespace-nowrap ">
+                          Website
+                        </th>
+                        <th scope="col" className="text-left font-bold text-gray-900 py-3 px-4 border-b border-gray-200 whitespace-nowrap">
+                          Status
+                        </th>
+                        <th scope="col" className="text-left font-bold text-gray-900 py-3 px-4 border-b border-gray-200 whitespace-nowrap ">
+                          Lead Date
+                        </th>
 
-                        <td className="px-6 py-4 text-gray-800">{item?.Company}</td>
-                        <td className="px-6 py-4 text-gray-800">
-                          {item?.FirstName} {item?.LastName}
-                        </td>
-                       
-                        <td className="px-6 py-4 text-gray-800">{item?.Website}</td>
+                        <th scope="col" className="text-left font-bold text-gray-900 py-3 px-4 border-b border-gray-200 whitespace-nowrap">
+                          ACTION
+                        </th>
+                      </tr>
+                    </thead>
 
-                        <td scope="col" className="px-6 py-4 text-gray-800">
-                          <div
-                            scope="col"
-                            className={`statussame 
+                    <tbody>
+                      {currentItems.map((item, index) => (
+                        <tr key={index} className="border-b border-gray-200 hover:bg-gray-50 transition duration-150">
+                          <td scope="col" className="px-6 py-4 text-gray-800">
+
+                            {
+                              index + 1
+                            }
+                            {console.log(currentItems, currentFilteredItems)}
+                          </td>
+
+                          <td className="px-6 py-4 text-gray-800">{item?.Company}</td>
+                          <td className="px-6 py-4 text-gray-800">
+                            {item?.FirstName} {item?.LastName}
+                          </td>
+
+                          <td className="px-6 py-4 text-gray-800">{item?.Website}</td>
+
+                          <td scope="col" className="px-6 py-4 text-gray-800">
+                            <div
+                              scope="col"
+                              className={`statussame 
                               ${item?.LeadStatus === "Connected" && "connected"} 
                               ${item?.LeadStatus == "Nurturing" && "Nurturing"} ${item?.LeadStatus == "Qualified" && "Qualified"} 
                               ${item?.LeadStatus == "Unqualified" && "Unqualified"}  ${item?.LeadStatus == "Converted" && "Converted"}
@@ -497,80 +468,80 @@ const MyLead = () => {
                                ${item?.LeadStatus === "New" && "Newleadstatus"}
                               
                                `}
-                          >
-                            {item?.LeadStatus}
-                          </div>
-                        </td>
-
-                        <td className="px-6 py-4 text-gray-800">
-                          {new Date(item?.createAt).toLocaleDateString("en-CA")}
-                        </td>
-
-                        <OutsideClickHandler
-                          onOutsideClick={() => {
-                            if (index === currView) {
-                              setCurrView(-1);
-                            }
-                          }}
-                        >
-                          <div className="relative">
-                            <td
-                              onClick={() => {
-                                setCurrView(currView === index ? -1 : index);
-                           
-                              }}
-                              className="px-6 py-4 text-gray-800"
                             >
-                              <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746536583/actions_cwfbva.png" alt="" />
-                            </td>
+                              {item?.LeadStatus}
+                            </div>
+                          </td>
 
-                            {index === currView && (
-                              <div className="absolute top-[-15px] min-w-[120px] h-fit border-t border-[#E3E3E3] flex flex-col shadow-[0_4px_12px_0px_#1A1A1A33] py-[8px] gap-[5px] rounded-tl-[8px] rounded-tr-none rounded-br-none rounded-bl-none z-[1000] bg-white right-[75px]">
-                                <div className="flex gap-4 items-center px-2 cursor-pointer" onClick={() => navigate("/adminDash/editLead", { state: item })}>
-                                 
-                                <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746260260/Vector_zah5tt.svg" alt="Edit" />
-                                   <p className="text-sm text-gray-700 hover:bg-gray-100">Edit</p>
-                                </div>
-                                <hr />
-                                <div className="flex gap-4 items-center px-2 cursor-pointer" onClick={() => {
-                                  navigate(`/adminDash/importLead/${item._id}`);
-                                }}>
-                                  
-                                  <FaRegEye className="text-[18px]"/>
-                                  <p className="text-sm text-gray-700 hover:bg-gray-100">View</p>
-                                </div>
-                                <hr />
-                                <div className="flex gap-4 items-center px-2 cursor-pointer" onClick={() => {
-                                  deleteProject(item?._id)
-                                }}>
-                               
-                               <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746260280/delete_sgefhv.png" alt="delete" />
-                                 <p className="text-sm text-gray-700 hover:bg-gray-100">Delete</p>
+                          <td className="px-6 py-4 text-gray-800">
+                            {new Date(item?.createAt).toLocaleDateString("en-CA")}
+                          </td>
+
+                          <OutsideClickHandler
+                            onOutsideClick={() => {
+                              if (index === currView) {
+                                setCurrView(-1);
+                              }
+                            }}
+                          >
+                            <div className="relative">
+                              <td
+                                onClick={() => {
+                                  setCurrView(currView === index ? -1 : index);
+
+                                }}
+                                className="px-6 py-4 text-gray-800"
+                              >
+                                <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746536583/actions_cwfbva.png" alt="" />
+                              </td>
+
+                              {index === currView && (
+                                <div className="absolute top-[-15px] min-w-[120px] h-fit border-t border-[#E3E3E3] flex flex-col shadow-[0_4px_12px_0px_#1A1A1A33] py-[8px] gap-[5px] rounded-tl-[8px] rounded-tr-none rounded-br-none rounded-bl-none z-[1000] bg-white right-[75px]">
+                                  <div className="flex gap-4 items-center px-2 cursor-pointer" onClick={() => navigate("/adminDash/editLead", { state: item })}>
+
+                                    <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746260260/Vector_zah5tt.svg" alt="Edit" />
+                                    <p className="text-sm text-gray-700 hover:bg-gray-100">Edit</p>
                                   </div>
                                   <hr />
-                                <div
-                                  onClick={() => {
-                                    closeLeadHandler(item?._id);
-                                  }}
-                                  className="flex gap-3 items-center px-2 cursor-pointer"
-                                >
-                                  <IoIosCloseCircle className="incfornsizze" />
+                                  <div className="flex gap-4 items-center px-2 cursor-pointer" onClick={() => {
+                                    navigate(user?.role === "ADMIN" ? `/adminDash/importLead/${item._id}` : `/employeeDash/importLead/${item._id}`);
+                                  }}>
 
-                                  <p className="text-sm text-gray-700 hover:bg-gray-100">Close Deal</p>
+                                    <FaRegEye className="text-[18px]" />
+                                    <p className="text-sm text-gray-700 hover:bg-gray-100">View</p>
+                                  </div>
+                                  <hr />
+                                  <div className="flex gap-4 items-center px-2 cursor-pointer" onClick={() => {
+                                    deleteProject(item?._id)
+                                  }}>
 
+                                    <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746260280/delete_sgefhv.png" alt="delete" />
+                                    <p className="text-sm text-gray-700 hover:bg-gray-100">Delete</p>
+                                  </div>
+                                  <hr />
+                                  <div
+                                    onClick={() => {
+                                      closeLeadHandler(item?._id);
+                                    }}
+                                    className="flex gap-3 items-center px-2 cursor-pointer"
+                                  >
+                                    <IoIosCloseCircle className="incfornsizze" />
+
+                                    <p className="text-sm text-gray-700 hover:bg-gray-100">Close Deal</p>
+
+                                  </div>
                                 </div>
-                              </div>
-                            )}
-                          </div>
-                        </OutsideClickHandler>
+                              )}
+                            </div>
+                          </OutsideClickHandler>
 
 
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               </div>
-            </div>
 
 
 

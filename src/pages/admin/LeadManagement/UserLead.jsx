@@ -10,6 +10,7 @@
     import { MdDeleteOutline, MdOutlineEdit } from "react-icons/md";
     import { FaRegEye } from "react-icons/fa";
     import { useMain } from "../../../hooks/UseMain";
+import { useAuth } from "../../../Context/AuthContext";
 
     const UserLead = () => {
     const navigate = useNavigate();
@@ -22,6 +23,8 @@
         getLeadByUser,
         closeLead,
     } = useMain();
+    
+    const {user} = useAuth()
 
     const [refreshFlag, setRefreshFlag] = useState(false);
 
@@ -315,7 +318,7 @@
                 </div>
                 <div className="lead_content2">
                     <div className="flex items-center justify-center gap-[10px]">
-                    <NavLink to="/adminDash/leadFile">
+                    <NavLink to={user?.role === "ADMIN" ? "/adminDash/leadFile" : "/employeeDash/leadFile"}>
                         <button className="flex items-center justify-evenly w-[162px] h-[40px] border border-[#0B56E4] rounded-[10px] bg-[linear-gradient(131.78deg,_#D1E8FD_6.87%,_#EDEFFF_91.67%)] mt-2 lg:mt-0">
                         <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746687192/donwlaond_d9hrjl.png" alt="download" />
                         <span className="text-[#0B56E4] font-medium text-[16px]"> Import Leads</span>
@@ -554,7 +557,7 @@
                                 {index === currView && (
                                     <div className="absolute -top-16 min-w-[120px] h-fit border border-[#E3E3E3] flex flex-col shadow-[0px_4px_12px_0px_#1A1A1A33] py-2 gap-[5px] rounded-tl-[8px] z-[1000] bg-white right-[75px]">
                                     <div className="flex gap-4 items-center px-2 cursor-pointer" onClick={() =>
-                                        navigate("/adminDash/editLead", {
+                                        navigate(user?.role === "ADMIN" ? "/adminDash/editLead" : "/employeeDash/editLead", {
                                         state: item,
                                         })
                                     }>
@@ -565,7 +568,7 @@
                                     <hr />
                                     <div className="flex gap-4 items-center px-2 cursor-pointer" onClick={() => {
                                         navigate(
-                                        `/adminDash/importLead/${item._id}`
+                                        user?.role === "ADMIN" ? `/adminDash/importLead/${item._id}` : `/employeeDash/importLead/${item._id}`
                                         );
                                     }}>
                                     

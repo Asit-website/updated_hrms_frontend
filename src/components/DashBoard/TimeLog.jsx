@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { MdCalendarToday, MdTimer } from 'react-icons/md';
 
-export default function TimeLog({clock,breakClock,totalHours}) {
+export default function TimeLog({ clock, breakClock, totalHours }) {
+
   return (
     <section className="w-full bg-white py-8 ">
 
@@ -19,18 +20,6 @@ export default function TimeLog({clock,breakClock,totalHours}) {
                 .toString()
                 .padStart(2, "0")}`}</p>
             <p>Scheduled</p>
-          </div>
-          <div>
-            <p className="text-blue-600 font-bold text-base">{`${Math.floor(
-              (clock - breakClock) / 3600
-            )
-              .toString()
-              .padStart(2, "0")}:${Math.floor(
-                ((clock - breakClock) % 3600) / 60
-              )
-                .toString()
-                .padStart(2, "0")}`}</p>
-            <p>Worked</p>
           </div>
           <div>
             <p className="text-blue-600 font-bold text-base">{`${Math.floor(
@@ -66,7 +55,7 @@ export default function TimeLog({clock,breakClock,totalHours}) {
             <div className="bg-emerald-600 text-white p-2 rounded-md shadow mr-3">
               <MdTimer className="w-5 h-5" />
             </div>
-            <p className="text-base text-gray-800">{totalHours || (Math.floor(clock / 3600))}</p>
+            <p className="text-base text-gray-800">{totalHours || (Math.floor(clock / 3600))} {(totalHours || (Math.floor(clock / 3600))) <= 1 ? "Hour" : "Hours"}</p>
           </div>
         </div>
       </div>
