@@ -7,7 +7,7 @@ import { useMain } from '../hooks/UseMain';
 import { useClickOutside } from '../hooks/useClickOutside';
 
 const Navbar = ({ showSidebar, setShowSidebar }) => {
-  const { allEmployee, getDepartments, getBranchs, fetchUserNotifyHR, markedNotification } = useMain()
+  const { allEmployee, getDepartments, getBranchs, fetchUserNotify, markedNotification } = useMain()
   const currentUser = JSON.parse(localStorage.getItem('hrms_user')) ;
   const { fullName, email, profileImage } = currentUser;
   const navigate = useNavigate();
@@ -23,7 +23,7 @@ const Navbar = ({ showSidebar, setShowSidebar }) => {
   };
 
   const fetchNotification = async () => {
-    const ans = await fetchUserNotifyHR();
+    const ans = await fetchUserNotify();
     if (ans?.status) {
       const sevenDaysInMs = 7 * 24 * 60 * 60 * 1000;
       const now = Date.now();

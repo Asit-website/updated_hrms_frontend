@@ -1,8 +1,8 @@
 import React from "react";
 import { RefreshCw, User, Settings, Clock, Users, Gift } from "lucide-react";
-import { MdCalendarToday, MdEventAvailable } from "react-icons/md";
+import { MdCalendarToday, MdEventAvailable, MdOutlineEdit } from "react-icons/md";
 import TimeLog from "../../components/DashBoard/TimeLog";
-import { NavLink } from 'react-router-dom';
+import { Navigate, NavLink, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import { useAuth } from "../../Context/AuthContext";
@@ -12,6 +12,8 @@ import { toast } from "react-toastify";
 import DatePicker from "react-datepicker";
 import { format, parse } from "date-fns";
 import "react-datepicker/dist/react-datepicker.css";
+import { useClickOutside } from "../../hooks/useClickOutside";
+import { DescriptionModal } from "../../components/DescriptionModal";
 // import { useWindowSize } from 'react-use';
 
 var tc3;
@@ -46,10 +48,19 @@ const Dashboard = () => {
     FetchMyLeave,
   } = useMain();
 
+  const [counts, setCounts] = useState({
+    activeEmployees: 0,
+    leaveRequest: 0,
+    employeesLeaves: 0,
+    totalEmployees: 0,
+    totalDeactivated: 0,
+    halfDayRequest: 0,
+  });
+
   const stats = [
     {
       title: "Active Employee",
-      value: 0,
+      value: counts.activeEmployees,
       icon: <User className="text-white" size={20} />,
       bg: "bg-green-700",
       card: "bg-green-50 border-green-300",
@@ -57,7 +68,7 @@ const Dashboard = () => {
     },
     {
       title: "Half Day Request",
-      value: 2,
+      value: counts.halfDayRequest,
       icon: <User className="text-white" size={20} />,
       bg: "bg-blue-700",
       card: "bg-blue-100 border-blue-300",
@@ -65,7 +76,7 @@ const Dashboard = () => {
     },
     {
       title: "Leave Request",
-      value: 6,
+      value: counts.leaveRequest,
       icon: <Settings className="text-white" size={20} />,
       bg: "bg-red-600",
       card: "bg-red-50 border-red-200",
@@ -73,7 +84,7 @@ const Dashboard = () => {
     },
     {
       title: "Employee on Leave",
-      value: 0,
+      value: counts.employeesLeaves,
       icon: <Clock className="text-white" size={20} />,
       bg: "bg-yellow-500",
       card: "bg-yellow-50 border-yellow-200",
@@ -81,7 +92,7 @@ const Dashboard = () => {
     },
     {
       title: "Total Employee",
-      value: 14,
+      value: counts.totalEmployees,
       icon: <Users className="text-white" size={20} />,
       bg: "bg-blue-600",
       card: "bg-blue-50 border-blue-200",
@@ -89,7 +100,7 @@ const Dashboard = () => {
     },
     {
       title: "Deactivated Employee",
-      value: 2,
+      value: counts.totalDeactivated,
       icon: <Users className="text-white" size={20} />,
       bg: "bg-red-600",
       card: "bg-red-50 border-red-200",
@@ -121,9 +132,24 @@ const Dashboard = () => {
   const [todayTask, setTodayTask] = useState("");
   const [loading, setLoading] = useState(false);
   const [clockoutLoading, setClockOutLoading] = useState(false);
-
+  const [showPrevCheckout, setShowPrevCheckout] = useState(false);
+  const [prevCheckoutTime, setPrevCheckoutTime] = useState("");
+  const [prevdayTask, setPrevdayTask] = useState("");
   const [formType, setFormType] = useState("");
   const [showModal, setShowModal] = useState(false);
+  const [announceIndex, setAnnounceIndex] = useState(null);
+  const [taskAssignIndex, setTaskAssignIndex] = useState(null);
+  const [showAnnounceAction, setShowAnnounceAction] = useState(false);
+  const navigate = useNavigate();
+  const [textData, setTextData] = useState({
+    title: "",
+    Branch: "",
+    Department: "",
+    Employee: "",
+    startDate: "",
+    endDate: "",
+    description: "",
+  })
 
   const [formdata, setFormdata] = useState({
     employeeName: "",
@@ -644,6 +670,151 @@ const Dashboard = () => {
     0
   );
 
+  const leaveWrap = useClickOutside(() => {
+    setShowModal(false);
+  });
+
+  const onEmployeeLogin = () => {
+    const clockInTime = localStorage.getItem("clock-in");
+    if (clockInTime !== null) {
+      const currentTimestamp = Date.now();
+      const diff = currentTimestamp - clockInTime;
+
+      if (diff < 0) {
+        return "Check-in time future mein hai, invalid data";
+      }
+
+      const totalMinutes = Math.floor(diff / (1000 * 60));
+      const hours = Math.floor(totalMinutes / 60);
+
+      if (hours >= 16) {
+        setShowPrevCheckout(true);
+      }
+    }
+  };
+
+  const storePrevCheckInCheckout = async () => {
+    if (prevdayTask.trim() === "") {
+      return toast.error("Please Enter your Previous Day Task.")
+    }
+    if (prevCheckoutTime === "") {
+      return toast.error("Please Choose your Previous Date checkout time.")
+    }
+
+    setClockOutLoading(true);
+
+    localStorage.setItem("clock-status", "out");
+    localStorage.setItem("clock-out-time", prevCheckoutTime);
+    localStorage.setItem(
+      "clockOutTime",
+      prevCheckoutTime
+    );
+
+    clearInterval(tc3);
+    clearInterval(tc4);
+    setMount(!mount);
+
+    const breakIn = localStorage.getItem("breakInTime");
+    const breakOut = localStorage.getItem("breakOutTime");
+
+    await breakchangeapi(false);
+
+    let date1, date2;
+    if (breakIn !== null) {
+      date1 = parseTime(breakIn);
+    }
+    if (breakOut !== null) {
+      date2 = parseTime(breakOut);
+    }
+
+    let differenceMs, hours, minutes, seconds, differenceText;
+
+    if (breakIn !== null && breakOut !== null) {
+      differenceMs = date2.getTime() - date1.getTime();
+
+      hours = Math.floor(differenceMs / (1000 * 60 * 60));
+      minutes = Math.floor((differenceMs % (1000 * 60 * 60)) / (1000 * 60));
+      seconds = Math.floor((differenceMs % (1000 * 60)) / 1000);
+
+      differenceText = `${hours}:${minutes}:${seconds}`;
+    }
+
+    let ans = await postActivity({
+      clockIn: localStorage.getItem("clockInTime"),
+      clockOut: prevCheckoutTime,
+      late: breakClock,
+      date1: localStorage.getItem("date1"),
+      overtime: clock - 32400 > 0 ? clock - 32400 : 0,
+      total: clock,
+      message: "",
+      todayTask: prevdayTask,
+    });
+    const userDataString = localStorage.getItem("hrms_user");
+    const userData = JSON.parse(userDataString);
+    const attendence = await postAttendence({
+      clockInDetail: localStorage.getItem("clockInTime"),
+      breakTime: differenceText,
+      clockOutDetail: prevCheckoutTime,
+      id: userData?._id,
+      clockInDate: localStorage.getItem("date1"),
+      todayTask: prevdayTask,
+    });
+    console.log("prev day response", ans);
+    console.log("attendence", attendence);
+    toast.success('Saved Successfully !!')
+    setPrevdayTask("");
+    setPrevCheckoutTime("");
+    setShowPrevCheckout(false);
+
+    localStorage.removeItem("clock-in");
+    localStorage.removeItem("clock-status");
+    localStorage.removeItem("clock-out-time");
+    localStorage.removeItem("clockOutTime");
+    localStorage.removeItem("clockInTime");
+    localStorage.removeItem("breakInTime");
+    localStorage.removeItem("breakOutTime");
+    localStorage.removeItem("clock-in-date");
+    localStorage.removeItem("break-time");
+    localStorage.removeItem("break-seconds");
+    localStorage.removeItem("date1");
+    setClock(0);
+    setClockOutLoading(false);
+
+    if (onRemount) {
+      onRemount();
+    }
+  }
+
+  const getData = async () => {
+    const ans = await getUsers();
+    const totalactiveEmployees = ans?.data?.filter(
+      (emp) => emp?.isDeactivated === "No"
+    );
+    const totalDeactivated = ans?.data?.filter(
+      (emp) => emp?.isDeactivated !== "No"
+    );
+
+    const ans1 = await getActiveUsersCount();
+    const ans2 = await getTotalLeavesCount();
+    const ans3 = await fetchTodayLeave();
+    setCounts({
+      ...counts,
+      totalEmployees: totalactiveEmployees?.length,
+      totalDeactivated: totalDeactivated?.length,
+      activeEmployees: ans1?.data,
+      leaveRequest: ans2?.totalLeave,
+      halfDayRequest: ans2?.halfDay,
+      employeesLeaves: ans3?.data?.length
+    });
+  };
+
+  const announceActionPopRef = useClickOutside(() => {
+    setShowAnnounceAction(false);
+  })
+  const taskAssignActionPopRef = useClickOutside(() => {
+    setAnnounceIndex(null);
+  })
+
 
   useEffect(() => {
     initializeTimer();
@@ -652,7 +823,9 @@ const Dashboard = () => {
     getAllHolidays();
     fetchTasks();
     getTotalHours();
+    getData();
     fetchUserLeaves();
+    onEmployeeLogin();
     document.addEventListener("visibilitychange", handleVisibilityChange);
 
     return () => {
@@ -674,7 +847,7 @@ const Dashboard = () => {
 
       {
         user?.role === "ADMIN" && (
-          <div className="flex items-center overflow-x-scroll sm:grid grid-cols-2 sm:overflow-hidden md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4">
+          <div className="flex items-center mt-5 overflow-x-scroll sm:grid grid-cols-2 sm:overflow-hidden md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4">
             {stats.map((stat, index) => {
               const card = (
                 <div
@@ -720,7 +893,7 @@ const Dashboard = () => {
             </div>
 
             <div className="mt-2 sm:mt-0 sm:self-end self-end">
-              <NavLink to="/adminDash/announcement">
+              <NavLink to={user?.role === "ADMIN" ? "/adminDash/announcement" : "/employeeDash/announcement"}>
                 <button
                   type="button"
                   className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
@@ -762,9 +935,9 @@ const Dashboard = () => {
                     </td>
                   </tr>
                 ) : (
-                  announce?.slice(0, 5).map((val, i) => (
+                  announce?.slice(0, 5).map((val, index) => (
                     <tr
-                      key={i}
+                      key={index}
                       className="border-b border-gray-200 hover:bg-gray-50 transition duration-150"
                     >
                       <td className="px-3 py-4 text-[#0B56E4]">
@@ -777,8 +950,38 @@ const Dashboard = () => {
                         {val?.endDate}
                       </td>
                       <td className="px-3 py-4 text-gray-800">
-                        <div>
-                          <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747392487/thredonts_jlsvvx.png" alt="action" />
+                        <div className="relative w-fit" >
+                          <img onClick={() => setAnnounceIndex(announceIndex === index ? null : index)} className="cursor-pointer" src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747392487/thredonts_jlsvvx.png" alt="action" />
+
+                          {
+                            announceIndex === index && (
+                              <div
+                                ref={announceActionPopRef}
+                                className="absolute z-[1000] right-[15px] -top-[15px] w-[100px] cursor-pointer bg-white border border-gray-200 shadow-lg flex flex-col"
+                              >
+                                <div
+                                  onClick={() => {
+                                    setShowAnnounceAction(true);
+                                    setAnnounceIndex(null)
+                                    setTextData({
+                                      title: val?.title,
+                                      Branch: val?.Branch,
+                                      Department: val?.Department,
+                                      Employee: val?.Employee,
+                                      startDate: val?.startDate,
+                                      endDate: val?.endDate,
+                                      description: val?.description,
+                                    });
+                                  }}
+                                  className="items-center w-full px-4 py-2 text-sm flex gap-2 text-gray-700 hover:bg-gray-100 "
+                                >
+                                  <MdOutlineEdit fontSize={18} />
+                                  <span className="!text-[14px] font-semibold">View</span>
+                                </div>
+
+                              </div>
+                            )
+                          }
                         </div>
                       </td>
                     </tr>
@@ -787,7 +990,23 @@ const Dashboard = () => {
               </tbody>
             </table>
           </div>
+
+
+
         </div>
+
+        {showAnnounceAction && (
+          <DescriptionModal
+            title="Details"
+            data={Object.fromEntries(
+              Object.entries(textData).filter(([key]) => key !== "id")
+            )}
+            onClose={() => {
+              setShowAnnounceAction(false);
+              setTextData({});
+            }}
+          />
+        )}
 
         {/* Upcoming BirthDays Only For Employee */}
         {
@@ -814,8 +1033,8 @@ const Dashboard = () => {
                       }}
                     >
                       <div className="relative">
-                        <img src={data.profileImage} className="w-[60px] rounded-full" />
-                        {isBirthday ? <img src={cap} alt="" className="absolute -top-5 -left-5" /> : null}
+                        <img src={data.profileImage ? data.profileImage : "https://res.cloudinary.com/dd9tagtiw/image/upload/v1748461184/25fddc28ee996b0edb37a8f08e577c61dadbc58d_l2quyh.png"} className="w-[60px] rounded-full" />
+                        {isBirthday ? <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1748461086/cap_xipxw6.png" alt="" className="absolute -top-5 -left-5" /> : null}
                       </div>
                       <div>
                         <h3 className="text-blue-600 font-semibold text-[16px]">{data?.fullName}</h3>
@@ -859,15 +1078,15 @@ const Dashboard = () => {
 
                 <div className="flex sm:flex-row gap-2.5 sm:gap-5 text-center justify-center mb-5">
                   <div className="bg-gray-100 p-4 rounded-md w-full sm:w-24 max-w-full sm:max-w-24">
-                    <p className="text-2xl font-bold">{(Math.floor(clock / 3600))}</p>
+                    <p className="text-2xl font-bold">{(Math.floor(clock / 3600)).toString().padStart(2, "0")}</p>
                     <p className="text-gray-600 text-sm">Hours</p>
                   </div>
                   <div className="bg-gray-100 p-4 rounded-md w-full sm:w-24 max-w-full sm:max-w-24">
-                    <p className="text-2xl font-bold">{Math.floor((clock % 3600) / 60)}</p>
+                    <p className="text-2xl font-bold">{Math.floor((clock % 3600) / 60).toString().padStart(2, "0")}</p>
                     <p className="text-gray-600 text-sm">Minutes</p>
                   </div>
                   <div className="bg-gray-100 p-4 rounded-md w-full sm:w-24 max-w-full sm:max-w-24">
-                    <p className="text-2xl font-bold">{clock % 60}</p>
+                    <p className="text-2xl font-bold">{(clock % 60).toString().padStart(2, "0")}</p>
                     <p className="text-gray-600 text-sm">Seconds</p>
                   </div>
                 </div>
@@ -1085,169 +1304,194 @@ const Dashboard = () => {
 
 
         {/* leaves */}
-        <div className="bg-white w-full rounded-md my-9 border border-gray-200 order-6 col-span-2">
-          <div className="flex justify-between p-4">
-            <div className="flex items-center gap-2.5 p-2.5">
-              <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1748383770/download_11_xirwci.png" alt="Leaves" />
-              <h3 className="text-lg font-semibold">Leaves</h3>
-            </div>
+        {
+          user?.role === "EMPLOYEE" && (
+            <div className="bg-white w-full rounded-md my-9 border border-gray-200 order-6 col-span-2">
+              <div className="flex justify-between p-4">
+                <div className="flex items-center gap-2.5 p-2.5">
+                  <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1748383770/download_11_xirwci.png" alt="Leaves" />
+                  <h3 className="text-lg font-semibold">Leaves</h3>
+                </div>
 
-            <div className="flex items-center gap-5">
-              <button
-                type="button"
-                onClick={() => {
-                  setFormType("half");
-                  setShowModal(true);
-                }}
-                className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5"
-              >
-                Get Half Day
-              </button>
-              <button
-                type="button"
-                onClick={() => {
-                  setFormType("full");
-                  setShowModal(true);
-                }}
-                className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5"
-              >
-                Get Leave
-              </button>
+                <div className="flex items-center gap-5">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setFormType("half");
+                      setShowModal(true);
+                    }}
+                    className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5"
+                  >
+                    Get Half Day
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setFormType("full");
+                      setShowModal(true);
+                    }}
+                    className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5"
+                  >
+                    Get Leave
+                  </button>
 
-              {(userAllowCrtPermission || user?.role === "ADMIN") && (
-                <button
-                  type="button"
-                  className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                  onClick={() => {
-                    setLeaveAllow(true);
-                  }}
-                >
-                  <span>Leave Allowance</span>
-                </button>
-              )}
-            </div>
-          </div>
-
-          <hr />
-
-          <div className="flex p-5 gap-5">
-            <div className="flex justify-between p-7 bg-gray-100 w-1/2">
-              <div>
-                <h5>{user?.userAllowance}</h5>
-                <p>Total leave allowance</p>
+                  {(userAllowCrtPermission) && (
+                    <button
+                      type="button"
+                      className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                      onClick={() => {
+                        setLeaveAllow(true);
+                      }}
+                    >
+                      <span>Leave Allowance</span>
+                    </button>
+                  )}
+                </div>
               </div>
-              <div>
-                <p className="flex items-center gap-1">
-                  <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1748383775/download_12_pfwnec.png" alt="casual" />
-                  <span>casual - {userCasualLeaves}</span>
-                </p>
-                <p className="flex items-center gap-1">
-                  <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1748383770/download_13_gm4ix0.png" alt="paid" />
-                  <span>Paid - {userPaidLeaves}</span>
-                </p>
-                <p className="flex items-center gap-1">
-                  <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1748383770/download_13_gm4ix0.png" alt="half" />
-                  <span>Half Days - {userHalfDayLeaves}</span>
-                </p>
-              </div>
-            </div>
 
-            <div className="flex justify-between p-7 bg-gray-100 w-1/2">
-              <div>
-                <h5>{userLeaveTaken}</h5>
-                <p>Total leave taken</p>
-              </div>
-            </div>
-          </div>
+              <hr />
 
-          <div className="flex p-5 gap-5">
-            <div className="flex justify-between p-7 bg-gray-100 w-1/2">
-              <div>
-                <h5>{remainingLeave === 0 ? 'N/A' : remainingLeave}</h5>
-                <p>Total leave available</p>
-              </div>
-            </div>
+              <div className="flex p-5 gap-5">
+                <div className="flex justify-between p-7 bg-gray-100 w-1/2">
+                  <div>
+                    <h5>{user?.userAllowance}</h5>
+                    <p>Total leave allowance</p>
+                  </div>
+                  <div>
+                    <p className="flex items-center gap-1">
+                      <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1748383775/download_12_pfwnec.png" alt="casual" />
+                      <span>casual - {userCasualLeaves}</span>
+                    </p>
+                    <p className="flex items-center gap-1">
+                      <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1748383770/download_13_gm4ix0.png" alt="paid" />
+                      <span>Paid - {userPaidLeaves}</span>
+                    </p>
+                    <p className="flex items-center gap-1">
+                      <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1748383770/download_13_gm4ix0.png" alt="half" />
+                      <span>Half Days - {userHalfDayLeaves}</span>
+                    </p>
+                  </div>
+                </div>
 
-            <div className="flex justify-between p-7 bg-gray-100 w-1/2">
-              <div>
-                <h5>{userPendingLeaves}</h5>
-                <p>Total request pending</p>
+                <div className="flex justify-between p-7 bg-gray-100 w-1/2">
+                  <div>
+                    <h5>{userLeaveTaken}</h5>
+                    <p>Total leave taken</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex p-5 gap-5">
+                <div className="flex justify-between p-7 bg-gray-100 w-1/2">
+                  <div>
+                    <h5>{remainingLeave === 0 ? 'N/A' : remainingLeave}</h5>
+                    <p>Total leave available</p>
+                  </div>
+                </div>
+
+                <div className="flex justify-between p-7 bg-gray-100 w-1/2">
+                  <div>
+                    <h5>{userPendingLeaves}</h5>
+                    <p>Total request pending</p>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
+          )
+        }
 
 
         {showModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-            <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-md relative">
+          <div className="fixed inset-0 z-50 backdrop-blur-[1px] flex items-center justify-center bg-black bg-opacity-50">
+            <div ref={leaveWrap} className="bg-white p-6 rounded-lg shadow-md w-full max-w-md relative">
               <button
                 onClick={() => setShowModal(false)}
                 className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
               >
                 ✖
               </button>
-              <h2 className="text-lg font-semibold mb-4">
-                {formType === "full" ? "Apply for Leave" : "Apply for Half Day"}
+              <h2 className="text-lg font-semibold">
+                {formType === "full" ? "Apply for Full Day Leave" : "Apply for Half Day Leave"}
               </h2>
+              <hr className="my-3" />
 
               <form onSubmit={handleSubmit} className="space-y-4">
                 {formType === "full" && (
                   <>
-                    <select
-                      name="leaveType"
-                      value={formdata.leaveType}
-                      onChange={(e) => handleChange(e)}
-                      className="w-full border border-gray-300 p-2 rounded"
-                    >
-                      <option value="">Select Leave Type</option>
-                      <option value="Sick Leave">Sick Leave</option>
-                      <option value="Casual Leave">Casual Leave</option>
-                    </select>
-                    <DatePicker
-                      selected={formdata.start ? parse(formdata.start, "dd-MM-yyyy", new Date()) : null}
-                      onChange={(date) => handleDateChange(date, "start", false)}
-                      dateFormat="dd-MM-yyyy"
-                      minDate={new Date()}
-                      placeholderText="Start Date"
-                      className="!w-full border border-gray-300 p-2 rounded"
-                    />
+                    <div className="flex flex-col gap-1">
+                      <label htmlFor="fullday-leaveType" className="font-medium">Leave Type :</label>
+                      <select
+                        name="leaveType"
+                        value={formdata.leaveType}
+                        onChange={(e) => handleChange(e)}
+                        className="w-full border border-gray-300 p-2 rounded"
+                      >
+                        <option value="">Select Leave Type</option>
+                        <option value="Sick Leave">Sick Leave</option>
+                        <option value="Casual Leave">Casual Leave</option>
+                      </select>
+                    </div>
+                    <div className="flex flex-col gap-1">
+                      <label htmlFor="fullday-start" className="font-medium">Start Date :</label>
+                      <DatePicker
+                        selected={formdata.start ? parse(formdata.start, "dd-MM-yyyy", new Date()) : null}
+                        onChange={(date) => handleDateChange(date, "start", false)}
+                        dateFormat="dd-MM-yyyy"
+                        minDate={new Date()}
+                        placeholderText="Start Date"
+                        className="!w-full border border-gray-300 p-2 rounded"
+                      />
+                    </div>
 
-                    <DatePicker
-                      selected={formdata.end ? parse(formdata.end, "dd-MM-yyyy", new Date()) : null}
-                      onChange={(date) => handleDateChange(date, "end", false)}
-                      dateFormat="dd-MM-yyyy"
-                      minDate={new Date()}
-                      placeholderText="End Date"
-                      className="!w-full border border-gray-300 p-2 rounded"
-                    />
-                    <textarea
-                      name="reason"
-                      placeholder="Reason"
-                      value={formdata.reason}
-                      onChange={(e) => handleChange(e)}
-                      className="w-full border border-gray-300 p-2 rounded"
-                    />
+                    <div className="flex flex-col gap-1">
+                      <label htmlFor="fullday-end" className="font-medium">End Date :</label>
+                      <DatePicker
+                        selected={formdata.end ? parse(formdata.end, "dd-MM-yyyy", new Date()) : null}
+                        onChange={(date) => handleDateChange(date, "end", false)}
+                        dateFormat="dd-MM-yyyy"
+                        minDate={new Date()}
+                        placeholderText="End Date"
+                        className="!w-full border border-gray-300 p-2 rounded"
+                      />
+                    </div>
+                    <div className="flex flex-col gap-1">
+                      <label htmlFor="fullday-reason" className="font-medium">Reason :</label>
+                      <textarea
+                        name="reason"
+                        placeholder="Reason"
+                        value={formdata.reason}
+                        onChange={(e) => handleChange(e)}
+                        className="w-full border border-gray-300 p-2 rounded"
+                      />
+                    </div>
                   </>
                 )}
 
                 {formType === "half" && (
                   <>
-                    <DatePicker
-                      selected={formdata2.start ? parse(formdata2.start, "dd-MM-yyyy", new Date()) : null}
-                      onChange={(date) => handleDateChange(date, "start", true)}
-                      dateFormat="dd-MM-yyyy"
-                      minDate={new Date()}
-                      placeholderText="Start Date"
-                      className="!w-full border border-gray-300 p-2 rounded"
-                    />
-                    <textarea
-                      name="reason"
-                      placeholder="Reason"
-                      value={formdata2.reason}
-                      onChange={(e) => handleChange(e, true)}
-                      className="w-full border border-gray-300 p-2 rounded"
-                    />
+                    <div className="flex flex-col gap-1">
+                      <label htmlFor="halfday-start" className="font-medium">Date :</label>
+                      <DatePicker
+                        selected={formdata2.start ? parse(formdata2.start, "dd-MM-yyyy", new Date()) : null}
+                        onChange={(date) => handleDateChange(date, "start", true)}
+                        dateFormat="dd-MM-yyyy"
+                        minDate={new Date()}
+                        name="halfday-start"
+                        placeholderText="Start Date"
+                        className="!w-full border border-gray-300 p-2 rounded"
+                      />
+                    </div>
+
+                    <div className="flex flex-col gap-1">
+                      <label htmlFor="halfday-reason" className="font-medium">Reason :</label>
+                      <textarea
+                        name="halfday-reason"
+                        placeholder="Reason"
+                        value={formdata2.reason}
+                        onChange={(e) => handleChange(e, true)}
+                        className="w-full border border-gray-300 p-2 rounded"
+                      />
+                    </div>
                   </>
                 )}
 
@@ -1317,9 +1561,9 @@ const Dashboard = () => {
                         </td>
                       </tr>
                     ) : (
-                      tasks?.map((val, i) => (
+                      tasks?.map((val, index) => (
                         <tr
-                          key={i}
+                          key={index}
                           className="border-b border-gray-200 hover:bg-gray-50 transition duration-150"
                         >
                           <td className="px-3 py-4 text-[#0B56E4]">
@@ -1335,8 +1579,29 @@ const Dashboard = () => {
                             {val?.Status || "N/A"}
                           </td>
                           <td className="px-3 py-4 text-gray-800">
-                            <div>
-                              <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747392487/thredonts_jlsvvx.png" alt="action" />
+                            <div className="relative w-fit" >
+                              <img onClick={() => setTaskAssignIndex(taskAssignIndex === index ? null : index)} className="cursor-pointer" src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747392487/thredonts_jlsvvx.png" alt="action" />
+
+                              {
+                                taskAssignIndex === index && (
+                                  <div
+                                    ref={taskAssignActionPopRef}
+                                    className="absolute z-[1000] right-[15px] -top-[15px] w-[100px] cursor-pointer bg-white border border-gray-200 shadow-lg flex flex-col"
+                                  >
+                                    <div
+                                      onClick={() => {
+                                        setAnnounceIndex(null);
+                                        navigate('/adminDash/HRM/projectOverview', { state: val })
+                                      }}
+                                      className="items-center w-full px-4 py-2 text-sm flex gap-2 text-gray-700 hover:bg-gray-100 "
+                                    >
+                                      <MdOutlineEdit fontSize={18} />
+                                      <span className="!text-[14px] font-semibold">View</span>
+                                    </div>
+
+                                  </div>
+                                )
+                              }
                             </div>
                           </td>
                         </tr>
@@ -1344,6 +1609,32 @@ const Dashboard = () => {
                     )}
                   </tbody>
                 </table>
+              </div>
+            </div>
+          )
+        }
+
+
+
+
+        {
+          showPrevCheckout && (
+            <div className="w-full h-screen fixed top-0 left-0 backdrop-blur-[1px] bg-[rgba(0,0,0,0.3)] flex items-center justify-center z-[3000]">
+              <div className="bg-white p-5 rounded-md shadow-md max-w-[40%]">
+                <h3 className="font-medium">You didn't check out on <span className="font-semibold">{localStorage.getItem("clock-in-date")}</span>. Please update your checkout time to continue.</h3>
+                <hr className="my-2" />
+                <label htmlFor="prevDayTask"> Task of <span className="font-medium">{localStorage.getItem("clock-in-date")}</span> :</label>
+                <br />
+                <input value={prevdayTask} onChange={(e) => setPrevdayTask(e.target.value)} type="text" name="prevDayTask" placeholder="Enter Your Task" className="border border-gray-300 p-2 rounded-sm my-3 w-full" />
+                <label htmlFor="checkoutTime" className="w-full">
+                  Select Your Checkout time for <span className="font-medium">{localStorage.getItem("clock-in-date")}</span> :
+                </label>
+                <br />
+                <input value={prevCheckoutTime} onChange={(e) => setPrevCheckoutTime(e.target.value)} type="time" name="checkoutTime" id="" className="border border-gray-300 p-2 rounded-sm my-3" />
+
+                <div className="flex items-center gap-3">
+                  <button onClick={storePrevCheckInCheckout} className="py-2 px-5 bg-blue-600 text-white rounded-sm">Save</button>
+                </div>
               </div>
             </div>
           )
