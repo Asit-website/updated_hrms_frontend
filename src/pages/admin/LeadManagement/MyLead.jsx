@@ -5,10 +5,13 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import toast from "react-hot-toast";
-
+// import AdminSidebar from "../Sidebar/AdminSidebar";
+// import AdminNavbar from "../Navbar/AdminNavbar";
 import { IoIosCloseCircle } from "react-icons/io";
-import { FaRegEye } from "react-icons/fa";
 
+import { MdOutlineEdit } from "react-icons/md";
+import { FaRegEye } from "react-icons/fa";
+import { MdDeleteOutline } from "react-icons/md";
 import { useMain } from "../../../hooks/UseMain";
 import { useDownloadExcel } from "react-export-table-to-excel";
 
@@ -279,7 +282,6 @@ const MyLead = () => {
     });
 
   }
-  
   const { onDownload } = useDownloadExcel({
     currentTableRef: tableRef.current,
     filename: 'Leads Table',
@@ -504,14 +506,13 @@ const MyLead = () => {
                           {new Date(item?.createAt).toLocaleDateString("en-CA")}
                         </td>
 
-                        {/* <OutsideClickHandler
+                        <OutsideClickHandler
                           onOutsideClick={() => {
                             if (index === currView) {
                               setCurrView(-1);
                             }
                           }}
-                        > */}
-                        
+                        >
                           <div className="relative">
                             <td
                               onClick={() => {
@@ -561,7 +562,7 @@ const MyLead = () => {
                               </div>
                             )}
                           </div>
-                        {/* </OutsideClickHandler> */}
+                        </OutsideClickHandler>
 
 
                       </tr>
