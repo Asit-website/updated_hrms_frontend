@@ -4,9 +4,11 @@ import { RxEyeOpen } from "react-icons/rx";
 import { useMain } from "../../hooks/UseMain";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useAuth } from "../../Context/AuthContext";
 
 export default function LoginPage() {
-  const { login, setUser, loading } = useMain();
+  const { login, loading } = useMain();
+  const { setUser } = useAuth();
   const navigate = useNavigate();
 
   const [value, setValue] = useState({
