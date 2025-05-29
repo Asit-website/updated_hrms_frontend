@@ -8,7 +8,7 @@ import { useClickOutside } from '../hooks/useClickOutside';
 
 const Navbar = ({ showSidebar, setShowSidebar }) => {
   const { allEmployee, getDepartments, getBranchs, fetchUserNotify, markedNotification } = useMain()
-  const currentUser = JSON.parse(localStorage.getItem('hrms_user')) ;
+  const currentUser = JSON.parse(localStorage.getItem('hrms_user'));
   const { fullName, email, profileImage } = currentUser;
   const navigate = useNavigate();
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -70,6 +70,13 @@ const Navbar = ({ showSidebar, setShowSidebar }) => {
     getBranchs();
     fetchNotification();
   }, [])
+
+  useEffect(() => {
+    fetchNotification();
+    const interval = setInterval(fetchNotification, 30000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
 
     <>
@@ -110,7 +117,7 @@ const Navbar = ({ showSidebar, setShowSidebar }) => {
 
               <button className=" bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white md:hidden" onClick={() => setShowSidebar(!showSidebar)}>{showSidebar ? <RxCross2 fontSize={21} /> : <GiHamburgerMenu fontSize={21} />}</button>
               {dropdownOpen && (
-                <div  ref={profileWrapper} className="absolute right-0 top-7 border border-gray-300 z-50 w-48 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow-lg dark:bg-gray-700 dark:divide-gray-600">
+                <div ref={profileWrapper} className="absolute right-0 top-7 border border-gray-300 z-50 w-48 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow-lg dark:bg-gray-700 dark:divide-gray-600">
                   <div className="px-4 py-3">
                     <span className="block text-sm text-gray-900 dark:text-white">{fullName}</span>
                     <span className="block text-sm text-gray-500 truncate dark:text-gray-400">{email}</span>

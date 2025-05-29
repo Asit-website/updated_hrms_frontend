@@ -3,23 +3,18 @@ import React from "react";
 // import "react-profile-avatar/dist/index.css";
 
 import { useEffect, useRef, useState } from "react";
-
-
-
-import toast from "react-hot-toast";
-
+import { toast } from "react-toastify";
 import { confirmAlert } from "react-confirm-alert";
 import { useNavigate, useLocation, NavLink } from "react-router-dom";
 import "react-calendar/dist/Calendar.css";
 import { useMain } from "../../../../hooks/UseMain";
 import { useOutsideClick } from "../../../../hooks/UseOutsideClick";
 
-
 const projectOpt = ["All", "Ongoing", "Finished", "OnHold", "Canceled"];
 
 const TaskProjects = () => {
   const {
-  
+
     allEmployee,
     editProjectapi,
     getAllProjectApi,
@@ -49,10 +44,10 @@ const TaskProjects = () => {
   const getAllClient = async () => {
     try {
       const ans = await getClientapi();
-      
+
       if (ans?.status) {
         setAllClient(ans?.data);
-       
+
       }
     } catch (error) {
       // console.log(error);
@@ -182,7 +177,7 @@ const TaskProjects = () => {
           Members: [],
           Status: "Ongoing",
           DueDate: "",
-         
+
           projectOwner: clientInfo || hrms_user._id,
           client: clientInfo || hrms_user._id
         });
@@ -252,7 +247,7 @@ const TaskProjects = () => {
           Status: "Ongoing",
           DueDate: "",
           startDate: "",
-       
+
         });
         setAddClientPop(false);
         setProUser([]);
@@ -409,15 +404,15 @@ const TaskProjects = () => {
   return (
     <>
       <div className="flex relative bg-[#f5f5f5] h-full">
-       
+
 
         <div className="w-full bg-[#f5f5f5] ">
-         
+
           <div className="pt-[32px] pl-[20px] pr-[20px] pb-[32px] relative w-full">
             <div className="rlative flex flex-col gap-[20px]">
               <nav className="flex items-center justify-between">
                 {location.state ? (<div className="flex flex-row items-center gap-3">
-                
+
                   <NavLink to={`/adminDash/HRM`}>
                     <span className="hover:text-[#1567FF] cursor-pointer text-xl">Dashboard</span>
                   </NavLink>
@@ -445,38 +440,38 @@ const TaskProjects = () => {
                 </div>}
               </nav>
 
-             
+
               <div className="flex flex-col xl:flex-row justify-between items-center">
-  <div className="w-full lg:w-[500px] h-[42px] flex overflow-x-scroll lg:overflow-x-hidden">
-    {projectOpt.map((pr, index) => (
-      <div
-        onClick={() => setOptIndex(index)}
-        key={index}
-        className={`cursor-pointer w-fit h-full px-4 py-2 
+                <div className="w-full lg:w-[500px] h-[42px] flex overflow-x-scroll lg:overflow-x-hidden">
+                  {projectOpt.map((pr, index) => (
+                    <div
+                      onClick={() => setOptIndex(index)}
+                      key={index}
+                      className={`cursor-pointer w-fit h-full px-4 py-2 
           border 
           ${index === 0 ? "rounded-l-[8px] rounded-r-none" : ""}
           ${index === projectOpt.length - 1 ? "rounded-r-[8px] rounded-l-none" : ""}
           ${optIndex === index ? "bg-[#3C78E9] border-[#0B56E4]" : "bg-white border-[#E8E9EB]"}`}
-      >
-        <span
-          className={`font-inter text-base font-medium leading-6 tracking-[0.005em] text-center 
+                    >
+                      <span
+                        className={`font-inter text-base font-medium leading-6 tracking-[0.005em] text-center 
             ${optIndex === index ? "text-white" : "text-[#777777]"}`}
-        >
-          {pr}
-        </span>
-      </div>
-    ))}
-  </div>
+                      >
+                        {pr}
+                      </span>
+                    </div>
+                  ))}
+                </div>
 
-  <input
- 
-    type="text"
-    className="h-[35px] mt-3 xl:md-0 p-4 rounded border border-gray-300"
-    placeholder="Search Project"
-    onChange={(e) => setSearchInput(e.target.value)}
-    value={searchInput}
-  />
-</div>
+                <input
+
+                  type="text"
+                  className="h-[35px] mt-3 xl:md-0 p-4 rounded border border-gray-300"
+                  placeholder="Search Project"
+                  onChange={(e) => setSearchInput(e.target.value)}
+                  value={searchInput}
+                />
+              </div>
 
 
 
@@ -591,18 +586,17 @@ const TaskProjects = () => {
 
       {addClientPop && (
         <div className="fixed inset-0 z-[3000] w-full h-full px-0 py-5 flex items-center justify-center bg-[#40404066] backdrop-blur-[1px]">
-          <div ref={popupWrapper} className="w-[599px] p-6 h-fit flex flex-col gap-4 rounded-[18px] bg-white min-h-[400px] h-fit m-3">
+          <div ref={popupWrapper} className="w-[599px] p-6 flex flex-col gap-2 rounded-[18px] bg-white min-h-[400px] h-fit m-3">
             <nav>
-              <p>{isEdit ? "Edit Project" : "Create New Project"}</p>
-            
+              <p className="font-semibold">{isEdit ? "Edit Project" : "Create New Project"}</p>
             </nav>
 
             <hr />
 
             <form onSubmit={isEdit ? editHandler : submitHandler}>
-              <div style={{ overflowY: "auto" }}>
+              <div style={{ overflowY: "auto" }} className="flex flex-col gap-2">
                 <label className="block text-md font-normal mb-1">
-                  <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Name <span className="text-red-600">*</span></p>
+                  <p className="text-[#1B2533] text-[14px] font-semibold leading-[20px] tracking-[0.0025em]">Name <span className="text-red-600">*</span></p>
                   <input
                     className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                     name="Name"
@@ -615,7 +609,7 @@ const TaskProjects = () => {
                 </label>
 
                 <label className="block text-md font-normal mb-1">
-                  <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Employee <span className="text-red-600">*</span></p>
+                  <p className="text-[#1B2533] text-[14px] font-semibold leading-[20px] tracking-[0.0025em]">Employee <span className="text-red-600">*</span></p>
 
                   <div className="flex items-center flex-wrap gap-[14px]">
                     {proUser.map((pro, index) => (
@@ -631,7 +625,7 @@ const TaskProjects = () => {
                   </div>
 
                   <select
-                        className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                    className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                     name="Members"
                     value=''
                     onChange={changeHandler2}
@@ -647,9 +641,9 @@ const TaskProjects = () => {
                 </label>
 
                 <label className="block text-md font-normal mb-1">
-                  <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Status <span className="text-red-600">*</span></p>
+                  <p className="text-[#1B2533] text-[14px] font-semibold leading-[20px] tracking-[0.0025em]">Status <span className="text-red-600">*</span></p>
                   <select
-                   className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                    className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                     name="Status"
                     value={formdata.Status}
                     onChange={changeHandler}
@@ -662,9 +656,9 @@ const TaskProjects = () => {
                 </label>
 
                 <label className="block text-md font-normal mb-1">
-                  <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Client</p>
+                  <p className="text-[#1B2533] text-[14px] font-semibold leading-[20px] tracking-[0.0025em]">Client</p>
                   <select
-                   className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                    className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                     value={clientInfo}
                     onChange={(e) => setClientInfo(e.target.value)}  // Update state with the selected client
                   >
@@ -677,10 +671,10 @@ const TaskProjects = () => {
                   </select>
                 </label>
 
-                <label  className="block text-md font-normal mb-1">
-                  <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Start Date <span className="text-red-600">*</span></p>
+                <label className="block text-md font-normal mb-1">
+                  <p className="text-[#1B2533] text-[14px] font-semibold leading-[20px] tracking-[0.0025em]">Start Date <span className="text-red-600">*</span></p>
                   <input
-                  className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                    className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                     name="startDate"
                     value={formdata.startDate}
                     onChange={changeHandler}
@@ -688,9 +682,9 @@ const TaskProjects = () => {
                   />
                 </label>
                 <label className="block text-md font-normal mb-1">
-                  <p  className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Due Date <span className="text-red-600">*</span></p>
+                  <p className="text-[#1B2533] text-[14px] font-semibold leading-[20px] tracking-[0.0025em]">Due Date <span className="text-red-600">*</span></p>
                   <input
-                  className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                    className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                     name="DueDate"
                     value={formdata.DueDate}
                     onChange={changeHandler}
@@ -700,9 +694,9 @@ const TaskProjects = () => {
                 </label>
 
                 <label className="block text-md font-normal mb-1">
-                  <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Description <span className="text-red-600">*</span></p>
+                  <p className="text-[#1B2533] text-[14px] font-semibold leading-[20px] tracking-[0.0025em]">Description <span className="text-red-600">*</span></p>
                   <textarea
-                  className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                    className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                     type="text"
                     name="Description"
                     value={formdata.Description}
@@ -726,7 +720,7 @@ const TaskProjects = () => {
                       Members: "",
                       Status: "Ongoing",
                       DueDate: "",
-                     
+
                     });
                   }}
                   className="cancel"

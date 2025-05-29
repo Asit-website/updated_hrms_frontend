@@ -162,7 +162,7 @@ const HolidayHRM = () => {
                       </div>
                     ) : (<div className="anNavLeft">
 
-                      <h2 className="text-[24px] text-center font-semibold leading-[32px] lg:text-left text-[#101820]">Manage Holiday</h2>
+                      <h2 className="text-[24px] text-center font-semibold mb-[6px]leading-[32px] lg:text-left text-[#101820]">Manage Holiday</h2>
                     </div>)}
                   </div>
 
@@ -180,7 +180,7 @@ const HolidayHRM = () => {
                 <div className="relative overflow-x-auto min-h-[250px] rounded-lg">
                   <table className="w-max lg:w-full text-sm text-left bg-white rounded-lg">
 
-                    <thead className="bg-white font-semibold ">
+                    <thead className="bg-white font-semibold mb-[6px]">
                       <tr>
 
                         <th scope="col" className="text-left font-bold text-gray-900 py-3 px-4 border-b border-gray-200 whitespace-nowrap">
@@ -270,7 +270,7 @@ const HolidayHRM = () => {
 
               <div className="flex items-center justify-between" >
 
-                <h2 className="text-[20px] font-medium py-2.5 leading-[30px] text-left text-black">{onEdit ? 'Edit Holiday' : 'Create New Holiday'}</h2>
+                <h2 className="text-[20px] font-medium leading-[30px] text-left text-black">{onEdit ? 'Edit Holiday' : 'Create New Holiday'}</h2>
                
               </div>
 
@@ -278,14 +278,12 @@ const HolidayHRM = () => {
 
               <hr />
 
-              <div className="flex flex-col gap-5 overflow-y-scroll pr-2.5">
+              <div className="flex flex-col gap-5 pr-2.5 mt-3">
 
-
-
-                <div className="flex items-center gap-5 w-full">
+               <div className="flex items-center gap-5 w-full">
 
                   <label htmlFor="holidayName" className="Resig-employ block text-gray-700 mb-1 w-full">
-                    <p className="text-[12px] sm:text-[14px] md:text-[15px] mb-[15px] font-normal leading-[18px] tracking-[0.0015em] text-left text-[#666D76]">Occasion</p>
+                    <p className="text-[12px] sm:text-[14px] md:text-[16px] font-semibold mb-[6px]  leading-[18px] tracking-[0.0015em] text-left ">Occasion</p>
                     <input
                     className="ml-[3px] w-full border rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     type="text" name="holidayName" required value={formdata?.holidayName} onChange={changeHandler} />
@@ -296,7 +294,7 @@ const HolidayHRM = () => {
 
                 <div className="flex items-center gap-5 w-full">
                   <label htmlFor="startDate" className="block text-gray-700 mb-1 w-[50%]">
-                    <p className="text-[12px] sm:text-[14px] md:text-[15px] mb-[15px] font-normal leading-[18px] tracking-[0.0015em] text-left text-[#666D76]">Start Date</p>
+                    <p className="text-[12px] sm:text-[14px] md:text-[16px] font-semibold mb-[6px]  leading-[18px] tracking-[0.0015em] text-left ">Start Date</p>
                     <input
                       type="date"
                       name="startDate"
@@ -307,7 +305,7 @@ const HolidayHRM = () => {
                     />
                   </label>
                   <label htmlFor="endDate" className="block text-gray-700 mb-1 w-[50%]">
-                    <p className="text-[12px] sm:text-[14px] md:text-[15px] mb-[15px] font-normal leading-[18px] tracking-[0.0015em] text-left text-[#666D76]">End Date</p>
+                    <p className="text-[12px] sm:text-[14px] md:text-[16px] font-semibold mb-[6px]  leading-[18px] tracking-[0.0015em] text-left ">End Date</p>
                     <input
                       type="date"
                       name="endDate"

@@ -6,8 +6,9 @@ import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 
-import toast from "react-hot-toast";
+import {toast} from "react-toastify";
 import { useMain } from "../../../hooks/UseMain";
+import { useClickOutside } from "../../../hooks/useClickOutside";
 
 
 const DeactivateEmployee = () => {
@@ -121,6 +122,10 @@ const DeactivateEmployee = () => {
     }))
 
   }
+
+  const ref = useClickOutside(()=>{
+    setCurrView(-1);
+  })
 
   useEffect(() => {
     getData();
@@ -333,14 +338,7 @@ const DeactivateEmployee = () => {
                             <td className="px-6 py-4 taskAns">{item?.designation}</td>
                             <td className="px-6 py-4 taskAns">{item?.joiningDate}</td>
 
-                            <OutsideClickHandler
-                              onOutsideClick={() => {
-                                if (index == currView) {
-                                  setCurrView(-1);
-                                }
-                              }}
-                            >
-                              <div className="viewOnwWRAP relative">
+                            <div className="viewOnwWRAP relative">
 
                                 <td onClick={() => {
                                   if (index == currView) {
@@ -355,7 +353,7 @@ const DeactivateEmployee = () => {
                                 {
                                   index == currView &&
 
-                                  <div className="absolute -top-[65px] min-w-[120px] h-fit flex flex-col shadow-lg py-2 gap-[5px] rounded-tl-[8px] bg-white right-[75px] z-[1000] border border-[#E3E3E3]
+                                  <div ref={ref} className="absolute -top-[65px] min-w-[120px] h-fit flex flex-col shadow-lg py-2 gap-[5px] rounded-tl-[8px] bg-white right-[75px] z-[1000] border border-[#E3E3E3]
 ">
                                     {/* first  */}
                                     <div onClick={() => navigate("/adminDash/EmployeeDetails", { state: item?._id })} className="flex gap-1 p-[5px] cursor-pointer
@@ -398,7 +396,6 @@ const DeactivateEmployee = () => {
 
                                 }
                               </div>
-                            </OutsideClickHandler>
                           </tr>
                         ))
                       }
