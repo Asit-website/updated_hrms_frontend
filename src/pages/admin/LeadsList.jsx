@@ -240,7 +240,7 @@ export default function LeadManagementHeader() {
       </button>
       <div className="relative inline-block text-left" ref={dropdownRef}>
       <button
-        className="flex items-center gap-2 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200"
+        className="flex items-center gap-2 px-4 py-2 text-gray-700 rounded-lg hover:bg-gray-200"
         onClick={toggleDropdown}
       >
         Actions
@@ -263,7 +263,7 @@ export default function LeadManagementHeader() {
 
     <div className="flex items-center gap-2 mt-1 flex-wrap">
       <span className="text-sm text-gray-500">Sort by</span>
-      <div className="flex items-center gap-2 bg-gray-100 px-3 py-2 rounded-lg">
+      <div className="flex items-center gap-2 px-3 py-2 rounded-lg">
         <CalendarDays className="w-4 h-4 text-gray-600" />
         <input
           type="date"

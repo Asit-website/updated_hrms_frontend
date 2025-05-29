@@ -124,7 +124,7 @@ const LeadFile2 = () => {
       <div className="employee-dash h-full">
 
 
-        <div className="w-full bg-[#f5f5f5]">
+        <div className="w-full ">
 
 
           <div className="pt-8 pr-4 pb-7 pl-[16px] relative w-full">

@@ -54,9 +54,9 @@ const UserLead = () => {
     const [allLeading, setAlleading] = useState([]);
 
     const fetchLead = async () => {
-        const ans = await getLead3();
-        setAllLead(ans?.allLead);
-        setAlleading(ans?.allLead);
+        const ans = await getLeadByUser(user._id);
+        setAllLead(ans?.data);
+        setAlleading(ans?.data);
     };
 
     useEffect(() => {
@@ -309,10 +309,10 @@ const UserLead = () => {
 
     return (
         <>
-            <div className="flex relative bg-[#f5f5f5] h-full">
+            <div className="flex relative  h-full">
 
 
-                <div className="w-full bg-[#f5f5f5]">
+                <div className="w-full ">
 
 
                     <div className="w-full relative mt-[40px] px-[20px] pb-[32px] pl-[30px]">
@@ -384,7 +384,7 @@ const UserLead = () => {
                                         <div className=" flex gap-2 items-center">
                                             <h3 className="text-[#1B2533] font-semibold text-[16px]">User Leads</h3>
 
-                                            <div className="border relative min-w-36 ml-3 py-1 border-gray-300 flex items-center rounded-md">
+                                            {/* <div className="border relative min-w-36 ml-3 py-1 border-gray-300 flex items-center rounded-md">
                                                 <select
                                                     // className="userFilterr"
                                                     className="appearance-none border-none py-1 outline-none w-full pl-2 min-w-12"
@@ -402,7 +402,7 @@ const UserLead = () => {
                                                     ))}
                                                 </select>
                                                 <img width="30" src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746530550/downis_yfkfau.png" className="absolute right-1" alt="downis" />
-                                            </div>
+                                            </div> */}
                                         </div>
 
                                         <div className="border ml-3 py-1 border-gray-300 flex items-center rounded-md">

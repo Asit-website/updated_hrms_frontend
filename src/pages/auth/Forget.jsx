@@ -67,13 +67,13 @@ const ForgotPassword = ({setAlert}) => {
        <input
             type="text"
             placeholder="Employee Code"
-            className="w-full px-4 py-2 border border-gray-300 rounded-md mb-10 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-100 placeholder:text-gray-700 font-normal text-base"
+            className="w-full px-4 py-2 border border-gray-300 rounded-md mb-10 focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder:text-gray-700 font-normal text-base"
             onChange={handleChange} name="employeeCode" value={value.employeeCode}
           />
           <input
             type="email"
             placeholder="info@kushel.com"
-            className="w-full px-4 py-2 border border-gray-300 rounded-md mb-10 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-100 placeholder:text-gray-700 font-normal text-base"
+            className="w-full px-4 py-2 border border-gray-300 rounded-md mb-10 focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder:text-gray-700 font-normal text-base"
             onChange={handleChange} name="email" value={value.email}
           />
 

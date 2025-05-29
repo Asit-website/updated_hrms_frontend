@@ -703,7 +703,7 @@ const EmployeeManage = ({
       <div className="employee-dash h-full">
        
 
-        <div className="w-full bg-[#f5f5f5]">
+        <div className="w-full ">
          
 
           <div className="w-full relative px-[20px] pt-[32px] pb-[32px] pl-[20px]

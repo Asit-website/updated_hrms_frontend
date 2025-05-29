@@ -162,7 +162,7 @@ const PermissionDetail = () => {
   return (
     <>
       <div className="flex bg-[#f0f6ff] min-h-screen relative h-full">
-        <div className="w-full bg-[#f5f5f5]">
+        <div className="w-full ">
           <div className="w-full relative pt-[32px] pr-[20px] pb-[32px] pl-[20px] flex flex-col gap-[30px]">
             <div className="flex items-center justify-between sticky left-0 top-0">
               <h1 className="text-[24px] font-semibold text-[#111827] leading-6">

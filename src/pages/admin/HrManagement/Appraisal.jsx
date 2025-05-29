@@ -211,7 +211,7 @@ const   Appraisal = () => {
       <div className="annDash relative h-full">
        
 
-        <div className="bg-[#f5f5f5] w-full">
+        <div className=" w-full">
           
           <div className="pt-8 pb-8 pr-5 pl-5 relative w-full">
             <div className="w-full flex items-center justify-between flex-col lg:flex-row">

@@ -241,7 +241,7 @@ const AdminClientDashboard = () => {
            
                
          
-                  <div className="pt-8 pr-5 pb-8 pl-[24px] relative w-full bg-[#f5f5f5] ">
+                  <div className="pt-8 pr-5 pb-8 pl-[24px] relative w-full  ">
                         <div className="relative flex flex-col gap-[10px]">
                             <nav className="flex flex-col md:flex-row justify-between items-center">
                                 <h1 className="my-5 text-3xl font-bold">{role === "Client" ? 'My Projects' : `${data?.Name} Projects`}</h1>

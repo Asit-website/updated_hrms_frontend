@@ -9,7 +9,7 @@ import { useOutsideClick } from "../../../hooks/UseOutsideClick";
 import InitialsAvatar from "../../../components/InitialAvatar";
 
 const TaskClients = () => {
-  const {createClientapi, getClientapi, editTaskapi, disableClientapi } =
+  const { createClientapi, getClientapi, editTaskapi, disableClientapi } =
     useMain();
   const navigate = useNavigate();
 
@@ -226,7 +226,7 @@ const TaskClients = () => {
         };
         console.log("slect file", selectedFile);
       } else {
-        setTypeError("please seelect only file type");
+        setTypeError("please select only file type");
         setExcelFile(null);
       }
     } else {
@@ -290,10 +290,10 @@ const TaskClients = () => {
 
   return (
     <>
-      <div className="flex relative bg-[#f5f5f5] h-full">
+      <div className="flex relative  h-full">
 
 
-        <div className="w-full bg-[#f5f5f5] ">
+        <div className="w-full  ">
 
           <div className="pt-8 pr-5 pb-8 pl-[20px] relative w-full">
             <div className="relative flex flex-col gap-[20px]">
@@ -318,7 +318,7 @@ const TaskClients = () => {
                 <input type="text" placeholder="Search..." onChange={(e) => setSearchInput(e.target.value)}
                   value={searchInput} className="border border-[#D0D4DC] w-[200px] px-2.5 h-[38px] rounded-[10px]" />
 
-                <p className="py-[24px] pt-0 pb-8 text-[#1B2533] text-[12px] font-medium leading-[16px] tracking-[0.004em] text-left mt-4">Total Records: {allClient?.length || 0}</p>
+                <p className="py-[20px] pt-0 text-[#1B2533] text-[12px] font-medium leading-[16px] tracking-[0.004em] text-left mt-4">Total Records: {allClient?.length || 0}</p>
               </div>
 
 

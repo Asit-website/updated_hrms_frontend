@@ -273,7 +273,7 @@ const CreateLead = () => {
           <h2 className="text-[24px] font-semibold text-[#111827]">Create Lead</h2>
           <div className="flex gap-2">
             <NavLink to={user?.role === "ADMIN" ? "/adminDash/myLead" : "/employeeDash/myLead"}>
-              <button className="px-4 py-1.5 text-md border rounded-md bg-gray-100 text-gray-700 hover:bg-gray-200 font-medium">
+              <button className="px-4 py-1.5 text-md border rounded-md text-gray-700 hover:bg-gray-200 font-medium">
                 Back
               </button>
             </NavLink>

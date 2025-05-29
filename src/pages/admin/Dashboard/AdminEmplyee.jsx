@@ -148,7 +148,7 @@ const AdminEmplyee = () => {
     <>
       <div className="employee-dash h-full">
 
-        <div className="w-full bg-[#f5f5f5]">
+        <div className="w-full ">
 
           <div className="w-full min-h-[calc(100vh_-_83px)] relative pt-8 pb-8 pr-5 pl-[20px]">
             <div className="flex-col">

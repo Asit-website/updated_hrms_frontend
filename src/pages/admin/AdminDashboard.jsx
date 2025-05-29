@@ -1360,7 +1360,7 @@ const Dashboard = () => {
               <hr />
 
               <div className="flex p-5 gap-5">
-                <div className="flex justify-between p-7 bg-gray-100 w-1/2">
+                <div className="flex justify-between p-7 w-1/2">
                   <div>
                     <h5>{user?.userAllowance}</h5>
                     <p>Total leave allowance</p>
@@ -1381,7 +1381,7 @@ const Dashboard = () => {
                   </div>
                 </div>
 
-                <div className="flex justify-between p-7 bg-gray-100 w-1/2">
+                <div className="flex justify-between p-7 w-1/2">
                   <div>
                     <h5>{userLeaveTaken}</h5>
                     <p>Total leave taken</p>
@@ -1390,14 +1390,14 @@ const Dashboard = () => {
               </div>
 
               <div className="flex p-5 gap-5">
-                <div className="flex justify-between p-7 bg-gray-100 w-1/2">
+                <div className="flex justify-between p-7 w-1/2">
                   <div>
                     <h5>{remainingLeave === 0 ? 'N/A' : remainingLeave}</h5>
                     <p>Total leave available</p>
                   </div>
                 </div>
 
-                <div className="flex justify-between p-7 bg-gray-100 w-1/2">
+                <div className="flex justify-between p-7 w-1/2">
                   <div>
                     <h5>{userPendingLeaves}</h5>
                     <p>Total request pending</p>

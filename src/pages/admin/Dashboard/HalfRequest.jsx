@@ -177,7 +177,7 @@ const HalfRequest = () => {
     <>
       <div className="employee-dash h-full">
 
-        <div className="w-full bg-[#f5f5f5]">
+        <div className="w-full ">
 
 
           <div className="w-full relative pt-8 pb-8 pr-5 pl-[20px]">

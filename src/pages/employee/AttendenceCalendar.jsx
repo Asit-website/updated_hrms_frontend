@@ -87,7 +87,7 @@ const AttendenceCalendar = () => {
     }, []);
 
     return (
-        <div className="w-full bg-[#f5f5f5]">
+        <div className="w-full ">
             <div className="h-[calc(100vh_-_82px)] w-full p-5">
                 <div className="flex-col">
                     <button onClick={() => navigate(-1)} style={{

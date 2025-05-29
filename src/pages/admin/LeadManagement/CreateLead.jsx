@@ -234,10 +234,10 @@ const CreateLead2 = () => {
 
     return (
         <>
-            <div className="flex relative bg-gray-100 h-full">
+            <div className="flex relative h-full">
              
 
-                <div className="w-full bg-gray-100">
+                <div className="w-full">
              
 
                     <div className="pt-8 pr-5 pb-8 pl-14 mt-17 relative w-full">

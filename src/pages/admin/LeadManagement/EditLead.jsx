@@ -228,10 +228,10 @@ const EditLead = () => {
   };
   return (
     <>
-      <div className="flex relative bg-[#f5f5f5] h-full">
+      <div className="flex relative  h-full">
 
 
-        <div className="w-full bg-[#f5f5f5]">
+        <div className="w-full ">
 
 
           <div className="p-[15px_20px_54px] relative w-full">

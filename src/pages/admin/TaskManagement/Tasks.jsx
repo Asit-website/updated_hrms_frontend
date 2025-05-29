@@ -107,7 +107,7 @@ const Tasks = () => {
       <div className="employee-dash h-full">
        
 
-        <div className="w-full bg-[#f5f5f5]">
+        <div className="w-full ">
           
 
           <div className="p-[30px_20px_10px_20px] relative w-full">

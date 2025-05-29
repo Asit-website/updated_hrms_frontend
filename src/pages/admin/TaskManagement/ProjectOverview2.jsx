@@ -362,7 +362,7 @@ const ProjectOverview2 = ({ allTasks, getProjectTaskapi }) => {
   return (
     <>
       <div className="">
-        <div className="w-full bg-[#f5f5f5]">
+        <div className="w-full ">
 
           <div style={{ marginTop: '40px' }}>
             <div className="relative flex flex-col gap-5">
