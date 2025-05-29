@@ -183,6 +183,9 @@ const LeaveRequest = () => {
  const wrapperRef = useClickOutside(() => {
     setShowPlay(-1)
   });
+ const leaveActionPop = useClickOutside(() => {
+     setCurrView(-1);
+  });
   const desRef = useClickOutside( () => {
     setLeavePopup(false);
 
@@ -294,7 +297,7 @@ const LeaveRequest = () => {
                               </td>
 
                               {index === currView && (
-                                <div className=" absolute right-[60px] top-[-5px] -mt-8 mr-2 w-36 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 z-[999] ">
+                                <div ref={leaveActionPop} className=" absolute right-[60px] top-[-5px] -mt-8 mr-2 w-36 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 z-[999] ">
 
                                   {(leaveReqestEditPermission || role === "ADMIN") && (
                                     <>

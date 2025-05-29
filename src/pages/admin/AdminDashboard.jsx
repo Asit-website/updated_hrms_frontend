@@ -1456,7 +1456,7 @@ const Dashboard = () => {
                       />
                     </div>
                     <div className="flex flex-col gap-1">
-                      <label htmlFor="fullday-reason" className="font-medium">Reason :</label>
+                      <label htmlFor="reason" className="font-medium">Reason :</label>
                       <textarea
                         name="reason"
                         placeholder="Reason"
@@ -1484,9 +1484,9 @@ const Dashboard = () => {
                     </div>
 
                     <div className="flex flex-col gap-1">
-                      <label htmlFor="halfday-reason" className="font-medium">Reason :</label>
+                      <label htmlFor="reason" className="font-medium">Reason :</label>
                       <textarea
-                        name="halfday-reason"
+                        name="reason"
                         placeholder="Reason"
                         value={formdata2.reason}
                         onChange={(e) => handleChange(e, true)}
