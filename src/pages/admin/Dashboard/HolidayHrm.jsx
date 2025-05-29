@@ -170,7 +170,7 @@ const HolidayHRM = () => {
                     onClick={() => {
                       setPopup1(true);
                     }}
-                    className="bg-[#007bff] text-white border-none rounded-[5px] px-5 py-2.5 text-base font-bold font-sans cursor-pointer transition duration-300 ease-in-out hover:bg-[#006ae0] hover:scale-105"
+                    className="flex items-center gap-2 text-white bg-blue-700 hover:bg-blue-800   font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 w-fit mt-2"
                   >
                     Create Holiday
                   </button>
