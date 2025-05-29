@@ -646,10 +646,10 @@ const ImportLead = () => {
 
   return (
     <div className="relative">
-      <div className="flex relative bg-[#f5f5f5] h-full">
+      <div className="flex relative  h-full">
       
 
-        <div className="w-full bg-[#f5f5f5]">
+        <div className="w-full ">
          
 
           <div className="px-[20px] pt-[32px] pb-[32px] relative w-full">

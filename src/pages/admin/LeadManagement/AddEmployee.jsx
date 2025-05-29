@@ -49,7 +49,7 @@ const AddEmployee = () => {
       <div className="employee-dash h-full">
        
 
-        <div className="w-full bg-[#f5f5f5]">
+        <div className="w-full ">
         
 
           <div className="pt-[30px] pr-[20px] pb-[10px] pl-[20px] relative w-full">

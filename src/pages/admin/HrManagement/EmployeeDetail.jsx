@@ -449,7 +449,7 @@ const EmployeeSelf = () => {
       <div className="employee-dash h-full">
 
 
-        <div className="w-full bg-[#f5f5f5]">
+        <div className="w-full ">
 
 
           <div className="px-[20px] pr-[20px] py-[32px] mt-[120px] lg:mt-[69px] relative w-full flex flex-col gap-[20px]">

@@ -20,7 +20,7 @@ const MeetLead = () => {
     <div className="imprtleadCont">
       <div className="employee-dash h-full">
         
-        <div className="w-full bg-[#f5f5f5]">
+        <div className="w-full ">
           
 
 

@@ -139,7 +139,7 @@ const HolidayHRM = () => {
       <div className="employee-dash h-full">
        
 
-        <div className="w-full bg-[#f5f5f5] awardtm">
+        <div className="w-full  awardtm">
          
 
           <div className="relative w-full">

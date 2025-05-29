@@ -43,7 +43,7 @@ const ForgetPassword1 = ({ setAlert }) => {
   };
 
   return (
-    <div className="bg-[#f5f5f5] max-h-screen">
+    <div className=" max-h-screen">
       <div className="w-full h-screen p-[60px] pb-[80px] gap-2 rounded-l-[12px] flex flex-col items-center justify-center relative">
         <div className="w-[538px] relative max-h-[600px] h-fit p-[30px] px-[40px]">
           <h2 className='font-semibold text-[24px] text-black text-left mt-[10px]'>Forgot Password</h2>

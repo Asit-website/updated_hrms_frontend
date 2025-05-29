@@ -240,7 +240,7 @@ const GoalTracking = () => {
     <>
       <div className="annDash relative h-full">
       
-        <div className="w-full bg-[#f5f5f5]">
+        <div className="w-full ">
        
           <div className="pt-8 pb-8 pr-5 pl-5 relative w-full">
             <div className="w-full flex flex-col sm:flex-row items-center justify-between">

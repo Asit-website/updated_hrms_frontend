@@ -77,7 +77,7 @@ const { forgetPassword2, loading } = useMain();
                 onChange={handleChange}
                 value={value.password}
                 required
-                className="w-full py-2 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-100 placeholder:text-gray-700 font-normal text-base"
+                className="w-full py-2 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder:text-gray-700 font-normal text-base"
               />
             </label>
 
@@ -90,7 +90,7 @@ const { forgetPassword2, loading } = useMain();
                 onChange={handleChange}
                 value={value.password1}
                 required
-                className="w-full py-2 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-100 placeholder:text-gray-700 font-normal text-base"
+                className="w-full py-2 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder:text-gray-700 font-normal text-base"
               />
             </label>
 

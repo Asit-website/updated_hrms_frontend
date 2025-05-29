@@ -95,7 +95,7 @@ export default function ViewTask({ src, onClick, data, timesheets }) {
           <h3 className="text-lg font-semibold text-gray-900">Assigned Members</h3>
           <div className="flex flex-wrap gap-4 mt-3">
             {data.Members.map((member, index) => (
-              <div key={index} className="flex items-center gap-3 bg-gray-100 p-2 rounded-lg">
+              <div key={index} className="flex items-center gap-3 p-2 rounded-lg">
                 <img
                   src={member.profileImage ? member?.profileImage : "https://png.pngtree.com/png-vector/20231019/ourmid/pngtree-user-profile-avatar-png-image_10211467.png"}
                   alt={member.fullName}

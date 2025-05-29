@@ -682,7 +682,7 @@ const EmployeeManage = ({
   return (
     <>
       <div className="employee-dash h-full">
-        <div className="w-full bg-[#f5f5f5]">
+        <div className="w-full ">
          
           <div className="relative w-full p-[32px_20px_32px_20px]">
             {/* first  */}

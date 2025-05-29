@@ -71,10 +71,8 @@ export default function LeadManagement() {
   };
   const fetchUserLead = async () => {
     const ans = await getLeadByUser(hrms_user?._id);
-
     if (ans?.status) {
-      const openLeads = ans?.data?.filter((lead) => lead.status === "Open");
-      setUserLeads(openLeads.length);
+      setUserLeads(ans?.data.length);
     }
   };
 

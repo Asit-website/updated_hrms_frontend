@@ -437,8 +437,8 @@ const LeadSystemSetting = () => {
 
   return (
     <>
-      <div className="flex relative bg-[#f5f5f5] h-full">
-        <div className="w-full bg-[#f5f5f5] ">
+      <div className="flex relative  h-full">
+        <div className="w-full  ">
 
           <div className="pt-[32px] pr-0 lg:pr-[20px] pb-[32px] pl-0 lg:pl-[20px]  relative w-full">
 

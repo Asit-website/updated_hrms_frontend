@@ -298,7 +298,7 @@ const MyLead = () => {
 
   return (
     <>
-      <div className="flex relative bg-gray-100 h-full">
+      <div className="flex relative h-full">
         <div className="w-full">
 
           <div className="pt-[10px] px-[20px] pb-[30px]">
@@ -413,8 +413,8 @@ const MyLead = () => {
               </div>
 
               <div className="bg-grey rounded-xl border-2">
-                <div className="w-full border-gray-200 bg-white border overflow-x-scroll">
-                  <table className="w-full text-sm text-gray-700 overflow-x-auto">
+                <div className="w-full border-gray-200 bg-white border overflow-x-scroll md:overflow-visible">
+                  <table className="w-full text-sm text-gray-700 overflow-x-auto md:overflow-visible">
                     <thead className="bg-white font-semibold">
                       <tr>
                         <th scope="col" className="text-left font-bold text-gray-900 py-3 px-4 border-b border-gray-200 whitespace-nowrap">
@@ -495,7 +495,7 @@ const MyLead = () => {
                               </td>
 
                               {index === currView && (
-                                <div ref={ref} className="absolute top-[-15px] min-w-[120px] h-fit border-t border-[#E3E3E3] flex flex-col shadow-[0_4px_12px_0px_#1A1A1A33] py-[8px] gap-[5px] rounded-tl-[8px] rounded-tr-none rounded-br-none rounded-bl-none z-[1000] bg-white right-[75px]">
+                                <div ref={ref} className="absolute top-[-90px] min-w-[120px] h-fit border-t border-[#E3E3E3] flex flex-col shadow-[0_4px_12px_0px_#1A1A1A33] py-[8px] gap-[5px] rounded-tl-[8px] rounded-tr-none rounded-br-none rounded-bl-none z-[1000] bg-white right-[75px]">
                                   <div className="flex gap-4 items-center px-2 cursor-pointer" onClick={() => navigate("/adminDash/editLead", { state: item })}>
 
                                     <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746260260/Vector_zah5tt.svg" alt="Edit" />

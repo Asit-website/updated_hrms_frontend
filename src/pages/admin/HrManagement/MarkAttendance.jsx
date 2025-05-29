@@ -546,7 +546,7 @@ const MarkAttendance = () => {
     <>
       {/* <h1>Hello Dinesh</h1> */}
       <div className="employee-dash h-full">
-        <div className="w-full bg-[#f5f5f5] relative">
+        <div className="w-full  relative">
         
           <div className="pt-8 pr-5 pb-8 pl-[20px] relative w-full">
 

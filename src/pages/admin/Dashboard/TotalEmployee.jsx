@@ -37,7 +37,7 @@ const TotalEmployee = () => {
     <>
       <div className="employee-dash h-full">
        
-        <div className="w-full bg-[#f5f5f5]">
+        <div className="w-full ">
          
 
           <div className="pt-[32px] pr-[20px] pb-[32px] pl-[20px] relative w-full

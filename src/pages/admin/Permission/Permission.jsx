@@ -68,7 +68,7 @@ const Permission = () => {
     <>
       <div className="flex bg-[#f0f6ff] relative min-h-screen h-full">
        
-        <div className="w-full bg-[#f5f5f5]">
+        <div className="w-full ">
           
 
           <div className="w-full relative mt-[40px] px-[20px]  pb-[32px] pl-[20px] flex flex-col gap-[30px]">

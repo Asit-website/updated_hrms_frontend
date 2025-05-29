@@ -78,9 +78,9 @@ useEffect(()=>{
   return (
     <>
    
-      <div className="employee-dash h-full bg-[#f5f5f5]">
+      <div className="employee-dash h-full ">
         
-        <div className="w-full bg-[#f5f5f5]">
+        <div className="w-full ">
           
           <div className="pt-7.5 pr-5 pb-2.5 pl-8 relative w-full">
             <div className="flex flex-col gap-6">

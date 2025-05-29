@@ -403,10 +403,10 @@ const TaskProjects = () => {
 
   return (
     <>
-      <div className="flex relative bg-[#f5f5f5] h-full">
+      <div className="flex relative  h-full">
 
 
-        <div className="w-full bg-[#f5f5f5] ">
+        <div className="w-full  ">
 
           <div className="pt-[32px] pl-[20px] pr-[20px] pb-[32px] relative w-full">
             <div className="rlative flex flex-col gap-[20px]">

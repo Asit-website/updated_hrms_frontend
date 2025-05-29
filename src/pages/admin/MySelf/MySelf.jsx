@@ -100,9 +100,9 @@ const MySelf = () => {
 
   return (
     <>
-      <div className="flex relative bg-[#f5f5f5] h-full">
+      <div className="flex relative  h-full">
 
-        <div className="w-full bg-[#f5f5f5] relative">
+        <div className="w-full  relative">
 
           <nav className="w-full lg:w-full flex flex-col md:flex-row items-start md:items-center justify-between bg-white md:sticky top-0 right-0 left-0 px-5 md:px-[40px] py-[18px] md:py-[25px] z-20 gap-4">
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-5 w-full md:w-auto">

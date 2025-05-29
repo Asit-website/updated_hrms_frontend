@@ -639,7 +639,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
       <div className="employee-dash h-full">
       
 
-        <div className="w-full bg-[#f5f5f5]">
+        <div className="w-full ">
          
 
           <div className="pt-8 pr-5 pb-8 pl-[20px] relative w-full">
