@@ -3,13 +3,14 @@ import React, { useEffect, useRef, useState } from "react";
 import "react-calendar/dist/Calendar.css";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 import PhoneInput from "react-phone-input-2";
 import { useMain } from "../../../hooks/UseMain";
+import { useClickOutside } from "../../../hooks/useClickOutside";
 
 const EditLead = () => {
   const {
-    
+
     updateLead,
     getEmployees,
     AllLeadSource,
@@ -170,6 +171,10 @@ const EditLead = () => {
     setAllLeadStat(ans?.data);
   };
 
+  const ref = useClickOutside(() => {
+    setPop1(false);
+  })
+
   useEffect(() => {
     fetchStatus();
     fetchSource();
@@ -224,10 +229,10 @@ const EditLead = () => {
   return (
     <>
       <div className="flex relative bg-[#f5f5f5] h-full">
-      
+
 
         <div className="w-full bg-[#f5f5f5]">
-         
+
 
           <div className="p-[15px_20px_54px] relative w-full">
             <h2 className="text-xl font-semibold ">Edit Lead</h2>
@@ -257,57 +262,48 @@ const EditLead = () => {
                 />
               </div>
 
-              <>
-                {/* Main modal */}
-                <OutsideClickHandler
-                  onOutsideClick={() => {
-                    setPop1(false);
-                  }}
-                >
-                  <div
-                    id="default-modal"
-                    tabIndex={-1}
-                    aria-hidden="true"
-                    className="hidden tikra overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
-                    style={stylePeer}
-                  >
-                    <div className="relative p-4 w-full max-w-2xl max-h-full">
-                      {/* Modal content */}
-                      <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
+              <div
+                ref={ref}
+                id="default-modal"
+                tabIndex={-1}
+                className="hidden tikra overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
+                style={stylePeer}
+              >
+                <div className="relative p-4 w-full max-w-2xl max-h-full">
+                  {/* Modal content */}
+                  <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
 
-                        <div className=" p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-                          <h3 className="text-xl sini  font-semibold text-gray-900 dark:text-white">
-                            Select Image
-                          </h3>
-                        </div>
+                    <div className=" p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                      <h3 className="text-xl sini  font-semibold text-gray-900 dark:text-white">
+                        Select Image
+                      </h3>
+                    </div>
 
-                        <div className="selct_div">
-                          <div className="upload_io">
-                            <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747306346/upload_z9rfuy.svg" alt="" />
-                          </div>
-                          <div className="upload_an mt-4">
-                            <p className="text-base font-medium leading-6 tracking-[0.0015em] text-left text-blue-600 underline">Upload an image here</p>
-                          </div>
-                          <div className="opd mt-4">
-                            <div className="browse">
-                              <h3>Browse Local Files</h3>
-                            </div>
-                            <input
-                              type="file"
-                              onChange={(e) => {
-                                handleImageChange(e);
-                                setPop1(false);
-                              }}
-                            />
-                          </div>
+                    <div className="selct_div">
+                      <div className="upload_io">
+                        <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747306346/upload_z9rfuy.svg" alt="" />
+                      </div>
+                      <div className="upload_an mt-4">
+                        <p className="text-base font-medium leading-6 tracking-[0.0015em] text-left text-blue-600 underline">Upload an image here</p>
+                      </div>
+                      <div className="opd mt-4">
+                        <div className="browse">
+                          <h3>Browse Local Files</h3>
                         </div>
-                        {/* Modal footer */}
-                        <div className="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600"></div>
+                        <input
+                          type="file"
+                          onChange={(e) => {
+                            handleImageChange(e);
+                            setPop1(false);
+                          }}
+                        />
                       </div>
                     </div>
+                    {/* Modal footer */}
+                    <div className="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600"></div>
                   </div>
-                </OutsideClickHandler>
-              </>
+                </div>
+              </div>
 
               <div className="lead_information mt-6">
                 <h2 className="text-[18px] font-semibold !text-black">Lead Information</h2>
@@ -317,7 +313,7 @@ const EditLead = () => {
                     <div className="max-w-1/2 w-full">
                       <label htmlFor="" className="block text-md font-normal mb-1">Lead Owner *</label>
                       <input
-                      className="w-full border rounded p-2"
+                        className="w-full border rounded p-2"
                         required
                         type="LeadOwner"
                         value={item?.LeadOwner?.fullName}
@@ -328,7 +324,7 @@ const EditLead = () => {
                     <div className="max-w-1/2 w-full">
                       <label htmlFor="" className="block text-md font-normal mb-1">Company *</label>
                       <input
-                      className="w-full border rounded p-2"
+                        className="w-full border rounded p-2"
                         required
                         type="text"
                         value={formdata.Company}
@@ -340,12 +336,12 @@ const EditLead = () => {
 
                   <div className="flex flex-col lg:flex-row items-center gap-5">
                     <div className="max-w-1/2 w-full makeitflexcol">
-                     
+
 
                       <div className=" exceptionwidht">
                         <label htmlFor="" className="block text-md font-normal mb-1">First Name *</label>
                         <input
-                        className="w-full border rounded p-2"
+                          className="w-full border rounded p-2"
                           value={formdata.FirstName}
                           name="FirstName"
                           onChange={changeHandler}
@@ -357,7 +353,7 @@ const EditLead = () => {
                     <div className="max-w-1/2 w-full">
                       <label htmlFor="" className="block text-md font-normal mb-1">Last Name</label>
                       <input
-                      className="w-full border rounded p-2"
+                        className="w-full border rounded p-2"
                         value={formdata.LastName}
                         name="LastName"
                         onChange={changeHandler}
@@ -370,7 +366,7 @@ const EditLead = () => {
                     <div className="max-w-1/2 w-full">
                       <label htmlFor="" className="block text-md font-normal mb-1">Title</label>
                       <input
-                           className="w-full border rounded p-2"
+                        className="w-full border rounded p-2"
                         value={formdata.Title}
                         name="Title"
                         onChange={changeHandler}
@@ -380,7 +376,7 @@ const EditLead = () => {
                     <div className="max-w-1/2 w-full">
                       <label htmlFor="" className="block text-md font-normal mb-1">Email *</label>
                       <input
-                           className="w-full border rounded p-2"
+                        className="w-full border rounded p-2"
                         required
                         value={formdata.Email}
                         name="Email"
@@ -392,9 +388,9 @@ const EditLead = () => {
 
                   <div className="flex flex-col lg:flex-row items-center gap-5">
                     <div className="max-w-1/2 w-full">
-                      <label htmlFor=""  className="block text-md font-normal mb-1">Phone*</label>
+                      <label htmlFor="" className="block text-md font-normal mb-1">Phone*</label>
                       <input
-                          className="w-full border rounded p-2 "
+                        className="w-full border rounded p-2 "
                         inputClass="hjj"
                         country={"in"}
                         id="Phone"
@@ -418,9 +414,9 @@ const EditLead = () => {
                     </div>
 
                     <div className="max-w-1/2 w-full">
-                      <label htmlFor=""  className="block text-md font-normal mb-1">Fax</label>
+                      <label htmlFor="" className="block text-md font-normal mb-1">Fax</label>
                       <input
-                          className="w-full border rounded p-2"
+                        className="w-full border rounded p-2"
                         value={formdata.Fax}
                         name="Fax"
                         onChange={changeHandler}
@@ -431,9 +427,9 @@ const EditLead = () => {
 
                   <div className="flex flex-col lg:flex-row items-center gap-5">
                     <div className="max-w-1/2 w-full">
-                      <label htmlFor=""  className="block text-md font-normal mb-1">Mobile</label>
+                      <label htmlFor="" className="block text-md font-normal mb-1">Mobile</label>
                       <input
-                         className="w-full border rounded p-2"
+                        className="w-full border rounded p-2"
                         value={formdata.Mobile}
                         name="Mobile"
                         onChange={changeHandler}
@@ -446,7 +442,7 @@ const EditLead = () => {
                   <div className="flex flex-col lg:flex-row items-center gap-5">
                     <div className="max-w-1/2 w-full">
                       <label htmlFor="" className="block text-md font-normal mb-1">Lead Source</label>
-                      <select    className="w-full border rounded p-2" name="LeadSource" onChange={changeHandler} id="">
+                      <select className="w-full border rounded p-2" name="LeadSource" onChange={changeHandler} id="">
                         <option disabled>Select lead source</option>
                         {allLeadSource?.map((item, index) => (
                           <option key={index} value={item?.name}>
@@ -456,9 +452,9 @@ const EditLead = () => {
                       </select>
                     </div>
                     <div className="max-w-1/2 w-full">
-                      <label htmlFor=""  className="block text-md font-normal mb-1">No. of Employees</label>
+                      <label htmlFor="" className="block text-md font-normal mb-1">No. of Employees</label>
                       <input
-                      className="w-full border rounded p-2" 
+                        className="w-full border rounded p-2"
                         value={formdata.NoOfEmployee}
                         name="NoOfEmployee"
                         onChange={changeHandler}
@@ -471,7 +467,7 @@ const EditLead = () => {
                     <div className="max-w-1/2 w-full">
                       <label htmlFor="Industry" className="block text-md font-normal mb-1">Industry</label>
                       <select
-                      className="w-full border rounded p-2" 
+                        className="w-full border rounded p-2"
                         value={formdata?.Industry}
                         name="Industry"
                         onChange={changeHandler}
@@ -488,7 +484,7 @@ const EditLead = () => {
                     <div className="max-w-1/2 w-full">
                       <label htmlFor="" className="block text-md font-normal mb-1">Lead Status *</label>
                       <select
-                       className="w-full border rounded p-2" 
+                        className="w-full border rounded p-2"
                         required
                         value={formdata?.LeadStatus}
                         name="LeadStatus"
@@ -503,7 +499,7 @@ const EditLead = () => {
                             </option>
                           );
                         })}
-                        
+
                       </select>
                     </div>
                   </div>
@@ -512,7 +508,7 @@ const EditLead = () => {
                     <div className="max-w-1/2 w-full">
                       <label htmlFor="" className="block text-md font-normal mb-1">Annual Revenue</label>
                       <input
-                        className="w-full border rounded p-2" 
+                        className="w-full border rounded p-2"
                         value={formdata.AnnualRevenue}
                         name="AnnualRevenue"
                         onChange={changeHandler}
@@ -523,7 +519,7 @@ const EditLead = () => {
                     <div className="max-w-1/2 w-full">
                       <label htmlFor="" className="block text-md font-normal mb-1">Rating</label>
                       <select name="Rating"
-                        className="w-full border rounded p-2"  onChange={changeHandler} id="">
+                        className="w-full border rounded p-2" onChange={changeHandler} id="">
                         <option>1</option>
                         <option>2</option>
                         <option>3</option>
@@ -539,11 +535,11 @@ const EditLead = () => {
                         Email Opt Out
                       </label>
                       <input
-                      className="seng w-full border rounded p-2" 
+                        className="seng w-full border rounded p-2"
                         value={formdata.EmailOptOut}
                         name="EmailOptOut"
                         onChange={changeHandler}
-                       
+
                         type="checkbox"
                       />
                     </div>
@@ -554,7 +550,7 @@ const EditLead = () => {
                     <div className="max-w-1/2 w-full">
                       <label htmlFor="" className="block text-md font-normal mb-1">Secondary Email</label>
                       <input
-                         className="w-full border rounded p-2"
+                        className="w-full border rounded p-2"
                         value={formdata.SecondaryEmail}
                         name="SecondaryEmail"
                         onChange={changeHandler}
@@ -568,7 +564,7 @@ const EditLead = () => {
                     <div className="max-w-1/2 w-full">
                       <label htmlFor="" className="block text-md font-normal mb-1">Date</label>
                       <input
-                         className="w-full border rounded p-2"
+                        className="w-full border rounded p-2"
                         value={formdata.date}
                         name="date"
                         onChange={changeHandler}
@@ -610,7 +606,7 @@ const EditLead = () => {
                     <div className="max-w-1/2 w-full">
                       <label htmlFor="" className="block text-md font-normal mb-1">Website</label>
                       <input
-                      className="w-full border rounded p-2"
+                        className="w-full border rounded p-2"
                         value={formdata.Website}
                         name="Website"
                         onChange={changeHandler}
@@ -631,7 +627,7 @@ const EditLead = () => {
                     <div className="max-w-1/2 w-full">
                       <label htmlFor="" className="block text-md font-normal mb-1">Street</label>
                       <input
-                      className="w-full border rounded p-2"
+                        className="w-full border rounded p-2"
                         value={formdata.Street}
                         name="Street"
                         onChange={changeHandler}
@@ -641,7 +637,7 @@ const EditLead = () => {
                     <div className="max-w-1/2 w-full">
                       <label htmlFor="" className="block text-md font-normal mb-1">City</label>
                       <input
-                               className="w-full border rounded p-2"
+                        className="w-full border rounded p-2"
                         value={formdata.City}
                         name="City"
                         onChange={changeHandler}
@@ -654,7 +650,7 @@ const EditLead = () => {
                     <div className="max-w-1/2 w-full">
                       <label htmlFor="" className="block text-md font-normal mb-1">State</label>
                       <input
-                               className="w-full border rounded p-2"
+                        className="w-full border rounded p-2"
                         value={formdata.State}
                         name="State"
                         onChange={changeHandler}
@@ -705,7 +701,7 @@ const EditLead = () => {
                     <div className="max-w-1/2 w-full">
                       <label htmlFor="" className="block text-md font-normal mb-1">Description</label>
                       <input
-                       className="w-full border rounded p-2"
+                        className="w-full border rounded p-2"
                         value={formdata.DescriptionInfo}
                         name="DescriptionInfo"
                         onChange={changeHandler}

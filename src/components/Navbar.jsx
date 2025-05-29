@@ -5,8 +5,10 @@ import { RxCross2 } from 'react-icons/rx';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useMain } from '../hooks/UseMain';
 import { useClickOutside } from '../hooks/useClickOutside';
+import { useAuth } from '../Context/AuthContext';
 
 const Navbar = ({ showSidebar, setShowSidebar }) => {
+  const { user } = useAuth();
   const { allEmployee, getDepartments, getBranchs, fetchUserNotify, markedNotification } = useMain()
   const currentUser = JSON.parse(localStorage.getItem('hrms_user'));
   const { fullName, email, profileImage } = currentUser;
@@ -15,6 +17,8 @@ const Navbar = ({ showSidebar, setShowSidebar }) => {
   const [allNotication, setAllNotification] = useState([]);
   const [loading, setLoading] = useState();
   const [shownotify, setShownotify] = useState(false);
+  let hrms_permission = JSON.parse(localStorage.getItem("hrms_permission"));
+  const { permissionPagePermission } = hrms_permission
 
   const handleLogout = () => {
     localStorage.clear();
@@ -51,15 +55,18 @@ const Navbar = ({ showSidebar, setShowSidebar }) => {
 
   const unreadNotifications = allNotication.filter(notification => !notification.IsRead);
   const unreadCount = unreadNotifications.length;
+  const bellRef = useRef(null);
 
   const toggleNotification = (e) => {
     e.stopPropagation();
     setShownotify((prev) => !prev);
   };
 
-  const notificationWrapper = useClickOutside(() => {
+  const notificationWrapper = useClickOutside((e) => {
+    // if (bellRef.current?.contains(e.target)) return;
     setShownotify(false);
   });
+
   const profileWrapper = useClickOutside(() => {
     setDropdownOpen(false);
   });
@@ -77,6 +84,10 @@ const Navbar = ({ showSidebar, setShowSidebar }) => {
     return () => clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    console.log(shownotify)
+  }, [shownotify])
+
   return (
 
     <>
@@ -91,7 +102,7 @@ const Navbar = ({ showSidebar, setShowSidebar }) => {
           </NavLink>
 
           <div className='flex items-center gap-5'>
-            <div className="relative cursor-pointer inline-block " onClick={toggleNotification}>
+            <div className="relative cursor-pointer inline-block " ref={bellRef} onClick={toggleNotification}>
               <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1748275066/notifications_fyy92v.png" alt="Notification" className="h-7 w-7" />
 
               {unreadCount > 0 && (
@@ -126,9 +137,13 @@ const Navbar = ({ showSidebar, setShowSidebar }) => {
                     <li>
                       <NavLink to="/adminDash/mySelf" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">MySelf</NavLink>
                     </li>
-                    <li>
-                      <NavLink to="/adminDash/Permission" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Permission </NavLink>
-                    </li>
+                    {
+                      (permissionPagePermission || user?.role === "ADMIN") && (
+                        <li>
+                          <NavLink to="/adminDash/Permission" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Permission </NavLink>
+                        </li>
+                      )
+                    }
                     <li>
                       <p onClick={handleLogout} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white cursor-pointer">Log out</p>
                     </li>

@@ -15,6 +15,7 @@ import { MdDeleteOutline } from "react-icons/md";
 import { useMain } from "../../../hooks/UseMain";
 import { useDownloadExcel } from "react-export-table-to-excel";
 import { useAuth } from "../../../Context/AuthContext";
+import { useClickOutside } from "../../../hooks/useClickOutside";
 
 const MyLead = () => {
   const navigate = useNavigate();
@@ -284,6 +285,11 @@ const MyLead = () => {
     });
 
   }
+
+  const ref = useClickOutside(()=>{
+    setCurrView(-1);
+  })
+
   const { onDownload } = useDownloadExcel({
     currentTableRef: tableRef.current,
     filename: 'Leads Table',
@@ -477,14 +483,7 @@ const MyLead = () => {
                             {new Date(item?.createAt).toLocaleDateString("en-CA")}
                           </td>
 
-                          <OutsideClickHandler
-                            onOutsideClick={() => {
-                              if (index === currView) {
-                                setCurrView(-1);
-                              }
-                            }}
-                          >
-                            <div className="relative">
+                          <div className="relative">
                               <td
                                 onClick={() => {
                                   setCurrView(currView === index ? -1 : index);
@@ -496,7 +495,7 @@ const MyLead = () => {
                               </td>
 
                               {index === currView && (
-                                <div className="absolute top-[-15px] min-w-[120px] h-fit border-t border-[#E3E3E3] flex flex-col shadow-[0_4px_12px_0px_#1A1A1A33] py-[8px] gap-[5px] rounded-tl-[8px] rounded-tr-none rounded-br-none rounded-bl-none z-[1000] bg-white right-[75px]">
+                                <div ref={ref} className="absolute top-[-15px] min-w-[120px] h-fit border-t border-[#E3E3E3] flex flex-col shadow-[0_4px_12px_0px_#1A1A1A33] py-[8px] gap-[5px] rounded-tl-[8px] rounded-tr-none rounded-br-none rounded-bl-none z-[1000] bg-white right-[75px]">
                                   <div className="flex gap-4 items-center px-2 cursor-pointer" onClick={() => navigate("/adminDash/editLead", { state: item })}>
 
                                     <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746260260/Vector_zah5tt.svg" alt="Edit" />
@@ -533,7 +532,6 @@ const MyLead = () => {
                                 </div>
                               )}
                             </div>
-                          </OutsideClickHandler>
 
 
                         </tr>

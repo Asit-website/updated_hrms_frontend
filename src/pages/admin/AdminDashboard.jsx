@@ -10,7 +10,7 @@ import { useMain } from "../../hooks/UseMain";
 import Calendar from "react-calendar";
 import { toast } from "react-toastify";
 import DatePicker from "react-datepicker";
-import { format, parse } from "date-fns";
+import { format, isValid, parse } from "date-fns";
 import "react-datepicker/dist/react-datepicker.css";
 import { useClickOutside } from "../../hooks/useClickOutside";
 import { DescriptionModal } from "../../components/DescriptionModal";
@@ -168,7 +168,7 @@ const Dashboard = () => {
   const handleDateChange = (date, field, isHalfDay = false) => {
     console.log(date)
     if (!date) return;
-    const formattedDate = format(date, 'dd-MM-yyyy');
+    const formattedDate = format(date, 'dd/MM/yyyy');
 
     if (isHalfDay) {
       setFormdata2((prev) => ({
@@ -208,7 +208,14 @@ const Dashboard = () => {
 
       const startDate = parse(start, "dd/MM/yyyy", new Date());
       const endDate = parse(end, "dd/MM/yyyy", new Date());
-      const daysGap = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24)) + 1;
+
+      if (!isValid(startDate) || !isValid(endDate)) {
+        console.error("Invalid dates:", start, end);
+        return;
+      }
+
+      const timeDifference = endDate.getTime() - startDate.getTime();
+      const daysGap = Math.ceil(timeDifference / (1000 * 60 * 60 * 24)) + 1;
 
       const ans = await postLeave({
         type: leaveType,
@@ -950,7 +957,7 @@ const Dashboard = () => {
                       <td className="px-3 py-4 text-gray-800">
                         {val?.endDate}
                       </td>
-                      <td className="px-3 py-4 text-gray-800">
+                      <td className="px-3 py-4 flex items-center justify-center max-w-[75px] text-gray-800">
                         <div className="relative w-fit" >
                           <img onClick={() => setAnnounceIndex(announceIndex === index ? null : index)} className="cursor-pointer" src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747392487/thredonts_jlsvvx.png" alt="action" />
 
@@ -1433,24 +1440,26 @@ const Dashboard = () => {
                       </select>
                     </div>
                     <div className="flex flex-col gap-1">
-                      <label htmlFor="fullday-start" className="font-medium">Start Date :</label>
+                      <label htmlFor="start" className="font-medium">Start Date :</label>
                       <DatePicker
-                        selected={formdata.start ? parse(formdata.start, "dd-MM-yyyy", new Date()) : null}
+                        selected={formdata.start ? parse(formdata.start, "dd/MM/yyyy", new Date()) : null}
                         onChange={(date) => handleDateChange(date, "start", false)}
-                        dateFormat="dd-MM-yyyy"
+                        dateFormat="dd/MM/yyyy"
                         minDate={new Date()}
+                        name="start"
                         placeholderText="Start Date"
                         className="!w-full border border-gray-300 p-2 rounded"
                       />
                     </div>
 
                     <div className="flex flex-col gap-1">
-                      <label htmlFor="fullday-end" className="font-medium">End Date :</label>
+                      <label htmlFor="end" className="font-medium">End Date :</label>
                       <DatePicker
-                        selected={formdata.end ? parse(formdata.end, "dd-MM-yyyy", new Date()) : null}
+                        selected={formdata.end ? parse(formdata.end, "dd/MM/yyyy", new Date()) : null}
                         onChange={(date) => handleDateChange(date, "end", false)}
-                        dateFormat="dd-MM-yyyy"
+                        dateFormat="dd/MM/yyyy"
                         minDate={new Date()}
+                        name="end"
                         placeholderText="End Date"
                         className="!w-full border border-gray-300 p-2 rounded"
                       />
@@ -1471,13 +1480,13 @@ const Dashboard = () => {
                 {formType === "half" && (
                   <>
                     <div className="flex flex-col gap-1">
-                      <label htmlFor="halfday-start" className="font-medium">Date :</label>
+                      <label htmlFor="start" className="font-medium">Date :</label>
                       <DatePicker
-                        selected={formdata2.start ? parse(formdata2.start, "dd-MM-yyyy", new Date()) : null}
+                        selected={formdata2.start ? parse(formdata2.start, "dd/MM/yyyy", new Date()) : null}
                         onChange={(date) => handleDateChange(date, "start", true)}
-                        dateFormat="dd-MM-yyyy"
+                        dateFormat="dd/MM/yyyy"
                         minDate={new Date()}
-                        name="halfday-start"
+                        name="start"
                         placeholderText="Start Date"
                         className="!w-full border border-gray-300 p-2 rounded"
                       />

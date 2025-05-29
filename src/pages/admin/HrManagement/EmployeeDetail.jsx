@@ -4,7 +4,7 @@ import "react-calendar/dist/Calendar.css";
 
 import { useLocation } from "react-router-dom";
 
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 import { useReactToPrint } from "react-to-print";
 import { MdDeleteOutline } from "react-icons/md";
 import { FaRegEye } from "react-icons/fa";
@@ -14,11 +14,12 @@ import { useMain } from "../../../hooks/UseMain";
 
 const EmployeeSelf = () => {
   const {
- 
     deleteOfferLetter,
-    deleteRelievingLetter,
+    deleteRelievingLetter, deleteCompletionLetter,
     deleteExperienceLetter,
     deleteInternshipOfferLetter,
+    deleteFreelanceOfferLetter,
+    deleteparttimeOfferLetter,
     postActivity,
     getStatisticsByUser,
     getUsers,
@@ -45,21 +46,38 @@ const EmployeeSelf = () => {
   const [internOffer, setInternOffer] = useState(``);
   const [experienceContent, setExperienceContent] = useState(``);
   const [internshipContent, setinternshipContent] = useState(``);
+  const [freelanceContent, setFreelanceContent] = useState(``);
+  const [partTimeContent, setPartTmeContent] = useState(``);
+  const [completionLetterContent, setCompletionLetterContent] = useState(``);
+  const [LorLetterContent, setLorLetterContent] = useState(``);
+
 
   const [offerLetter, setOfferLetter] = useState([]);
   const [reliveLetter, setReliveLetter] = useState([]);
   const [experienceLetter, setExperienceLetter] = useState([]);
   const [internshipLetter, setinternshipLetter] = useState([]);
+   const [freelanceLetter, setFreelanceLetter] = useState([]);
+  const [partTimeLetter, setPartTimeLetter] = useState([]);
+  const [completionLetter, setCompletionLetter] = useState([])
+  const [lorLetter, setLorLetter] = useState([]);
 
   const [viewOfferLetter, setViewOfferLetter] = useState(0);
   const [viewReliveLetter, setViewReliveLetter] = useState(0);
   const [viewExperienceLetter, setViewExperienceLetter] = useState(0);
   const [viewInternshipLetter, setViewInternshipLetter] = useState(0);
+    const [viewFreelanceLetter, setViewFreelanceLetter] = useState(0);
+  const [viewPartTimeLetter, setViewPartTimeLetter] = useState(0);
+  const [viewCompletionLetter, setViewCompletionLetter] = useState(0);
+  const [viewLorLetter, setViewLorLetter] = useState(0);
 
   const contonentPDF = useRef();
   const contonentPDF2 = useRef();
   const contonentPDF3 = useRef();
   const contonentPDF4 = useRef();
+    const contonentPDF5 = useRef();
+  const contonentPDF6 = useRef();
+  const contonentPDF7 = useRef();
+  const contonentPDF8 = useRef();
 
   const generatePdf = useReactToPrint({
     content: () => contonentPDF.current,
@@ -93,6 +111,44 @@ const EmployeeSelf = () => {
       },
     },
   });
+  const generatePdf5 = useReactToPrint({
+    content: () => contonentPDF5.current,
+    documentTitle: "Freelance Letter",
+    parentContainer: {
+      "@media print": {
+        display: "block",
+      },
+    },
+  });
+  const generatePdf6 = useReactToPrint({
+    content: () => contonentPDF6.current,
+    documentTitle: "Part Time Letter",
+    parentContainer: {
+      "@media print": {
+        display: "block",
+      },
+    },
+  });
+
+  const generatePdf7 = useReactToPrint({
+    content: () => contonentPDF7.current,
+    documentTitle: "Completion Letter",
+    parentContainer: {
+      "@media print": {
+        display: "block",
+      },
+    },
+  });
+
+  const generatePdf8 = useReactToPrint({
+    content: () => contonentPDF8.current,
+    documentTitle: "LOR Letter",
+    parentContainer: {
+      "@media print": {
+        display: "block",
+      },
+    },
+  });
 
   const [thisMonthLeave, setThisMonthLeave] = useState(0);
 
@@ -103,11 +159,18 @@ const EmployeeSelf = () => {
       setReliveLetter(ans?.data?.relivingLetter);
       setExperienceLetter(ans?.data?.expeletter);
       setinternshipLetter(ans?.data?.internLetter);
+      setFreelanceLetter(ans?.data?.freelencerOfferLetter);
+      setPartTimeLetter(ans?.data?.partTimeLetter);
+      setCompletionLetter(ans?.data?.completionLetter);
+      setLorLetter(ans?.data?.lorLetter)
 
       setOfferContent(ans?.data?.createletter[0]?.content);
       setReliveContent(ans?.data?.relivingLetter[0]?.content);
       setExperienceContent(ans?.data?.expeletter[0]?.content);
       setinternshipContent(ans?.data?.internLetter[0]?.content);
+      setPartTmeContent(ans?.data?.partTimeLetter[0]?.content);
+      setCompletionLetterContent(ans?.data?.completionLetter[0]?.content)
+      setLorLetterContent(ans?.data?.lorLetter[0]?.content)
     }
   };
 
@@ -297,20 +360,104 @@ const EmployeeSelf = () => {
     });
   };
 
+  const deleteFreelanceLetterFunc = async (id) => {
+    confirmAlert({
+      title: "Are you sure to Delete this Freelance letter ?",
+      // message: "All related data to this will be deleted",
+      buttons: [
+        {
+          label: "Yes, Go Ahead!",
+          style: {
+            background: "#FF5449",
+          },
+          onClick: async () => {
+            const toastId = toast.loading("Loading...");
+            setShowIndex(null);
+            const ans = await deleteFreelanceOfferLetter(id);
+            toast.success("Successfully Deleted");
+            toast.dismiss(toastId);
+            getOfferletter();
+          },
+        },
+        {
+          label: "Cancel",
+
+          onClick: () => null,
+        },
+      ],
+    });
+  };
+
+  const deleteparttimeLetterFunc = async (id) => {
+    confirmAlert({
+      title: "Are you sure to Delete this Part Time letter ?",
+      // message: "All related data to this will be deleted",
+      buttons: [
+        {
+          label: "Yes, Go Ahead!",
+          style: {
+            background: "#FF5449",
+          },
+          onClick: async () => {
+            const toastId = toast.loading("Loading...");
+            setShowIndex(null);
+            const ans = await deleteparttimeOfferLetter(id);
+            toast.success("Successfully Deleted");
+            toast.dismiss(toastId);
+            getOfferletter();
+          },
+        },
+        {
+          label: "Cancel",
+
+          onClick: () => null,
+        },
+      ],
+    });
+  };
+
+  const deletecompletion = async (id) => {
+    confirmAlert({
+      title: "Are you sure to Delete this Part Time letter ?",
+      // message: "All related data to this will be deleted",
+      buttons: [
+        {
+          label: "Yes, Go Ahead!",
+          style: {
+            background: "#FF5449",
+          },
+          onClick: async () => {
+            const toastId = toast.loading("Loading...");
+            setShowIndex(null);
+            const ans = await deleteCompletionLetter(id);
+            toast.success("Successfully Deleted");
+            toast.dismiss(toastId);
+            getOfferletter();
+          },
+        },
+        {
+          label: "Cancel",
+
+          onClick: () => null,
+        },
+      ],
+    });
+  };
+
   return (
     <>
       <div className="employee-dash h-full">
-      
+
 
         <div className="w-full bg-[#f5f5f5]">
-          
+
 
           <div className="px-[20px] pr-[20px] py-[32px] mt-[120px] lg:mt-[69px] relative w-full flex flex-col gap-[20px]">
             <nav className="fixed top-[78px] right-0 w-[100%] md:w-[59%] lg:w-[69%] xl:w-[80%] flex flex-col md:flex-row items-center justify-between bg-white px-[20px] pr-[20px] pt-[18px] pb-[15px] z-[20]">
               <h2 className="text-[#101820] text-[24px] font-semibold leading-[32px] text-left">{user1?.fullName} Details</h2>
 
               <select
-              className="w-[170px] h-[40px] border border-[#0B56E4] bg-gradient-to-r from-[#D1E8FD] via-[#D1E8FD] to-[#EDEFFF] text-[#0B56E4] text-[16px] font-medium leading-[24px] tracking-[0.005em] text-left outline-none rounded-lg px-[5px] mt-4 lg:mt-0"
+                className="w-[170px] h-[40px] border border-[#0B56E4] bg-gradient-to-r from-[#D1E8FD] via-[#D1E8FD] to-[#EDEFFF] text-[#0B56E4] text-[16px] font-medium leading-[24px] tracking-[0.005em] text-left outline-none rounded-lg px-[5px] mt-4 lg:mt-0"
                 value={curenpage}
                 onChange={(e) => setCurrPage(e.target.value)}
                 name=""
@@ -321,6 +468,10 @@ const EmployeeSelf = () => {
                 <option value="Relieving Letter">Relieving Letter</option>
                 <option value="Experience Letter">Experience Letter</option>
                 <option value="Internship Letter">Internship Letter</option>
+                 <option value="Freelancer Letter">Freelancer Letter</option>
+                <option value="Part Time Letter">Part Time Letter</option>
+                <option value="LOR Letter">Lor Letter</option>
+                <option value="Completion Letter">Completion Letter</option>
               </select>
             </nav>
 
@@ -486,8 +637,8 @@ const EmployeeSelf = () => {
                                 {item.name === "twevelCert"
                                   ? "twelveth Certificate"
                                   : item?.name === "tenCert"
-                                  ? "Tenth Certicate"
-                                  : item?.name}
+                                    ? "Tenth Certicate"
+                                    : item?.name}
                               </p>
                             </a>
                             <a target="_blank" href={`${item?.url}`}>
@@ -624,14 +775,13 @@ const EmployeeSelf = () => {
               </>
             )}
             {curenpage === "Offer Letter" && (
-              <div className="pt-20">
+              <div className="pt-8">
                 <div className="flex flex-col gap-3">
                   {offerLetter.map((item, index) => (
                     <div
-                      className={`flex items-center justify-between bg-white border border-gray-300 rounded-md p-5 ${
-                        viewOfferLetter === index &&
+                      className={`flex items-center justify-between bg-white border border-gray-300 rounded-md p-5 ${viewOfferLetter === index &&
                         "bg-blue-100 border-blue-700"
-                      }`}
+                        }`}
                     >
                       <h2>
                         Offer Letter {viewOfferLetter === index && "(Viewing)"}
@@ -642,7 +792,7 @@ const EmployeeSelf = () => {
                           onClick={() =>
                             setShowIndex(showIndex === index ? null : index)
                           }
-                          src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747392487/thredonts_jlsvvx.png"
+                          src={threedots}
                           alt="action-btn"
                         />
 
@@ -680,9 +830,9 @@ const EmployeeSelf = () => {
 
                 {offerLetter.length === 0 ? (
                   <div>
-                    <p className="text-center font-medium text-xl">
-                      No Offer Letter Found !!
-                    </p>
+                    <div className="w-full py-10 border border-blue-300 rounded-md">
+                      <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747487328/document_placeholder_img_oxpxum.png" alt="" className="m-auto" />
+                    </div>
                   </div>
                 ) : (
                   <>
@@ -730,14 +880,13 @@ const EmployeeSelf = () => {
               </div>
             )}
             {curenpage === "Relieving Letter" && (
-              <div className="pt-20">
+              <div className="pt-8">
                 <div className="flex flex-col gap-3">
                   {reliveLetter.map((item, index) => (
                     <div
-                      className={`flex items-center justify-between bg-white border border-gray-300 rounded-md p-5 ${
-                        viewReliveLetter === index &&
+                      className={`flex items-center justify-between bg-white border border-gray-300 rounded-md p-5 ${viewReliveLetter === index &&
                         "bg-blue-100 border-blue-700"
-                      }`}
+                        }`}
                     >
                       <h2>
                         RELIEVING LETTER{" "}
@@ -749,7 +898,7 @@ const EmployeeSelf = () => {
                           onClick={() =>
                             setShowIndex(showIndex === index ? null : index)
                           }
-                          src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747392487/thredonts_jlsvvx.png"
+                          src={threedots}
                           alt="action-btn"
                         />
 
@@ -789,9 +938,9 @@ const EmployeeSelf = () => {
 
                 {reliveLetter.length === 0 ? (
                   <div>
-                    <p className="text-center font-medium text-xl">
-                      No Relieving Letter Found !!
-                    </p>
+                    <div className="w-full py-10 border border-blue-300 rounded-md">
+                      <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747487328/document_placeholder_img_oxpxum.png" alt="" className="m-auto" />
+                    </div>
                   </div>
                 ) : (
                   <>
@@ -802,13 +951,26 @@ const EmployeeSelf = () => {
                           src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1741687779/aman_bhai_1_jlctyt.png"
                           alt=""
                         />
-                        <h2>RELIEVING LETTER</h2>
-
-                        <div className=" p-4">
-                          <div
-                            className="py-2 px-7"
-                            dangerouslySetInnerHTML={{ __html: reliveContent }}
-                          />
+                        <div className="print-content">
+                          <div className="offer-preview font-wrapper p-4">
+                            <h1 className="text-center font-bold text-xl">
+                              RELIEVING LETTER
+                            </h1>
+                            <div
+                              className="addfont py-2 px-7"
+                              dangerouslySetInnerHTML={{
+                                __html: reliveContent
+                                  .replace(
+                                    /<div class="break"><\/div>/g,
+                                    '<div class="page-break"></div>'
+                                  )
+                                  .replace(
+                                    /<\/p>\s*<p>/g,
+                                    '</p><div class="page-break-helper"></div><p>'
+                                  ),
+                              }}
+                            />
+                          </div>
                         </div>
                         <img
                           className="offer_footer11"
@@ -850,14 +1012,13 @@ const EmployeeSelf = () => {
             )}
 
             {curenpage === "Experience Letter" && (
-              <div className="pt-20">
+              <div className="pt-8">
                 <div className="flex flex-col gap-3">
                   {experienceLetter.map((item, index) => (
                     <div
-                      className={`flex items-center justify-between bg-white border border-gray-300 rounded-md p-5 ${
-                        viewExperienceLetter === index &&
+                      className={`flex items-center justify-between bg-white border border-gray-300 rounded-md p-5 ${viewExperienceLetter === index &&
                         "bg-blue-100 border-blue-700"
-                      }`}
+                        }`}
                     >
                       <h2>
                         EXPERIENCE LETTER{" "}
@@ -869,7 +1030,7 @@ const EmployeeSelf = () => {
                           onClick={() =>
                             setShowIndex(showIndex === index ? null : index)
                           }
-                          src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747392487/thredonts_jlsvvx.png"
+                          src={threedots}
                           alt="action-btn"
                         />
 
@@ -909,9 +1070,9 @@ const EmployeeSelf = () => {
 
                 {experienceLetter.length === 0 ? (
                   <div>
-                    <p className="text-center font-medium text-xl">
-                      No Experience Letter Found !!
-                    </p>
+                    <div className="w-full py-10 border border-blue-300 rounded-md">
+                      <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747487328/document_placeholder_img_oxpxum.png" alt="" className="m-auto" />
+                    </div>
                   </div>
                 ) : (
                   <>
@@ -921,15 +1082,26 @@ const EmployeeSelf = () => {
                         src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1741687779/aman_bhai_1_jlctyt.png"
                         alt=""
                       />
-                      <h2>EXPERIENCE LETTER</h2>
-
-                      <div className="p-4">
-                        <div
-                          className="py-2 px-7"
-                          dangerouslySetInnerHTML={{
-                            __html: experienceContent,
-                          }}
-                        />
+                      <div className="print-content">
+                        <div className="offer-preview font-wrapper p-4">
+                          <h1 className="text-center font-bold text-xl">
+                            EXPERIENCE LETTER
+                          </h1>
+                          <div
+                            className="addfont py-2 px-7"
+                            dangerouslySetInnerHTML={{
+                              __html: experienceContent
+                                .replace(
+                                  /<div class="break"><\/div>/g,
+                                  '<div class="page-break"></div>'
+                                )
+                                .replace(
+                                  /<\/p>\s*<p>/g,
+                                  '</p><div class="page-break-helper"></div><p>'
+                                ),
+                            }}
+                          />
+                        </div>
                       </div>
 
                       <img
@@ -968,14 +1140,13 @@ const EmployeeSelf = () => {
             )}
 
             {curenpage === "Internship Letter" && (
-              <div className="pt-20">
+              <div className="pt-8">
                 <div className="flex flex-col gap-3">
                   {internshipLetter.map((item, index) => (
                     <div
-                      className={`flex items-center justify-between bg-white border border-gray-300 rounded-md p-5 ${
-                        viewInternshipLetter === index &&
+                      className={`flex items-center justify-between bg-white border border-gray-300 rounded-md p-5 ${viewInternshipLetter === index &&
                         "bg-blue-100 border-blue-700"
-                      }`}
+                        }`}
                     >
                       <h2>
                         INTERNSHIP LETTER{" "}
@@ -987,7 +1158,7 @@ const EmployeeSelf = () => {
                           onClick={() =>
                             setShowIndex(showIndex === index ? null : index)
                           }
-                          src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747392487/thredonts_jlsvvx.png"
+                          src={threedots}
                           alt="action-btn"
                         />
 
@@ -1027,9 +1198,9 @@ const EmployeeSelf = () => {
 
                 {internshipLetter.length === 0 ? (
                   <div>
-                    <p className="text-center font-medium text-xl">
-                      No Internship Letter Found !!
-                    </p>
+                    <div className="w-full py-10 border border-blue-300 rounded-md">
+                      <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747487328/document_placeholder_img_oxpxum.png" alt="" className="m-auto" />
+                    </div>
                   </div>
                 ) : (
                   <>
@@ -1040,14 +1211,26 @@ const EmployeeSelf = () => {
                         alt=""
                       />
 
-                      <div className="p-4">
-                        <h2>INTERNSHIP LETTER</h2>
-                        <div
-                          className="py-2 px-7"
-                          dangerouslySetInnerHTML={{
-                            __html: internshipContent,
-                          }}
-                        />
+                      <div className="print-content">
+                        <div className="offer-preview font-wrapper p-4">
+                          <h1 className="text-center font-bold text-xl">
+                            INTERNSHIP LETTER
+                          </h1>
+                          <div
+                            className="addfont py-2 px-7"
+                            dangerouslySetInnerHTML={{
+                              __html: internshipContent
+                                .replace(
+                                  /<div class="break"><\/div>/g,
+                                  '<div class="page-break"></div>'
+                                )
+                                .replace(
+                                  /<\/p>\s*<p>/g,
+                                  '</p><div class="page-break-helper"></div><p>'
+                                ),
+                            }}
+                          />
+                        </div>
                       </div>
                       <img
                         className="offer_footer11"
@@ -1064,7 +1247,466 @@ const EmployeeSelf = () => {
                   </>
                 )}
               </div>
-            
+              // <div>
+              //    <div ref={contonentPDF4} className="showoffercont">
+              //       <img className="offer_header11" src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1741687779/aman_bhai_1_jlctyt.png" alt="" />
+              //       <h2>INTERNSHIP LETTER</h2>
+
+              //       <div className="p-4">
+              //          <div className="py-2 px-7"
+              //             dangerouslySetInnerHTML={{ __html: internshipContent }}
+              //          />
+              //       </div>
+              //       <img className="offer_footer11" src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1741681598/imageee_h3x8so.png" alt="" />
+              //    </div>
+
+              //    <div className="prntBtn">
+              //       <button onClick={() => generatePdf4()}>
+              //          <span>Print</span>
+              //       </button>
+              //    </div>
+              // </div>
+            )}
+
+            {curenpage === "Freelancer Letter" && (
+              <div className="pt-8">
+                <div className="flex flex-col gap-3">
+                  {freelanceLetter.map((item, index) => (
+                    <div
+                      className={`flex items-center justify-between bg-white border border-gray-300 rounded-md p-5 ${viewFreelanceLetter === index &&
+                        "bg-blue-100 border-blue-700"
+                        }`}
+                    >
+                      <h2>
+                        FREELANCER LETTER{" "}
+                        {viewFreelanceLetter === index && "(Viewing)"}
+                      </h2>
+
+                      <div className="relative z-10 cursor-pointer">
+                        <img
+                          onClick={() =>
+                            setShowIndex(showIndex === index ? null : index)
+                          }
+                          src={threedots}
+                          alt="action-btn"
+                        />
+
+                        {showIndex === index && (
+                          <div
+                            ref={wrapperRef}
+                            className="absolute right-6 flex flex-col -top-14 bg-white rounded-md border border-gray-300 p-2"
+                          >
+                            <div
+                              onClick={() => {
+                                setFreelanceContent(item.content);
+                                setViewFreelanceLetter(index);
+                                setShowIndex(null);
+                              }}
+                              className="flex cursor-pointer items-center gap-3 p-1"
+                            >
+                              <FaRegEye className="text-[18px]" />
+                              <span>View</span>
+                            </div>
+
+                            <hr />
+                            <div
+                              onClick={() =>
+                                deleteFreelanceLetterFunc(item._id)
+                              }
+                              className="flex cursor-pointer items-center gap-3 p-1"
+                            >
+                              <MdDeleteOutline className="text-[18px]" />
+                              <span>Delete</span>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {freelanceLetter.length === 0 ? (
+                  <div>
+                    <div className="w-full py-10 border border-blue-300 rounded-md">
+                      <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747487328/document_placeholder_img_oxpxum.png" alt="" className="m-auto" />
+                    </div>
+                  </div>
+                ) : (
+                  <>
+                    <div ref={contonentPDF5} className="showoffercont">
+                      <img
+                        className="offer_header11"
+                        src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1741687779/aman_bhai_1_jlctyt.png"
+                        alt=""
+                      />
+
+                      <div className="print-content">
+                        <div className="offer-preview font-wrapper p-4">
+                          <h1 className="text-center font-bold text-xl">
+                            FREELANCER LETTER
+                          </h1>
+                          <div
+                            className="addfont py-2 px-7"
+                            dangerouslySetInnerHTML={{
+                              __html: freelanceContent
+                                .replace(
+                                  /<div class="break"><\/div>/g,
+                                  '<div class="page-break"></div>'
+                                )
+                                .replace(
+                                  /<\/p>\s*<p>/g,
+                                  '</p><div class="page-break-helper"></div><p>'
+                                ),
+                            }}
+                          />
+                        </div>
+                      </div>
+                      <img
+                        className="offer_footer11"
+                        src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1741681598/imageee_h3x8so.png"
+                        alt=""
+                      />
+                    </div>
+
+                    <div className="prntBtn">
+                      <button onClick={() => generatePdf5()}>
+                        <span>Print</span>
+                      </button>
+                    </div>
+                  </>
+                )}
+              </div>
+            )}
+
+            {curenpage === "Part Time Letter" && (
+              <div className="pt-8">
+                <div className="flex flex-col gap-3">
+                  {partTimeLetter.map((item, index) => (
+                    <div
+                      className={`flex items-center justify-between bg-white border border-gray-300 rounded-md p-5 ${viewFreelanceLetter === index &&
+                        "bg-blue-100 border-blue-700"
+                        }`}
+                    >
+                      <h2>
+                        PART TIME LETTER{" "}
+                        {viewPartTimeLetter === index && "(Viewing)"}
+                      </h2>
+
+                      <div className="relative z-10 cursor-pointer">
+                        <img
+                          onClick={() =>
+                            setShowIndex(showIndex === index ? null : index)
+                          }
+                          src={threedots}
+                          alt="action-btn"
+                        />
+
+                        {showIndex === index && (
+                          <div
+                            ref={wrapperRef}
+                            className="absolute right-6 flex flex-col -top-14 bg-white rounded-md border border-gray-300 p-2"
+                          >
+                            <div
+                              onClick={() => {
+                                setPartTmeContent(item.content);
+                                setViewPartTimeLetter(index);
+                                setShowIndex(null);
+                              }}
+                              className="flex cursor-pointer items-center gap-3 p-1"
+                            >
+                              <FaRegEye className="text-[18px]" />
+                              <span>View</span>
+                            </div>
+
+                            <hr />
+                            <div
+                              onClick={() =>
+                                deleteparttimeLetterFunc(item._id)
+                              }
+                              className="flex cursor-pointer items-center gap-3 p-1"
+                            >
+                              <MdDeleteOutline className="text-[18px]" />
+                              <span>Delete</span>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {partTimeLetter.length === 0 ? (
+                  <div>
+                    <div className="w-full py-10 border border-blue-300 rounded-md">
+                      <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747487328/document_placeholder_img_oxpxum.png" alt="" className="m-auto" />
+                    </div>
+                  </div>
+                ) : (
+                  <>
+                    <div ref={contonentPDF6} className="showoffercont">
+                      <img
+                        className="offer_header11"
+                        src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1741687779/aman_bhai_1_jlctyt.png"
+                        alt=""
+                      />
+
+                      <div className="print-content">
+                        <div className="offer-preview font-wrapper p-4">
+                          <h1 className="text-center font-bold text-xl">
+                            PART TIME LETTER
+                          </h1>
+                          <div
+                            className="addfont py-2 px-7"
+                            dangerouslySetInnerHTML={{
+                              __html: partTimeContent
+                                .replace(
+                                  /<div class="break"><\/div>/g,
+                                  '<div class="page-break"></div>'
+                                )
+                                .replace(
+                                  /<\/p>\s*<p>/g,
+                                  '</p><div class="page-break-helper"></div><p>'
+                                ),
+                            }}
+                          />
+                        </div>
+                      </div>
+                      <img
+                        className="offer_footer11"
+                        src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1741681598/imageee_h3x8so.png"
+                        alt=""
+                      />
+                    </div>
+
+                    <div className="prntBtn">
+                      <button onClick={() => generatePdf6()}>
+                        <span>Print</span>
+                      </button>
+                    </div>
+                  </>
+                )}
+              </div>
+            )}
+
+            {curenpage === "Completion Letter" && (
+              <div className="pt-8">
+                <div className="flex flex-col gap-3">
+                  {completionLetter?.map((item, index) => (
+                    <div
+                      className={`flex items-center justify-between bg-white border border-gray-300 rounded-md p-5 ${viewFreelanceLetter === index &&
+                        "bg-blue-100 border-blue-700"
+                        }`}
+                    >
+                      <h2>
+                        Completion LETTER{" "}
+                        {viewCompletionLetter === index && "(Viewing)"}
+                      </h2>
+
+                      <div className="relative z-10 cursor-pointer">
+                        <img
+                          onClick={() =>
+                            setShowIndex(showIndex === index ? null : index)
+                          }
+                          src={threedots}
+                          alt="action-btn"
+                        />
+
+                        {showIndex === index && (
+                          <div
+                            ref={wrapperRef}
+                            className="absolute right-6 flex flex-col -top-14 bg-white rounded-md border border-gray-300 p-2"
+                          >
+                            <div
+                              onClick={() => {
+                                setCompletionLetterContent(item.content);
+                                setViewCompletionLetter(index);
+                                setShowIndex(null);
+                              }}
+                              className="flex cursor-pointer items-center gap-3 p-1"
+                            >
+                              <FaRegEye className="text-[18px]" />
+                              <span>View</span>
+                            </div>
+
+                            <hr />
+                            <div
+                              onClick={() =>
+                                deletecompletion(item._id)
+                              }
+                              className="flex cursor-pointer items-center gap-3 p-1"
+                            >
+                              <MdDeleteOutline className="text-[18px]" />
+                              <span>Delete</span>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {completionLetter.length === 0 ? (
+                  <div>
+                    <div className="w-full py-10 border border-blue-300 rounded-md">
+                      <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747487328/document_placeholder_img_oxpxum.png" alt="" className="m-auto" />
+                    </div>
+                  </div>
+                ) : (
+                  <>
+                    <div ref={contonentPDF7} className="showoffercont">
+                      <img
+                        className="offer_header11"
+                        src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1741687779/aman_bhai_1_jlctyt.png"
+                        alt=""
+                      />
+
+                      <div className="print-content">
+                        <div className="offer-preview font-wrapper p-4">
+                          <h1 className="text-center font-bold text-xl">
+                            COMPLETION LETTER
+                          </h1>
+                          <div
+                            className="addfont py-2 px-7"
+                            dangerouslySetInnerHTML={{
+                              __html: completionLetterContent
+                                .replace(
+                                  /<div class="break"><\/div>/g,
+                                  '<div class="page-break"></div>'
+                                )
+                                .replace(
+                                  /<\/p>\s*<p>/g,
+                                  '</p><div class="page-break-helper"></div><p>'
+                                ),
+                            }}
+                          />
+                        </div>
+                      </div>
+                      <img
+                        className="offer_footer11"
+                        src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1741681598/imageee_h3x8so.png"
+                        alt=""
+                      />
+                    </div>
+
+                    <div className="prntBtn">
+                      <button onClick={() => generatePdf7()}>
+                        <span>Print</span>
+                      </button>
+                    </div>
+                  </>
+                )}
+              </div>
+            )}
+
+
+            {curenpage === "LOR Letter" && (
+              <div className="pt-8">
+                <div className="flex flex-col gap-3">
+                  {lorLetter?.map((item, index) => (
+                    <div
+                      className={`flex items-center justify-between bg-white border border-gray-300 rounded-md p-5 ${viewLorLetter === index &&
+                        "bg-blue-100 border-blue-700"
+                        }`}
+                    >
+                      <h2>
+                        LOR LETTER{" "}
+                        {viewLorLetter === index && "(Viewing)"}
+                      </h2>
+
+                      <div className="relative z-10 cursor-pointer">
+                        <img
+                          onClick={() =>
+                            setShowIndex(showIndex === index ? null : index)
+                          }
+                          src={threedots}
+                          alt="action-btn"
+                        />
+
+                        {showIndex === index && (
+                          <div
+                            ref={wrapperRef}
+                            className="absolute right-6 flex flex-col -top-14 bg-white rounded-md border border-gray-300 p-2"
+                          >
+                            <div
+                              onClick={() => {
+                                setLorLetterContent(item.content);
+                                setViewLorLetter(index);
+                                setShowIndex(null);
+                              }}
+                              className="flex cursor-pointer items-center gap-3 p-1"
+                            >
+                              <FaRegEye className="text-[18px]" />
+                              <span>View</span>
+                            </div>
+
+                            <hr />
+                            <div
+                              onClick={() =>
+                                deletecompletion(item._id)
+                              }
+                              className="flex cursor-pointer items-center gap-3 p-1"
+                            >
+                              <MdDeleteOutline className="text-[18px]" />
+                              <span>Delete</span>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {lorLetter.length === 0 ? (
+                  <div>
+                    <div className="w-full py-10 border border-blue-300 rounded-md">
+                      <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747487328/document_placeholder_img_oxpxum.png" alt="" className="m-auto" />
+                    </div>
+                  </div>
+                ) : (
+                  <>
+                    <div ref={contonentPDF8} className="showoffercont">
+                      <img
+                        className="offer_header11"
+                        src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1741687779/aman_bhai_1_jlctyt.png"
+                        alt=""
+                      />
+
+                      <div className="print-content">
+                        <div className="offer-preview font-wrapper p-4">
+                          <h1 className="text-center font-bold text-xl">
+                            LOR LETTER
+                          </h1>
+                          <div
+                            className="addfont py-2 px-7"
+                            dangerouslySetInnerHTML={{
+                              __html: LorLetterContent
+                                .replace(
+                                  /<div class="break"><\/div>/g,
+                                  '<div class="page-break"></div>'
+                                )
+                                .replace(
+                                  /<\/p>\s*<p>/g,
+                                  '</p><div class="page-break-helper"></div><p>'
+                                ),
+                            }}
+                          />
+                        </div>
+                      </div>
+                      <img
+                        className="offer_footer11"
+                        src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1741681598/imageee_h3x8so.png"
+                        alt=""
+                      />
+                    </div>
+
+                    <div className="prntBtn">
+                      <button onClick={() => generatePdf8()}>
+                        <span>Print</span>
+                      </button>
+                    </div>
+                  </>
+                )}
+              </div>
             )}
           </div>
         </div>
