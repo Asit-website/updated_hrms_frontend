@@ -86,6 +86,8 @@ import EditQuotation from "./pages/admin/LeadManagement/EditQuotation";
 import ClientDashboard from "./pages/Client/ClientDashboard";
 import AttendenceCalendar from "./pages/employee/AttendenceCalendar";
 import AddEmployee from "./pages/admin/LeadManagement/AddEmployee";
+import Indicator from "./pages/admin/Performance/Indicator";
+import InvoicePage from "./pages/admin/Performance/InvoicePage";
 
 
 function App() {
@@ -102,9 +104,11 @@ function App() {
 
 
         <Route element={<MainLayout />}>
+         <Route path="/invoicePage" element={<InvoicePage/>} />
           <Route path="/performance/appraisal" element={<Appraisal />} />
           <Route path="/performance/goalTracking" element={<GoalTracking />} />
           <Route path="/performance/Assets" element={<Assets />} />
+             <Route path="/performance/indicator" element={<Indicator/>} />
           <Route element={<PrivateRoute allowedRoles={["ADMIN"]} />}>
             <Route path="/adminDash/HRM" element={<AdminDashboard />} />
             <Route path="/adminDash/addEmployee" element={<AddEmployee />} />
@@ -123,6 +127,13 @@ function App() {
             <Route path="/adminDash/createLead" element={<CreateLead />} />
             <Route path="/adminDash/editLead" element={<EditLead />} />
             <Route path="/adminDash/editQuotation" element={<EditQuotation />} />
+             <Route path="/adminDash/HRM/createEmployee" element={<CreateEmployee/>} />
+            
+              <Route path="/adminDash/HRM/ITRReturn" element={<ITRReturn/>} />
+               <Route path="/adminDash/HRM/Tasks" element={<Tasks/>} />
+               <Route path="/adminDash/HRM/UploadITRForm" element={<UploadITRForm/>} />
+               <Route path="/adminDash/profile-management" element={<ProfileManagement/>} />
+              <Route path="/adminDash/HRM/userAttendence" element={<EmployeAttendence/>} />
             <Route path="/adminDash/importLead/:id" element={<ImportLead />} />
             <Route path="/adminDash/LeadSystemSetting" element={<LeadSystemSetting />} />
             <Route path="/adminDash/HRM/QuotationForm" element={<QuotationForm />} />
@@ -157,6 +168,7 @@ function App() {
             <Route path="/adminDash/HRM/HRMsystemSetup" element={<HRMsystemSetup />} />
             <Route path="/adminDash/EmployeeMan" element={<EmployeeMan />} />
             <Route path="/adminDash/notification" element={<Notification />} />
+           
           </Route>
 
           <Route element={<PrivateRoute allowedRoles={["EMPLOYEE"]} />}>

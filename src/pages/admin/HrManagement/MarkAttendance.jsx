@@ -790,7 +790,7 @@ const MarkAttendance = () => {
                                   setEditPop(true)
                                 }} className="flex gap-3 items-center bg-white p-[10px] rounded-[5px] absolute right-[65px] top-[-1px] shadow-md">
                                   <MdOutlineEdit className="cursor-pointer text-[20px]" />
-                                  <span className="font-normal">Update</span>
+                                  <span className="font-normal cursor-pointer">Update</span>
                                 </div>
                               
                               )

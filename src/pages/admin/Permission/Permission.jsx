@@ -146,7 +146,7 @@ const Permission = () => {
                             {" "}
                             <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746769960/thredonts_lnqxqd.png" alt="action" />
                             {showIndex === index && (
-                            <div ref={wrapperRef} className="absolute z-[1000] right-[282px] -top-[55px] w-[125px] bg-white border border-gray-200 shadow-lg flex flex-col">
+                            <div ref={wrapperRef} className="absolute z-[1000] right-[335px] -top-[55px] w-[140px] bg-white border border-gray-200 shadow-lg flex flex-col">
 
                               {/* Edit Button */}
                               <div
@@ -156,7 +156,7 @@ const Permission = () => {
                                 <img
                                   src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746260260/Vector_zah5tt.svg"
                                   alt="Edit Icon"
-                                  className="w-6 h-6"
+                                 
 
                                 />
                                 <span className="text-sm font-medium text-gray-700">Edit</span>
@@ -172,9 +172,9 @@ const Permission = () => {
                                 className="items-center w-full px-4 py-2 text-sm flex gap-2 text-red-600 hover:bg-red-100"
                               >
                                 <img
-                                  src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746514711/delete_ooouky.png"
+                                  src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746260280/delete_sgefhv.png"
                                   alt="Delete Icon"
-                                  className="w-6 h-6"
+                                
                                 />
                                 <span className="text-sm font-medium">Delete</span>
                               </div>
