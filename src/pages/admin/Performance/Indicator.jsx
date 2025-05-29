@@ -7,9 +7,6 @@ import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { useMain } from '../../../hooks/UseMain';
 
-
-
-
 const Indicator = () => {
 
   const user1 = JSON.parse(localStorage.getItem("hrms_user"));
@@ -44,7 +41,6 @@ const Indicator = () => {
   const getData = async () => {
     const ans = await getIndicator();
     setData(ans?.data);
-    setRefreshFlag(!refreshFlag);
   }
 
   useEffect(() => {

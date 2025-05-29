@@ -9,12 +9,13 @@ import { useMain } from "../../../hooks/UseMain";
 import { useOutsideClick } from "../../../hooks/UseOutsideClick";
 
 import ViewTask from "./ViewTask";
+import { useClickOutside } from "../../../hooks/useClickOutside";
 
 
 const ProjectOverview2 = ({ allTasks, getProjectTaskapi }) => {
   const navigate = useNavigate();
   const {
-  
+
     getAllProjectApi,
     CreateProjectTask,
     deleteProjectTaskapi22,
@@ -214,7 +215,7 @@ const ProjectOverview2 = ({ allTasks, getProjectTaskapi }) => {
           StartDate: "",
           DueDate: "",
           Github: "",
-         
+
 
         });
         setAddClientPop(false);
@@ -226,6 +227,10 @@ const ProjectOverview2 = ({ allTasks, getProjectTaskapi }) => {
       toast.error("Something went wrong, please try again");
     }
   };
+
+  const ref = useClickOutside(() => {
+    setCurrView(-1);
+  })
 
   useEffect(() => {
     getAllProject();
@@ -336,9 +341,7 @@ const ProjectOverview2 = ({ allTasks, getProjectTaskapi }) => {
     fetchAllTimesheet()
   }, [])
 
-  const wrapperRef = useRef()
-
-  useOutsideClick(wrapperRef, () => {
+  const wrapperRef = useOutsideClick(() => {
     setAddClientPop(false);
     setViewTask(false)
   });
@@ -361,7 +364,7 @@ const ProjectOverview2 = ({ allTasks, getProjectTaskapi }) => {
       <div className="">
         <div className="w-full bg-[#f5f5f5]">
 
-          <div style={{ marginTop: '40px'}}>
+          <div style={{ marginTop: '40px' }}>
             <div className="relative flex flex-col gap-5">
               <nav className="flex items-center justify-between">
                 <div className="flex flex-col gap-[12px]">
@@ -390,42 +393,42 @@ const ProjectOverview2 = ({ allTasks, getProjectTaskapi }) => {
                   </div>
                 )}
 
-                {(addTaskPermission && role!=="Client") 
-                 && (
-                  <div className="w-[137px] h-[40px] flex items-center justify-center gap-2.5 rounded-[10px] bg-[#0B56E4]">
-                    <button
-                      onClick={() => {
-                        setAddClientPop(true);
-                        setisEdit(false);
-                      }}
-                      className="w-[137px] h-[40px] flex items-center justify-center gap-2.5 rounded-[10px] bg-[#0B56E4]"
-                    >
-                      <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747201651/pluss_wqvd9q.png" alt="Add Task" /> <span>Add Task </span>
-                    </button>
-                  </div>)
+                {(addTaskPermission && role !== "Client")
+                  && (
+                    <div className="w-[137px] h-[40px] flex items-center justify-center gap-2.5 rounded-[10px] bg-[#0B56E4]">
+                      <button
+                        onClick={() => {
+                          setAddClientPop(true);
+                          setisEdit(false);
+                        }}
+                        className="w-[137px] h-[40px] flex items-center justify-center gap-2.5 rounded-[10px] bg-[#0B56E4]"
+                      >
+                        <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747201651/pluss_wqvd9q.png" alt="Add Task" /> <span>Add Task </span>
+                      </button>
+                    </div>)
                 }
 
 
               </nav>
-           
+
               <div className="w-full h-[96px] p-[24px] rounded-[12px] bg-[#DEF8E4] flex items-center justify-between overflow-x-auto whitespace-nowrap">
-  <div className="flex items-center gap-[20px] sm:gap-[30px] md:gap-[40px] lg:gap-[60px]">
-    <label className="flex items-center gap-3">
-      <p className="text-[12px] sm:text-[14px] md:text-[15px] font-normal leading-[18px] tracking-[0.0015em] text-left text-[#666D76]">Start Date:</p>
-      <p className="text-[16px] sm:text-[18px] md:text-[18px] font-semibold leading-[24px] tracking-[0.005em] text-left text-[#1B2533]">
-        {new Date(data?.createdAt).toISOString().split('T')[0]}
-      </p>
-    </label>
-    <label className="flex items-center gap-3">
-      <p className="text-[12px] sm:text-[14px] md:text-[15px] font-normal leading-[18px] tracking-[0.0015em] text-left text-[#666D76]">Due Date:</p>
-      <p className="text-[16px] sm:text-[18px] md:text-[18px] font-semibold leading-[24px] tracking-[0.005em] text-left text-[#1B2533]">{data?.deadline}</p>
-    </label>
-    <label className="flex items-center gap-3">
-      <p className="text-[12px] sm:text-[14px] md:text-[15px] font-normal leading-[18px] tracking-[0.0015em] text-left text-[#666D76]">Total Members</p>
-      <p className="text-[16px] sm:text-[18px] md:text-[18px] font-semibold leading-[24px] tracking-[0.005em] text-left text-[#1B2533]">{data.Members?.length}</p>
-    </label>
-  </div>
-</div>
+                <div className="flex items-center gap-[20px] sm:gap-[30px] md:gap-[40px] lg:gap-[60px]">
+                  <label className="flex items-center gap-3">
+                    <p className="text-[12px] sm:text-[14px] md:text-[15px] font-normal leading-[18px] tracking-[0.0015em] text-left text-[#666D76]">Start Date:</p>
+                    <p className="text-[16px] sm:text-[18px] md:text-[18px] font-semibold leading-[24px] tracking-[0.005em] text-left text-[#1B2533]">
+                      {new Date(data?.createdAt).toISOString().split('T')[0]}
+                    </p>
+                  </label>
+                  <label className="flex items-center gap-3">
+                    <p className="text-[12px] sm:text-[14px] md:text-[15px] font-normal leading-[18px] tracking-[0.0015em] text-left text-[#666D76]">Due Date:</p>
+                    <p className="text-[16px] sm:text-[18px] md:text-[18px] font-semibold leading-[24px] tracking-[0.005em] text-left text-[#1B2533]">{data?.deadline}</p>
+                  </label>
+                  <label className="flex items-center gap-3">
+                    <p className="text-[12px] sm:text-[14px] md:text-[15px] font-normal leading-[18px] tracking-[0.0015em] text-left text-[#666D76]">Total Members</p>
+                    <p className="text-[16px] sm:text-[18px] md:text-[18px] font-semibold leading-[24px] tracking-[0.005em] text-left text-[#1B2533]">{data.Members?.length}</p>
+                  </label>
+                </div>
+              </div>
 
               <div className="relative overflow-x-auto min-h-[250px]  rounded-lg">
                 <table className="w-max lg:w-full text-sm text-left bg-white rounded-lg">
@@ -495,44 +498,38 @@ const ProjectOverview2 = ({ allTasks, getProjectTaskapi }) => {
                         </td>
 
                         <td className="px-6 py-4 text-gray-800">{task?.Status}</td>
-                        <OutsideClickHandler
-                          onOutsideClick={() => {
+
+                        <div ref={ref} className="viewOnwWRAP">
+                          <td onClick={() => {
                             if (index == currView) {
                               setCurrView(-1);
                             }
-                          }}
-                        >
-                          <div className="viewOnwWRAP">
-                            <td onClick={() => {
-                              if (index == currView) {
-                                setCurrView(-1);
-                              }
-                              else {
-                                setCurrView(index)
-                              }
-                            }} className="px-6 py-4 taskAns cursor-pointer">
-                              <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747216317/actions_qujhzd.png" alt="" />
-                            </td>
+                            else {
+                              setCurrView(index)
+                            }
+                          }} className="px-6 py-4 taskAns cursor-pointer">
+                            <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747216317/actions_qujhzd.png" alt="" />
+                          </td>
 
-                            {
-                              index == currView &&
+                          {
+                            index == currView &&
 
-                              <div className="absolute top-[34px] right-[75px] min-w-[120px] h-fit border border-[#E3E3E3] flex flex-col shadow-[0px_4px_12px_0px_#1A1A1A33] p-2 gap-[5px] rounded-tl-[8px] z-[1000] bg-white">
-                                {/* first  */}
-                                <div className="flex gap-1 p-[5px] cursor-pointer" onClick={() => {
-                                  if (role === "ADMIN" || valid) {
-                                    getTask(task?._id)
-                                    console.log('this')
-                                  } else if (showTasksDetailPermission === true) {
-                                    getTask(task?._id)
-                                  } else {
-                                    alert("You do not have permission to view the task.");
-                                  }
-                                }}>
-                                  <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747201027/bx-happy-heart-eyes_i8b4bn.png" alt="" />
-                                  <p>View</p>
-                                </div>
-                                { (role!=="Client") &&  <div>
+                            <div className="absolute top-[34px] right-[75px] min-w-[120px] h-fit border border-[#E3E3E3] flex flex-col shadow-[0px_4px_12px_0px_#1A1A1A33] p-2 gap-[5px] rounded-tl-[8px] z-[1000] bg-white">
+                              {/* first  */}
+                              <div className="flex gap-1 p-[5px] cursor-pointer" onClick={() => {
+                                if (role === "ADMIN" || valid) {
+                                  getTask(task?._id)
+                                  console.log('this')
+                                } else if (showTasksDetailPermission === true) {
+                                  getTask(task?._id)
+                                } else {
+                                  alert("You do not have permission to view the task.");
+                                }
+                              }}>
+                                <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747201027/bx-happy-heart-eyes_i8b4bn.png" alt="" />
+                                <p>View</p>
+                              </div>
+                              {(role !== "Client") && <div>
                                 <hr />
                                 {/* second */}
                                 <div className="flex gap-1 p-[5px] cursor-pointer" onClick={() => {
@@ -551,12 +548,12 @@ const ProjectOverview2 = ({ allTasks, getProjectTaskapi }) => {
                                 </div>
                                 <hr />
 
-                                {/* third */} 
+                                {/* third */}
                                 <div className="flex gap-1 p-[5px] cursor-pointer" onClick={() => {
                                   if (role === "ADMIN" || valid) {
                                     deleteTasks(task?._id)
                                     console.log('this')
-                                  } else if (deleteTaskPermission === true ) {
+                                  } else if (deleteTaskPermission === true) {
                                     deleteTasks(task?._id)
                                   } else {
                                     alert("You do not have permission to view the task.");
@@ -567,16 +564,24 @@ const ProjectOverview2 = ({ allTasks, getProjectTaskapi }) => {
                                   <p className="deel">Delete</p>
                                 </div>
                                 <hr />
-                                </div>}
+                              </div>}
 
 
-                              </div>
+                            </div>
 
+                          }
+                        </div>
+                        {/* <OutsideClickHandler
+                          onOutsideClick={() => {
+                            if (index == currView) {
+                              setCurrView(-1);
                             }
-                          </div>
-                        </OutsideClickHandler>
+                          }}
+                        >
+                          
+                        </OutsideClickHandler> */}
 
-                       
+
                       </tr>
                     ))}
                   </tbody>
@@ -610,7 +615,7 @@ const ProjectOverview2 = ({ allTasks, getProjectTaskapi }) => {
           <div ref={wrapperRef} className="w-[599px] p-6 h-fit flex flex-col gap-4 rounded-[18px] bg-white min-h-[400px] h-fit">
             <nav className="flex items-center justify-between">
               <p className="text-[#1B2533] text-base font-semibold leading-6 tracking-[0.0015em] text-left">{isEdit ? "Edit Task" : "Create New Task"}</p>
-             
+
             </nav>
             <hr />
             <form
@@ -637,7 +642,7 @@ const ProjectOverview2 = ({ allTasks, getProjectTaskapi }) => {
                 <label className="block text-md font-normal mb-1">
                   <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Subject</p>
                   <input
-                   className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                    className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                     name="Title"
                     required
                     value={formdata.Title}
@@ -699,7 +704,7 @@ const ProjectOverview2 = ({ allTasks, getProjectTaskapi }) => {
                 <label className="block text-md font-normal mb-1">
                   <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Start Date</p>
                   <input
-                      className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                    className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                     name="StartDate"
                     value={formdata.StartDate}
                     onChange={changeHandler}
@@ -711,7 +716,7 @@ const ProjectOverview2 = ({ allTasks, getProjectTaskapi }) => {
                 <label className="block text-md font-normal mb-1">
                   <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Due Date</p>
                   <input
-                      className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                    className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                     name="DueDate"
                     value={formdata.DueDate}
                     onChange={changeHandler}
@@ -751,7 +756,7 @@ const ProjectOverview2 = ({ allTasks, getProjectTaskapi }) => {
                       DueDate: "",
                       Priority: "",
                       Github: "",
-                      
+
                     });
                   }}
                   className="cancel"

@@ -6,7 +6,8 @@ import { CiPlay1 } from "react-icons/ci";
 import { RxCross2 } from "react-icons/rx";
 import { NavLink, useLocation } from "react-router-dom";
 import { useMain } from "../../../hooks/UseMain";
-import { useOutsideClick } from "../../../hooks/UseOutsideClick";
+import { useClickOutside } from "../../../hooks/useClickOutside";
+import { useAuth } from "../../../Context/AuthContext";
 
 const LeaveRequest = () => {
   const [star1, setStar1] = useState(false);
@@ -16,14 +17,14 @@ const LeaveRequest = () => {
   };
 
   const {
-    user,
     getUserLeaves,
-   
     updateLeave,
     acceptLeave,
     rejectLeave,
     postNotifyLeavereq,
   } = useMain();
+
+  const { user } = useAuth();
 
   const [data, setData] = useState([]);
   const location = useLocation();
@@ -154,9 +155,6 @@ const LeaveRequest = () => {
     }
   };
 
-  const wrapperRef = useRef();
-  const formRef = useRef();
-  const desRef = useRef();
   const [currView, setCurrView] = useState(-1);
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -182,56 +180,44 @@ const LeaveRequest = () => {
     setCurrentPage(1);
   }, [searchInput]);
 
-  useOutsideClick(wrapperRef, () => {
+ const wrapperRef = useClickOutside(() => {
     setShowPlay(-1)
   });
-  useOutsideClick(desRef, () => {
+  const desRef = useClickOutside( () => {
     setLeavePopup(false);
 
   })
-  useOutsideClick(formRef, () => {
+  const formRef = useClickOutside(() => {
     setStar1(false);
   });
 
   return (
     <>
       <div className="employee-dash h-full">
-      
         <div className="w-full bg-[#f5f5f5]">
-         
-
           <div className="pt-[32px] pr-[20px] pb-[32px] pl-[20px] relative w-full">
             <div className="flex-col">
               {/* first  */}
-
-              <div className="text-[20px] font-normal leading-[24px] tracking-normal text-left text-[#060606]
-">
-               
+              <div className="text-[20px] font-normal leading-[24px] tracking-normal text-left text-[#060606]">
                 {location.state ? (<div className="hrDsPa">
-                 
                   <NavLink to={`/adminDash/HRM`}>
                     <span className="hover:text-[#1567FF] cursor-pointer text-xl">Dashboard</span>
                   </NavLink>
                   <span>
-                    
                     <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747467924/chevron_right_wyiame.png" alt="" />
                   </span>{" "}
                   <span className="text-[#1567FF] cursor-pointer">Leave Request</span>
                 </div>) : (<div>
-                  <p className="text-[20px] font-normal leading-[24px] tracking-normal text-left text-[#060606]
-">Leave Requests</p>
-
+                  <p className="text-[20px] font-normal leading-[24px] tracking-normal text-left text-[#060606]">Leave Requests</p>
                 </div>
                 )}
 
               </div>
-              <main className="pt-[10px] pr-0 pb-[30px] pl-0
-">
-              <input className="border border-[#D0D4DC] w-[200px] px-[10px] h-[38px] rounded-[10px]
-" onChange={(e) => setSearchInput(e.target.value)}
-                value={searchInput} placeholder="Search Employee" />
+              <main className="pt-[10px] pr-0 pb-[30px] pl-0">
+                <input className="border border-[#D0D4DC] w-[200px] px-[10px] h-[38px] rounded-[10px]" onChange={(e) => setSearchInput(e.target.value)}
+                  value={searchInput} placeholder="Search Employee" />
 
-              {/* second  */}
+                {/* second  */}
 
                 <div className="w-full overflow-x-auto rounded-lg md:overflow-x-scroll md:overflow-y-auto bg-[white] mt-10">
                   <table className="min-w-full text-gray-700">
@@ -294,109 +280,81 @@ const LeaveRequest = () => {
                                 {e?.status === "" ? "Pending" : e?.status}
                               </div>
                             </td>
-                            {/* <OutsideClickHandler
-                              onOutsideClick={() => {
-                                if (index === currView) {
-                                  setCurrView(-1);
-                                }
-                              }}
-                            > */}
-
-                              <div className="relative">
-                                <td
-                                  onClick={() => {
-                                    setCurrView(currView === index ? -1 : index);
-                                    setShowPlay(-1); 
-                                  }}
-                                  className="px-3 py-3 flex items-center justify-center hiii_gap cursor-pointer"
-                                >
-                                  <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747469952/actions_afomli.png" alt="" />
-                                </td>
-
-                                {index === currView && (
-                                  <div className=" absolute right-[60px] top-[-5px] -mt-8 mr-2 w-36 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 z-[999] 
-
-">
-                                   
-                                    {(leaveReqestEditPermission || role === "ADMIN") && (
-                                      <>
-                                        <div
-                                          className="items-center w-full px-4 py-2 text-sm flex gap-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
-                                          onClick={() => {
-                                            setShowPlay(showPlay === index ? -1 : index);
-                                            setCurrView(-1);
-
-                                          }}
-                                        >
-                                          <CiPlay1 className="h-5 w-5 text-black font-bold" />
-                                          <p>Update</p>
-                                        </div>
-
-                                        {/* Dropdown (Accept/Reject) */}
 
 
-                                        <hr />
+                            <div className="relative">
+                              <td
+                                onClick={() => {
+                                  setCurrView(currView === index ? -1 : index);
+                                  setShowPlay(-1);
+                                }}
+                                className="px-3 py-3 flex items-center justify-center hiii_gap cursor-pointer"
+                              >
+                                <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747469952/actions_afomli.png" alt="" />
+                              </td>
 
-                                        {/* Edit */}
-                                        <div
-                                          className="items-center w-full px-4 py-2 text-sm flex gap-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
-                                          onClick={() => {
-                                            setFormdata((prev) => ({
-                                              ...prev,
-                                              reason: e.reason,
-                                              leaveType: e.leaveType,
-                                              employeeName: e?.user?.fullName,
-                                              start: e.from,
-                                              end: e.to,
-                                              id: e._id,
-                                            }));
-                                            setStar1((prev) => !prev);
-                                          }}
-                                        >
-                                          <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747470053/edit22_n1cyzn.png" alt="" />
-                                          <p>Edit</p>
-                                        </div>
-                                      </>
-                                    )}
-                                  </div>
-                                )}
-                              </div>
-                            {/* </OutsideClickHandler> */}
+                              {index === currView && (
+                                <div className=" absolute right-[60px] top-[-5px] -mt-8 mr-2 w-36 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 z-[999] ">
 
+                                  {(leaveReqestEditPermission || role === "ADMIN") && (
+                                    <>
+                                      <div
+                                        className="items-center w-full px-4 py-2 text-sm flex gap-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
+                                        onClick={() => {
+                                          setShowPlay(showPlay === index ? -1 : index);
+                                          setCurrView(-1);
+
+                                        }}
+                                      >
+                                        <CiPlay1 className="h-5 w-5 text-black font-bold" />
+                                        <p>Update</p>
+                                      </div>
+
+                                      <hr />
+
+                                      <div
+                                        className="items-center w-full px-4 py-2 text-sm flex gap-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
+                                        onClick={() => {
+                                          setFormdata((prev) => ({
+                                            ...prev,
+                                            reason: e.reason,
+                                            leaveType: e.leaveType,
+                                            employeeName: e?.user?.fullName,
+                                            start: e.from,
+                                            end: e.to,
+                                            id: e._id,
+                                          }));
+                                          setStar1((prev) => !prev);
+                                        }}
+                                      >
+                                        <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747470053/edit22_n1cyzn.png" alt="" />
+                                        <p>Edit</p>
+                                      </div>
+                                    </>
+                                  )}
+                                </div>
+                              )}
+                            </div>
 
                             <div style={{ position: "relative", bottom: "7px" }} >
 
-
-                              {/* Accept/Reject Buttons - Side by Side */}
                               {showPlay === index && (
-                                <div ref={wrapperRef} className="absolute top-full right-[-5px] p-[6px_8px] rounded-lg flex flex-row gap-[5px] z-[1000]"
-                                 
-                                >
+                                <div ref={wrapperRef} className="absolute top-full right-[-5px] p-[6px_8px] rounded-lg flex flex-row gap-[5px] z-[1000]">
                                   <span
                                     onClick={() => acceptHandler(e)}
-                                    className="bg-green-500 text-white px-3 py-[6px] rounded cursor-pointer whitespace-nowrap"
-                                   
-                                  >
+                                    className="bg-green-500 text-white px-3 py-[6px] rounded cursor-pointer whitespace-nowrap">
                                     Accept
                                   </span>
                                   <hr />
                                   <span
                                     onClick={() => rejectHandler(e)}
-                                    className="bg-red-500 text-white px-3 py-[6px] rounded-[6px] cursor-pointer whitespace-nowrap"
-                                   
-                                  >
+                                    className="bg-red-500 text-white px-3 py-[6px] rounded-[6px] cursor-pointer whitespace-nowrap">
                                     Reject
                                   </span>
                                 </div>
                               )}
                             </div>
-
-
-
-
-
-
-                          </tr>
+                         </tr>
                         );
                       })}
                     </tbody>
@@ -462,34 +420,32 @@ const LeaveRequest = () => {
 
           <div
             style={styleThing}
-            id="authentication-modal"
-            tabindex="-1"
-            aria-hidden="true"
-            className="fixed inset-0 bg-[rgba(0,0,0,0.2)] flex items-center justify-center h-screen"
+            className="fixed z-[3000] inset-0 bg-[rgba(0,0,0,0.2)] flex items-center justify-center h-screen"
           >
-            <div className="relative w-full h-[500px] mt-8 custom-scroll-hidden overflow-auto max-w-2xl mx-auto p-4 bg-white rounded-2xl shadow-lg space-y-6 mx-3" ref={formRef}>
+            <div className="relative w-full mt-8 custom-scroll-hidden overflow-auto max-w-2xl p-4 bg-white rounded-2xl shadow-lg space-y-6" ref={formRef}>
               {/* <!-- Modal content --> */}
               <div className="">
                 {/* <!-- Modal header --> */}
-                <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-                  <h3 className="text-[#1B2533] text-[16px] font-semibold leading-[24px] tracking-[0.0015em] text-left
-">Edit Leave Request</h3>
-              
+                <div className="flex items-center justify-between py-2 px-4 border-b rounded-t dark:border-gray-600">
+                  <h3 className="text-[#1B2533] text-[16px] font-semibold leading-[24px] tracking-[0.0015em] text-left">Edit Leave Request</h3>
+
                 </div>
                 {/* <!-- Modal body --> */}
-                <div className="p-4 md:p-5">
+                <div className="p-4">
                   <form className="space-y-4 fkl" action="#" >
-                    <div className="mt-2 user_class_input">
+        
+                    <div className="grid grid-cols-2 gap-3">
+                      <div className="mt-2 user_class_input">
                       <label className="block text-md font-normal mb-1">Employee Name</label>
 
                       <input
                         value={formdata.employeeName}
-                         className="w-[271.5px] border rounded p-2 text-sm font-normal text-gray-500 w-full"
+                        className="border rounded p-2 text-sm font-normal text-gray-500 w-full"
                         onChange={changeHandler}
                         type="text"
                         name="employeeName"
                         id="text"
-                        
+
                         placeholder="Enter the name"
                         required
                       />
@@ -504,12 +460,11 @@ const LeaveRequest = () => {
                         name="leaveType"
                         id="text"
                         placeholder="Enter your leave type"
-                        className="w-[271.5px] border rounded p-2 text-sm font-normal text-gray-500 w-full"
+                        className="border rounded p-2 text-sm font-normal text-gray-500 w-full"
                         required
                       />
                     </div>
 
-                    <div className="flex justify-between w-full">
                       <div className="user_class_input w-full mt-2 ">
                         <label
                           for="text"
@@ -518,7 +473,7 @@ const LeaveRequest = () => {
                           Start
                         </label>
                         <input
-                         className="w-[271.5px] border rounded p-2 text-sm font-normal text-gray-500"
+                          className="w-[271.5px] border rounded p-2 text-sm font-normal text-gray-500"
                           value={formdata.start}
                           onChange={changeHandler}
                           type="date"
@@ -536,7 +491,7 @@ const LeaveRequest = () => {
                           End
                         </label>
                         <input
-                         className="w-[271.5px] border rounded p-2 text-sm font-normal text-gray-500"
+                          className="w-[271.5px] border rounded p-2 text-sm font-normal text-gray-500"
                           value={formdata.end}
                           onChange={changeHandler}
                           type="date"
@@ -555,7 +510,7 @@ const LeaveRequest = () => {
                         Reason
                       </label>
                       <textarea
-                       className="w-[271.5px] border rounded p-2 text-sm font-normal text-gray-500 w-full"
+                        className="border rounded p-2 text-sm font-normal text-gray-500 w-full"
                         required
                         name="reason"
                         onChange={changeHandler}
