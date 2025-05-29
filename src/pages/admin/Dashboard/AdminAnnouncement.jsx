@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 import { RxCross2 } from "react-icons/rx";
 import { useLocation, NavLink } from "react-router-dom";
 import { FaEye, FaRegEye } from "react-icons/fa";
@@ -14,7 +14,7 @@ import { useOutsideClick } from "../../../hooks/UseOutsideClick";
 
 const AdminProfile = () => {
   const {
-  
+
     createAnnouncement,
     fetchAnnoucement,
     allEmployee,
@@ -68,13 +68,13 @@ const AdminProfile = () => {
     setLeavePopup(false);
   })
 
-    const wrapperRef = useRef();
-  
-    useOutsideClick(wrapperRef, () => {
-      setShowIndex(null)
+  const wrapperRef = useRef();
 
-    });
-  
+  useOutsideClick(wrapperRef, () => {
+    setShowIndex(null)
+
+  });
+
 
 
   const getAnnoucement = async () => {
@@ -231,9 +231,9 @@ const AdminProfile = () => {
   return (
     <>
       <div className="annDash relative h-full">
-       
+
         <div className="w-full bg-[#f5f5f5]">
-         
+
           <div className="pt-8 pr-5 pb-8 pl-[20px] relative w-full">
 
             <div className="w-full flex flex-col lg:flex-row items-center justify-between">
@@ -302,7 +302,7 @@ const AdminProfile = () => {
 
                   <tbody className="text-gray-700">
                     {paginatedAnnouncements?.map((item, index) => (
-                      <tr key={index}  className="border-b border-gray-200 hover:bg-gray-50 transition duration-150">
+                      <tr key={index} className="border-b border-gray-200 hover:bg-gray-50 transition duration-150">
                         <td className="px-6 py-4 text-gray-800">{item.title?.slice(0, 30)}...</td>
                         <td className="px-6 py-4 text-gray-800">{item.startDate}</td>
                         <td className="px-6 py-4 text-gray-800">{item.endDate}</td>
@@ -315,7 +315,7 @@ const AdminProfile = () => {
                               showIndex === index && (
                                 <div ref={wrapperRef} className="absolute right-28 flex flex-col -top-20 bg-white border border-gray-300">
                                   <div onClick={() => setLeavePopup(item)} className="items-center w-[128px] px-4 py-2 text-sm flex gap-2 text-gray-700 hover:bg-gray-100 cursor-pointer" >
-                                     <FaRegEye className="text-[18px]"/>
+                                    <FaRegEye className="text-[18px]" />
                                     <span>View</span>
                                   </div>
                                   <hr />
@@ -324,14 +324,14 @@ const AdminProfile = () => {
                                     setEditData(item);
                                     setOpenForm(true);
                                   }} className="items-center w-full px-4 py-2 text-sm flex gap-2 text-gray-700 hover:bg-gray-100 cursor-pointer">
-                                   <MdOutlineEdit className="text-[18px]"/>
+                                    <MdOutlineEdit className="text-[18px]" />
                                     <span>Edit</span>
                                   </div>
                                   <hr />
                                   <div onClick={() => {
                                     deleteProject(item?._id);
                                   }} className="items-center w-full px-4 py-2 text-sm flex gap-2 text-red-600 hover:bg-red-100 cursor-pointer">
-                                  <MdDeleteOutline className="text-[18px]"/>
+                                    <MdDeleteOutline className="text-[18px]" />
                                     <span>Delete</span>
                                   </div>
                                 </div>
@@ -444,7 +444,7 @@ const AdminProfile = () => {
                 <h2 className="text-2xl font-semibold">
                   {onEdit ? "Edit Announcement" : "Create New Announcement"}
                 </h2>
-            
+
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">

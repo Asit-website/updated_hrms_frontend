@@ -31,7 +31,35 @@ const MainState = (props) => {
       return data;
    };
 
-    const getUpcomingBirthdays = async () => {
+   const getAward = async () => {
+      const data = await get(`${baseUrl}/award/getAllAward`, true);
+      setAwards(data?.data);
+      return data;
+   };
+
+   const getTransfer = async () => {
+      const data = await get(`${baseUrl}/admin/getTransfer`, true);
+      setTransfer(data?.data)
+      return data;
+   }
+
+   const getResignation = async () => {
+      const data = await get(`${baseUrl}/admin/getResignation`, true);
+      if (data?.statusCode === 200) {
+         setResignation(data?.data)
+      }
+      return data;
+   };
+
+   const getPromotion = async () => {
+      const data = await get(`${baseUrl}/admin/getPromotion`, true);
+      if (data?.statusCode === 200) {
+         setPromotion(data?.data)
+      }
+      return data;
+   };
+
+   const getUpcomingBirthdays = async () => {
       const data = await get(`${baseUrl}/task/getUpcomingBirthdays`, true);
       console.log("Upcoming Birthdays:", data);
       return data;
@@ -722,7 +750,7 @@ const MainState = (props) => {
 
    const getBranchs = async () => {
       const data = await get(`${baseUrl}/system/getBranchs`, true);
-      if(data?.statusCode===200){
+      if (data?.statusCode === 200) {
          setBranch(data?.data)
       }
       return data;
@@ -1026,14 +1054,10 @@ const MainState = (props) => {
 
 
    const postNotification = async (daysGap, name, username) => {
-
-
       const data = await post(`${baseUrl}/notification/createNotification`, { title: `Leave Application from ${username} `, description: `Leave of ${daysGap} days`, users: ["shubham gupta"] }, true);
-
-
       return data;
-
    }
+   
    const postNotification2 = async (daysGap, name, username) => {
 
 
@@ -1292,14 +1316,6 @@ const MainState = (props) => {
       return data;
    }
 
-   const getResignation = async () => {
-      const data = await get(`${baseUrl}/admin/getResignation`, true);
-      if (data?.statusCode === 200) {
-         setResignation(data?.data)
-      }
-      return data;
-   };
-
    const deleteResignation = async (id) => {
       const data = await deleteReq(`${baseUrl}/admin/deleteResignation/${id}`, true);
       return data;
@@ -1326,14 +1342,6 @@ const MainState = (props) => {
       return data;
    }
 
-   const getPromotion = async () => {
-      const data = await get(`${baseUrl}/admin/getPromotion`, true);
-      if (data?.statusCode === 200) {
-         setPromotion(data?.data)
-      }
-      return data;
-   };
-
    const deletePromotion = async (id) => {
       const data = await deleteReq(`${baseUrl}/admin/deletePromotion/${id}`, true);
       return data;
@@ -1355,12 +1363,6 @@ const MainState = (props) => {
 
       return data;
    }
-
-   const getAward = async () => {
-      const data = await get(`${baseUrl}/award/getAllAward`, true);
-      setAwards(data?.data);
-      return data;
-   };
 
    const deleteAward = async (id) => {
       const data = await deleteReq(`${baseUrl}/award/deleteAward/${id}`, true);
@@ -1387,12 +1389,6 @@ const MainState = (props) => {
          branch, Employee, Department, TransferDate, Description
       }, true);
 
-      return data;
-   }
-
-   const getTransfer = async () => {
-      const data = await get(`${baseUrl}/admin/getTransfer`, true);
-      setTransfer(data?.data)
       return data;
    }
 
@@ -2602,7 +2598,7 @@ const MainState = (props) => {
          acceptLeave, rejectLeave, leaveTypeApi,
          ProvideRemovePermission, postQuotationFormApi, updatePropsalFormApi, postProposalFormApi, createClientapi,
          updateQuotationFormApi, changeRelivingLetterPer, getThisMonthLeave,
-         uploadOwnDocs, loading,allBranch, setBranch,
+         uploadOwnDocs, loading, allBranch, setBranch,
          transfer, setTransfer, resignation, getResignation, promotion, setPromotion,
          getAllLeads,
          updateDocSetup,

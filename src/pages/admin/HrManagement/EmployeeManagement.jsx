@@ -5,11 +5,12 @@ import "react-calendar/dist/Calendar.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css';
-import {useMain} from '../../../hooks/UseMain'
+import { useMain } from '../../../hooks/UseMain'
 
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 import { FaRegEye } from "react-icons/fa";
 import { MdDeleteOutline, MdOutlineEdit } from "react-icons/md";
+import { useClickOutside } from "../../../hooks/useClickOutside";
 
 const EmployeeManagement = () => {
 
@@ -27,12 +28,12 @@ const EmployeeManagement = () => {
   const [currentTab, setCurrentTab] = useState("active")
 
 
-  const filteredData = data.filter((item) => 
+  const filteredData = data.filter((item) =>
     item.designation !== "CEO" &&
     item._id !== user._id &&
     (currentTab === "active" ? item.isDeactivated === "No" : item.isDeactivated === "Yes")
   );
-  
+
   const totalPages = Math.ceil(filteredData.length / itemsPerPage);
 
   const paginatedData = filteredData.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
@@ -181,15 +182,19 @@ const EmployeeManagement = () => {
     setCheckInpId(idList);
   };
 
+  const ref = useClickOutside(() => {
+    setCurrView(-1);
+  })
+
 
   return (
     <>
       <div className="employee-dash h-full">
-    
 
-        
+
+
         <div className="tm">
-         
+
 
           <div className="pt-8 pr-5 pb-8 pl-[14px] relative w-full">
             <div className="flex-col">
@@ -220,8 +225,8 @@ const EmployeeManagement = () => {
 
                 <h3 className="text-[14px] font-semibold leading-[20px] tracking-[0.0025em] text-left text-[#2B2B2B] min-w-max">Filter by</h3>
                 <p className="h-full w-[1px] bg-[#B3CBF7]" />
-                
-                <select name="employeeType" className="employetypeselect bg-transparent border-0 outline-none w-[150px] text-[14px] font-normal text-[#0F141C]" value={currentTab} onChange={(e)=>setCurrentTab(e.target.value)} id="">
+
+                <select name="employeeType" className="employetypeselect bg-transparent border-0 outline-none w-[150px] text-[14px] font-normal text-[#0F141C]" value={currentTab} onChange={(e) => setCurrentTab(e.target.value)} id="">
                   <option value="active">Active Employee</option>
                   <option value="deactive">Deactive Employee</option>
                 </select>
@@ -324,72 +329,64 @@ const EmployeeManagement = () => {
                             <td className="px-6 py-4 text-gray-800">{item?.designation}</td>
                             <td className="px-6 py-4 text-gray-800">{item?.joiningDate}</td>
 
-                            <OutsideClickHandler
-                              onOutsideClick={() => {
+                            <div className="relative">
+
+                              <td onClick={() => {
                                 if (index == currView) {
                                   setCurrView(-1);
                                 }
-                              }}
-                            >
-                              <div className="relative">
-
-                                <td onClick={() => {
-                                  if (index == currView) {
-                                    setCurrView(-1);
-                                  }
-                                  else {
-                                    setCurrView(index)
-                                  }
-                                }} className="px-6 py-4 taskAns cursor-pointer relative"><img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747388144/actions_vwxpah.png" alt="" />
-                                </td>
+                                else {
+                                  setCurrView(index)
+                                }
+                              }} className="px-6 py-4 taskAns cursor-pointer relative"><img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747388144/actions_vwxpah.png" alt="" />
+                              </td>
 
 
-                                {
-                                  index == currView &&
+                              {
+                                index == currView &&
 
-                                  <div className="absolute -top-[59px] min-w-[120px] border-t border-[#E3E3E3] flex flex-col shadow-[0_4px_12px_0_rgba(26,26,26,0.2)] py-2 gap-[5px] rounded-tl-[8px] z-[1000] bg-white right-[62px]">
-                                    {/* first  */}
-                                    <div onClick={() => navigate("/adminDash/EmployeeDetails", { state: item?._id })} className="flex gap-2 items-center px-2 cursor-pointer">
-                                   
-                                      <FaRegEye className="text-[18px]"/>
-                                      <p className="text-left">View</p>
-                                    </div>
+                                <div ref={ref} className="absolute -top-[59px] min-w-[120px] border-t border-[#E3E3E3] flex flex-col shadow-[0_4px_12px_0_rgba(26,26,26,0.2)] py-2 gap-[5px] rounded-tl-[8px] z-[1000] bg-white right-[62px]">
+                                  {/* first  */}
+                                  <div onClick={() => navigate("/adminDash/EmployeeDetails", { state: item?._id })} className="flex gap-2 items-center px-2 cursor-pointer">
 
-                                    <hr />
-
-                                    {/* second */}
-                                    {
-                                      (employeeManageEditPermission || role === "ADMIN") &&
-
-                                      <div onClick={() => {
-                                        navigate(`/adminDash/EmployeeMan/${item._id}`);
-                                      }} className="flex gap-3 items-center px-2 cursor-pointer">
-                                        {/* <img src={edit22} alt="" /> */}
-                                        <MdOutlineEdit className="text-[18px]"/>
-                                        <p className="text-left">Edit </p>
-                                      </div>
-
-                                    }
-
-                                    <hr />
-
-                                    {/* third */}
-                                    {
-                                      (employeeManageActivatePermission || role === "ADMIN") &&
-
-                                      <div onClick={() => {
-                                        deleteUser1(item?._id, item?.isDeactivated === "Yes");
-                                      }} className="flex gap-3 items-center px-2 cursor-pointer">
-                                        {/* <img src={deleted} alt="" /> */}
-                                        <MdDeleteOutline className="text-[18px]"/>
-                                        <p className="text-left "> {item?.isDeactivated === "Yes" ? "Activate" : "Deactivate"} </p>
-                                      </div>
-                                    }
+                                    <FaRegEye className="text-[18px]" />
+                                    <p className="text-left">View</p>
                                   </div>
 
-                                }
-                              </div>
-                            </OutsideClickHandler>
+                                  <hr />
+
+                                  {/* second */}
+                                  {
+                                    (employeeManageEditPermission || role === "ADMIN") &&
+
+                                    <div onClick={() => {
+                                      navigate(`/adminDash/EmployeeMan/${item._id}`);
+                                    }} className="flex gap-3 items-center px-2 cursor-pointer">
+                                      {/* <img src={edit22} alt="" /> */}
+                                      <MdOutlineEdit className="text-[18px]" />
+                                      <p className="text-left">Edit </p>
+                                    </div>
+
+                                  }
+
+                                  <hr />
+
+                                  {/* third */}
+                                  {
+                                    (employeeManageActivatePermission || role === "ADMIN") &&
+
+                                    <div onClick={() => {
+                                      deleteUser1(item?._id, item?.isDeactivated === "Yes");
+                                    }} className="flex gap-3 items-center px-2 cursor-pointer">
+                                      {/* <img src={deleted} alt="" /> */}
+                                      <MdDeleteOutline className="text-[18px]" />
+                                      <p className="text-left "> {item?.isDeactivated === "Yes" ? "Activate" : "Deactivate"} </p>
+                                    </div>
+                                  }
+                                </div>
+
+                              }
+                            </div>
                           </tr>
                         ))
                       }
