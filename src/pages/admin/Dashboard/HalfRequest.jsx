@@ -263,7 +263,7 @@ const HalfRequest = () => {
                               }</div>
                             </td>
 
-                            <div className="viewOnwWRAP" style={{ position: "relative" }}>
+                            <div className="relative">
                               <td
                                 onClick={() => {
                                   setCurrView(currView === index ? -1 : index);
@@ -275,12 +275,12 @@ const HalfRequest = () => {
                               </td>
 
                               {index === currView && (
-                                <div  ref={ref} className="absolute top-[-55px] min-w-[120px] h-fit border border-[#E3E3E3] flex flex-col shadow-[0px_4px_12px_0px_#1A1A1A33] px-0 py-2 gap-[5px] rounded-tl-[8px] rounded-tr-none rounded-br-none rounded-bl-none z-[1000] bg-white" style={{ position: "absolute", zIndex: 999, right: 80 }}>
+                                <div  ref={ref} className=" absolute right-[68px] top-[-5px] -mt-8 mr-2 w-36 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 z-[999] ">
                                   {/* Update Button */}
                                   {(leaveReqestEditPermission || role === "ADMIN") && (
                                     <>
                                       <div
-                                        className="flex gap-1 p-[5px] cursor-pointer"
+                                        className="items-center w-full px-4 py-2 text-sm flex gap-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
                                         onClick={() => {
                                           setShowPlay(showPlay === index ? -1 : index);
                                           setCurrView(-1);
@@ -298,7 +298,7 @@ const HalfRequest = () => {
 
                                       {/* Edit */}
                                       <div
-                                        className="flex gap-1 p-[5px] cursor-pointer"
+                                        className="items-center w-full px-4 py-2 text-sm flex gap-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
                                         onClick={() => {
                                           setCurrView(-1);
                                           setFormdata((prev) => ({
@@ -328,41 +328,19 @@ const HalfRequest = () => {
                               {/* Accept/Reject Buttons - Side by Side */}
                               {showPlay === index && (
                                 <div ref={wrapperRef}
-                                  style={{
-                                    position: "absolute",
-                                    top: "100%",
-                                    right: "-5px",
-                                    padding: "6px 8px",
-                                    borderRadius: "8px",
-                                    display: "flex",
-                                    flexDirection: "row",
-                                    gap: "10px",
-                                    zIndex: 1000,
-                                  }}
+                                className="absolute top-full -right-[5px] p-[6px_8px] rounded-lg flex flex-row gap-[10px] z-[1000]"
+                                 
                                 >
                                   <p
                                     onClick={() => acceptHandler(e)}
-                                    style={{
-                                      backgroundColor: "green",
-                                      color: "white",
-                                      padding: "6px 12px",
-                                      borderRadius: "6px",
-                                      cursor: "pointer",
-                                      whiteSpace: "nowrap",
-                                    }}
+                                    className="bg-green-500 text-white px-3 py-[6px] rounded cursor-pointer whitespace-nowrap"
+                                    
                                   >
                                     Accept
                                   </p>
                                   <p
                                     onClick={() => rejectHandler(e)}
-                                    style={{
-                                      backgroundColor: "red",
-                                      color: "white",
-                                      padding: "6px 12px",
-                                      borderRadius: "6px",
-                                      cursor: "pointer",
-                                      whiteSpace: "nowrap",
-                                    }}
+                                    className="bg-red-500 text-white px-3 py-[6px] rounded cursor-pointer whitespace-nowrap"
                                   >
                                     Reject
                                   </p>

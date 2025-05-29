@@ -87,7 +87,7 @@ const AttendenceCalendar = () => {
     }, []);
 
     return (
-        <>
+        <div className="w-full bg-[#f5f5f5]">
             <div className="h-[calc(100vh_-_82px)] w-full p-5">
                 <div className="flex-col">
                     <button onClick={() => navigate(-1)} style={{
@@ -101,7 +101,7 @@ const AttendenceCalendar = () => {
 
                     <div className="flex">
                         <div className="w-full">
-                            <Calendar onChange={handleCalendar} value={value} />
+                            <Calendar onChange={handleCalendar} value={value} className="p-10"/>
                         </div>
 
                         {showPopup && !loadFlag && (
@@ -151,7 +151,7 @@ const AttendenceCalendar = () => {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     );
 };
 

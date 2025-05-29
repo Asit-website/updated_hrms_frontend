@@ -6,6 +6,7 @@ import { CiPlay1 } from "react-icons/ci";
 import { RxCross2 } from "react-icons/rx";
 import { NavLink, useLocation } from "react-router-dom";
 import { useMain } from "../../../hooks/UseMain";
+import { useOutsideClick } from "../../../hooks/UseOutsideClick";
 
 const LeaveRequest = () => {
   const [star1, setStar1] = useState(false);
@@ -293,19 +294,19 @@ const LeaveRequest = () => {
                                 {e?.status === "" ? "Pending" : e?.status}
                               </div>
                             </td>
-                            <OutsideClickHandler
+                            {/* <OutsideClickHandler
                               onOutsideClick={() => {
                                 if (index === currView) {
                                   setCurrView(-1);
                                 }
                               }}
-                            >
+                            > */}
 
-                              <div className="viewOnwWRAP" style={{ position: "relative" }}>
+                              <div className="relative">
                                 <td
                                   onClick={() => {
                                     setCurrView(currView === index ? -1 : index);
-                                    setShowPlay(-1); // dropdown band karo agar dusra open ho
+                                    setShowPlay(-1); 
                                   }}
                                   className="px-3 py-3 flex items-center justify-center hiii_gap cursor-pointer"
                                 >
@@ -313,14 +314,14 @@ const LeaveRequest = () => {
                                 </td>
 
                                 {index === currView && (
-                                  <div className="min-w-[120px] h-fit border border-[#E3E3E3] flex flex-col shadow-[0px_4px_12px_0px_#1A1A1A33] 
-py-[8px] gap-[5px] rounded-tl-[8px] z-[1000] bg-white
-" style={{ position: "absolute", zIndex: 999, right: 72, top: -30}}>
-                                    {/* Update Button */}
+                                  <div className=" absolute right-[60px] top-[-5px] -mt-8 mr-2 w-36 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 z-[999] 
+
+">
+                                   
                                     {(leaveReqestEditPermission || role === "ADMIN") && (
                                       <>
                                         <div
-                                          className="flex gap-2 cursor-pointer"
+                                          className="items-center w-full px-4 py-2 text-sm flex gap-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
                                           onClick={() => {
                                             setShowPlay(showPlay === index ? -1 : index);
                                             setCurrView(-1);
@@ -338,7 +339,7 @@ py-[8px] gap-[5px] rounded-tl-[8px] z-[1000] bg-white
 
                                         {/* Edit */}
                                         <div
-                                          className="flex gap-2 cursor-pointer"
+                                          className="items-center w-full px-4 py-2 text-sm flex gap-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
                                           onClick={() => {
                                             setFormdata((prev) => ({
                                               ...prev,
@@ -360,7 +361,7 @@ py-[8px] gap-[5px] rounded-tl-[8px] z-[1000] bg-white
                                   </div>
                                 )}
                               </div>
-                            </OutsideClickHandler>
+                            {/* </OutsideClickHandler> */}
 
 
                             <div style={{ position: "relative", bottom: "7px" }} >
@@ -368,43 +369,21 @@ py-[8px] gap-[5px] rounded-tl-[8px] z-[1000] bg-white
 
                               {/* Accept/Reject Buttons - Side by Side */}
                               {showPlay === index && (
-                                <div ref={wrapperRef}
-                                  style={{
-                                    position: "absolute",
-                                    top: "100%",
-                                    right: "-5px",
-                                    padding: "6px 8px",
-                                    borderRadius: "8px",
-                                    display: "flex",
-                                    flexDirection: "row",
-                                    gap: "5px",
-                                    zIndex: 1000,
-                                  }}
+                                <div ref={wrapperRef} className="absolute top-full right-[-5px] p-[6px_8px] rounded-lg flex flex-row gap-[5px] z-[1000]"
+                                 
                                 >
                                   <span
                                     onClick={() => acceptHandler(e)}
-                                    style={{
-                                      backgroundColor: "green",
-                                      color: "white",
-                                      padding: "6px 12px",
-                                      borderRadius: "6px",
-                                      cursor: "pointer",
-                                      whiteSpace: "nowrap",
-                                    }}
+                                    className="bg-green-500 text-white px-3 py-[6px] rounded cursor-pointer whitespace-nowrap"
+                                   
                                   >
                                     Accept
                                   </span>
                                   <hr />
                                   <span
                                     onClick={() => rejectHandler(e)}
-                                    style={{
-                                      backgroundColor: "red",
-                                      color: "white",
-                                      padding: "6px 12px",
-                                      borderRadius: "6px",
-                                      cursor: "pointer",
-                                      whiteSpace: "nowrap",
-                                    }}
+                                    className="bg-red-500 text-white px-3 py-[6px] rounded-[6px] cursor-pointer whitespace-nowrap"
+                                   
                                   >
                                     Reject
                                   </span>

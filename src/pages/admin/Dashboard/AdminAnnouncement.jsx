@@ -309,12 +309,12 @@ const AdminProfile = () => {
                         <td className="px-6 py-4 text-gray-800">{item.description?.slice(0, 50)}...</td>
 
                         <td className="px-6 py-4 text-gray-800">
-                          <div className="flex items-center sk relative">
+                          <div className="flex items-center relative">
                             <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747634200/acy_ah4jhd.svg" alt="" className="cursor-pointer" onClick={() => setShowIndex(showIndex === index ? null : index)} />
                             {
                               showIndex === index && (
-                                <div ref={wrapperRef} className="absolute right-28 flex flex-col -top-20 bg-white rounded-md border border-gray-300 p-2">
-                                  <div onClick={() => setLeavePopup(item)} className="flex cursor-pointer items-center gap-3 p-1" >
+                                <div ref={wrapperRef} className="absolute right-28 flex flex-col -top-20 bg-white border border-gray-300">
+                                  <div onClick={() => setLeavePopup(item)} className="items-center w-[128px] px-4 py-2 text-sm flex gap-2 text-gray-700 hover:bg-gray-100 cursor-pointer" >
                                      <FaRegEye className="text-[18px]"/>
                                     <span>View</span>
                                   </div>
@@ -323,14 +323,14 @@ const AdminProfile = () => {
                                     setOnEdit(true);
                                     setEditData(item);
                                     setOpenForm(true);
-                                  }} className="flex cursor-pointer items-center gap-3 p-1">
+                                  }} className="items-center w-full px-4 py-2 text-sm flex gap-2 text-gray-700 hover:bg-gray-100 cursor-pointer">
                                    <MdOutlineEdit className="text-[18px]"/>
                                     <span>Edit</span>
                                   </div>
                                   <hr />
                                   <div onClick={() => {
                                     deleteProject(item?._id);
-                                  }} className="flex cursor-pointer items-center gap-3 p-1">
+                                  }} className="items-center w-full px-4 py-2 text-sm flex gap-2 text-red-600 hover:bg-red-100 cursor-pointer">
                                   <MdDeleteOutline className="text-[18px]"/>
                                     <span>Delete</span>
                                   </div>

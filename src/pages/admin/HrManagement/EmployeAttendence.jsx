@@ -115,7 +115,7 @@ useEffect(()=>{
               </div>
 
               {/* second  */}
-              <div style={{gap:"20px"}} className="flex flex-col lg:flex-row items-center">
+              <div style={{gap:"20px"}} className="flex flex-col lg:flex-row items-center justify-center">
 
 
                 {/*clock in  */}
