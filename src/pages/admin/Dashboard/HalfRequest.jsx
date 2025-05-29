@@ -389,14 +389,14 @@ const HalfRequest = () => {
             className="fixed inset-0 bg-black bg-opacity-20 flex items-center justify-center h-screen z-[3000] backdrop-blur-[1px]"
           >
             <div
-              className="w-full h-[500px] custom-scroll-hidden overflow-auto max-w-2xl p-4 bg-white rounded-2xl shadow-lg space-y-6" ref={formRef}
+              className="w-full custom-scroll-hidden overflow-auto max-w-2xl p-4 bg-white rounded-2xl shadow-lg space-y-6" ref={formRef}
             >
               {/* <!-- Modal content --> */}
               <div
 
               >
                 {/* <!-- Modal header --> */}
-                <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                <div className="flex items-center justify-between py-2 px-4 md:p-5 border-b rounded-t dark:border-gray-600">
                   <h3 className="editLeadreq">
                     Edit Leave Request
                   </h3>
@@ -407,7 +407,8 @@ const HalfRequest = () => {
 
                   <form className="space-y-4 fkl" action="#">
 
-                    <div className="mt-2 user_class_input">
+                    <div className="grid grid-cols-2 gap-3">
+                      <div className="mt-2 user_class_input">
                       <label
                         className="Resig-employ block text-gray-700 mb-1 w-full"
                       >
@@ -445,8 +446,6 @@ const HalfRequest = () => {
                         required
                       />
                     </div>
-
-                    <div className="flex justify-between w-full">
                       <div className="user_class_input w-full mt-2 ">
                         <label
                           for="text"
@@ -516,7 +515,7 @@ const HalfRequest = () => {
                           submitHandler(e);
                         }}
                         type="button"
-                        className="w-full mt-5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 w-[200px] max-w-full"
+                        className=" mt-5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 w-[200px] max-w-full"
                       >
                         send
                       </button>
@@ -527,7 +526,7 @@ const HalfRequest = () => {
                           setStar1(false);
                         }}
                         type="button"
-                        className="w-full mt-5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 w-[200px] max-w-full"
+                        className="mt-5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 w-[200px] max-w-full"
                       >
                         Cancel
                       </button>

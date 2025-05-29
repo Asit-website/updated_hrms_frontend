@@ -810,9 +810,10 @@ const Dashboard = () => {
 
   const announceActionPopRef = useClickOutside(() => {
     setShowAnnounceAction(false);
+    setAnnounceIndex(null)
   })
   const taskAssignActionPopRef = useClickOutside(() => {
-    setAnnounceIndex(null);
+    setTaskAssignIndex(null);
   })
 
 
@@ -1590,7 +1591,7 @@ const Dashboard = () => {
                                   >
                                     <div
                                       onClick={() => {
-                                        setAnnounceIndex(null);
+                                        setTaskAssignIndex(null);
                                         navigate('/adminDash/HRM/projectOverview', { state: val })
                                       }}
                                       className="items-center w-full px-4 py-2 text-sm flex gap-2 text-gray-700 hover:bg-gray-100 "

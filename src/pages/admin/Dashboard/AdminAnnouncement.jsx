@@ -278,7 +278,7 @@ const AdminProfile = () => {
 
               </div>
 
-              <div className="relative overflow-x-auto min-h-[250px] rounded-lg">
+              <div className="relative overflow-x-auto md:overflow-visible min-h-[250px] rounded-lg">
                 <table className="w-max lg:w-full text-sm text-left bg-white rounded-lg">
                   <thead className="bg-white font-semibold">
                     <tr>
