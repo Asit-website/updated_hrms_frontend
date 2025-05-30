@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import "react-calendar/dist/Calendar.css";
 
 import { useNavigate, useParams } from "react-router-dom";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import { useLocation } from "react-router-dom";

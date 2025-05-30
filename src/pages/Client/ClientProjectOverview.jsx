@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 
 import { useLocation } from "react-router-dom";
 
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 import ProgressBar from "@ramonak/react-progress-bar";
 import { FaFileAlt } from "react-icons/fa";
 import { useMain } from "../../hooks/UseMain";

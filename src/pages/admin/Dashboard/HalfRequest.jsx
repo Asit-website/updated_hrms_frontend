@@ -2,7 +2,7 @@ import React from "react";
 import "react-calendar/dist/Calendar.css";
 import { NavLink, useLocation } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 import { CiPlay1 } from "react-icons/ci";
 import { useMain } from "../../../hooks/UseMain"
 import { useClickOutside } from "../../../hooks/useClickOutside";

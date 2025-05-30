@@ -2,7 +2,7 @@ import React from "react";
 import "react-calendar/dist/Calendar.css";
 import JoditEditor from "jodit-react";
 import { useEffect, useRef, useState } from "react";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useReactToPrint } from "react-to-print";
 import { useMain } from "../../../hooks/UseMain";

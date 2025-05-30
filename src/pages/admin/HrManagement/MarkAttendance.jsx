@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState, useRef, useMemo } from "react";
 import "react-calendar/dist/Calendar.css";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 
 import * as XLSX from "xlsx";
 import { format } from 'date-fns';

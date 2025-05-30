@@ -4,7 +4,7 @@ import "react-calendar/dist/Calendar.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 // import AdminSidebar from "../Sidebar/AdminSidebar";
 // import AdminNavbar from "../Navbar/AdminNavbar";
 import { IoIosCloseCircle } from "react-icons/io";

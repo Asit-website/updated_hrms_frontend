@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useState, useRef } from "react";
 import "react-calendar/dist/Calendar.css";
 import { confirmAlert } from 'react-confirm-alert';
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 // import "react-profile-avatar/dist/index.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useMain } from "../../../hooks/UseMain";

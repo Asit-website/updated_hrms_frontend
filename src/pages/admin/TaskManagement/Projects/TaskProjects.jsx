@@ -165,7 +165,7 @@ const TaskProjects = () => {
           return user ? user.fullName : null;
         }).filter(fullName => fullName !== null);
         result.forEach((e) =>
-          postNotifyProject(e, formdata.Name)
+          postNotifyProject(e, formdata.Name, formdata.startDate)
         )
         let validClient = allClient.find((e) => e._id === clientInfo)
         if (validClient) {
@@ -234,7 +234,7 @@ const TaskProjects = () => {
 
         // console.log(result);
         result.forEach((e) =>
-          postNotifyProject(e, formdata.Name)
+          postNotifyProject(e, formdata.Name, formdata.startDate)
         )
         let validClient = allClient.find((e) => e._id === clientInfo)
         if (validClient) {

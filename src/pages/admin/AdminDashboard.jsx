@@ -36,77 +36,31 @@ const Dashboard = () => {
     postNotification,
     postNotification2,
     getLeaveTypes,
-    getTodayBirthday,
     changeStatusBreak,
     allEmployee,
     LeaveAllowApihandler,
     leaveTypeApi,
     postHalfDay,
-    CreateExpense,
     getAllProjectApi, getMonthlyWorkingHours,
     getUpcomingBirthdays,
     FetchMyLeave,
+    upcomingBirthdays,
+    setUpcomingBirthdays,
+    announcement, setAnnouncement,
+    holiday, setHoliday,
+    allProjects, setAllProjects,
+    monthlyWorkingHours, setMonthlyWorkingHours,
+    counts, setCounts,
+    userFullDayLeaves, setUserFullDayLeaves,
+    userHalfDayLeaves, setUserHalfDayLeaves,
+    userPendingLeaves, setUserPendingLeaves,
+    userLeaveTaken, setUserLeaveTaken,
+    userCasualLeaves, setUserCasualLeaves,
+    userPaidLeaves, setUserPaidLeaves,
+    isCountsData, setIsCountsData,
+    isUserLeavesFetched, setIsUserLeavesFetched
   } = useMain();
 
-  const [counts, setCounts] = useState({
-    activeEmployees: 0,
-    leaveRequest: 0,
-    employeesLeaves: 0,
-    totalEmployees: 0,
-    totalDeactivated: 0,
-    halfDayRequest: 0,
-  });
-
-  const stats = [
-    {
-      title: "Active Employee",
-      value: counts.activeEmployees,
-      icon: <User className="text-white" size={20} />,
-      bg: "bg-green-700",
-      card: "bg-green-50 border-green-300",
-      link: "/adminDash/HRM/activeEmployee"
-    },
-    {
-      title: "Half Day Request",
-      value: counts.halfDayRequest,
-      icon: <User className="text-white" size={20} />,
-      bg: "bg-blue-700",
-      card: "bg-blue-100 border-blue-300",
-      link: "/adminDash/HRM/halfDayRequest"
-    },
-    {
-      title: "Leave Request",
-      value: counts.leaveRequest,
-      icon: <Settings className="text-white" size={20} />,
-      bg: "bg-red-600",
-      card: "bg-red-50 border-red-200",
-      link: "/adminDash/HRM/leaveRequest"
-    },
-    {
-      title: "Employee on Leave",
-      value: counts.employeesLeaves,
-      icon: <Clock className="text-white" size={20} />,
-      bg: "bg-yellow-500",
-      card: "bg-yellow-50 border-yellow-200",
-      link: "/adminDash/HRM/LeaveEmployee"
-    },
-    {
-      title: "Total Employee",
-      value: counts.totalEmployees,
-      icon: <Users className="text-white" size={20} />,
-      bg: "bg-blue-600",
-      card: "bg-blue-50 border-blue-200",
-      link: "/adminDash/HRM/totalEmployee"
-    },
-    {
-      title: "Deactivated Employee",
-      value: counts.totalDeactivated,
-      icon: <Users className="text-white" size={20} />,
-      bg: "bg-red-600",
-      card: "bg-red-50 border-red-200",
-      link: "/adminDash/HRM/deactivate"
-    },
-  ];
 
   let hrms_permission = JSON?.parse(localStorage.getItem("hrms_permission"));
 
@@ -120,14 +74,81 @@ const Dashboard = () => {
     userAllowCrtPermission
   } = hrms_permission;
 
-  const [announce, setAnnounce] = useState([]);
-  const [holiday, setHoliday] = useState([]);
-  const [tasks, setTasks] = useState([]);
+  const stats = [
+    {
+      title: "Active Employee",
+      value: counts.activeEmployees,
+      icon: <User className="text-white" size={20} />,
+      bg: "bg-green-700",
+      card: "bg-green-50 border-green-300",
+      link: user?.role === "ADMIN"
+        ? "/adminDash/HRM/activeEmployee"
+        : "/employeeDash/HRM/activeEmployee",
+      permissionKey: "activeEmployeePermission"
+    },
+    {
+      title: "Half Day Request",
+      value: counts.halfDayRequest,
+      icon: <User className="text-white" size={20} />,
+      bg: "bg-blue-700",
+      card: "bg-blue-100 border-blue-300",
+      link: user?.role === "ADMIN"
+        ? "/adminDash/HRM/halfDayRequest"
+        : "/employeeDash/HRM/halfDayRequest",
+      permissionKey: "halfDayPermission"
+    },
+    {
+      title: "Leave Request",
+      value: counts.leaveRequest,
+      icon: <Settings className="text-white" size={20} />,
+      bg: "bg-red-600",
+      card: "bg-red-50 border-red-200",
+      link: user?.role === "ADMIN"
+        ? "/adminDash/HRM/leaveRequest"
+        : "/employeeDash/HRM/leaveRequest",
+      permissionKey: "leaveRequestPermission"
+    },
+    {
+      title: "Employee on Leave",
+      value: counts.employeesLeaves,
+      icon: <Clock className="text-white" size={20} />,
+      bg: "bg-yellow-500",
+      card: "bg-yellow-50 border-yellow-200",
+      link: user?.role === "ADMIN"
+        ? "/adminDash/HRM/LeaveEmployee"
+        : "/employeeDash/HRM/LeaveEmployee",
+      permissionKey: "employeeOnLeavePermission"
+    },
+    {
+      title: "Total Employee",
+      value: counts.totalEmployees,
+      icon: <Users className="text-white" size={20} />,
+      bg: "bg-blue-600",
+      card: "bg-blue-50 border-blue-200",
+      link: user?.role === "ADMIN"
+        ? "/adminDash/HRM/totalEmployee"
+        : "/employeeDash/HRM/totalEmployee",
+      permissionKey: "totalEmployeePermission"
+    },
+    {
+      title: "Deactivated Employee",
+      value: counts.totalDeactivated,
+      icon: <Users className="text-white" size={20} />,
+      bg: "bg-red-600",
+      card: "bg-red-50 border-red-200",
+      link: user?.role === "ADMIN"
+        ? "/adminDash/HRM/deactivate"
+        : "/employeeDash/HRM/deactivate",
+      alwaysShow: true
+    }
+  ];
+
+
+
+
   const [value, onChange] = useState(new Date());
-  const [upcomingBirthdays, setUpcomingBirthdays] = useState([]);
   var [clock, setClock] = useState(0);
   var [breakClock, setBreakClock] = useState(0);
-  const [totalHours, setTotalaHours] = useState();
   const [mount, setMount] = useState(false);
   const [todayTask, setTodayTask] = useState("");
   const [loading, setLoading] = useState(false);
@@ -140,6 +161,7 @@ const Dashboard = () => {
   const [announceIndex, setAnnounceIndex] = useState(null);
   const [taskAssignIndex, setTaskAssignIndex] = useState(null);
   const [showAnnounceAction, setShowAnnounceAction] = useState(false);
+
   const navigate = useNavigate();
   const [textData, setTextData] = useState({
     title: "",
@@ -325,7 +347,7 @@ const Dashboard = () => {
   const getAnnoucement = async () => {
     const ans = await fetchAnnoucement();
     const reversedArray = ans?.data?.reverse();
-    setAnnounce(reversedArray);
+    setAnnouncement(reversedArray);
   };
 
   const getAllHolidays = async () => {
@@ -359,7 +381,7 @@ const Dashboard = () => {
 
       if (tasksData && tasksData.projects) {
         const reversedTasks = tasksData.projects.reverse().slice(0, 6);
-        setTasks(reversedTasks);
+        setAllProjects(reversedTasks);
       }
     } catch (error) {
       console.error("Error fetching tasks:", error);
@@ -645,15 +667,9 @@ const Dashboard = () => {
     const [day, month, year] = date.split('/');
     const user = user?._id
     const data = await getMonthlyWorkingHours(month, year, user)
-    setTotalaHours(data?.totalHours)
+    setMonthlyWorkingHours(data?.monthlyWorkingHours)
   }
 
-  const [userFullDayLeaves, setUserFullDayLeaves] = useState(0);
-  const [userHalfDayLeaves, setUserHalfDayLeaves] = useState(0);
-  const [userPendingLeaves, setUserPendingLeaves] = useState(0);
-  const [userLeaveTaken, setUserLeaveTaken] = useState(0);
-  const [userCasualLeaves, setUserCasualLeaves] = useState(0);
-  const [userPaidLeaves, setUserPaidLeaves] = useState(0);
   const fetchUserLeaves = async () => {
     const res = await FetchMyLeave();
 
@@ -670,6 +686,7 @@ const Dashboard = () => {
     setUserLeaveTaken(userFullDayLeaves + (userHalfDayLeaves * 0.5));
     setUserCasualLeaves(filteredfulldaycasualleaves.length);
     setUserPaidLeaves(filteredfulldaypaidleaves.length)
+    setIsUserLeavesFetched(true);
   }
 
   const remainingLeave = Math.max(
@@ -813,6 +830,7 @@ const Dashboard = () => {
       halfDayRequest: ans2?.halfDay,
       employeesLeaves: ans3?.data?.length
     });
+    setIsCountsData(true);
   };
 
   const announceActionPopRef = useClickOutside(() => {
@@ -826,13 +844,27 @@ const Dashboard = () => {
 
   useEffect(() => {
     initializeTimer();
-    getallUpcomingBirthdays();
-    getAnnoucement();
-    getAllHolidays();
-    fetchTasks();
-    getTotalHours();
-    getData();
-    fetchUserLeaves();
+    if (!upcomingBirthdays.length) {
+      getallUpcomingBirthdays();
+    }
+    if (!announcement.length) {
+      getAnnoucement();
+    }
+    if (!holiday.length) {
+      getAllHolidays();
+    }
+    if (!allProjects.length) {
+      fetchTasks();
+    }
+    if (!monthlyWorkingHours) {
+      getTotalHours();
+    }
+    if (!isCountsData) {
+      getData();
+    }
+    if (!isUserLeavesFetched) {
+      fetchUserLeaves();
+    }
     onEmployeeLogin();
     document.addEventListener("visibilitychange", handleVisibilityChange);
 
@@ -840,6 +872,7 @@ const Dashboard = () => {
       document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
   }, [])
+
 
   return (
     <div className="p-6">
@@ -854,43 +887,60 @@ const Dashboard = () => {
       </div>
 
       {
-        user?.role === "ADMIN" && (
+        (user?.role === "ADMIN" ||
+          activeEmployeePermission ||
+          halfDayPermission ||
+          leaveRequestPermission ||
+          employeeOnLeavePermission ||
+          totalEmployeePermission) && (
           <div className="flex items-center mt-5 overflow-x-scroll sm:grid grid-cols-2 sm:overflow-hidden md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4">
-            {stats.map((stat, index) => {
-              const card = (
-                <div
-                  className={`border rounded-lg p-4 ${stat.card} min-w-[160px] flex flex-col justify-between h-28 shadow-sm hover:shadow-md transition`}
-                >
-                  <div className="flex items-center space-x-2">
-                    <div className={`p-2 rounded-md ${stat.bg}`}>
-                      {stat.icon}
+            {stats
+              .filter(stat => {
+                // Show if alwaysShow is true
+                if (stat.alwaysShow) return true;
+
+                // Show if ADMIN
+                if (user?.role === "ADMIN") return true;
+
+                // Show if user has specific permission
+                return hrms_permission?.[stat.permissionKey];
+              })
+              .map((stat, index) => {
+                const card = (
+                  <div
+                    className={`border rounded-lg p-4 ${stat.card} min-w-[160px] flex flex-col justify-between h-28 shadow-sm hover:shadow-md transition`}
+                  >
+                    <div className="flex items-center space-x-2">
+                      <div className={`p-2 rounded-md ${stat.bg}`}>
+                        {stat.icon}
+                      </div>
+                      <h2 className="text-sm font-semibold text-gray-900">
+                        {stat.title}
+                      </h2>
                     </div>
-                    <h2 className="text-sm font-semibold text-gray-900">
-                      {stat.title}
-                    </h2>
+                    <div className="text-right text-2xl font-bold text-gray-800">
+                      {stat.value}
+                    </div>
                   </div>
-                  <div className="text-right text-2xl font-bold text-gray-800">
-                    {stat.value}
+                );
 
-                  </div>
-                </div>
-              );
-
-              return stat.link ? (
-                <Link to={stat.link} key={index}>
-                  {card}
-                </Link>
-              ) : (
-                <div key={index}>{card}</div>
-              );
-            })}
+                return stat.link ? (
+                  <Link to={stat.link} key={index}>
+                    {card}
+                  </Link>
+                ) : (
+                  <div key={index}>{card}</div>
+                );
+              })}
           </div>
         )
       }
 
 
-      <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 pt-8">
-        <div className={`bg-grey rounded-xl border-2 ${user?.role === "ADMIN" ? "order-3 md:order-1" : "order-last col-span-2"}`}>
+
+
+      <div className="flex flex-col lg:grid xl:grid-cols-2 gap-6 pt-8">
+        <div className={`bg-grey rounded-xl border-2 ${user?.role === "ADMIN" ? "order-3 md:order-1" : "order-last sm:col-span-2"}`}>
 
           <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center p-4">
             <div className="flex items-center gap-2">
@@ -933,7 +983,7 @@ const Dashboard = () => {
                 </tr>
               </thead>
               <tbody>
-                {announce.length === 0 ? (
+                {announcement.length === 0 ? (
                   <tr>
                     <td
                       colSpan="4"
@@ -943,7 +993,7 @@ const Dashboard = () => {
                     </td>
                   </tr>
                 ) : (
-                  announce?.slice(0, 5).map((val, index) => (
+                  announcement?.slice(0, 5).map((val, index) => (
                     <tr
                       key={index}
                       className="border-b border-gray-200 hover:bg-gray-50 transition duration-150"
@@ -1019,7 +1069,7 @@ const Dashboard = () => {
         {/* Upcoming BirthDays Only For Employee */}
         {
           user?.role === "EMPLOYEE" && (
-            <div className="w-full overflow-hidden border-2 border-gray-200 bg-white rounded-[10px]">
+            <div className="w-full overflow-hidden border-2 order-1 border-gray-200 bg-white rounded-[10px]">
               <nav className="flex items-center gap-2 bg-white py-3 px-4 font-semibold">
                 <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1748293785/cel1_j85yut.png" alt="" />
                 <span>Upcoming Birthday's</span>
@@ -1061,7 +1111,7 @@ const Dashboard = () => {
         }
 
 
-        <div className="bg-grey rounded-xl border-2 p-4 order-1 md:order-2">
+        <div className={`bg-grey rounded-xl border-2 p-4 ${user?.role === "ADMIN" ? "order-1 md:order-2" : "order-2"}`}>
           <div className="flex justify-between items-center mb-4">
             <div className="flex items-center mb-6 gap-2">
               <div className="bg-blue-600 text-white p-2 rounded-md shadow-md">
@@ -1307,15 +1357,15 @@ const Dashboard = () => {
           <h3 className="text-m font-medium text-gray-500 pt-3 pb-3">Today</h3>
           <hr />
 
-          <TimeLog clock={clock} breakClock={breakClock} totalHours={totalHours} />
+          <TimeLog clock={clock} breakClock={breakClock} totalHours={monthlyWorkingHours} />
         </div>
 
 
         {/* leaves */}
         {
           user?.role === "EMPLOYEE" && (
-            <div className="bg-white w-full rounded-md my-9 border border-gray-200 order-6 col-span-2">
-              <div className="flex justify-between p-4">
+            <div className="bg-white w-full rounded-md my-9 border border-gray-200 order-6 sm:col-span-2">
+              <div className="flex flex-col sm:flex-row justify-between p-4">
                 <div className="flex items-center gap-2.5 p-2.5">
                   <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1748383770/download_11_xirwci.png" alt="Leaves" />
                   <h3 className="text-lg font-semibold">Leaves</h3>
@@ -1359,8 +1409,8 @@ const Dashboard = () => {
 
               <hr />
 
-              <div className="flex p-5 gap-5">
-                <div className="flex justify-between p-7 w-1/2">
+              <div className="flex flex-col sm:flex-row p-5 gap-5">
+                <div className="flex justify-between p-7 sm:w-1/2">
                   <div>
                     <h5>{user?.userAllowance}</h5>
                     <p>Total leave allowance</p>
@@ -1520,7 +1570,7 @@ const Dashboard = () => {
 
         {
           user?.role === "ADMIN" && (
-            <div className="bg-grey rounded-xl border-2  xl:col-span-2 order-5 md:order-5">
+            <div className="bg-grey rounded-xl border-2  md:col-span-2 order-5 md:order-5">
               <div className="flex justify-between items-center p-4">
                 <div className="flex items-center gap-2">
                   <div className="w-9 h-9 bg-blue-600 rounded-lg flex items-center justify-center">
@@ -1561,17 +1611,17 @@ const Dashboard = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {tasks.length === 0 ? (
+                    {allProjects.length === 0 ? (
                       <tr>
                         <td
-                          colSpan={tasks.length}
+                          colSpan={allProjects.length}
                           className="text-center text-gray-400 px-3 py-4"
                         >
                           No data available
                         </td>
                       </tr>
                     ) : (
-                      tasks?.map((val, index) => (
+                      allProjects?.map((val, index) => (
                         <tr
                           key={index}
                           className="border-b border-gray-200 hover:bg-gray-50 transition duration-150"

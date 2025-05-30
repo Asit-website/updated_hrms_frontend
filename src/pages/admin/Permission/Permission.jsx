@@ -2,7 +2,7 @@ import React from "react";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 import { confirmAlert } from "react-confirm-alert";
 import { useMain } from "../../../hooks/UseMain";
 import { useOutsideClick } from "../../../hooks/UseOutsideClick";

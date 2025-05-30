@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import "react-calendar/dist/Calendar.css";
 import { confirmAlert } from 'react-confirm-alert'; 
 import 'react-confirm-alert/src/react-confirm-alert.css'; 
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 import { useLocation, NavLink } from "react-router-dom";
 import { MdDeleteOutline, MdOutlineEdit } from "react-icons/md";
 import { useMain } from "../../../hooks/UseMain";

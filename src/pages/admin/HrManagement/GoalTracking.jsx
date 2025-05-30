@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 
 import { confirmAlert } from "react-confirm-alert"; // Import
 import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 import { MdDeleteOutline, MdOutlineEdit } from "react-icons/md";
 
 import { useMain } from "../../../hooks/UseMain";

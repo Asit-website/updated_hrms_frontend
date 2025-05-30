@@ -17,11 +17,14 @@ import { useAuth } from "../../../Context/AuthContext";
 export default function LeadManagement() {
   const {
     getLead,
-    getTaskApi,
-   getTodayLead,
+    getTodayLead,
     deleteLeads,
     getLeadByUser,
     closeLeadApiFetch,
+    totalLeads, setTotalLeads,
+    userLeads, setUserLeads,
+    allCloseLead, setAllCloseLead,
+    todayLead, setTodayLead
   } = useMain();
 
   const { user } = useAuth();
@@ -61,7 +64,7 @@ export default function LeadManagement() {
   const fetchLead = async () => {
     const ans = await getLead();
     if (ans?.data) {
-      setTotalMyLead(ans?.data?.length);
+      setTotalLeads(ans?.data?.length);
     }
   };
   const fetchUserLead = async () => {
@@ -71,61 +74,67 @@ export default function LeadManagement() {
     }
   };
 
-  const closeLead = async () => {
-    const ans = await closeLeadApiFetch();
-    // setAllCloseFroSrch(ans?.status);
-    setAllCloseLead(ans?.status);
-  };
-
-  // const [showClosedLeads, setShowClosedLeads] = useState(false);
-
-  const [allCloseLead, setAllCloseLead] = useState([]);
-  // const [allCloseForSrch, setAllCloseFroSrch] = useState([]); 
   const [closeSerch, setCloseSrch] = useState("");
+  const [allCloseForSrch, setAllCloseFroSrch] = useState([]);
   const [currentClosedPage, setCurrentClosedPage] = useState(1);
   const closedItemPerPage = 5;
-
-  const closeStartIndex = (currentClosedPage - 1) * closedItemPerPage;
-  const closeEndIndex = Math.min(closeStartIndex + closedItemPerPage, allCloseLead?.length);
-  const ClosedTotalPages = allCloseLead?.length
-    ? Math.ceil(allCloseLead.length / closedItemPerPage)
-    : 1;
-  const filteredAllItems = allCloseLead?.slice(closeStartIndex, closeEndIndex);
-  const [totalMyLead, setTotalMyLead] = useState(0);
-  const [userLeads, setUserLeads] = useState([]);
-  const [allLeads, setAllLeads] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 4;
-  // const [allCloseForSrch, setAllCloseFroSrch] = useState([]);
-  // const [allCloseLead, setAllCloseLead] = useState([]);
-  // const [paginatedData, setPaginationData] = useState([]);
   const [optionedit, setOptionEdit] = useState(null);
   const [todayLeadSrch, setTodayLeadSrch] = useState("");
   const [paginatedData, setPaginationData] = useState([]);
+  const [filteredCloseLeads, setFilteredCloseLeads] = useState([]);
 
-
-  useEffect(() => {
-
-    if (todayLeadSrch === "") {
-      setPaginationData([...allLeads]);
+  const closeLead = async () => {
+    const ans = await closeLeadApiFetch();
+    if (ans?.status && ans?.data?.length) {
+      setAllCloseLead(ans?.data)
+      console.log("setAllCloseLeads",ans?.data)
+      setAllCloseFroSrch(ans?.data);
+      setFilteredCloseLeads(ans?.data);
     }
-    else {
-      const filterData = allLeads.filter((lead) => lead?.Company?.toLowerCase()?.includes(todayLeadSrch?.toLocaleLowerCase()))
-      setPaginationData(filterData);
-    }
-
-  }, [todayLeadSrch])
-
-  useEffect(() => {
-    setPaginationData(allLeads?.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage));
-  }, [currentPage, allLeads])
+  };
 
   const fetchLeads = async () => {
     const ans = await getTodayLead();
     if (ans.status) {
-      setAllLeads(ans?.leads);
+      setTodayLead(ans?.leads);
     }
   };
+
+
+  useEffect(() => {
+    if (todayLeadSrch === "") {
+      setPaginationData([...todayLead]);
+    }
+    else {
+      const filterData = todayLead.filter((lead) => lead?.Company?.toLowerCase()?.includes(todayLeadSrch?.toLocaleLowerCase()))
+      setPaginationData(filterData);
+    }
+  }, [todayLeadSrch])
+
+  useEffect(() => {
+    if (closeSerch.trim() === "") {
+      setFilteredCloseLeads(allCloseLead);
+    } else {
+      const filtered = allCloseForSrch.filter((lead) =>
+        lead?.Company?.toLowerCase().includes(closeSerch.toLowerCase())
+      );
+      setFilteredCloseLeads(filtered);
+    }
+    setCurrentClosedPage(1);
+  }, [closeSerch, allCloseForSrch]);
+
+
+
+  useEffect(() => {
+    setPaginationData(todayLead?.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage));
+  }, [currentPage, todayLead])
+
+  const ClosedTotalPages = Math.ceil(filteredCloseLeads.length / closedItemPerPage);
+  const closeStartIndex = (currentClosedPage - 1) * closedItemPerPage;
+  const closeEndIndex = Math.min(closeStartIndex + closedItemPerPage, filteredCloseLeads.length);
+  const filteredAllItems = filteredCloseLeads.slice(closeStartIndex, closeEndIndex);
 
 
 
@@ -133,7 +142,7 @@ export default function LeadManagement() {
     {
       img: "https://res.cloudinary.com/dd9tagtiw/image/upload/v1746188858/Frame_9688_zhh0hh.png",
       label: "Total Leads",
-      value: totalMyLead,
+      value: totalLeads,
       link: user?.role === "ADMIN" ? "/adminDash/myLead" : "/employeeDash/myLead"
     },
     {
@@ -143,7 +152,7 @@ export default function LeadManagement() {
       link: user?.role === "ADMIN" ? "/adminDash/userLead" : "/employeeDash/userLead"
     },
     {
-        img: "https://res.cloudinary.com/dd9tagtiw/image/upload/v1746188839/Frame_9688_ddpeva.png",
+      img: "https://res.cloudinary.com/dd9tagtiw/image/upload/v1746188839/Frame_9688_ddpeva.png",
       label: "Closed Leads",
       value: allCloseLead.length,
       link: user?.role === "ADMIN" ? "/adminDash/closeLeads" : "/employeeDash/closeLeads"
@@ -151,13 +160,6 @@ export default function LeadManagement() {
   ];
 
 
-  const fetchTask = async () => {
-    const data = await getTaskApi({ userId: hrms_user?._id });
-
-    if (data?.status) {
-      setAllTask(data?.allTask);
-    }
-  };
   const deleteProject = async (id) => {
     confirmAlert({
       title: "Are you sure to delete this data?",
@@ -184,14 +186,26 @@ export default function LeadManagement() {
   };
 
   useEffect(() => {
-    fetchLead();
-    fetchUserLead();
-    closeLead();
-    fetchLeads();
-    fetchTask();
-    // fetchAllLead();
+    console.log("Filtered Leads:", filteredCloseLeads.map(l => l.Company));
+  }, [filteredCloseLeads]);
+
+
+  useEffect(() => {
+    if (!totalLeads.length) {
+      fetchLead();
+    }
+    if (!userLeads.length) {
+      fetchUserLead();
+    }
+    if (!allCloseLead.length) {
+      closeLead();
+    }
+    if (!todayLead.length) {
+      fetchLeads();
+    }
   }, []);
   const navigate = useNavigate();
+
   return (
     <div className="p-6 bg-[#f9fbfc]">
       <div className="flex flex-col md:flex-row justify-between items-start mb-5 overflow-x-scroll xl:overflow-x-hidden gap-3">

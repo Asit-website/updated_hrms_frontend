@@ -1,5 +1,5 @@
  import React, { useState, useEffect } from "react";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 import { MdKeyboardBackspace } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { useMain } from "../../../hooks/UseMain";

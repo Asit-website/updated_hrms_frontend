@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "react-calendar/dist/Calendar.css";
 import { useNavigate, NavLink } from "react-router-dom";
 
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 import * as EmailValidator from "email-validator";
 import validator from 'validator';
 import PhoneInput from 'react-phone-input-2'

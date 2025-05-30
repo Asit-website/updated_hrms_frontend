@@ -1,7 +1,7 @@
 import React from "react";
 import "react-calendar/dist/Calendar.css";
 import { useEffect, useState, useRef } from "react";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 import { DownloadTableExcel } from 'react-export-table-to-excel';
 import { useReactToPrint } from "react-to-print";
 import { useMain } from "../../../hooks/UseMain";
