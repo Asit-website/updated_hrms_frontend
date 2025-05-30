@@ -18,13 +18,8 @@ export default function LeadManagement() {
   const {
     getLead,
     getTaskApi,
-    getMeetApi,
-
-    deleteMeetapi,
-
-    getTodayLead,
+   getTodayLead,
     deleteLeads,
-    GetOpenLeadsApi,
     getLeadByUser,
     closeLeadApiFetch,
   } = useMain();
@@ -148,7 +143,7 @@ export default function LeadManagement() {
       link: user?.role === "ADMIN" ? "/adminDash/userLead" : "/employeeDash/userLead"
     },
     {
-      img: "https://res.cloudinary.com/dd9tagtiw/image/upload/v1746188816/Frame_9688_tazycu.png",
+        img: "https://res.cloudinary.com/dd9tagtiw/image/upload/v1746188839/Frame_9688_ddpeva.png",
       label: "Closed Leads",
       value: allCloseLead.length,
       link: user?.role === "ADMIN" ? "/adminDash/closeLeads" : "/employeeDash/closeLeads"

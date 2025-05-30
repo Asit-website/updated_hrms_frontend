@@ -300,13 +300,13 @@ const ProposalForm = () => {
   return (
     <>
       <div className="employee-dash h-full">
-        <div className="tm">
-          <div className="em">
+        <div className="w-full">
+          <div className="pt-[30px] pr-[20px] pb-[10px] pl-[20px] relative w-full">
             <div className="flex flex-col gap-4">
               {/* lefft side  */}
 
               <div className="max-w-full w-full flex flex-col gap-5">
-                <div className="fixed left-0 top-20 w-full h-20 flex items-center justify-end bg-white z-[1]">
+                <div className="fixed left-0 pr-10 top-20 w-full h-20 flex items-center justify-end bg-white z-[1]">
                   <h2 className="text-[24px] font-semibold leading-[32px] text-left text-[#101820]">
                     Proposal Form
                   </h2>

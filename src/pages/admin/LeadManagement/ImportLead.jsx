@@ -645,7 +645,7 @@ const ImportLead = () => {
   }, [LeadStatus])
 
   return (
-    <div className="relative">
+    <div className="relative ">
       <div className="flex relative  h-full">
       
 
@@ -690,18 +690,18 @@ const ImportLead = () => {
             {/* third secttion  */}
             <div className="flex flex-col gap-4">
               {/* first part  */}
-              <div className="flex flex-col gap-6 mt-5 bg-white px-[30px] py-5">
+              <div className="flex flex-col gap-6 mt-5 bg-white px-[30px] py-5 bg-white rounded-lg shadow p-2">
                 <h2 className="text-[16px] font-bold leading-6 tracking-[0.0015em] text-left text-[#101820]">Lead Information</h2>
 
-                <div className="flex justify-between">
+                <div className="flex  flex-col lg:flex-row justify-between overflow-x-scroll lg:overflow-x-hidden">
                   {/* left side  */}
-                  <div className="w-1/2 flex flex-col gap-5">
-                    <div className="flex gap-5 items-center">
-                      <h3 className="text-[14px] font-normal leading-5 tracking-[0.0025em] text-right text-[#1B2533]">Lead Owner :</h3>
+                  <div className="w-full lg:w-1/2 flex flex-col gap-5">
+                    <div className="flex  gap-5 items-center">
+                      <h3 className="text-[14px] min-w-fit font-normal leading-5 tracking-[0.0025em] text-right text-[#1B2533]">Lead Owner :</h3>
                       <div className="leanwlonwers">
                         {
                           data?.LeadOwner?.map((own, index) => (
-                            <p className="makesonsmall" key={index}>{own?.fullName} , </p>
+                            <p className="min-w-max" key={index}>{own?.fullName} , </p>
                           ))
                         }
                       </div>
@@ -718,7 +718,7 @@ const ImportLead = () => {
                     </div>
 
                     <div className="flex gap-5 items-center">
-                      <h3 className="text-[14px] font-normal leading-5 tracking-[0.0025em] text-right text-[#1B2533]">Annual Revenue :</h3>
+                      <h3 className="text-[14px] font-normal leading-5 tracking-[0.0025em] min-w-fit text-[#1B2533]">Annual Revenue :</h3>
                       <p className="text-[16px] font-medium leading-6 tracking-[0.005em] text-left text-[#1B2533]">${data?.AnnualRevenue}</p>
                     </div>
 
@@ -729,20 +729,20 @@ const ImportLead = () => {
                   </div>
 
                   {/* right side  */}
-                  <div className="w-1/2 flex flex-col gap-5">
+                  <div className="w-full lg:w-1/2 flex flex-col gap-5 mt-5 lg:mt-0">
                     <div className="flex gap-5 items-center">
                       <h3 className="text-[14px] font-normal leading-5 tracking-[0.0025em] text-right text-[#1B2533]">Company :</h3>
                       <p className="text-[16px] font-medium leading-6 tracking-[0.005em] text-left text-[#1B2533]">{data?.Company}</p>
                     </div>
 
                     <div className="flex gap-5 items-center">
-                      <h3 className="text-[14px] font-normal leading-5 tracking-[0.0025em] text-right text-[#1B2533]">Lead Name :</h3>
-                      <p className="text-[16px] font-medium leading-6 tracking-[0.005em] text-left text-[#1B2533]">
+                      <h3 className="text-[14px] font-normal leading-5 tracking-[0.0025em] min-w-fit text-[#1B2533]">Lead Name :</h3>
+                      <p className="text-[16px] font-medium leading-6 tracking-[0.005em] text-left min-w-max text-[#1B2533]">
                         {data?.FirstName} {data?.LastName}
                       </p>
                     </div>
 
-                    <div className="flex gap-5 items-center">
+                    <div className="flex gap-3 items-center">
                       <h3 className="text-[14px] font-normal leading-5 tracking-[0.0025em] text-right text-[#1B2533]">Email :</h3>
                       <p className="text-[16px] font-medium leading-6 tracking-[0.005em] text-left text-[#1B2533]">{data?.Email}</p>
                     </div>
@@ -756,7 +756,7 @@ const ImportLead = () => {
                       <p className="text-[16px] font-medium leading-6 tracking-[0.005em] text-left text-[#1B2533]">{data?.NoOfEmployee}</p>
                     </div>
                     <div className="flex gap-5 items-center">
-                      <h3 className="text-[14px] font-normal leading-5 tracking-[0.0025em] text-right text-[#1B2533]">Lead Source :</h3>
+                      <h3 className="text-[14px] font-normal leading-5 tracking-[0.0025em] min-w-fit text-[#1B2533]">Lead Source :</h3>
                       <p className="text-[16px] font-medium leading-6 tracking-[0.005em] text-left text-[#1B2533]">{data?.LeadSource}</p>
                     </div>
                   </div>
@@ -764,7 +764,7 @@ const ImportLead = () => {
               </div>
 
               {data.dynamicFields && (
-                <div className="flex flex-col gap-6 mt-5 bg-white px-[30px] py-5">
+                <div className="flex flex-col gap-6 mt-5 bg-white px-[30px] py-5 ">
                   <h2 className="text-[16px] font-bold leading-6 tracking-[0.0015em] text-left text-[#101820]">Additional Fields</h2>
 
                   <div className="flex justify-between">
@@ -800,12 +800,12 @@ const ImportLead = () => {
 
 
               {/* second part  */}
-              <div className="flex flex-col gap-6 mt-5 bg-white px-[30px] py-5">
+              <div className="flex flex-col gap-6 mt-5 bg-white px-[30px] py-5 rounded-lg shadow p-2">
                 <h2 className="text-[16px] font-bold leading-6 tracking-[0.0015em] text-left text-[#101820]">Address Information</h2>
 
-                <div className="flex justify-between">
+                <div className="flex flex-col lg:flex-row justify-between">
                   {/* left side  */}
-                  <div className="w-1/2 flex flex-col gap-5">
+                  <div className="w-full lg:w-1/2 flex flex-col gap-5">
                     <div className="flex gap-5 items-center">
                       <h3 className="text-[14px] font-normal leading-5 tracking-[0.0025em] text-right text-[#1B2533]">Street :</h3>
                       <p className="text-[16px] font-medium leading-6 tracking-[0.005em] text-left text-[#1B2533]">{data?.Street}</p>
@@ -823,14 +823,14 @@ const ImportLead = () => {
                   </div>
 
                   {/* right side  */}
-                  <div className="w-1/2 flex flex-col gap-5">
+                  <div className="w-full lg:w-1/2 flex flex-col gap-5 mt-5 lg:mt-0">
                     <div className="flex gap-5 items-center">
                       <h3 className="text-[14px] font-normal leading-5 tracking-[0.0025em] text-right text-[#1B2533]">city :</h3>
                       <p className="text-[16px] font-medium leading-6 tracking-[0.005em] text-left text-[#1B2533]">{data?.City}</p>
                     </div>
 
                     <div className="flex gap-5 items-center">
-                      <h3 className="text-[14px] font-normal leading-5 tracking-[0.0025em] text-right text-[#1B2533]">zip code :</h3>
+                      <h3 className="text-[14px] font-normal leading-5 tracking-[0.0025em] text-[#1B2533]">zip code :</h3>
                       <p className="text-[16px] font-medium leading-6 tracking-[0.005em] text-left text-[#1B2533]">{data?.ZipCode}</p>
                     </div>
                   </div>
@@ -838,7 +838,7 @@ const ImportLead = () => {
               </div>
 
               {/* third  */}
-              <div className="flex flex-col gap-6 mt-5 bg-white px-[30px] py-5">
+              <div className="flex flex-col gap-6 mt-5 bg-white px-[30px] py-5  rounded-lg shadow p-2">
                 <h2 className="text-[16px] font-bold leading-6 tracking-[0.0015em] text-left text-[#101820]">Descriptive Information</h2>
 
                 <div className="flex justify-between secondWRap">
@@ -849,7 +849,7 @@ const ImportLead = () => {
               </div>
 
               {/* second  third  */}
-              <div className="flex flex-col gap-6 mt-5 bg-white px-[30px] py-5">
+              <div className="flex flex-col gap-6 mt-5 bg-white px-[30px] py-5 bg-white rounded-lg shadow p-2">
                 <div className="flex flex-col w-full gap-6">
                   <h2 className="text-[16px] font-bold leading-6 tracking-[0.0015em] text-left text-[#101820]">Lead Status</h2>
 
@@ -932,7 +932,7 @@ const ImportLead = () => {
               </div>
 
               {/* secoond third   third  */}
-              <div className="flex flex-col gap-6 mt-5 bg-white px-[30px] py-5">
+              <div className="flex flex-col gap-6 mt-5 bg-white px-[30px] py-5  rounded-lg shadow p-2">
                 <div className="flex flex-col w-full gap-6 !flex-row !justify-between !items-center">
                   <h2 className="text-[16px] font-bold leading-6 tracking-[0.0015em] text-left text-[#101820]">Open Activities</h2>
 
@@ -985,8 +985,8 @@ const ImportLead = () => {
               </div>
 
               {/* quotation */}
-              <div className="flex flex-col gap-6 mt-5 bg-white px-[30px] py-5">
-                <div className="flex flex-col w-full gap-6 flex !flex-row !justify-between !items-center">
+              <div className="flex flex-col gap-6 mt-5 bg-white px-[30px] py-5  rounded-lg shadow p-2">
+                <div className="flex flex-col w-full gap-6  !flex-row !justify-between !items-center overflow-x-scroll xl:overflow-x-hidden">
                   <h2 className="text-[16px] font-bold leading-6 tracking-[0.0015em] text-left text-[#101820]">Quotation</h2>
 
                   <button
@@ -995,7 +995,7 @@ const ImportLead = () => {
                         state: { id },
                       })
                     }
-                    className="w-[165px] h-10 rounded-[10px] bg-[linear-gradient(131.78deg,_#D1E8FD_6.87%,_#EDEFFF_91.67%)] border border-[#0B56E4] text-[#0B56E4] text-[16px] font-medium leading-6 tracking-[0.005em] text-center"
+                    className="w-[165px] h-10 rounded-[10px] bg-[linear-gradient(131.78deg,_#D1E8FD_6.87%,_#EDEFFF_91.67%)] border border-[#0B56E4] text-[#0B56E4] text-[16px] font-medium leading-6 tracking-[0.005em] text-center min-w-fit"
                   >
                     <span className="font-medium !text-[16px] !text-[#0B56E4]">Create Quotation</span>
                   </button>
@@ -1004,10 +1004,10 @@ const ImportLead = () => {
                 <hr />
 
                 {allQuota?.length > 0 ? (
-                  <div className="flex flex-col gap-5">
+                  <div className="flex flex-col gap-5 overflow-x-scroll xl:overflow-x-hidden">
                     {allQuota?.map((item, index) => (
                       <div key={index} className="flex items-center justify-between">
-                        <div className="flex items-center gap-10 border-l-2 border-green-500 pl-4" key={index}>
+                        <div className="flex items-center gap-5 border-l-2 border-green-500 pl-4" key={index}>
                           <p className="text-[#666D76] text-[14px] font-normal leading-[20px] tracking-[0.0025em] text-right">
                             customer ID: {item?.customerId}
                           </p>
@@ -1023,12 +1023,12 @@ const ImportLead = () => {
                           <img onClick={() => setShowIndex(showIndex === index ? null : index)} src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747310515/thredonts_a1qk6s.png" alt="action-btn" className="cursor-pointer" />
                           {
                             showIndex === index && (
-                              <div ref={showactionref} className="absolute w-[110px] right-5 -top-14 p-2 bg-white border border-gray-300 rounded-md">
+                              <div ref={showactionref} className="absolute w-[110px] right-5 -top-14  bg-white border border-gray-300">
                                 <div onClick={() => {
                                   navigate("/adminDash/HRM/QuotationForm", {
                                     state: { item },
                                   });
-                                }} className="flex items-center gap-2 p-1 cursor-pointer">
+                                }} className="items-center w-full px-4 py-2 text-sm flex gap-2 text-gray-700 hover:bg-gray-100 cursor-pointer">
                                   <img
                                     className="cursor-pointer"
                                     src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747310255/veci_acxe9c.svg"
@@ -1040,7 +1040,7 @@ const ImportLead = () => {
                                 <div onClick={() => {
                                   deleteQuotationApi(item?._id);
                                 }}
-                                  className="flex items-center gap-3 p-1 cursor-pointer">
+                                  className="items-center w-full px-4 py-2 text-sm flex gap-2 text-red-600 hover:bg-red-100 cursor-pointer">
                                   <img
                                     className=" cursor-pointer"
                                     src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747310323/deli_bn0fs6.svg"
@@ -1063,28 +1063,28 @@ const ImportLead = () => {
 
               {/* Quotation cards is here  */}
 
-              <div className="flex flex-col gap-6 mt-5 bg-white px-[30px] py-5">
-                <div className="flex flex-col w-full gap-6 flex !flex-row !justify-between !items-center">
-                  <h2 className="text-[16px] font-bold leading-6 tracking-[0.0015em] text-left text-[#101820]">Recent Templates</h2>
+               <div className="flex flex-col gap-6 mt-5 bg-white px-[30px] py-5  rounded-lg shadow p-2">
+                <div className="flex flex-row justify-between items-center w-full gap-6">
+                  <h2 className="text-[#101820] text-base font-bold leading-6 tracking-tight text-left">Recent Templates</h2>
                 </div>
 
                 <hr />
-                <div className="flex flex-wrap gap-[16px]">
+                <div className="flex flex-wrap  gap-[20px]">
                   {saveTemplate?.length > 0 ? (
                     saveTemplate.map((item, index) => (
                       <div
 
-                        key={index} className="card ">
+                        key={index} className="w-[300px] rounded-lg max-h-[400px] h-full shadow-md overflow-hidden bg-white p-5 relative ">
                         <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1735558409/WhatsApp_Image_2024-12-30_at_17.02.43_160b7501_fg2z1u.jpg" alt={`Card ${item?.customerName}`} />
 
 
-                        <div className="thredotwrap">
+                        <div className="flex items-center justify-between">
 
 
-                          <div className="card-content">
+                          <div className="pt-4">
 
-                            <h3 className="card-title">Name: {item?.customerName}</h3>
-                            <p className="card-meta">
+                            <h3 className="text-[18px] font-bold m-0">Name: {item?.customerName}</h3>
+                            <p className="text-sm text-[#888] mt-1">
                               Quotation Date: {new Date(item?.createdAt).toLocaleDateString("en-GB")}
                             </p>
                           </div>
@@ -1095,17 +1095,18 @@ const ImportLead = () => {
 
                           {
                             openDrops === index &&
-                            <div className="dropswrap" ref={proNavRef} >
-                              <p onClick={() => {
+                            <div className="absolute right-5 -mt-8 mr-2 w-28 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 z-20" ref={proNavRef} >
+                              <p className="flex items-center px-[5px] py-[10px] gap-2 cursor-pointer border-b border-[#ccc]  text-gray-700 hover:bg-gray-100" onClick={() => {
                                 navigate("/adminDash/HRM/QuotationForm", {
                                   state: { item },
                                 });
-                              }}><MdEdit className="lead_icon" />     <span>Edit</span>  </p>
+                              }}><MdEdit className="text-[20px]" />     <span className="">Edit</span>  </p>
                               <p
+                              className="flex items-center px-[5px] py-[10px] gap-2 cursor-pointer border-b border-[#ccc] text-red-600 hover:bg-red-100"
                                 onClick={() => {
                                   deleteQuotationApi(item?._id);
                                 }}
-                              >  <MdDelete className="lead_icon" /> <span>Delete</span>  </p>
+                              >  <MdDelete className="text-[20px]" /> <span className="">Delete</span>  </p>
                             </div>
                           }
 
@@ -1115,14 +1116,15 @@ const ImportLead = () => {
                       </div>
                     ))
                   ) : (
-                    <span className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">No records found</span>
+                    <span className="norecord">No records found</span>
                   )}
                 </div>
               </div>
 
 
+
               {/* fourth third  */}
-              <div className="flex flex-col gap-6 mt-5 bg-white px-[30px] py-5">
+              <div className="flex flex-col gap-6 mt-5 bg-white px-[30px] py-5 rounded-lg shadow p-2">
                 <div className="flex flex-col w-full gap-6 flex !flex-row !justify-between !items-center">
                   <h2 className="text-[16px] font-bold leading-6 tracking-[0.0015em] text-left text-[#101820]">Proposal</h2>
 
@@ -1132,7 +1134,7 @@ const ImportLead = () => {
                         state: { id },
                       })
                     }
-                    className="w-[165px] h-10 rounded-[10px] bg-[linear-gradient(131.78deg,_#D1E8FD_6.87%,_#EDEFFF_91.67%)] border border-[#0B56E4] text-[#0B56E4] text-[16px] font-medium leading-6 tracking-[0.005em] text-center"
+                    className="w-[165px] h-10 rounded-[10px] bg-[linear-gradient(131.78deg,_#D1E8FD_6.87%,_#EDEFFF_91.67%)] border border-[#0B56E4] text-[#0B56E4] text-[16px] font-medium leading-6 tracking-[0.005em] text-center min-w-fit"
                   >
                     <span className="font-medium !text-[16px] !text-[#0B56E4]">Create Proposal</span>
                   </button>
@@ -1168,7 +1170,7 @@ const ImportLead = () => {
                                   navigate("/adminDash/HRM/ProposalForm", {
                                     state: { item },
                                   });
-                                }} className="flex items-center gap-2 p-1 cursor-pointer">
+                                }} className="items-center w-full px-4 py-2 text-sm flex gap-2 text-gray-700 hover:bg-gray-100 cursor-pointer">
                                   <img
                                     className="cursor-pointer"
                                     src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747310255/veci_acxe9c.svg"
@@ -1180,7 +1182,7 @@ const ImportLead = () => {
                                 <div onClick={() => {
                                   deletePropsalApi(item?._id);
                                 }}
-                                  className="flex items-center gap-3 p-1 cursor-pointer">
+                                  className="items-center w-full px-4 py-2 text-sm flex gap-2 text-red-600 hover:bg-red-100">
                                   <img
                                     className=" cursor-pointer"
                                     src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747310323/deli_bn0fs6.svg"

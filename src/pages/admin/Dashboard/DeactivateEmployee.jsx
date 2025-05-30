@@ -184,7 +184,7 @@ const DeactivateEmployee = () => {
 
   return (
     <>
-      <div className="employee-dash h-full">
+      <div className="employee-dash h-full ">
         
         <div className="w-full ">
          

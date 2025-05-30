@@ -442,7 +442,7 @@ const TaskProjects = () => {
 
 
               <div className="flex flex-col xl:flex-row justify-between items-center">
-                <div className="w-full lg:w-[500px] h-[42px] flex overflow-x-scroll lg:overflow-x-hidden">
+                <div className="w-full lg:w-[500px] h-[42px] flex overflow-x-scroll lg:overflow-x-hidden ">
                   {projectOpt.map((pr, index) => (
                     <div
                       onClick={() => setOptIndex(index)}
@@ -466,7 +466,7 @@ const TaskProjects = () => {
                 <input
 
                   type="text"
-                  className="h-[35px] mt-3 xl:md-0 p-4 rounded border border-gray-300"
+                  className="h-[35px] mt-3 xl:md-0 p-4 rounded border border-black"
                   placeholder="Search Project"
                   onChange={(e) => setSearchInput(e.target.value)}
                   value={searchInput}
@@ -475,7 +475,7 @@ const TaskProjects = () => {
 
 
 
-              <div className="relative overflow-x-auto min-h-[250px]  rounded-lg">
+              <div className="relative overflow-x-auto min-h-[250px] rounded-lg border border-black py-2">
                 <table className="w-max lg:w-full text-sm text-left bg-white rounded-lg">
                   <thead className="bg-white font-semibold">
                     <tr>

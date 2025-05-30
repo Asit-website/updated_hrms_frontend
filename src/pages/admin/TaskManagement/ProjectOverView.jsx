@@ -275,15 +275,18 @@ const ProjectOverview = () => {
               
             >
               {projectOpt.map((pr, index) => (
-                <div
-                  onClick={() => setOptIndex(index)}
-                  key={index}
-                  className={`cursor-pointer w-fit h-full px-[16px] py-[10px] bg-white border border-[#E8E9EB] ${index === 0 && "rounded-l-[8px]"
-                    }  ${index === 3 && "rounded-r-[8px]"} ${optIndex === index && "bg-[#3C78E9] border border-[#0B56E4]"
-                    } ${role === "Client" && index === 1 || index === 3 ? "hide" : ""}`}
-                >
-                  <span>{pr}</span>
-                </div>
+              <div
+  onClick={() => setOptIndex(index)}
+  key={index}
+  className={`cursor-pointer w-fit h-full px-[16px] py-[10px] 
+    ${optIndex === index ? "bg-[#3C78E9] border border-[#0B56E4] text-white" : "bg-white border border-[#E8E9EB]"} 
+    ${index === 0 ? "rounded-l-[8px]" : ""} 
+    ${index === 3 ? "rounded-r-[8px]" : ""} 
+    ${(role === "Client" && (index === 1 || index === 3)) ? "hidden" : ""}`}
+>
+  <span>{pr}</span>
+</div>
+
               ))}
             </div>
 
@@ -301,7 +304,7 @@ const ProjectOverview = () => {
             )}
 
             {optIndex === 0 && (
-              <div className="relative  flex gap-[20px] flex-col lg:flex-row" style={{ marginTop: "40px" }}>
+              <div className="relative  flex gap-[20px] flex-col lg:flex-row bg-white rounded-lg shadow p-2" style={{ marginTop: "40px" }}>
                 <div className="bg-white p-[24px] flex flex-col gap-[24px] rounded-[10px] max-w-[650px] w-full">
                   <nav>
                   <div className="flex flex-col gap-[12px]">
@@ -469,7 +472,7 @@ const ProjectOverview = () => {
               <div className="overflow-x-scroll mt-10">
 
 
-                <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 ">
                   <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                       <th scope="col" className="px-4 py-3 text-center">

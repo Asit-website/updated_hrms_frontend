@@ -305,13 +305,13 @@ const EditLead = () => {
                 </div>
               </div>
 
-              <div className="lead_information mt-6">
-                <h2 className="text-[18px] font-semibold !text-black">Lead Information</h2>
+              <div className="lead_information mt-6 bg-white rounded-lg shadow p-2">
+                <h2 className="text-[18px] font-semibold !text-black ">Lead Information</h2>
 
-                <div className="w-full flex flex-col gap-5 mt-5">
+                <div className="w-full flex flex-col gap-5 mt-5 ">
                   <div className="flex flex-col lg:flex-row items-center gap-5">
                     <div className="max-w-1/2 w-full">
-                      <label htmlFor="" className="block text-md font-normal mb-1">Lead Owner *</label>
+                      <label htmlFor="" className="block text-md font-normal mb-1">Lead Owner <span className="text-red-600">*</span></label>
                       <input
                         className="w-full border rounded p-2"
                         required
@@ -322,7 +322,7 @@ const EditLead = () => {
                       />
                     </div>
                     <div className="max-w-1/2 w-full">
-                      <label htmlFor="" className="block text-md font-normal mb-1">Company *</label>
+                      <label htmlFor="" className="block text-md font-normal mb-1">Company <span className="text-red-600">*</span></label>
                       <input
                         className="w-full border rounded p-2"
                         required
@@ -339,7 +339,7 @@ const EditLead = () => {
 
 
                       <div className=" exceptionwidht">
-                        <label htmlFor="" className="block text-md font-normal mb-1">First Name *</label>
+                        <label htmlFor="" className="block text-md font-normal mb-1">First Name <span className="text-red-600">*</span></label>
                         <input
                           className="w-full border rounded p-2"
                           value={formdata.FirstName}
@@ -374,7 +374,7 @@ const EditLead = () => {
                       />
                     </div>
                     <div className="max-w-1/2 w-full">
-                      <label htmlFor="" className="block text-md font-normal mb-1">Email *</label>
+                      <label htmlFor="" className="block text-md font-normal mb-1">Email <span className="text-red-600">*</span></label>
                       <input
                         className="w-full border rounded p-2"
                         required
@@ -388,7 +388,7 @@ const EditLead = () => {
 
                   <div className="flex flex-col lg:flex-row items-center gap-5">
                     <div className="max-w-1/2 w-full">
-                      <label htmlFor="" className="block text-md font-normal mb-1">Phone*</label>
+                      <label htmlFor="" className="block text-md font-normal mb-1">Phone <span className="text-red-600">*</span></label>
                       <input
                         className="w-full border rounded p-2 "
                         inputClass="hjj"
@@ -482,7 +482,7 @@ const EditLead = () => {
                       </select>
                     </div>
                     <div className="max-w-1/2 w-full">
-                      <label htmlFor="" className="block text-md font-normal mb-1">Lead Status *</label>
+                      <label htmlFor="" className="block text-md font-normal mb-1">Lead Status <span className="text-red-600">*</span></label>
                       <select
                         className="w-full border rounded p-2"
                         required
@@ -576,7 +576,7 @@ const EditLead = () => {
                 </div>
               </div>
 
-              <div className="lead_information mt-6">
+              <div className="lead_information mt-6 bg-white rounded-lg shadow p-2">
                 <h2 className="text-[18px] font-semibold !text-black">Social Links</h2>
                 <div className="w-full flex flex-col gap-5 mt-5">
                   <div className="flex flex-col lg:flex-row items-center gap-5">
@@ -620,7 +620,7 @@ const EditLead = () => {
                 </div>
               </div>
 
-              <div className="lead_information mt-6">
+              <div className="lead_information mt-6 bg-white rounded-lg shadow p-2">
                 <h2 className="text-[18px] font-semibold !text-black">Address Information</h2>
                 <div className="w-full flex flex-col gap-5 mt-5">
                   <div className="flex flex-col lg:flex-row items-center gap-5">
@@ -694,7 +694,7 @@ const EditLead = () => {
                 </div>
               </div>
 
-              <div className="lead_information mt-6">
+              <div className="lead_information mt-6 bg-white rounded-lg shadow p-2">
                 <h2 className="text-[18px] font-semibold !text-black">Description Information</h2>
                 <div className="w-full flex flex-col gap-5 mt-5">
                   <div className="flex flex-col lg:flex-row items-center gap-5">
@@ -713,7 +713,7 @@ const EditLead = () => {
               </div>
 
 
-              <div className="lead_information mt-6">
+              <div className="lead_information mt-6 bg-white rounded-lg shadow p-2">
                 <h2 className="text-[18px] font-semibold !text-black">Additional Fields</h2>
                 {/* <p onClick={() => setAddCat(!addCat)}>Add</p> */}
 

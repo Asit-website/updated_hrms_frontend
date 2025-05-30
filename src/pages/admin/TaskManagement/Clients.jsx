@@ -351,8 +351,8 @@ const TaskClients = () => {
                     </p>
 
                     {showIndex === index && (
-                      <div ref={popWrapper} className="z-[1000] flex flex-col gap-[13px] right-[48px] top-[20px] w-[161px] h-[148px] p-[8px] rounded-[8px] bg-white border border-[#E3E3E3] shadow-[0px_4px_12px_0px_#1A1A1A33] absolute">
-                        <div className="flex items-center gap-[10px] cursor-pointer">
+                      <div ref={popWrapper} className="z-[1000] gap-1 flex flex-col  right-[48px] top-[20px] w-[161px] bg-white border border-[#E3E3E3] shadow-[0px_4px_12px_0px_#1A1A1A33] absolute">
+                        <div className="items-center w-full px-4 py-2 text-sm flex gap-2 text-gray-700 hover:bg-gray-100 cursor-pointer ">
                           <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747201027/bx-happy-heart-eyes_i8b4bn.png" alt="" />
                           <span onClick={() =>
 
@@ -371,7 +371,7 @@ const TaskClients = () => {
                             setAddClientPop(true);
                             setShowIndex(null);
                           }}
-                          className="flex items-center gap-[10px] cursor-pointer"
+                          className="items-center w-full px-4 py-2 text-sm flex gap-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
                         >
                           <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747201584/edit_edmvcr.png" alt="" />
                           <span className="text-[#2B2B2B] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Edit</span>
@@ -383,7 +383,7 @@ const TaskClients = () => {
                           onClick={() => {
                             disableHandler(client?._id);
                           }}
-                          className="flex items-center gap-[10px] cursor-pointer"
+                          className="fitems-center w-full px-4 py-2 text-sm flex gap-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
                         >
                           <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747201122/bx-hide_zibzhs.png" alt="" />
                           <span className="text-[#2B2B2B] text-[14px] font-normal leading-[20px] tracking-[0.0025em] text-[#DD3409]">

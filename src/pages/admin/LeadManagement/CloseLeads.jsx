@@ -89,7 +89,7 @@ const CloseLeads = () => {
     }, [searchText, Filter1, sortDate, sortDate2, originalCloseLead]);
 
   return (
-    <div className="flex relative  h-full">
+    <div className="flex relative  h-full ">
 
     <div className="w-full "
     >
@@ -136,7 +136,7 @@ const CloseLeads = () => {
                     <span className='text-[#666D76] text-[14px] font-normal leading-[20px] tracking-[0.0025em] text-left'>Sort by</span>
 
                     <input
-                    className="text-[12px] w-[265px] h-[48px] p-[8px_16px] gap-[8px] border-t border-t-[1px] rounded-[10px] text-[#1B2533]"
+                    className="text-[12px] w-[265px] h-[48px] p-[8px_16px] gap-[8px]  rounded-[10px] text-[#1B2533] border border-black "
                         type="date"
                         value={sortDate}
                         onChange={(e) => setSortDate(e.target.value)}
@@ -146,7 +146,7 @@ const CloseLeads = () => {
                     <span className='text-[#666D76] text-[14px] font-normal leading-[20px] tracking-[0.0025em] text-left'>TO</span>
 
                     <input
-                    className="text-[12px] w-[265px] h-[48px] p-[8px_16px] gap-[8px] border-t border-t-[1px] rounded-[10px] text-[#1B2533]"
+                    className="text-[12px] w-[265px] h-[48px] p-[8px_16px] gap-[8px] rounded-[10px] text-[#1B2533] border border-black "
                         type="date"
                         value={sortDate2}
                         onChange={(e) => setSortDate2(e.target.value)}
@@ -156,12 +156,12 @@ const CloseLeads = () => {
 
             <div className="flex items-center justify-end p-5">
                 <select
+               
                     onChange={(e) => setFilter1(e.target.value)}
                     value={Filter1}
                     name="thisFilter"
                     id="fentar"
-                    className="select-wrapper p-2"
-                >
+                    className="select-wrapper p-2 border border-black rounded-md"  >
                     <option value="Select" disabled>
                         Select
                     </option>

@@ -298,7 +298,7 @@ const MyLead = () => {
 
   return (
     <>
-      <div className="flex relative h-full">
+      <div className="flex relative h-full ">
         <div className="w-full">
 
           <div className="pt-[10px] px-[20px] pb-[30px]">
@@ -353,7 +353,7 @@ const MyLead = () => {
                 <div className="my-[20px] flex gap-[20px] items-center">
                   <div className="flex items-center gap-[8px] w-[285px] h-[48px] px-[16px] py-[8px] rounded-[15px] bg-white border border-[#D0D4DC]">
                     <input
-                      className="w-[288px] h-[46px] px-[16px] py-[8px] gap-[8px] border border-t border-none outline-none text-[14px] font-normal leading-[20px] tracking-[0.0025em] text-left"
+                      className="w-[288px] h-[46px] px-[16px] py-[8px] gap-[8px] border border-t border-none outline-none text-[14px] font-normal leading-[20px] tracking-[0.0025em] text-left "
                       value={searchText}
                       onChange={(e) => setSrchText(e.target.value)}
                       type="text"
@@ -373,7 +373,7 @@ const MyLead = () => {
                 <span className="text-[#666D76] text-[14px] font-normal leading-[20px] tracking-[0.0025em] text-left">Sort by</span>
 
                 <input
-                  className="w-[265px] h-[48px] px-[16px] py-[8px] gap-[8px]  border-[#1B2533] rounded-[10px] text-[#1B2533"
+                  className="w-[265px] h-[48px] px-[16px] py-[8px] gap-[8px]  border-[#1B2533] rounded-[10px] text-[#1B2533 border"
                   type="date"
                   value={sortDate}
                   onChange={(e) => setSortDate(e.target.value)}
@@ -382,7 +382,7 @@ const MyLead = () => {
                 <span className="text-[#666D76] text-[14px] font-normal leading-[20px] tracking-[0.0025em] text-left">TO</span>
 
                 <input
-                  className="w-[265px] h-[48px] px-[16px] py-[8px] gap-[8px] border-[#1B2533] rounded-[10px] text-[#1B2533"
+                  className="w-[265px] h-[48px] px-[16px] py-[8px] gap-[8px] border-[#1B2533] rounded-[10px] text-[#1B2533 border"
                   type="date"
                   value={sortDate2}
                   onChange={(e) => setSortDate2(e.target.value)}
@@ -398,7 +398,7 @@ const MyLead = () => {
                   value={Filter1}
                   name="thisFilter"
                   id="fentar"
-                  className="relative p-1"
+                  className="relative p-1 border border-black rounded-md"
                 >
 
                   <option value="Select" disabled selected>
@@ -419,7 +419,7 @@ const MyLead = () => {
                       <tr>
                         <th scope="col" className="text-left font-bold text-gray-900 py-3 px-4 border-b border-gray-200 whitespace-nowrap">
 
-                          S/N
+                          SR.NO
                         </th>
                         <th scope="col" className="text-left font-bold text-gray-900 py-3 px-4 border-b border-gray-200 whitespace-nowrap">
                           Company Name
@@ -495,14 +495,14 @@ const MyLead = () => {
                               </td>
 
                               {index === currView && (
-                                <div ref={ref} className="absolute top-[-90px] min-w-[120px] h-fit border-t border-[#E3E3E3] flex flex-col shadow-[0_4px_12px_0px_#1A1A1A33] py-[8px] gap-[5px] rounded-tl-[8px] rounded-tr-none rounded-br-none rounded-bl-none z-[1000] bg-white right-[75px]">
-                                  <div className="flex gap-4 items-center px-2 cursor-pointer" onClick={() => navigate("/adminDash/editLead", { state: item })}>
+                                <div ref={ref} className="absolute top-[-90px] min-w-[150px] h-fit border-t border-[#E3E3E3] flex flex-col shadow-[0_4px_12px_0px_#1A1A1A33] py-[8px] gap-[5px] rounded-tl-[8px] rounded-tr-none rounded-br-none rounded-bl-none z-[1000] bg-white right-[75px]">
+                                  <div className="items-center w-full px-4  text-sm flex gap-2 text-gray-700 hover:bg-gray-100 cursor-pointer" onClick={() => navigate("/adminDash/editLead", { state: item })}>
 
                                     <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746260260/Vector_zah5tt.svg" alt="Edit" />
                                     <p className="text-sm text-gray-700 hover:bg-gray-100">Edit</p>
                                   </div>
                                   <hr />
-                                  <div className="flex gap-4 items-center px-2 cursor-pointer" onClick={() => {
+                                  <div className="items-center w-full px-4 text-sm flex gap-2 text-gray-700 hover:bg-gray-100" onClick={() => {
                                     navigate(user?.role === "ADMIN" ? `/adminDash/importLead/${item._id}` : `/employeeDash/importLead/${item._id}`);
                                   }}>
 
@@ -510,7 +510,7 @@ const MyLead = () => {
                                     <p className="text-sm text-gray-700 hover:bg-gray-100">View</p>
                                   </div>
                                   <hr />
-                                  <div className="flex gap-4 items-center px-2 cursor-pointer" onClick={() => {
+                                  <div className="items-center w-full px-4 text-sm flex gap-2 text-red-600 hover:bg-red-100 cursor-pointer" onClick={() => {
                                     deleteProject(item?._id)
                                   }}>
 
@@ -522,7 +522,7 @@ const MyLead = () => {
                                     onClick={() => {
                                       closeLeadHandler(item?._id);
                                     }}
-                                    className="flex gap-3 items-center px-2 cursor-pointer"
+                                    className="items-center w-full px-4 text-sm flex gap-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
                                   >
                                     <IoIosCloseCircle className="incfornsizze" />
 

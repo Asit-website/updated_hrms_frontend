@@ -17,8 +17,6 @@ const UserLead = () => {
     const navigate = useNavigate();
 
     const {
-
-        getLead3,
         deleteLeads,
         getUserByDesignation,
         getLeadByUser,
@@ -309,7 +307,7 @@ const UserLead = () => {
 
     return (
         <>
-            <div className="flex relative  h-full">
+            <div className="flex relative  h-full ">
 
 
                 <div className="w-full ">
@@ -338,7 +336,7 @@ const UserLead = () => {
                                 <div className="my-[20px] flex items-center gap-[20px]">
                                     {/* <img src={fff} alt="" /> */}
 
-                                    <div className="flex items-center w-[285px] h-[48px] px-[16px] py-[8px] gap-[16px] rounded-[15px] bg-white border border-[#D0D4DC]">
+                                    <div className="flex items-center w-[285px] h-[48px] px-[16px] py-[8px] gap-[16px] rounded-[15px] bg-white border border-black">
                                         <input
                                             className="w-[288px] h-[46px] px-[16px] py-[8px] gap-[8px] border-[#666D76] font-inter  text-[14px] font-normal leading-[20px] tracking-[0.0025em] text-left outline-none"
                                             value={searchText}
@@ -358,7 +356,7 @@ const UserLead = () => {
                             <div className="flex flex-col lg:flex-row items-center gap-5">
                                 <span className="text-[#666D76] text-[14px] font-normal leading-[20px] tracking-[0.0025em] text-left">Sort by</span>
 
-                                <input className="w-[265px] h-[48px] px-[16px] py-[8px] gap-[8px] border-t rounded-[10px] text-[#1B2533]"
+                                <input className="w-[265px] h-[48px] px-[16px] py-[8px] gap-[8px] border-t rounded-[10px] text-[#1B2533] border border-black"
                                     type="date"
                                     value={sortDate}
                                     onChange={(e) => setSortDate(e.target.value)}
@@ -367,7 +365,7 @@ const UserLead = () => {
                                 <span className="text-[#666D76] text-[14px] font-normal leading-[20px] tracking-[0.0025em] text-left">TO</span>
 
                                 <input
-                                    className="w-[265px] h-[48px] px-[16px] py-[8px] gap-[8px] border-t rounded-[10px] text-[#1B2533]"
+                                    className="w-[265px] h-[48px] px-[16px] py-[8px] gap-[8px] border-t rounded-[10px] text-[#1B2533] border border-black"
                                     type="date"
                                     value={sortDate2}
                                     onChange={(e) => setSortDate2(e.target.value)}
@@ -384,28 +382,9 @@ const UserLead = () => {
                                         <div className=" flex gap-2 items-center">
                                             <h3 className="text-[#1B2533] font-semibold text-[16px]">User Leads</h3>
 
-                                            {/* <div className="border relative min-w-36 ml-3 py-1 border-gray-300 flex items-center rounded-md">
-                                                <select
-                                                    // className="userFilterr"
-                                                    className="appearance-none border-none py-1 outline-none w-full pl-2 min-w-12"
-                                                    name="leadUser"
-                                                    onChange={(e) => {
-                                                        setLeadUser(e.target.value);
-                                                    }}
-                                                    id=""
-                                                >
-                                                    <option value="Select User" className="">Select User</option>
-                                                    {desUsers?.map((u, index) => (
-                                                        <option key={index} value={u._id}>
-                                                            {u?.fullName}
-                                                        </option>
-                                                    ))}
-                                                </select>
-                                                <img width="30" src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746530550/downis_yfkfau.png" className="absolute right-1" alt="downis" />
-                                            </div> */}
                                         </div>
 
-                                        <div className="border ml-3 py-1 border-gray-300 flex items-center rounded-md">
+                                        <div className="border ml-3 py-1 border-black flex items-center rounded-md ">
                                             <select
                                                 onChange={(e) => setFilter1(e.target.value)}
                                                 value={Filter1}
@@ -430,7 +409,7 @@ const UserLead = () => {
                                         </div>
                                     </div>
 
-                                    <div className="relative w-full bg-white overflow-x-scroll">
+                                    <div className="relative w-full bg-white overflow-x-scroll xl:overflow-x-hidden">
                                         <table className="w-full text-sm text-gray-700">
                                             <thead className="bg-white font-semibold">
                                                 <tr>
@@ -541,7 +520,7 @@ const UserLead = () => {
                                                                     "en-CA"
                                                                 )}
                                                             </td>
-                                                            <div className="viewOnwWRAP">
+                                                            <div className="relative">
                                                                 <td
                                                                     onClick={() => {
                                                                         setCurrView(currView === index ? -1 : index);
@@ -553,8 +532,8 @@ const UserLead = () => {
 
 
                                                                     {index === currView && (
-                                                                        <div ref={ref} className="absolute -top-16 min-w-[120px] h-fit border border-[#E3E3E3] flex flex-col shadow-[0px_4px_12px_0px_#1A1A1A33] py-2 gap-[5px] rounded-tl-[8px] z-[1000] bg-white right-[75px]">
-                                                                            <div className="flex gap-4 items-center px-2 cursor-pointer" onClick={() =>
+                                                                        <div ref={ref} className="absolute -top-16 min-w-[120px] h-fit border border-[#E3E3E3] flex flex-col shadow-[0px_4px_12px_0px_#1A1A1A33] py-1 gap-[5px]  z-[1000] bg-white right-[75px]">
+                                                                            <div className="items-center w-full px-4 text-sm flex gap-2 text-gray-700 hover:bg-gray-100 cursor-pointer" onClick={() =>
                                                                                 navigate(user?.role === "ADMIN" ? "/adminDash/editLead" : "/employeeDash/editLead", {
                                                                                     state: item,
                                                                                 })
@@ -564,7 +543,7 @@ const UserLead = () => {
                                                                                 <p>Edit</p>
                                                                             </div>
                                                                             <hr />
-                                                                            <div className="flex gap-4 items-center px-2 cursor-pointer" onClick={() => {
+                                                                            <div className="items-center w-full px-4 text-sm flex gap-2 text-gray-700 hover:bg-gray-100 cursor-pointer" onClick={() => {
                                                                                 navigate(
                                                                                     user?.role === "ADMIN" ? `/adminDash/importLead/${item._id}` : `/employeeDash/importLead/${item._id}`
                                                                                 );
@@ -574,12 +553,10 @@ const UserLead = () => {
                                                                                 <p>View</p>
                                                                             </div>
                                                                             <hr />
-                                                                            <div className="flex gap-4 items-center px-2 cursor-pointer" onClick={() => {
+                                                                            <div className="items-center w-full px-4 text-sm flex gap-2 text-red-600 hover:bg-red-100 cursor-pointer" onClick={() => {
                                                                                 deleteProject(item?._id);
                                                                             }}>
-                                                                                {/* <svg className="cursor-pointer" width="12" height="16" viewBox="0 0 12 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M9.33317 5.5V13.8333H2.6665V5.5H9.33317ZM8.08317 0.5H3.9165L3.08317 1.33333H0.166504V3H11.8332V1.33333H8.9165L8.08317 0.5ZM10.9998 3.83333H0.999837V13.8333C0.999837 14.75 1.74984 15.5 2.6665 15.5H9.33317C10.2498 15.5 10.9998 14.75 10.9998 13.8333V3.83333Z" fill="#DE3730" />
-                                        </svg> */}
+                                                                              
                                                                                 <MdDeleteOutline className="text-[18px]" />
                                                                                 <p>Delete</p></div>
                                                                             <hr />
@@ -587,7 +564,7 @@ const UserLead = () => {
                                                                                 onClick={() => {
                                                                                     closeLeadHandler(item?._id);
                                                                                 }}
-                                                                                className="flex gap-3 items-center px-2 cursor-pointer"
+                                                                                className="items-center w-full px-4 text-sm flex gap-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
                                                                             >
                                                                                 <IoIosCloseCircle className="incfornsizze" />
 
@@ -606,10 +583,10 @@ const UserLead = () => {
                                         </table>
                                     </div>
 
-                                    {totalPages > 1 && (<div className="prev_next">
-                                        <div className="next">
-                                            <button onClick={prevPage} disabled={currentPage === 1}>
-                                                <span>Prev</span>
+                                    {totalPages > 1 && (<div className="flex items-center justify-center gap-[10px] mt-5">
+                                        <div className=" w-[100px] h-[40px] gap-[10px] rounded-[10px] border border-[#D8D8D8] bg-white text-[#2B2B2B] font-inter text-[12px] font-medium leading-[16px] tracking-[0.004em] text-center flex items-center justify-center">
+                                            <button className="flex items-center gap-2" onClick={prevPage} disabled={currentPage === 1}>
+                                                <span className="text-[#2B2B2B] text-[15px] font-normal leading-[16px] tracking-[0.004em] text-left">Prev</span>
                                                 <svg
                                                     width="8"
                                                     height="10"
@@ -629,12 +606,13 @@ const UserLead = () => {
                                             <p>{currentPage}</p>
                                         </div>
 
-                                        <div className="next">
+                                        <div className="w-[100px] h-[40px] gap-[10px] rounded-[10px] border border-[#D8D8D8] bg-white text-[#2B2B2B] text-[12px] font-medium leading-[16px] tracking-[0.004em] text-center flex items-center justify-center">
                                             <button
+                                            className="flex items-center gap-2"
                                                 onClick={nextPage}
                                                 disabled={currentPage === totalPages}
                                             >
-                                                <span>Next</span>
+                                                <span className="text-[#2B2B2B] text-[15px] font-normal leading-[16px] tracking-[0.004em] text-left">Next</span>
                                                 <svg
                                                     width="8"
                                                     height="10"

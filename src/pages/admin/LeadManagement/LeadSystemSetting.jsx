@@ -437,7 +437,7 @@ const LeadSystemSetting = () => {
 
   return (
     <>
-      <div className="flex relative  h-full">
+      <div className="flex relative  h-full ">
         <div className="w-full  ">
 
           <div className="pt-[32px] pr-0 lg:pr-[20px] pb-[32px] pl-0 lg:pl-[20px]  relative w-full">
@@ -653,7 +653,7 @@ const LeadSystemSetting = () => {
                                         {showIndex === index && (
                                           <div
                                             ref={wrapperRef}
-                                            className="absolute z-[1000] right-[100px] -top-[52px] w-[125px] bg-white border border-gray-200 shadow-lg flex flex-col"
+                                            className="absolute z-[1000] right-[130px] -top-[52px] w-[125px] bg-white border border-gray-200 shadow-lg flex flex-col"
                                           >
                                             {/* Edit Button */}
                                             <div
@@ -775,7 +775,7 @@ const LeadSystemSetting = () => {
                                         {showIndex === index && (
                                           <div
                                             ref={wrapperRef}
-                                            className="absolute z-[1000] right-[100px] -top-[52px] w-[125px] bg-white border border-gray-200 shadow-lg flex flex-col"
+                                            className="absolute z-[1000] right-[196px] -top-[52px] w-[125px] bg-white border border-gray-200 shadow-lg flex flex-col"
                                           >
                                             {/* Edit Button */}
                                             <div
@@ -896,7 +896,7 @@ const LeadSystemSetting = () => {
                                         {showIndex === index && (
                                           <div
                                             ref={wrapperRef}
-                                            className="absolute z-[1000] right-[100px] -top-[60px] w-[125px] bg-white border border-gray-200 shadow-lg flex flex-col"
+                                            className="absolute z-[1000] right-[190px] -top-[50px] w-[125px] bg-white border border-gray-200 shadow-lg flex flex-col"
                                           >
                                           
                                             <div
@@ -1018,7 +1018,7 @@ const LeadSystemSetting = () => {
                                         {showIndex === index && (
                                           <div
                                             ref={wrapperRef}
-                                            className="absolute z-[1000] right-[105px] -top-[60px] w-[125px]  bg-white border border-gray-200 shadow-lg flex flex-col"
+                                            className="absolute z-[1000] right-[186px] -top-[50px] w-[125px]  bg-white border border-gray-200 shadow-lg flex flex-col"
                                           >
                                             {/* Edit Button */}
                                             <div

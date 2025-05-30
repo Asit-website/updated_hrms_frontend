@@ -765,13 +765,13 @@ const EmployeeManage = ({
               >
                 <div className="flex flex-col gap-7
 ">
-                  <div className="flex flex-col lg:flex-row gap-5 w-full justify-between">
+                  <div className="flex flex-col lg:flex-row gap-5 w-full justify-between bg-white rounded-lg shadow p-2">
                     <div className="bg-white max-w-[100%] lg:max-w-[48%] w-full p-4 rounded-[10px]
 ">
                       {/* <h2 className="admfperh2">Personal Detail</h2>
                       <hr className="mt-5 opacity-80
 " /> */}
-                      <div className="flex items-center justify-between px-5
+                      <div className="flex items-center justify-between 
 ">
                         <h3 className="text-[#101820] text-[16px] font-extrabold leading-[24px] tracking-[0.0015em] text-left
 ">Personal Detail</h3>
@@ -783,7 +783,7 @@ const EmployeeManage = ({
                           <div className="flex flex-col emmanformflex w-full gap-5 justify-between
 ">
                             <label className="block text-md font-normal mb-1">
-                              <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Full Name <span className="text-red-600">*</span></p>
+                              <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em] my-2">Full Name <span className="text-red-600">*</span></p>
                               <input
                                 className="w-full border rounded p-2 text-sm font-normal text-gray-500"
                                 onChange={(e) => {
@@ -798,7 +798,7 @@ const EmployeeManage = ({
                             </label>
 
                             <label htmlFor="password" className="block text-md font-normal mb-1">
-                              <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Password <span className="text-red-600">*</span></p>
+                              <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em] mb-2">Password <span className="text-red-600">*</span></p>
 
                               <input
                                 className="w-full border rounded p-2 text-sm font-normal text-gray-500"
@@ -814,7 +814,7 @@ const EmployeeManage = ({
                             </label>
 
                             <label htmlFor="dob" className="block text-md font-normal mb-1">
-                              <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Date of Birth <span className="text-red-600">*</span></p>
+                              <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em] mb-2">Date of Birth <span className="text-red-600">*</span></p>
 
                               <input
                                 className="w-full border rounded p-2 text-sm font-normal text-gray-500"
@@ -968,7 +968,7 @@ const EmployeeManage = ({
                             </div>
 
                             <label htmlFor="" className="block text-md font-normal mb-1">
-                              <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Department <span className="text-red-600">*</span></p>
+                              <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em] mb-2">Department <span className="text-red-600">*</span></p>
 
                               <select
                                 onChange={(e) => {
@@ -991,7 +991,7 @@ const EmployeeManage = ({
                             </label>
 
                             <label htmlFor="" className="block text-md font-normal mb-1">
-                              <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Employee Code <span className="text-red-600">*</span></p>
+                              <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em] mb-2">Employee Code <span className="text-red-600">*</span></p>
 
                               <input
                                 onChange={(e) => {
@@ -1006,7 +1006,7 @@ const EmployeeManage = ({
                               />
                             </label>
                             <label htmlFor="" className="block text-md font-normal mb-1">
-                              <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Company Email <span className="text-red-600">*</span></p>
+                              <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em] mb-2">Company Email <span className="text-red-600">*</span></p>
 
                               <input
                                 onChange={(e) => {
@@ -1029,7 +1029,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
                             </label>
 
                             <label htmlFor="" className="block text-md font-normal mb-1">
-                              <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Reporting Manager <span className="text-red-600">*</span></p>
+                              <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em] mb-2">Reporting Manager <span className="text-red-600">*</span></p>
 
                               <select
                                 onChange={(e) => {
@@ -1053,7 +1053,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
                             </label>
 
                             <label htmlFor="" className="block text-md font-normal mb-1">
-                              <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Designation <span className="text-red-600">*</span></p>
+                              <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em] mb-2">Designation <span className="text-red-600">*</span></p>
 
                               <select
                                 onChange={(e) => {
@@ -1076,7 +1076,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
                             </label>
 
                             <label htmlFor="" className="block text-md font-normal mb-1">
-                              <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Role <span className="text-red-600">*</span></p>
+                              <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em] mb-2">Role <span className="text-red-600">*</span></p>
 
                               <select
                                 onChange={(e) => {
@@ -1099,7 +1099,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
                             </label>
 
                             <label htmlFor="" className="block text-md font-normal mb-1">
-                              <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Joining Date <span className="text-red-600">*</span></p>
+                              <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em] mb-2">Joining Date <span className="text-red-600">*</span></p>
 
                               <input
                                 onChange={(e) => {
@@ -1117,7 +1117,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
                               for="email1"
                              className="block text-md font-normal mb-1"
                             >
-                              <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]"> Personal Email Address <span className="text-red-600">*</span></p>
+                              <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em] mb-2"> Personal Email Address <span className="text-red-600">*</span></p>
                               <input
                                 type="email"
                                 id="email1"
@@ -1141,7 +1141,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
                               for="gender"
                              className="block text-md font-normal mb-1"
                             >
-                              <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]"> Gender <span className="text-red-600">*</span></p>
+                              <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em] mb-2"> Gender <span className="text-red-600">*</span></p>
                               <select
                                 onChange={(e) => {
                                   handleChange(e, "form2");
@@ -1189,7 +1189,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
 
                     <div className="bg-white p-4 rounded-[10px] max-w-[100%] lg:max-w-[49%] w-full
 ">
-                      <div className="flex items-center justify-between px-5
+                      <div className="flex items-center justify-between 
 ">
                         <h3 className="text-[#101820] text-[16px] font-extrabold leading-[24px] tracking-[0.0015em] text-left
 ">Address Detail</h3>
@@ -1509,13 +1509,13 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
                     </div>
                   </div>
 
-                  <div className="flex flex-col lg:flex-row gap-5 w-full justify-between
+                  <div className="flex flex-col lg:flex-row gap-5 w-full justify-between bg-white rounded-lg shadow p-2
 ">
                     {/* this is doc side  */}
 
-                    <div className="bg-white max-w-[100%] lg:max-w-[48%] w-full p-4 rounded-[10px]
+                    <div className="bg-white max-w-[100%] lg:max-w-[48%] w-full p-4 rounded-[10px] 
 ">
-                      <div className="flex items-center justify-between px-5
+                      <div className="flex items-center justify-between 
 ">
                         <h3 className="text-[#101820] text-[16px] font-extrabold leading-[24px] tracking-[0.0015em] text-left
 ">Documents</h3>
@@ -1533,7 +1533,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
                           {/* fist   */}
                           <div className="flex flex-col gap-1.25 w-full
 ">
-                            <h4 className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]
+                            <h4 className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em] mb-2
 ">Aadhar Card </h4>
 
                             <div className="max-w-[252px] w-full h-[62px] rounded-[12px] border border-[#B7B7B7] flex items-center justify-evenly
@@ -1583,7 +1583,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
 
                           <div className="flex flex-col gap-1.25 w-full
 ">
-                            <h4 className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]
+                            <h4 className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em] mb-2
 ">PAN Card</h4>
 
                             <div className="max-w-[252px] w-full h-[62px] rounded-[12px] border border-[#B7B7B7] flex items-center justify-evenly
@@ -1635,7 +1635,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
                           {/* frist   */}
                           <div className="flex flex-col gap-1.25 w-full
 ">
-                            <h4 className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]
+                            <h4 className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em] mb-2
 ">10th Certificate</h4>
 
                             <div className="max-w-[252px] w-full h-[62px] rounded-[12px] border border-[#B7B7B7] flex items-center justify-evenly
@@ -1681,7 +1681,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
                           {/* second  */}
                           <div className="flex flex-col gap-1.25 w-full
 ">
-                            <h4 className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]
+                            <h4 className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em] mb-2
 ">12th Certificate</h4>
 
                             <div className="max-w-[252px] w-full h-[62px] rounded-[12px] border border-[#B7B7B7] flex items-center justify-evenly
@@ -1734,7 +1734,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
 
                           <div className="flex flex-col gap-1.25 w-full
 ">
-                            <h4 className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]
+                            <h4 className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em] mb-2
 ">Cancelled Cheque</h4>
                             <div className="max-w-[252px] w-full h-[62px] rounded-[12px] border border-[#B7B7B7] flex items-center justify-evenly
  ">
@@ -1795,7 +1795,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
 
                               <div className="flex flex-col gap-1.25 w-full
 ">
-                                <h4 className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]
+                                <h4 className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em] mb-2
 ">Relieving Letter</h4>
 
                                 <div className="max-w-[252px] w-full h-[62px] rounded-[12px] border border-[#B7B7B7] flex items-center justify-evenly
@@ -1847,7 +1847,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
 
                               <div className="flex flex-col gap-1.25 w-full
 ">
-                                <h4 className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]
+                                <h4 className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em] mb-2
 ">Offer letter</h4>
 
                                 <div className="max-w-[252px] w-full h-[62px] rounded-[12px] border border-[#B7B7B7] flex items-center justify-evenly
@@ -1902,7 +1902,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
 
                               <div className="flex flex-col gap-1.25 w-full
 ">
-                                <h4 className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]
+                                <h4 className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em] mb-2
 ">Experience letter</h4>
 
                                 <div className="max-w-[252px] w-full h-[62px] rounded-[12px] border border-[#B7B7B7] flex items-center justify-evenly
@@ -1960,7 +1960,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
                     {/* this is backend acc side  */}
                     <div className="bg-white p-4 rounded-[10px] max-w-[100%] lg:max-w-[49%] w-full
 ">
-                      <div className="flex items-center justify-between px-5
+                      <div className="flex items-center justify-between 
 ">
                         <h3 className="text-[#101820] text-[16px] font-extrabold leading-[24px] tracking-[0.0015em] text-left
 ">Bank Account Information</h3>
