@@ -1,7 +1,7 @@
 import React, { useState,useEffect } from "react";
 
 import "react-calendar/dist/Calendar.css";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 import { useNavigate,useLocation } from "react-router-dom";
 import { useMain } from "../../../hooks/UseMain";
 

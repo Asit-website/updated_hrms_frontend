@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import "react-calendar/dist/Calendar.css"; 
 import { NavLink, useFetcher, useNavigate, useParams } from "react-router-dom";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 import { ImCross } from "react-icons/im";
 import * as EmailValidator from "email-validator";
 import { useMain } from "../../../hooks/UseMain";

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 import { confirmAlert } from "react-confirm-alert";
 import { useMain } from "../../../hooks/UseMain";
 

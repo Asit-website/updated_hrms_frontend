@@ -1,7 +1,7 @@
 import "../../../components/Document/REgisterPageBreak";
 import React, { useEffect, useRef, useState } from "react";
 import "react-calendar/dist/Calendar.css";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 import ReactQuill from 'react-quill-new';
 import 'react-quill-new/dist/quill.snow.css';
 import { useMain } from "../../../hooks/UseMain";

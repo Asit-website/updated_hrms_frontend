@@ -20,6 +20,32 @@ const MainState = (props) => {
    const [allEmp, setAllEmp] = useState([]);
    const [allDep, setAllDep] = useState([]);
    const [allBranch, setBranch] = useState([]);
+   // dashboard
+   const [upcomingBirthdays, setUpcomingBirthdays] = useState([]);
+   const [allProjects, setAllProjects] = useState([]);
+   const [monthlyWorkingHours, setMonthlyWorkingHours] = useState();
+   const [counts, setCounts] = useState({
+      activeEmployees: 0,
+      leaveRequest: 0,
+      employeesLeaves: 0,
+      totalEmployees: 0,
+      totalDeactivated: 0,
+      halfDayRequest: 0,
+   });
+   const [userFullDayLeaves, setUserFullDayLeaves] = useState(0);
+   const [userHalfDayLeaves, setUserHalfDayLeaves] = useState(0);
+   const [userPendingLeaves, setUserPendingLeaves] = useState(0);
+   const [userLeaveTaken, setUserLeaveTaken] = useState(0);
+   const [userCasualLeaves, setUserCasualLeaves] = useState(0);
+   const [userPaidLeaves, setUserPaidLeaves] = useState(0);
+   const [isCountsData, setIsCountsData] = useState(false);
+   const [isUserLeavesFetched, setIsUserLeavesFetched] = useState(false);
+
+   //lead
+   const [totalLeads,setTotalLeads] = useState([]);
+   const [userLeads, setUserLeads] = useState([]);
+   const [allCloseLead, setAllCloseLead] = useState([]);
+   const [todayLead,setTodayLead] = useState([])
 
 
    const login = async ({ email, employeeCode, password }) => {
@@ -61,6 +87,7 @@ const MainState = (props) => {
 
    const getUpcomingBirthdays = async () => {
       const data = await get(`${baseUrl}/task/getUpcomingBirthdays`, true);
+      setUpcomingBirthdays(data);
       console.log("Upcoming Birthdays:", data);
       return data;
    }
@@ -241,7 +268,18 @@ const MainState = (props) => {
 
    const getUsers = async (userId) => {
       const data = await get(`${baseUrl}/user/getUsers?userId=${userId}`, true);
-
+      const totalactiveEmployees = data?.data?.filter(
+         (emp) => emp?.isDeactivated === "No"
+      );
+      const totalDeactivated = data?.data?.filter(
+         (emp) => emp?.isDeactivated !== "No"
+      );
+      setCounts({
+         ...counts,
+         totalEmployees: totalactiveEmployees?.length,
+         totalDeactivated: totalDeactivated?.length
+      });
+      setIsCountsData(true);
       return data;
    };
 
@@ -258,6 +296,10 @@ const MainState = (props) => {
    const getActiveUsersCount = async (userId) => {
       const data = await get(`${baseUrl}/user/getActiveUsersCount?userId=${userId}`, true);
       // console.log(data);
+      setCounts({
+         ...counts,
+         activeEmployees: data?.data,
+      })
       return data;
    };
 
@@ -290,6 +332,7 @@ const MainState = (props) => {
       // console.log(month, year, user);
       const query = `?month=${month}&year=${year}&user=${user}`;
       const data = await get(`${baseUrl}/clock/getMonthlyWorkingHours${query}`, false);
+      setMonthlyWorkingHours(data);
       return data;
    }
 
@@ -365,6 +408,20 @@ const MainState = (props) => {
    const FetchMyLeave = async () => {
       let hrms_user = JSON.parse(localStorage.getItem("hrms_user"));
       const data = await get(`${baseUrl}/leave/fetchUserLeaves/${hrms_user?._id}`, true);
+      const filteredfulldayleaves = data?.data?.fullDayLeaves?.filter((item) => item?.status === "Accepted");
+      const filteredfulldaycasualleaves = data?.data?.fullDayLeaves?.filter((item) => item?.leaveType === "casual");
+      const filteredfulldaypaidleaves = data?.data?.fullDayLeaves?.filter((item) => item?.leaveType === "");
+      const filteredfulldaypendingleaves = data?.data?.fullDayLeaves?.filter((item) => item?.status === "");
+      const filteredhalfdayleaves = data?.data?.halfDayLeaves?.filter((item) => item?.status === "Accepted");
+      const filteredhalfdaypendingleaves = data?.data?.halfDayLeaves?.filter((item) => item?.status === "");
+      const fullleaves = filteredfulldayleaves?.map((item) => item?.days)?.reduce((acc, pre) => Number(acc) + Number(pre), 0);
+      setUserFullDayLeaves(fullleaves);
+      setUserHalfDayLeaves(filteredhalfdayleaves.length);
+      setUserPendingLeaves(filteredfulldaypendingleaves.length + filteredhalfdaypendingleaves.length);
+      setUserLeaveTaken(userFullDayLeaves + (userHalfDayLeaves * 0.5));
+      setUserCasualLeaves(filteredfulldaycasualleaves.length);
+      setUserPaidLeaves(filteredfulldaypaidleaves.length)
+      setIsUserLeavesFetched(true);
       return data;
    };
    const getUserHalfDay = async () => {
@@ -390,6 +447,10 @@ const MainState = (props) => {
 
    const getTotalLeavesCount = async () => {
       const data = await get(`${baseUrl}/leave/getToalLeaveCount`, true);
+      setCounts({
+         ...counts,
+         leaveRequest: data?.totalLeave
+      })
       return data;
    }
 
@@ -1057,7 +1118,7 @@ const MainState = (props) => {
       const data = await post(`${baseUrl}/notification/createNotification`, { title: `Leave Application from ${username} `, description: `Leave of ${daysGap} days`, users: ["shubham gupta"] }, true);
       return data;
    }
-   
+
    const postNotification2 = async (daysGap, name, username) => {
 
 
@@ -1076,9 +1137,17 @@ const MainState = (props) => {
    }
 
    const postNotifyProject = async (name, title, date) => {
-      const data = await post(`${baseUrl}/notification/createNotification`, { title: `You have been added to ${title} !`, description: `${title} are ${date} `, users: [`${name}`] }, true);
-      return data
-   }
+      const data = await post(
+         `${baseUrl}/notification/createNotification`,
+         {
+            title: `You have been added to ${title}!`,
+            description: `Project "${title}" starts on ${date}.`,
+            users: [`${name}`]
+         },
+         true
+      );
+      return data;
+   };
 
    const postNotifyTask = async (name, title, date) => {
       const data = await post(`${baseUrl}/notification/createNotification`, { title: `New Task Assigned: ${title} !`, description: `Deadline for ${title} ${date} `, users: [`${name}`] }, true);
@@ -1114,6 +1183,10 @@ const MainState = (props) => {
    const fetchTodayLeave = async () => {
 
       const data = await get(`${baseUrl}/leave/getTodayLeave`, true);
+      setCounts({
+         ...counts,
+         employeesLeaves: data?.data?.length
+      })
       return data;
 
    }
@@ -1775,6 +1848,7 @@ const MainState = (props) => {
       let user = JSON.parse(localStorage.getItem("hrms_user"));
 
       const data = await post(`${baseUrl}/lead/getAllLead/?id=${id}&query=${query}&page=${page}&perPage=${perPage}`, { id: user?._id }, true);
+      setTotalLeads(data?.data.length);
       return data;
    }
 
@@ -1794,6 +1868,7 @@ const MainState = (props) => {
    }
    const getLeadByUser = async (id) => {
       const data = await get(`${baseUrl}/lead/getLeadByUser/${id}`, true);
+      setUserLeads(data?.data.length);
       return data;
    }
    const getAllLeads = async () => {
@@ -1814,6 +1889,7 @@ const MainState = (props) => {
    }
    const closeLeadApiFetch = async () => {
       const data = await post(`${baseUrl}/admin/getAllCloseLead`, {}, true);
+      setAllCloseLead(data?.status);
       return data;
    }
    const closeLeadApiFetch2 = async () => {
@@ -1825,6 +1901,7 @@ const MainState = (props) => {
    }
    const getTodayLead = async () => {
       const data = await post(`${baseUrl}/admin/getTodayLead`, {}, true);
+      setTodayLead(data?.leads)
       return data;
    }
    const getTodayLead2 = async () => {
@@ -2365,6 +2442,7 @@ const MainState = (props) => {
 
    const getAllProjectApi = async () => {
       const data = await get(`${baseUrl}/latest_project/getAllProject`, true);
+      setAllProjects(data);
       return data;
    };
    const getAllProjectUserApi = async () => {
@@ -2679,7 +2757,24 @@ const MainState = (props) => {
          deleteQuotation1, getLeadCatgory, postLeadCategory, updateLeadCategory, deleteLeadCategory, postLeadSubCategory, getLeadSubCategory, updateLeadSubCategory, deleteLeadSubCategory,
          uploadSingleImage, postClientNotification, getClientNotification, markedNotification,
          getAllProjectUserApi, postNotifyProject, postNotifyTask,
-         savenoteatt, AllRolesapi, FetchMyLeave, closeLead, deleteQproapi, createExpenseApi, changeStatusBreak, deleteProjectTaskapi22, EditProjectTask, postHalfDay, closeLeadApiFetch2, closeLeadApiFetch, postNotification2, getUserHalfDay, rejectHalfDay, acceptHalf, acceptassetsapi, getTodayLead, getTodayLead2, getSaveTempalte, statuschangeapi, UploadFileProjectapi, allfilesproject, deleteProjectFile, fetchAllTimesheetapi, getClientProject
+         savenoteatt, AllRolesapi, FetchMyLeave, closeLead, deleteQproapi, createExpenseApi, changeStatusBreak, deleteProjectTaskapi22, EditProjectTask, postHalfDay, closeLeadApiFetch2, closeLeadApiFetch, postNotification2, getUserHalfDay, rejectHalfDay, acceptHalf, acceptassetsapi, getTodayLead, getTodayLead2, getSaveTempalte, statuschangeapi, UploadFileProjectapi, allfilesproject, deleteProjectFile, fetchAllTimesheetapi, getClientProject,
+         upcomingBirthdays,
+         setUpcomingBirthdays,
+         allProjects, setAllProjects,
+         monthlyWorkingHours, setMonthlyWorkingHours,
+         counts, setCounts,
+         userFullDayLeaves, setUserFullDayLeaves,
+         userHalfDayLeaves, setUserHalfDayLeaves,
+         userPendingLeaves, setUserPendingLeaves,
+         userLeaveTaken, setUserLeaveTaken,
+         userCasualLeaves, setUserCasualLeaves,
+         userPaidLeaves, setUserPaidLeaves,
+         isCountsData, setIsCountsData,
+         isUserLeavesFetched, setIsUserLeavesFetched,
+         totalLeads,setTotalLeads,
+         userLeads, setUserLeads,
+         allCloseLead, setAllCloseLead,
+         todayLead,setTodayLead
       }}>
          {props.children}
       </MainContext.Provider>

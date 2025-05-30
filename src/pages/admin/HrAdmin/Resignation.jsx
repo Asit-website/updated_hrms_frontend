@@ -5,15 +5,15 @@ import ActionMenu from "../../../components/ActionMenu";
 import { FaPlus, FaSearch } from 'react-icons/fa';
 import { useMain } from "../../../hooks/UseMain";
 import { useEffect, useState } from "react";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 import ModalForm from "../../../components/ModalForm";
 import { confirmAlert } from "react-confirm-alert";
 
 const Resignation = () => {
 
   const { getResignation,allEmp, resignation, createResignation,deleteResignation, updateResignation } = useMain();
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [isEdit, setIsEdit] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
   const [editData, setEditData] = useState(null);
   const buttonOptions =(item) => [
     {

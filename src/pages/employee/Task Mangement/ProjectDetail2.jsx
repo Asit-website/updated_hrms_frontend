@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import "react-calendar/dist/Calendar.css";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 import { FaEye } from "react-icons/fa";
 import { BsStopFill, BsStopwatch } from "react-icons/bs";
 import { MdDelete, MdOutlineEdit } from "react-icons/md";

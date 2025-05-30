@@ -2,7 +2,7 @@ import React from "react";
 import "react-calendar/dist/Calendar.css";
 // import "react-profile-avatar/dist/index.css";
 import { useEffect, useState } from "react";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 import { useMain } from "../../../hooks/UseMain";
 
 

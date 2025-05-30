@@ -3,7 +3,7 @@ import "react-calendar/dist/Calendar.css";
 
 import { useEffect, useRef, useState } from "react";
 import { useLocation, useParams } from 'react-router-dom';
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 import { useMain } from "../../../hooks/UseMain";
 import { useOutsideClick } from "../../../hooks/UseOutsideClick";
 const SetSallary = () => {

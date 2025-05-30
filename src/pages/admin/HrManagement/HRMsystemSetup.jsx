@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import "react-calendar/dist/Calendar.css";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 import { confirmAlert } from "react-confirm-alert";
 import { MdDeleteOutline, MdOutlineEdit } from "react-icons/md";
 import { useMain } from "../../../hooks/UseMain";

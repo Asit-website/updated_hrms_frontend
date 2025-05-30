@@ -6,7 +6,7 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import "react-calendar/dist/Calendar.css";
 import { useEffect, useState } from "react";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 import { useMain } from "../../../hooks/UseMain";
 
 const EmployeAttendence = () => {

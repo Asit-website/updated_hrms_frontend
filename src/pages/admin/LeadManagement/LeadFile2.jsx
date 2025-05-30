@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "react-calendar/dist/Calendar.css";
 import * as XLSX from "xlsx";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useMain } from "../../../hooks/UseMain";

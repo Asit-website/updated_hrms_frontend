@@ -1,7 +1,7 @@
 import React from "react";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import { useEffect, useState } from "react";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 import {
   allLead,
   allowancePerms,

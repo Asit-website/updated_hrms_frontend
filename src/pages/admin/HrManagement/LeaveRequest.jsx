@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useRef, useState } from "react";
 import "react-calendar/dist/Calendar.css";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 import { CiPlay1 } from "react-icons/ci";
 import { RxCross2 } from "react-icons/rx";
 import { NavLink, useLocation } from "react-router-dom";
