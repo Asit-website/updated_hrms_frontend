@@ -668,7 +668,7 @@ const MarkAttendance = () => {
 
                     <div className="flex items-center gap-[17px]">
 
-                      {selectedOption !== "monthly" && <div className="flex items-center h-[44px] px-4 py-2 gap-2 rounded-[10px] bg-white border border-[#D0D4DC] justify-between">
+                      {selectedOption !== "monthly" && <div className="flex items-center h-[44px] px-4 py-2 gap-2 rounded-[10px] bg-white border border-black justify-between">
                         <input
                           type="text"
                           value={searchTerm}
@@ -677,6 +677,7 @@ const MarkAttendance = () => {
                             setCurrPage(1);
                           }}
                           placeholder="Search Employee"
+                         className="outline-none"
                         />
 
                         {/* <img src={bxsearch} alt="" /> */}
@@ -695,7 +696,7 @@ const MarkAttendance = () => {
                   </div>
                 </div>
 
-              <div className="relative overflow-x-scroll">
+              <div className="relative overflow-x-scroll ">
                   <table
                     id="table-to-xls1"
                     className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"

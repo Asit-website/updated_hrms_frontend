@@ -466,7 +466,7 @@ const TaskProjects = () => {
                 <input
 
                   type="text"
-                  className="h-[35px] mt-3 xl:md-0 p-4 rounded border border-black"
+                  className="h-[35px] mt-3 xl:md-0 p-4 rounded border border-black "
                   placeholder="Search Project"
                   onChange={(e) => setSearchInput(e.target.value)}
                   value={searchInput}
@@ -475,7 +475,7 @@ const TaskProjects = () => {
 
 
 
-              <div className="relative overflow-x-auto min-h-[250px] rounded-lg border border-black py-2">
+              <div className="relative overflow-x-auto min-h-[250px] rounded-lg border border-grey py-2">
                 <table className="w-max lg:w-full text-sm text-left bg-white rounded-lg">
                   <thead className="bg-white font-semibold">
                     <tr>
@@ -598,7 +598,7 @@ const TaskProjects = () => {
                 <label className="block text-md font-normal mb-1">
                   <p className="text-[#1B2533] text-[14px] font-semibold leading-[20px] tracking-[0.0025em]">Name <span className="text-red-600">*</span></p>
                   <input
-                    className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                    className="w-full border rounded p-2 text-sm font-normal "
                     name="Name"
                     required
                     value={formdata.Name}
@@ -625,7 +625,7 @@ const TaskProjects = () => {
                   </div>
 
                   <select
-                    className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                    className="w-full border rounded p-2 text-sm font-normal "
                     name="Members"
                     value=''
                     onChange={changeHandler2}
@@ -643,7 +643,7 @@ const TaskProjects = () => {
                 <label className="block text-md font-normal mb-1">
                   <p className="text-[#1B2533] text-[14px] font-semibold leading-[20px] tracking-[0.0025em]">Status <span className="text-red-600">*</span></p>
                   <select
-                    className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                    className="w-full border rounded p-2 text-sm font-normal"
                     name="Status"
                     value={formdata.Status}
                     onChange={changeHandler}
@@ -658,7 +658,7 @@ const TaskProjects = () => {
                 <label className="block text-md font-normal mb-1">
                   <p className="text-[#1B2533] text-[14px] font-semibold leading-[20px] tracking-[0.0025em]">Client</p>
                   <select
-                    className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                    className="w-full border rounded p-2 text-sm font-normal "
                     value={clientInfo}
                     onChange={(e) => setClientInfo(e.target.value)}  // Update state with the selected client
                   >
@@ -674,7 +674,7 @@ const TaskProjects = () => {
                 <label className="block text-md font-normal mb-1">
                   <p className="text-[#1B2533] text-[14px] font-semibold leading-[20px] tracking-[0.0025em]">Start Date <span className="text-red-600">*</span></p>
                   <input
-                    className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                    className="w-full border rounded p-2 text-sm font-normal "
                     name="startDate"
                     value={formdata.startDate}
                     onChange={changeHandler}
@@ -684,7 +684,7 @@ const TaskProjects = () => {
                 <label className="block text-md font-normal mb-1">
                   <p className="text-[#1B2533] text-[14px] font-semibold leading-[20px] tracking-[0.0025em]">Due Date <span className="text-red-600">*</span></p>
                   <input
-                    className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                    className="w-full border rounded p-2 text-sm font-normal 0"
                     name="DueDate"
                     value={formdata.DueDate}
                     onChange={changeHandler}
@@ -696,7 +696,7 @@ const TaskProjects = () => {
                 <label className="block text-md font-normal mb-1">
                   <p className="text-[#1B2533] text-[14px] font-semibold leading-[20px] tracking-[0.0025em]">Description <span className="text-red-600">*</span></p>
                   <textarea
-                    className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                    className="w-full border rounded p-2 text-sm font-normal "
                     type="text"
                     name="Description"
                     value={formdata.Description}

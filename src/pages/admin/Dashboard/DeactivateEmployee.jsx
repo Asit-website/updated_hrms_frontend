@@ -292,9 +292,9 @@ const DeactivateEmployee = () => {
 
                 </div>
 
-                <div className="relative  overflow-x-scroll w-full min-h-[220px]">
+                <div className="relative  overflow-x-scroll w-full min-h-[220px] xl:overflow-visible">
 
-                  <table className="w-full table1 text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                  <table className="w-full table1 text-sm text-left rtl:text-right text-balck dark:text-gray-400">
 
                     <thead className="text-xs uppercase textALLtITL ">
                       <tr>
@@ -353,10 +353,10 @@ const DeactivateEmployee = () => {
                                 {
                                   index == currView &&
 
-                                  <div ref={ref} className="absolute -top-[65px] min-w-[120px] h-fit flex flex-col shadow-lg py-2 gap-[5px] rounded-tl-[8px] bg-white right-[75px] z-[1000] border border-[#E3E3E3]
+                                  <div ref={ref} className="absolute -top-[80px] min-w-[120px] h-fit flex flex-col shadow-lg gap-[5px]  bg-white right-[67px] z-[1000] border border-[#E3E3E3]
 ">
                                     {/* first  */}
-                                    <div onClick={() => navigate("/adminDash/EmployeeDetails", { state: item?._id })} className="flex gap-1 p-[5px] cursor-pointer
+                                    <div onClick={() => navigate("/adminDash/EmployeeDetails", { state: item?._id })} className="items-center w-full px-4 py-2 text-sm flex gap-2 text-gray-700 hover:bg-gray-100 cursor-pointer
 ">
                                       <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747821812/bx-happy-heart-eyes_fdzdmf.png" alt="" />
                                       <p>View</p>
@@ -370,7 +370,7 @@ const DeactivateEmployee = () => {
 
                                       <div onClick={() => {
                                         navigate(`/adminDash/EmployeeMan/${item._id}`);
-                                      }} className="flex gap-1 p-[5px] cursor-pointer
+                                      }} className="items-center w-full px-4 py-2 text-sm flex gap-2 text-gray-700 hover:bg-gray-100 cursor-pointer
 ">
                                         <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747814038/edit22_gcmjla.png" alt="" />
                                         <p>Edit </p>
@@ -386,7 +386,7 @@ const DeactivateEmployee = () => {
 
                                       <div onClick={() => {
                                         deleteUser1(item?._id, item?.isDeactivated === "Yes");
-                                      }} className="flex gap-1 p-[5px] cursor-pointer
+                                      }} className="items-center w-full px-4 py-2 text-sm flex gap-2 text-red-600 hover:bg-red-100 cursor-pointer
 ">
                                         <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747481374/frema_ayb4lq.svg" alt="" />
                                         <p className="deel"> {item?.isDeactivated === "Yes" ? "Activate" : "Deactivate"} </p>

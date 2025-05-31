@@ -785,7 +785,7 @@ const EmployeeManage = ({
                             <label className="block text-md font-normal mb-1">
                               <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em] my-2">Full Name <span className="text-red-600">*</span></p>
                               <input
-                                className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                className="w-full border rounded p-2 text-sm font-normal "
                                 onChange={(e) => {
                                   handleChange(e, "form1");
                                 }}
@@ -801,7 +801,7 @@ const EmployeeManage = ({
                               <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em] mb-2">Password <span className="text-red-600">*</span></p>
 
                               <input
-                                className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                className="w-full border rounded p-2 text-sm font-normal"
                                 onChange={(e) => {
                                   handleChange(e, "form1");
                                 }}
@@ -817,7 +817,7 @@ const EmployeeManage = ({
                               <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em] mb-2">Date of Birth <span className="text-red-600">*</span></p>
 
                               <input
-                                className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                className="w-full border rounded p-2 text-sm font-normal "
                                 onChange={(e) => {
                                   handleChange(e, "form2");
                                 }}
@@ -838,7 +838,7 @@ const EmployeeManage = ({
                                   PAN No. <span className="text-red-600">*</span>
                                 </label>
                                 <input
-                                  className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                  className="w-full border rounded p-2 text-sm font-normal"
                                   type="text"
                                   id="pan"
                                 
@@ -863,7 +863,7 @@ const EmployeeManage = ({
 
                                   type="text"
                                   id="adhar"
-                                  className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                  className="w-full border rounded p-2 text-sm font-normal "
                                   // required
                                   name="adhar"
                                   value={value3?.adhar}
@@ -888,7 +888,7 @@ const EmployeeManage = ({
                                 <input
                                   type="text"
                                   id="father"
-                                  className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                  className="w-full border rounded p-2 text-sm font-normal "
                                   // required
                                   name="father"
                                   value={value3?.father}
@@ -909,7 +909,7 @@ const EmployeeManage = ({
                                 <input
                                   type="text"
                                   id="Mother"
-                                  className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                  className="w-full border rounded p-2 text-sm font-normal "
                                   // required
                                   name="Mother"
                                   value={value3?.Mother}
@@ -932,7 +932,7 @@ const EmployeeManage = ({
                                 <input
                                   type="number"
                                   id="mobile"
-                                  className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                  className="w-full border rounded p-2 text-sm font-normal "
                                   // required
                                   name="mobile"
                                   value={value2?.mobile}
@@ -946,12 +946,12 @@ const EmployeeManage = ({
                               <div className=" w-full try">
                                 <label
                                   for="Martial"
-                                 className="block text-md font-normal mb-1"
+                                 className="block text-md font-normal mb-1 mt-5"
                                 >
                                   Marital status
                                 </label>
                                 <select
-                                    className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                    className="w-full border rounded p-2 text-sm font-normal "
                                   name="Martial"
                                   id="Martial"
                                   value={value3?.Martial}
@@ -977,7 +977,7 @@ const EmployeeManage = ({
                                 name="department"
                                 value={value1?.department}
                                 disabled={value1.status}
-                                className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                className="w-full border rounded p-2 text-sm font-normal "
                               >
                                 <option value={""}>Select Department</option>
                                 {departments?.map((e, index) => {
@@ -1002,7 +1002,7 @@ const EmployeeManage = ({
                                 value={value1?.employeeCode}
                                 disabled={id ? true : false}
                                 placeholder="Enter Employee Code"
-                                className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                className="w-full border rounded p-2 text-sm font-normal "
                               />
                             </label>
                             <label htmlFor="" className="block text-md font-normal mb-1">
@@ -1038,7 +1038,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
                                 name="reportingManager"
                                 value={value1?.reportingManager}
                                 disabled={value1.status}
-                                className="department_test w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                className="department_test w-full border rounded p-2 text-sm font-normal "
                               >
                                 <option>Reporting Manager</option>
                                 {employee?.map((val, index) => {
@@ -1062,7 +1062,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
                                 name="designation"
                                 value={value1?.designation}
                                 disabled={value1.status}
-                                className="department_test w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                className="department_test w-full border rounded p-2 text-sm font-normal "
                               >
                                 <option>Designation</option>
                                 {designations?.map((e, index) => {
@@ -1085,7 +1085,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
                                 name="PermissionRole"
                                 value={value1?.PermissionRole}
                                 disabled={value1.status}
-                                className="department_test w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                className="department_test w-full border rounded p-2 text-sm font-normal"
                               >
                                 <option selected>Select Role</option>
                                 {PermRole?.map((e, index) => {
@@ -1109,7 +1109,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
                                 name="joiningDate"
                                 value={value1?.joiningDate}
                                 disabled={value1.status}
-                                    className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                    className="w-full border rounded p-2 text-sm font-normal "
                               />
                             </label>
 
@@ -1149,7 +1149,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
                                 name="gender"
                                 value={value2?.gender}
                                 disabled={value2.status}
-                                className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                className="w-full border rounded p-2 text-sm font-normal"
                               >
                                 <option>gender</option>
                                 <option>Male</option>
@@ -1173,7 +1173,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
                                 <input
                                   type="number"
                                   id="leaveNumber"
-                                  className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                  className="w-full border rounded p-2 text-sm font-normal "
                                   name="leaveNumber"
                                   value={value2?.leaveNumber}
                                   max="15"
@@ -1221,7 +1221,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
                                     residence: prev.status ? val : prev.residence,
                                   }));
                                 }}
-                                className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                className="w-full border rounded p-2 text-sm font-normal "
                               />
 
 
@@ -1238,7 +1238,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
 
                               
                               <select
-                                className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                className="w-full border rounded p-2 text-sm font-normal"
                                 name="currentState"
                                 value={value3?.currentState}
                                 id="currentState"
@@ -1304,7 +1304,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
                               <input
                                 type="text"
                                 id="currentCity"
-                                className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                className="w-full border rounded p-2 text-sm font-normal "
                                 // required
                                 name="currentCity"
                                 value={value3?.currentCity}
@@ -1324,7 +1324,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
                               <input
                                 type="text"
                                 id="currentPin"
-                                className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                className="w-full border rounded p-2 text-sm font-normal "
                                 // required
                                 name="currentPin"
                                 value={value3?.currentPin}
@@ -1370,7 +1370,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
                                 type="text"
                                 name="residence"
                                 id="residence"
-                                className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                className="w-full border rounded p-2 text-sm font-normal "
                                 value={value3?.residence}
                                 disabled={value3?.currentAddressStatus}
                                 onChange={(e) => handleChange(e, "form3")}
@@ -1386,7 +1386,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
                               Permanent state
                             </label>
                             <select
-                              className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                              className="w-full border rounded p-2 text-sm font-normal "
                               name="perState"
                               value={value3?.perState}
                               id="perState"
@@ -1451,7 +1451,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
                               type="text"
                               id="perCity"
                               name="perCity"
-                              className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                              className="w-full border rounded p-2 text-sm font-normal "
                               value={value3?.perCity}
                               disabled={value3?.currentAddressStatus}
                               onChange={(e) => handleChange(e, "form3")}
@@ -1468,7 +1468,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
                             <input
                               type="text"
                               id="perPin"
-                              className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                              className="w-full border rounded p-2 text-sm font-normal "
                               // required
                               name="perPin"
                               value={value3?.perPin}
@@ -1489,7 +1489,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
                                 Nationality
                               </label>
                               <select
-                                className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                className="w-full border rounded p-2 text-sm font-normal "
                                 name="nationality"
                                 id="nationality"
                                 value={value3?.nationality}
@@ -1543,7 +1543,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
                               <p className="text-sm font-medium leading-6 tracking-[0.005em] text-[#1B2533] underline">Click to upload</p>
 
                               <input
-                                className="absolute opacity-0 bg-red-500 w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                className="absolute opacity-0 bg-red-500 w-full border rounded p-2 text-sm font-normal "
                                 name="adharCard"
                                 type="file"
                                 onChange={(e) =>
@@ -1593,7 +1593,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
                               <p className="text-sm font-medium leading-6 tracking-[0.005em] text-[#1B2533] underline">Click to upload</p>
 
                               <input
-                                className="absolute opacity-0 bg-red-500 w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                className="absolute opacity-0 bg-red-500 w-full border rounded p-2 text-sm font-normal "
                                 type="file"
                                 name="pancard"
                                 onChange={(e) => handleFileChange(e, "pancard")}
@@ -1982,7 +1982,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
                               <input
                                 type="text"
                                 id="SalaryPay"
-                                className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                className="w-full border rounded p-2 text-sm font-normal "
                                 name="SalaryPay"
                                 value={value5?.SalaryPay}
                                 onChange={(e) => {
@@ -2002,7 +2002,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
                               <input
                                 type="text"
                                 id="SalaryBankName"
-                                className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                className="w-full border rounded p-2 text-sm font-normal "
                                 name="SalaryBankName"
                                 value={value5?.SalaryBankName}
                                 onChange={(e) => {
@@ -2023,7 +2023,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
                               <input
                                 type="text"
                                 id="BeneficiaryName"
-                                className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                className="w-full border rounded p-2 text-sm font-normal "
                                 name="BeneficiaryName"
                                 value={value5?.BeneficiaryName}
                                 onChange={(e) => {
@@ -2045,7 +2045,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
                               <input
                                 type="text"
                                 id="BankIfsc"
-                                className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                className="w-full border rounded p-2 text-sm font-normal "
                                 name="BankIfsc"
                                 value={value5?.BankIfsc}
                                 onChange={(e) => {
@@ -2065,7 +2065,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
                               <input
                                 type="text"
                                 id="AccountNumber"
-                                className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                className="w-full border rounded p-2 text-sm font-normal "
                                 name="AccountNumber"
                                 value={value5?.AccountNumber}
                                 onChange={(e) => {
@@ -2085,7 +2085,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
                               <input
                                 type="text"
                                 id="confirmAccount"
-                                className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                className="w-full border rounded p-2 text-sm font-normal "
                                 // required
                                 name="confirmAccount"
                                 value={value5?.confirmAccount}
@@ -2109,7 +2109,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
                               <input
                                 type="text"
                                 id="Branch"
-                                className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                className="w-full border rounded p-2 text-sm font-normal "
                                 // required
                                 name="Branch"
                                 value={value5?.Branch}
