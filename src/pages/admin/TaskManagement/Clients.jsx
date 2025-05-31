@@ -9,12 +9,10 @@ import { useOutsideClick } from "../../../hooks/UseOutsideClick";
 import InitialsAvatar from "../../../components/InitialAvatar";
 
 const TaskClients = () => {
-  const { createClientapi, getClientapi, editTaskapi, disableClientapi } =
-    useMain();
+  const { createClientapi, allClient, setAllClient, getClientapi, editTaskapi, disableClientapi } = useMain();
   const navigate = useNavigate();
 
   let hrms_user = JSON.parse(localStorage.getItem("hrms_user")) || '';
-
   const { role } = hrms_user;
 
   const [formdata, setFormdata] = useState({
@@ -30,18 +28,14 @@ const TaskClients = () => {
   });
 
   const [showIndex, setShowIndex] = useState(null);
-
   const [addClientPop, setAddClientPop] = useState(false);
-
   const [showImport, setShowImport] = useState(false);
-
   const fileInputRef = useRef(null);
+  const [errors, setErrors] = useState({});
 
   const handleButtonClick = () => {
     fileInputRef.current.click();
   };
-
-  const [errors, setErrors] = useState({});
 
   const changeHandler = (e) => {
     const { name, value } = e.target;
@@ -61,7 +55,6 @@ const TaskClients = () => {
       if (!/^\d*$/.test(value)) return;
 
       if (value.length > 10) return;
-
       if (value.length === 10) {
         delete newErrors.PhoneNumber;
       } else {
@@ -78,7 +71,7 @@ const TaskClients = () => {
   };
 
 
-  const [allClient, setAllClient] = useState([]);
+  // const [allClient, setAllClient] = useState([]);
   const [isEdit, setIsEdit] = useState(false);
 
   const getAllClient = async () => {
@@ -94,6 +87,8 @@ const TaskClients = () => {
       toast.error("sometinng went wrong ,please try agin");
     }
   };
+
+  console.log("allClient", allClient);
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -179,17 +174,6 @@ const TaskClients = () => {
   const [searchInput, setSearchInput] = useState("");
 
   const projectsPerPage = 8;
-  const filteredProjects = allClient?.filter((client) => {
-    const searchWords = searchInput.toLowerCase().trim().split(/\s+/);
-    const name = client.Name.toLowerCase();
-    return searchWords.every((word) => name.includes(word));
-  });
-
-  const totalPages = Math.ceil(filteredProjects?.length / projectsPerPage);
-  const paginatedProjects = filteredProjects?.slice(
-    (currentPage - 1) * projectsPerPage,
-    currentPage * projectsPerPage
-  );
 
   const handlePrev = () => currentPage > 1 && setCurrentPage(currentPage - 1);
   const handleNext = () => currentPage < totalPages && setCurrentPage(currentPage + 1);
@@ -239,21 +223,16 @@ const TaskClients = () => {
 
     if (excelFile !== null) {
       const workbook = XLSX.read(excelFile, { type: "buffer" });
-
       const worksheetName = workbook.SheetNames[0];
-
       const worksheet = workbook.Sheets[worksheetName];
-
       const data = XLSX.utils.sheet_to_json(worksheet);
 
       let toastId;
-
       if (data?.length > 0) {
         toastId = toast.loading("Loading....");
       }
 
       setExcelData(data?.slice(0, 10));
-
       for (let i = 0; i < data?.length; i++) {
         console.log("data ", data);
         const {
@@ -272,10 +251,17 @@ const TaskClients = () => {
     }
   };
 
-  useEffect(() => {
-    getAllClient();
+  const filteredProjects = allClient?.filter((client) => {
+    const searchWords = searchInput.toLowerCase().trim().split(/\s+/);
+    const name = client.Name.toLowerCase();
+    return searchWords.every((word) => name.includes(word));
+  });
 
-  }, []);
+  const totalPages = Math.ceil(filteredProjects?.length / projectsPerPage);
+  const paginatedProjects = filteredProjects?.slice(
+    (currentPage - 1) * projectsPerPage,
+    currentPage * projectsPerPage
+  );
 
   const popWrapper = useRef();
   const popupwrapper = useRef();
@@ -287,6 +273,12 @@ const TaskClients = () => {
   useOutsideClick(popupwrapper, () => {
     setAddClientPop(null);
   });
+
+  useEffect(() => {
+    if (!allClient.length) {
+      getAllClient();
+    }
+  }, []);
 
   return (
     <>

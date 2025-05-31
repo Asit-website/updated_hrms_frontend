@@ -24,20 +24,10 @@ export default function LeadManagement() {
     totalLeads, setTotalLeads,
     userLeads, setUserLeads,
     allCloseLead, setAllCloseLead,
-    todayLead, setTodayLead
+    todayLead, setTodayLead,
   } = useMain();
 
   const { user } = useAuth();
-
-  const theadData = [
-    "Lead Name",
-    "Date",
-    "FollowUpType",
-    "  Remark",
-    "Time",
-    "Action",
-  ];
-
 
   const theadData1 = [
     "Company",
@@ -75,24 +65,15 @@ export default function LeadManagement() {
   };
 
   const [closeSerch, setCloseSrch] = useState("");
-  const [allCloseForSrch, setAllCloseFroSrch] = useState([]);
-  const [currentClosedPage, setCurrentClosedPage] = useState(1);
-  const closedItemPerPage = 5;
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 4;
   const [optionedit, setOptionEdit] = useState(null);
   const [todayLeadSrch, setTodayLeadSrch] = useState("");
   const [paginatedData, setPaginationData] = useState([]);
-  const [filteredCloseLeads, setFilteredCloseLeads] = useState([]);
 
   const closeLead = async () => {
     const ans = await closeLeadApiFetch();
-    if (ans?.status && ans?.data?.length) {
-      setAllCloseLead(ans?.data)
-      console.log("setAllCloseLeads",ans?.data)
-      setAllCloseFroSrch(ans?.data);
-      setFilteredCloseLeads(ans?.data);
-    }
+    setAllCloseLead(ans?.status)
   };
 
   const fetchLeads = async () => {
@@ -101,7 +82,6 @@ export default function LeadManagement() {
       setTodayLead(ans?.leads);
     }
   };
-
 
   useEffect(() => {
     if (todayLeadSrch === "") {
@@ -113,30 +93,17 @@ export default function LeadManagement() {
     }
   }, [todayLeadSrch])
 
-  useEffect(() => {
-    if (closeSerch.trim() === "") {
-      setFilteredCloseLeads(allCloseLead);
-    } else {
-      const filtered = allCloseForSrch.filter((lead) =>
-        lead?.Company?.toLowerCase().includes(closeSerch.toLowerCase())
-      );
-      setFilteredCloseLeads(filtered);
-    }
-    setCurrentClosedPage(1);
-  }, [closeSerch, allCloseForSrch]);
+  const filteredCloseLeads = allCloseLead?.filter((lead) => {
+    const searchWords = closeSerch.toLowerCase().trim().split(/\s+/);
+    const name = lead.Company.toLowerCase();
+    return searchWords.every((word) => name.includes(word));
+  });
 
 
 
   useEffect(() => {
     setPaginationData(todayLead?.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage));
   }, [currentPage, todayLead])
-
-  const ClosedTotalPages = Math.ceil(filteredCloseLeads.length / closedItemPerPage);
-  const closeStartIndex = (currentClosedPage - 1) * closedItemPerPage;
-  const closeEndIndex = Math.min(closeStartIndex + closedItemPerPage, filteredCloseLeads.length);
-  const filteredAllItems = filteredCloseLeads.slice(closeStartIndex, closeEndIndex);
-
-
 
   const stats = [
     {
@@ -154,7 +121,7 @@ export default function LeadManagement() {
     {
       img: "https://res.cloudinary.com/dd9tagtiw/image/upload/v1746188839/Frame_9688_ddpeva.png",
       label: "Closed Leads",
-      value: allCloseLead.length,
+      value: allCloseLead?.length,
       link: user?.role === "ADMIN" ? "/adminDash/closeLeads" : "/employeeDash/closeLeads"
     },
   ];
@@ -184,10 +151,6 @@ export default function LeadManagement() {
       ],
     });
   };
-
-  useEffect(() => {
-    console.log("Filtered Leads:", filteredCloseLeads.map(l => l.Company));
-  }, [filteredCloseLeads]);
 
 
   useEffect(() => {
@@ -443,8 +406,8 @@ export default function LeadManagement() {
 
 
               <tbody>
-                {filteredAllItems && filteredAllItems.length > 0 ? (
-                  filteredAllItems?.map((item, index) => (
+                {filteredCloseLeads && filteredCloseLeads.length > 0 ? (
+                  filteredCloseLeads?.map((item, index) => (
                     <tr key={index} className="border-b border-gray-200 hover:bg-gray-50 transition duration-150">
                       <td
                         scope="row"

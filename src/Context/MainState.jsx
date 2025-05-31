@@ -42,11 +42,18 @@ const MainState = (props) => {
    const [isUserLeavesFetched, setIsUserLeavesFetched] = useState(false);
 
    //lead
-   const [totalLeads,setTotalLeads] = useState([]);
+   const [totalLeads, setTotalLeads] = useState([]);
    const [userLeads, setUserLeads] = useState([]);
    const [allCloseLead, setAllCloseLead] = useState([]);
-   const [todayLead,setTodayLead] = useState([])
+   const [todayLead, setTodayLead] = useState([]);
 
+   // clients
+   const [allClient, setAllClient] = useState([]);
+
+   // task projects
+   const [allActiveEmployee, setAllActiveEmployee] = useState([]);
+   const [taskpageAllProjects, settaskpageAllProjects] = useState([]);
+   const [storeProject, setStorePro] = useState([]);
 
    const login = async ({ email, employeeCode, password }) => {
       setLoading(true)
@@ -939,7 +946,11 @@ const MainState = (props) => {
    const allEmployee = async () => {
       const data = await get(`${baseUrl}/admin/fetchEmployee`, true);
       if (data?.status) {
-         setAllEmp(data?.emp)
+         setAllEmp(data?.emp);
+         const activeEmployees = data?.emp?.filter(
+            (emp) => emp.isDeactivated === "No"
+         );
+         setAllActiveEmployee(activeEmployees);
       }
       return data;
 
@@ -1845,9 +1856,9 @@ const MainState = (props) => {
    }
 
    const getLead = async (id, query, page, perPage) => {
-      let user = JSON.parse(localStorage.getItem("hrms_user"));
+      // let user = JSON.parse(localStorage.getItem("hrms_user"));
 
-      const data = await post(`${baseUrl}/lead/getAllLead/?id=${id}&query=${query}&page=${page}&perPage=${perPage}`, { id: user?._id }, true);
+      const data = await post(`${baseUrl}/lead/getAllLead`, { id: user?._id }, true);
       setTotalLeads(data?.data.length);
       return data;
    }
@@ -1890,6 +1901,7 @@ const MainState = (props) => {
    const closeLeadApiFetch = async () => {
       const data = await post(`${baseUrl}/admin/getAllCloseLead`, {}, true);
       setAllCloseLead(data?.status);
+      console.log("Ad;;", data?.status);
       return data;
    }
    const closeLeadApiFetch2 = async () => {
@@ -2426,6 +2438,7 @@ const MainState = (props) => {
 
    const getClientapi = async () => {
       const data = await get(`${baseUrl}/task/getAllClient`, true);
+      setAllClient(data?.data.reverse());
       return data;
    };
 
@@ -2442,7 +2455,9 @@ const MainState = (props) => {
 
    const getAllProjectApi = async () => {
       const data = await get(`${baseUrl}/latest_project/getAllProject`, true);
-      setAllProjects(data);
+      setAllProjects(data?.projects.reverse().slice(0, 6));
+      settaskpageAllProjects(data?.projects.reverse());
+      setStorePro(data?.projects)
       return data;
    };
    const getAllProjectUserApi = async () => {
@@ -2771,10 +2786,14 @@ const MainState = (props) => {
          userPaidLeaves, setUserPaidLeaves,
          isCountsData, setIsCountsData,
          isUserLeavesFetched, setIsUserLeavesFetched,
-         totalLeads,setTotalLeads,
+         totalLeads, setTotalLeads,
          userLeads, setUserLeads,
          allCloseLead, setAllCloseLead,
-         todayLead,setTodayLead
+         todayLead, setTodayLead,
+         allClient, setAllClient,
+         allActiveEmployee, setAllActiveEmployee,
+         taskpageAllProjects, settaskpageAllProjects,
+         storeProject, setStorePro
       }}>
          {props.children}
       </MainContext.Provider>

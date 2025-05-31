@@ -1,7 +1,4 @@
 import React from "react";
-
-// import "react-profile-avatar/dist/index.css";
-
 import { useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
 import { confirmAlert } from "react-confirm-alert";
@@ -14,14 +11,17 @@ const projectOpt = ["All", "Ongoing", "Finished", "OnHold", "Canceled"];
 
 const TaskProjects = () => {
   const {
-
     allEmployee,
     editProjectapi,
     getAllProjectApi,
     createProjectapi,
     deleteTaskProject,
     getClientapi,
-    postNotifyProject, postClientNotification
+    postNotifyProject, postClientNotification,
+    allActiveEmployee, setAllActiveEmployee,
+    taskpageAllProjects, settaskpageAllProjects,
+    storeProject, setStorePro,
+    allClient, setAllClient
   } = useMain();
 
   let hrms_user = JSON.parse(localStorage.getItem("hrms_user")) || '';
@@ -40,24 +40,17 @@ const TaskProjects = () => {
   });
   const [clientInfo, setClientInfo] = useState("")
   const [proUser, setProUser] = useState([]);
-  const [allClient, setAllClient] = useState([]);
+  // const [allClient, setAllClient] = useState([]);
   const getAllClient = async () => {
     try {
       const ans = await getClientapi();
-
       if (ans?.status) {
         setAllClient(ans?.data);
-
       }
     } catch (error) {
-      // console.log(error);
       toast.error("sometinng went wrong ,please try agin");
     }
   };
-
-  useEffect(() => {
-    // console.log(clientInfo)
-  }, [clientInfo])
 
   const changeHandler = (e) => {
     const { name, value } = e.target;
@@ -70,11 +63,11 @@ const TaskProjects = () => {
   const changeHandler2 = (e) => {
     const selectedEmpId = e.target.value;
     if (selectedEmpId === "Select") return;
-    const selectedEmp = allEmp?.find((emp) => emp?._id === selectedEmpId);
+    const selectedEmp = allActiveEmployee?.find((emp) => emp?._id === selectedEmpId);
     if (!selectedEmp || proUser?.includes(selectedEmp?.fullName)) return;
     setProUser((prev) => {
       const updatedProUser = [...prev, selectedEmp?.fullName];
-      const alreadyUsers = allEmp.filter((emp) => updatedProUser.includes(emp?.fullName));
+      const alreadyUsers = allActiveEmployee.filter((emp) => updatedProUser.includes(emp?.fullName));
       setFormdata((prevData) => {
         const prevMembers = Array.isArray(prevData?.Members) ? prevData?.Members : [];
         // Update the Members array with selectedEmpId
@@ -97,36 +90,26 @@ const TaskProjects = () => {
   const removeUser = (index) => {
     const newProUser = proUser?.filter((_, i) => i !== index);
     const newMembers = formdata?.Members?.filter((_, i) => i !== index);
-    // console.log(newMembers)
     setProUser(newProUser);
-    // console.log(newProUser)
-    const alreadyUsers = allEmp.filter((emp) => newProUser.includes(emp?.fullName));
+    const alreadyUsers = allActiveEmployee.filter((emp) => newProUser.includes(emp?.fullName));
     setFormdata({ ...formdata, Members: alreadyUsers.map((user) => user._id) });
   };
 
 
   const [showIndex, setShowIndex] = useState(null);
-
   const [isEdit, setIsEdit] = useState(false);
-
   const [addClientPop, setAddClientPop] = useState(false);
-
   const [optIndex, setOptIndex] = useState(0);
-
   const navigate = useNavigate();
   const location = useLocation();
-
-  const [allProjects, setAllProjects] = useState([]);
-
-  const [storeProject, setStorePro] = useState([]);
-
-  const [allEmp, setAllEmp] = useState([]);
+  // const [taskpageAllProjects, settaskpageAllProjects] = useState([]);
+  // const [storeProject, setStorePro] = useState([]);
   const [selected1, setSelected] = useState();
 
   const getAllProject = async () => {
     const ans = await getAllProjectApi();
     if (ans?.status) {
-      setAllProjects(ans?.projects?.reverse());
+      settaskpageAllProjects(ans?.projects?.reverse());
       setStorePro(ans?.projects);
     }
   };
@@ -139,9 +122,6 @@ const TaskProjects = () => {
     if (formdata.Members.length === 0) {
       return toast.error("Please Select Employee");
     }
-    // if (clientInfo === "") {
-    //   return toast.error("Please Select any Client");
-    // } 
     if (formdata.startDate === "") {
       return toast.error("Please Enter Start Date");
     }
@@ -161,7 +141,7 @@ const TaskProjects = () => {
         toast.success("Successfuly updated");
         getAllProject();
         const result = formdata.Members.map(userId => {
-          const user = allEmp.find(e => e._id === userId);
+          const user = allActiveEmployee.find(e => e._id === userId);
           return user ? user.fullName : null;
         }).filter(fullName => fullName !== null);
         result.forEach((e) =>
@@ -187,15 +167,12 @@ const TaskProjects = () => {
         setShowIndex(null);
       }
     } catch (error) {
-      // console.log(error);
       toast.error("sometinng went wrong ,please try agin");
     }
-
     toast.dismiss(toastId);
   };
 
   const [currView, setCurrView] = useState(-1);
-
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -206,9 +183,6 @@ const TaskProjects = () => {
     if (formdata.Members.length === 0) {
       return toast.error("Please Select Employee");
     }
-    // if (clientInfo === "") {
-    //   return toast.error("Please Select any Client");
-    // } 
     if (formdata.startDate === "") {
       return toast.error("Please Enter Start Date");
     }
@@ -228,11 +202,9 @@ const TaskProjects = () => {
         toast.success("Successfuly created");
         getAllProject();
         const result = formdata.Members.map(userId => {
-          const user = allEmp.find(e => e._id === userId);
+          const user = allActiveEmployee.find(e => e._id === userId);
           return user ? user.fullName : null;
         }).filter(fullName => fullName !== null);
-
-        // console.log(result);
         result.forEach((e) =>
           postNotifyProject(e, formdata.Name, formdata.startDate)
         )
@@ -253,37 +225,19 @@ const TaskProjects = () => {
         setProUser([]);
       }
     } catch (error) {
-      // console.log(error);
       toast.error("sometinng went wrong ,please try agin");
     }
 
     toast.dismiss(toastId);
   };
 
-  // const fetchemp = async () => {
-  //   const ans = await allEmployee();
-
-  //   setAllEmp(ans?.emp);
-  // };
-
   const fetchemp = async () => {
     const ans = await allEmployee();
-    // Filter active employees
     const activeEmployees = ans?.emp?.filter(
       (emp) => emp.isDeactivated === "No"
     );
-    // console.log("activeEmployee",activeEmployees)
-    setAllEmp(activeEmployees);
+    setAllActiveEmployee(activeEmployees);
   };
-
-  // const deleteApi = async (id) => {
-  //   const toastId = toast.loading("Loading...");
-  //   setShowIndex(null);
-  //   const ans = await deleteTaskProject(id);
-  //   toast.success("Successfuly deleted");
-  //   toast.dismiss(toastId);
-  //   getAllProject();
-  // };
 
   const deleteProject = async (id) => {
     confirmAlert({
@@ -312,13 +266,11 @@ const TaskProjects = () => {
   };
 
   const handleEditClick = (client) => {
-    // console.log(client)
     const membersNames = client.Members.map((memberId) => {
-      const member = allEmp.find((emp) => emp._id === memberId?._id);
+      const member = allActiveEmployee.find((emp) => emp._id === memberId?._id);
       return member ? member.fullName : "";
     });
     const clientStatus = allClient.find((e) => e._id === client.client)
-    // console.log(clientStatus?._id)
     setClientInfo(clientStatus?._id)
     setIsEdit(client._id);
     setFormdata({
@@ -331,27 +283,19 @@ const TaskProjects = () => {
     setAddClientPop(true);
   };
 
-  useEffect(() => {
-    fetchemp();
-    getAllProject();
-    getAllClient()
-  }, []);
-
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth' // Smooth scrolling
+      behavior: 'smooth'
     });
   };
 
 
   const [currentPage, setCurrentPage] = useState(1);
   const [searchInput, setSearchInput] = useState("");
-
   const projectsPerPage = 5;
 
-
-  const filteredProjects = allProjects?.filter((project) => {
+  const filteredProjects = taskpageAllProjects?.filter((project) => {
     const searchWords = searchInput.toLowerCase().trim().split(/\s+/);
     const name = project.projectName.toLowerCase();
     return searchWords.every((word) => name.includes(word));
@@ -366,32 +310,31 @@ const TaskProjects = () => {
   const handlePrev = () => currentPage > 1 && setCurrentPage(currentPage - 1);
   const handleNext = () => currentPage < totalPages && setCurrentPage(currentPage + 1);
 
-
   useEffect(() => {
     setCurrentPage(1);
   }, [searchInput]);
 
   useEffect(() => {
     if (optIndex === 0) {
-      setAllProjects([...storeProject]);
+      settaskpageAllProjects([...storeProject]);
     }
     else if (optIndex === 1) {
       const fitlerdata = storeProject.filter((pro) => pro.Status === "Ongoing");
-      setAllProjects(fitlerdata);
+      settaskpageAllProjects(fitlerdata);
     }
     else if (optIndex === 2) {
       const fitlerdata = storeProject.filter(
         (pro) => pro.Status === "Finished"
       );
-      setAllProjects(fitlerdata);
+      settaskpageAllProjects(fitlerdata);
     }
     else if (optIndex === 3) {
       const fitlerdata = storeProject.filter((pro) => pro.Status === "OnHold");
-      setAllProjects(fitlerdata);
+      settaskpageAllProjects(fitlerdata);
     }
     else {
       const fitlerdata = storeProject.filter((pro) => pro.Status === "Canceled");
-      setAllProjects(fitlerdata);
+      settaskpageAllProjects(fitlerdata);
     }
   }, [optIndex]);
 
@@ -400,6 +343,18 @@ const TaskProjects = () => {
   useOutsideClick(popupWrapper, () => {
     setAddClientPop(false);
   });
+
+  useEffect(() => {
+    if (!allActiveEmployee.length) {
+      fetchemp();
+    }
+    if (!taskpageAllProjects.length){
+      getAllProject();
+    }
+    if(!allClient.length){
+      getAllClient()
+    }
+  }, []);
 
   return (
     <>
@@ -631,7 +586,7 @@ const TaskProjects = () => {
                     onChange={changeHandler2}
                   >
                     <option value="Select">Select Employee <span className="text-red-600">*</span></option>
-                    {allEmp?.map((emp, index) => (
+                    {allActiveEmployee?.map((emp, index) => (
                       <option value={emp?._id} key={index}
                         disabled={proUser.includes(emp.fullName)}>
                         {emp?.fullName} {formdata.Members.includes(emp._id) ? "(Selected)" : ""}
