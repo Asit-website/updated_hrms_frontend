@@ -403,7 +403,7 @@ const ProposalForm = () => {
                     </p>
                   </div>
 
-                  <div className="flex flex-col gap-[20px] items-end w-full">
+                  <div className="flex flex-col gap-[20px] w-full">
                     <label className="block text-md font-normal mb-1">
                       <h4 className="font-semibold text-[20px]">
                         Prepared For:

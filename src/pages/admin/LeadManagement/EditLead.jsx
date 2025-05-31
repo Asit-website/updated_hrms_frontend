@@ -426,7 +426,7 @@ const EditLead = () => {
                   </div>
 
                   <div className="flex flex-col lg:flex-row items-center gap-5">
-                    <div className="max-w-1/2 w-full">
+                    <div className="max-w-1/2 w-[50%]">
                       <label htmlFor="" className="block text-md font-normal mb-1">Mobile</label>
                       <input
                         className="w-full border rounded p-2"
@@ -434,6 +434,19 @@ const EditLead = () => {
                         name="Mobile"
                         onChange={changeHandler}
                         type="text"
+                      />
+                    </div>
+ <div className="max-w-1/2  ">
+                      <label className="jpo block text-md font-normal mb-1" htmlFor="">
+                        Email Opt Out
+                      </label>
+                      <input
+                        className="seng border rounded p-2"
+                        value={formdata.EmailOptOut}
+                        name="EmailOptOut"
+                        onChange={changeHandler}
+
+                        type="checkbox"
                       />
                     </div>
 
@@ -529,25 +542,10 @@ const EditLead = () => {
                     </div>
                   </div>
 
-                  <div className="flex flex-col lg:flex-row items-center gap-5">
-                    <div className="max-w-1/2 w-full max-w-1/2 w-full11">
-                      <label className="jpo block text-md font-normal mb-1" htmlFor="">
-                        Email Opt Out
-                      </label>
-                      <input
-                        className="seng w-full border rounded p-2"
-                        value={formdata.EmailOptOut}
-                        name="EmailOptOut"
-                        onChange={changeHandler}
-
-                        type="checkbox"
-                      />
-                    </div>
-
-                  </div>
+                 
 
                   <div className="flex flex-col lg:flex-row items-center gap-5">
-                    <div className="max-w-1/2 w-full">
+                    <div className="max-w-1/2 w-[50%]">
                       <label htmlFor="" className="block text-md font-normal mb-1">Secondary Email</label>
                       <input
                         className="w-full border rounded p-2"
@@ -557,11 +555,7 @@ const EditLead = () => {
                         type="email"
                       />
                     </div>
-
-                  </div>
-
-                  <div className="flex flex-col lg:flex-row items-center gap-5">
-                    <div className="max-w-1/2 w-full">
+ <div className="max-w-1/2 w-[50%]">
                       <label htmlFor="" className="block text-md font-normal mb-1">Date</label>
                       <input
                         className="w-full border rounded p-2"
@@ -571,8 +565,9 @@ const EditLead = () => {
                         type="date"
                       />
                     </div>
-                    <div className="max-w-1/2 w-full"></div>
                   </div>
+
+                 
                 </div>
               </div>
 

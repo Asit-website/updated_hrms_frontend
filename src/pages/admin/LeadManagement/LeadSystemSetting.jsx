@@ -492,7 +492,7 @@ const LeadSystemSetting = () => {
                 </div>
 
                 <div className="flex flex-col lg:flex-row w-full gap-[30px] py-5">
-                  <div className="max-w-[100%] lg:max-w-[300px] w-full rounded-[12px] bg-white">
+                  <div className="max-w-[100%] lg:max-w-[300px] rounded-[12px] border border-[#E8E9EB] bg-white px-5 pt-5 pb-0 w-full">
                     {sideBar?.map((item, index) => (
                       <div
                         key={index}
@@ -752,7 +752,7 @@ const LeadSystemSetting = () => {
                                 </tr>
                               ) : (
                                 allSource?.map((item, index) => (
-                                  <tr key={index} className="bg-white ">
+                                  <tr key={index} className="bg-white border-b">
                                     <td className="px-6 py-4 text-gray-800">
                                       {item?.name}
                                     </td>

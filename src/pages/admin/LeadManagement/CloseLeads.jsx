@@ -115,7 +115,7 @@ const CloseLeads = () => {
             <div className="flex flex-col xl:flex-row items-center justify-between">
                 <div>
                     <div className="my-5 flex gap-5 items-center">
-                        <div className="flex items-center gap-4 w-[285px] h-12 px-4 py-2 rounded-[15px] bg-white border border-[#D0D4DC]">
+                        <div className="flex items-center gap-4 w-[285px] h-12 px-4 py-2 rounded-[15px] bg-white border border-black">
                          
                            <input
                            className='w-[288px] h-[46px] px-4 py-2 gap-2  border-none text-[#1f2021] outline-none text-sm font-normal leading-5 tracking-[0.0025em] text-left'

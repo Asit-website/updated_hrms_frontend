@@ -660,7 +660,7 @@ const ImportLead = () => {
               
 
                 <div className="lTITL">
-                  <h2 className="text-[#101820] text-2xl font-semibold leading-8 text-left">
+                  <h2 className="text-[#101820] text-2xl font-semibold leading-8 text-left pl-6">
                     {data?.FirstName} {data?.LastName}
                   </h2>
                  
@@ -843,13 +843,13 @@ const ImportLead = () => {
 
                 <div className="flex justify-between secondWRap">
                   <p>
-                    Description: <span>{data?.DescriptionInfo}</span>
+                   <span className="font-semibold"> Description:</span> <span>{data?.DescriptionInfo}</span>
                   </p>
                 </div>
               </div>
 
               {/* second  third  */}
-              <div className="flex flex-col gap-6 mt-5 bg-white px-[30px] py-5 bg-white rounded-lg shadow p-2">
+              <div className="flex flex-col gap-6 mt-5  px-[30px] py-5 bg-white rounded-lg shadow p-2">
                 <div className="flex flex-col w-full gap-6">
                   <h2 className="text-[16px] font-bold leading-6 tracking-[0.0015em] text-left text-[#101820]">Lead Status</h2>
 
@@ -878,6 +878,7 @@ const ImportLead = () => {
                   <label className="flex flex-col gap-2">
                     <p>Note:</p>
                     <textarea
+                    className="w-full border-black border"
                       value={Note}
                       onChange={(e) => {
                         setNote(e.target.value);

@@ -257,7 +257,7 @@ const EmployeeManagement = () => {
 
 
                 <p className="h-full w-[1px] bg-[#B3CBF7]" />
-                <select name="employeeType" className="employetypeselect" onChange={filterHandler} id="">
+                <select name="employeeType" className="employetypeselect bg-transparent border-0 outline-none w-[150px] text-[14px] font-normal text-[#0F141C]" onChange={filterHandler} id="">
                   <option value="Employee Type">Employee Type</option>
                   <option value="Full-time Employees">Full-time Employees</option>
                   <option value="Intern Employees">Intern Employees</option>
@@ -292,7 +292,10 @@ const EmployeeManagement = () => {
                     <thead className="bg-white font-semibold">
                       <tr>
                         <th scope="col" className="text-left font-bold text-gray-900 py-3 px-4 border-b border-gray-200 whitespace-nowrap ">
-                          ID
+                          SR/NO
+                        </th>
+                         <th scope="col" className="text-left font-bold text-gray-900 py-3 px-4 border-b border-gray-200 whitespace-nowrap ">
+                           EMPLOYEE CODE
                         </th>
                         <th scope="col" className="text-left font-bold text-gray-900 py-3 px-4 border-b border-gray-200 whitespace-nowrap">
                           EMPLOYEE NAME
@@ -323,6 +326,7 @@ const EmployeeManagement = () => {
                             <th scope="row" className="px-6 py-4 text-gray-800"><span className="index cursor-pointer">
                               {(currentPage - 1) * itemsPerPage + index + 1}
                             </span> </th>
+                              <td className="px-3 py-4 taskAns">KDS{item?.employeeCode}</td>
                             <td className="px-6 py-4 text-gray-800">{item?.fullName}</td>
                             <td className="px-6 py-4 text-gray-800">{item?.email}</td>
                             <td className="px-6 py-4 text-gray-800">{item?.department}</td>

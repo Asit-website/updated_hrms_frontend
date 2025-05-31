@@ -413,7 +413,7 @@ const MyLead = () => {
               </div>
 
               <div className="bg-grey rounded-xl border-2">
-                <div className="w-full border-gray-200 bg-white border overflow-x-scroll md:overflow-visible">
+                <div className="w-full border-gray-200 bg-white border overflow-x-scroll xl:overflow-visible">
                   <table className="w-full text-sm text-gray-700 overflow-x-auto md:overflow-visible">
                     <thead className="bg-white font-semibold">
                       <tr>
@@ -455,23 +455,24 @@ const MyLead = () => {
                             {console.log(currentItems, currentFilteredItems)}
                           </td>
 
-                          <td className="px-6 py-4 text-gray-800">{item?.Company}</td>
+                          <td className="px-2 py-4 text-gray-800">{item?.Company}</td>
                           <td className="px-6 py-4 text-gray-800">
                             {item?.FirstName} {item?.LastName}
                           </td>
 
-                          <td className="px-6 py-4 text-gray-800">{item?.Website}</td>
+                          <td className=" text-gray-800">{item?.Website}</td>
 
-                          <td scope="col" className="px-6 py-4 text-gray-800">
+                          <td scope="col" className="text-gray-800">
                             <div
                               scope="col"
-                              className={`statussame 
-                              ${item?.LeadStatus === "Connected" && "connected"} 
-                              ${item?.LeadStatus == "Nurturing" && "Nurturing"} ${item?.LeadStatus == "Qualified" && "Qualified"} 
-                              ${item?.LeadStatus == "Unqualified" && "Unqualified"}  ${item?.LeadStatus == "Converted" && "Converted"}
-                               ${item?.LeadStatus == "Not Converted" && "Converteds"}
-                               ${item?.LeadStatus == "Junk" && "Junk"}
-                               ${item?.LeadStatus === "New" && "Newleadstatus"}
+                              className={`flex items-center justify-center rounded-[27px] h-[28px] text-[12px] font-normal
+                                 ${item?.LeadStatus === "Response Awaited" && "text-white bg-[#FD7E14]"} 
+                              ${item?.LeadStatus === "Connected" && "bg-[#20c997] text-white"} 
+                              ${item?.LeadStatus == "Nurturing" && "text-white bg-[#6F42C1]"} ${item?.LeadStatus == "Qualified" && "text-white bg-[#28A745]"} 
+                              ${item?.LeadStatus == "Unqualified" && "text-white bg-[#6C757D]"}  ${item?.LeadStatus == "Converted" && "text-white bg-[#218838]"}
+                               ${item?.LeadStatus == "Not Converted" && "text-white bg-[#DC3545]"}
+                                ${item?.LeadStatus == "Junk" && "text-white bg-[#343A40]"}
+                               ${item?.LeadStatus === "New" && "text-white bg-[#007BFF]"}
                               
                                `}
                             >
@@ -491,11 +492,11 @@ const MyLead = () => {
                                 }}
                                 className="px-6 py-4 text-gray-800"
                               >
-                                <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746536583/actions_cwfbva.png" alt="" />
+                                <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746536583/actions_cwfbva.png" alt="" className="cursor-pointer" />
                               </td>
 
                               {index === currView && (
-                                <div ref={ref} className="absolute top-[-90px] min-w-[150px] h-fit border-t border-[#E3E3E3] flex flex-col shadow-[0_4px_12px_0px_#1A1A1A33] py-[8px] gap-[5px] rounded-tl-[8px] rounded-tr-none rounded-br-none rounded-bl-none z-[1000] bg-white right-[75px]">
+                                <div ref={ref} className="absolute top-[-90px] min-w-[150px] h-fit border-t border-[#E3E3E3] flex flex-col shadow-[0_4px_12px_0px_#1A1A1A33] py-[8px] gap-[5px]  rounded-tr-none rounded-br-none rounded-bl-none z-[1000] bg-white right-[75px]">
                                   <div className="items-center w-full px-4  text-sm flex gap-2 text-gray-700 hover:bg-gray-100 cursor-pointer" onClick={() => navigate("/adminDash/editLead", { state: item })}>
 
                                     <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746260260/Vector_zah5tt.svg" alt="Edit" />
@@ -507,7 +508,7 @@ const MyLead = () => {
                                   }}>
 
                                     <FaRegEye className="text-[18px]" />
-                                    <p className="text-sm text-gray-700 hover:bg-gray-100">View</p>
+                                    <p className="text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">View</p>
                                   </div>
                                   <hr />
                                   <div className="items-center w-full px-4 text-sm flex gap-2 text-red-600 hover:bg-red-100 cursor-pointer" onClick={() => {
@@ -515,7 +516,7 @@ const MyLead = () => {
                                   }}>
 
                                     <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746260280/delete_sgefhv.png" alt="delete" />
-                                    <p className="text-sm text-gray-700 hover:bg-gray-100">Delete</p>
+                                    <p className="text-sm text-gray-700 ">Delete</p>
                                   </div>
                                   <hr />
                                   <div

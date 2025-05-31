@@ -475,7 +475,7 @@ const SetSallary = () => {
 
                                 <div className="w-full mx-[10px]
 ">
-                                    <div className="w-full max-w-full rounded-[20px] h-[275px] max-h-full bg-white
+                                    <div className="w-full max-w-full rounded-[20px] h-[275px] max-h-full bg-white bg-grey border-2
 ">
                                         <div className="flex items-center justify-between border-b border-b-[#E8E9EB] px-[20px] py-[15px]">
                                             <div className="flex items-center
@@ -511,8 +511,7 @@ const SetSallary = () => {
 
 
                                     </div>
-                                    <div className="w-full max-w-full rounded-[20px] h-[275px] max-h-full bg-white
-mt-5">
+                                    <div className="w-full max-w-full rounded-[20px] h-[275px] max-h-full bg-white bg-grey border-2 mt-5">
                                         <div className="flex items-center justify-between border-b border-b-[#E8E9EB] px-[20px] py-[15px]
 ">
                                             <div className="flex items-center
@@ -597,8 +596,7 @@ mt-5">
                                 </div>
 
                                 <div className="!w-full mx-[10px]">
-                                    <div className="w-full max-w-full rounded-[20px] h-[275px] max-h-full bg-white mt-5
-">
+                                    <div className="w-full max-w-full rounded-[20px] h-[275px] max-h-full bg-white bg-grey border-2 mt-5 lg:mt-0">
                                         <div className="flex items-center justify-between border-b border-b-[#E8E9EB] px-[20px] py-[15px]
 ">
                                             <div className="flex items-center
@@ -701,8 +699,7 @@ mt-5">
                                         </div>
                                     </div>
 
-                                    <div className="w-full max-w-full rounded-[20px] h-[275px] max-h-full bg-white
-mt-5">
+                                    <div className="w-full max-w-full rounded-[20px] h-[275px] max-h-full bg-white bg-grey border-2 mt-5">
                                         <div className="flex items-center justify-between border-b border-b-[#E8E9EB] px-[20px] py-[15px]
 ">
                                             <div className="flex items-center
@@ -1136,7 +1133,7 @@ mt-5">
                                             {/* Modal body */}
                                             <div className="p-4 md:p-5">
                                                 <form className="space-y-4 kinh" action="#">
-                                                    <div className=" flex items-center fgg">
+                                                    <div className=" flex items-center fgg mt-5 gap-3">
                                                         <div className="w-full">
                                                             <label
                                                                 htmlFor="email"

@@ -43,9 +43,9 @@ const LeaveEmployee = () => {
               <div className={`${data.length > 0 ? "" : "flex w-full h-[70vh] items-center justify-center"}`}>
                 {
                   data.length > 0 ? (
-                    <main className="grid gap-7 [grid-template-columns:repeat(auto-fit,minmax(275px,1fr))] mt-4">
+                    <main className="grid gap-5 grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 mt-4">
                       {data?.length > 0 && data?.map((employ, index) => (
-                        <div key={index} className="rounded-[10px] bg-white flex flex-col items-center py-4 px-4 gap-[15px] max-w-[350px] w-full">
+                        <div key={index} className="rounded-[10px] bg-white flex flex-col items-center py-4 px-4 gap-[15px] max-w-[350px] w-full border border-black">
                           <div className="flex flex-col items-center gap-[10px]">
                             <img
                               className="w-[65px] h-[65px] rounded-full"
