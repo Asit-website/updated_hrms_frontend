@@ -266,7 +266,7 @@ const AdminClientDashboard = () => {
                                 </h1>
                             </nav>
 
-                            <div className="relative w-full bg-white overflow-x-scroll md:overflow-visible">
+                            <div className="relative w-full bg-white overflow-x-scroll md:overflow-visible bg-grey rounded-xl border-2">
                                 <table className="w-full text-sm text-gray-700">
                                     <thead className="bg-white font-semibold">
                                         <tr>
@@ -413,7 +413,7 @@ const AdminClientDashboard = () => {
                                 <label className="block text-md font-normal mb-1">
                                     <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Name</p>
                                     <input
-                                       className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                       className="w-full border rounded p-2 text-sm font-normal "
                                         name="Name"
                                         value={formdata.Name}
                                         onChange={changeHandler}
@@ -439,7 +439,7 @@ const AdminClientDashboard = () => {
                                     </div>
 
                                     <select
-                                     className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                     className="w-full border rounded p-2 text-sm font-normal "
                                         name="Members"
                                         value=''
                                         onChange={changeHandler2}
@@ -457,7 +457,7 @@ const AdminClientDashboard = () => {
                                 <label className="block text-md font-normal mb-1">
                                     <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Status </p>
                                     <select
-                                     className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                     className="w-full border rounded p-2 text-sm font-normal "
                                         name="Status"
                                         value={formdata.Status}
                                         onChange={changeHandler}
@@ -472,7 +472,7 @@ const AdminClientDashboard = () => {
                                 <label  className="block text-md font-normal mb-1">
                                     <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Start Date</p>
                                     <input
-                                      className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                      className="w-full border rounded p-2 text-sm font-normal "
                                         name="startDate"
                                         value={formdata.startDate}
                                         onChange={changeHandler}
@@ -482,7 +482,7 @@ const AdminClientDashboard = () => {
                                 <label className="block text-md font-normal mb-1">
                                     <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Due Date</p>
                                     <input
-                                      className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                      className="w-full border rounded p-2 text-sm font-normal "
                                         name="DueDate"
                                         value={formdata.DueDate}
                                         onChange={changeHandler}
@@ -494,7 +494,7 @@ const AdminClientDashboard = () => {
                                 <label className="block text-md font-normal mb-1">
                                     <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Description</p>
                                     <textarea
-                                      className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                      className="w-full border rounded p-2 text-sm font-normal "
                                         type="text"
                                         name="Description"
                                         value={formdata.Description}

@@ -686,14 +686,14 @@ const EmployeeManage = ({
          
           <div className="relative w-full p-[32px_20px_32px_20px]">
             {/* first  */}
-            <section className="flex items-center justify-between">
+            <section className="flex flex-col lg:flex-row items-center justify-between">
               {/* left side  */}
               <h2 className="text-[#101820] font-inter text-2xl font-semibold leading-8 text-left">{id ? "Edit" : "Add"} Employee </h2>
 
               {/* right side  */}
               <div className="flex gap-4 items-center">
                 <NavLink to="/adminDash/HRM/employeeManagement">
-                  <button className="w-[102px] h-[40px] flex gap-[10px] rounded-[10px] border">
+                  <button className="w-[102px] h-[40px] flex gap-[10px] rounded-[10px] border mt-2 lg:mt-0">
                     <span className="w-[102px] h-[40px] flex gap-[10px] rounded-[10px] border border-[#0B56E4] bg-gradient-to-br from-[#D1E8FD] via-[#EDEFFF] to-[#EDEFFF] items-center justify-center text-[#0B56E4]">Cancel</span>
                   </button>
                 </NavLink>
@@ -712,7 +712,7 @@ const EmployeeManage = ({
 
             <div className="flex-col">
               {/* first sec */}
-              <div className="flex items-center gap-6 border-t border-gray-200 rounded-lg mt-10 bg-white p-3 overflow-x-scroll lg:overflow-x-hidden mr-2">
+              <div className="flex items-center gap-6 border-gray-200 rounded-lg mt-10 bg-white p-3 overflow-x-scroll lg:overflow-x-hidden mr-2">
                 {item.map((e, index) => (
                   <div
                     onClick={() => setCurrEmp(index)}
@@ -733,9 +733,9 @@ const EmployeeManage = ({
               >
                 <div className="flex flex-col gap-8">
                   <div className="flex flex-col lg:flex-row gap-5 w-full justify-between">
-                    <div className="bg-white max-w-[100%] lg:max-w-[48%] w-full p-4 rounded-lg">
+                    <div className="bg-white max-w-[100%] lg:max-w-[48%] w-full p-4 rounded-lg shadow">
                     
-                      <div className="flex items-center justify-between px-5">
+                      <div className="flex items-center justify-between ">
                         <h3 className="text-[#101820] text-[16px] font-bold leading-[24px] tracking-[0.0015em] text-left">Personal Detail</h3>
                       </div>
                       <hr className="mt-5 opacity-80" />
@@ -743,9 +743,9 @@ const EmployeeManage = ({
                         <div>
                           <div className="flex flex-col gap-[20px] mt-[10px] mb-[10px]">
                             <label className="block text-md font-normal mb-1">
-                              <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Full Name <span className="text-red-600">*</span></p>
+                              <p>Full Name <span className="text-red-600">*</span></p>
                               <input
-                              className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                              className="w-full border rounded p-2 text-sm font-normal "
                                 onChange={(e) => {
                                   handleChange(e, "form1");
                                 }}
@@ -758,10 +758,10 @@ const EmployeeManage = ({
                             </label>
 
                             <label htmlFor="password" className="block text-md font-normal mb-1">
-                              <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Password <span className="text-red-600">*</span></p>
+                              <p>Password <span className="text-red-600">*</span></p>
 
                               <input
-                              className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                              className="w-full border rounded p-2 text-sm font-normal "
                                 onChange={(e) => {
                                   handleChange(e, "form1");
                                 }}
@@ -774,10 +774,10 @@ const EmployeeManage = ({
                             </label>
 
                             <label htmlFor="dob" className="block text-md font-normal mb-1">
-                              <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Date of Birth <span className="text-red-600">*</span></p>
+                              <p>Date of Birth <span className="text-red-600">*</span></p>
 
                               <input
-                              className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                              className="w-full border rounded p-2 text-sm font-normal "
                                 onChange={(e) => {
                                   handleChange(e, "form2");
                                 }}
@@ -800,7 +800,7 @@ const EmployeeManage = ({
                                 <input
                                   type="text"
                                   id="pan"
-                                  className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                  className="w-full border rounded p-2 text-sm font-normal "
                                   // required
                                   name="pan"
                                   value={value3?.pan}
@@ -814,14 +814,14 @@ const EmployeeManage = ({
                               <div className=" w-full try">
                                 <label
                                   for="adhar"
-                                  className="block text-md font-normal mb-1"
+                                  className="block text-md font-normal mb-1 pt-4"
                                 >
                                   Aadhaar No. <span className="text-red-600">*</span>
                                 </label>
                                 <input
                                   type="text"
                                   id="adhar"
-                                  className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                  className="w-full border rounded p-2 text-sm font-normal "
                              
                                   // required
                                   name="adhar"
@@ -847,7 +847,7 @@ const EmployeeManage = ({
                                 <input
                                   type="text"
                                   id="father"
-                                 className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                 className="w-full border rounded p-2 text-sm font-normal "
                                   // required
                                   name="father"
                                   value={value3?.father}
@@ -858,7 +858,7 @@ const EmployeeManage = ({
                                 />
                               </div>
 
-                              <div className=" w-full try">
+                              <div className=" w-full pt-5 try">
                                 <label
                                   for="Mother"
                                   className="block text-md font-normal mb-1"
@@ -868,7 +868,7 @@ const EmployeeManage = ({
                                 <input
                                   type="text"
                                   id="Mother"
-                                 className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                 className="w-full border rounded p-2 text-sm font-normal "
                                   // required
                                   name="Mother"
                                   value={value3?.Mother}
@@ -891,7 +891,7 @@ const EmployeeManage = ({
                                 <input
                                   type="number"
                                   id="mobile"
-                                className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                className="w-full border rounded p-2 text-sm font-normal "
                                   // required
                                   name="mobile"
                                   value={value2?.mobile}
@@ -902,7 +902,7 @@ const EmployeeManage = ({
                                 />
                               </div>
 
-                              <div className=" w-full try">
+                              <div className=" w-full pt-5 try">
                                 <label
                                   for="Martial"
                                   className="block text-md font-normal mb-1"
@@ -910,7 +910,7 @@ const EmployeeManage = ({
                                   Marital status
                                 </label>
                                 <select
-                                  className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                  className="w-full border rounded p-2 text-sm font-normal"
                                   name="Martial"
                                   id="Martial"
                                   value={value3?.Martial}
@@ -927,7 +927,7 @@ const EmployeeManage = ({
                             </div>
 
                             <label htmlFor="" className="block text-md font-normal mb-1">
-                              <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Department <span className="text-red-600">*</span></p>
+                              <p>Department <span className="text-red-600">*</span></p>
 
                               <select
                                 onChange={(e) => {
@@ -936,7 +936,7 @@ const EmployeeManage = ({
                                 name="department"
                                 value={value1?.department}
                                 disabled={value1.status}
-                                className="department_test w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                className="department_test w-full border rounded p-2 text-sm font-normal "
                               >
                                 <option value={""}>Select Department</option>
                                 {departments?.map((e, index) => {
@@ -950,7 +950,7 @@ const EmployeeManage = ({
                             </label>
 
                             <label htmlFor="" className="block text-md font-normal mb-1">
-                              <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Employee Code <span className="text-red-600">*</span></p>
+                              <p>Employee Code <span className="text-red-600">*</span></p>
 
                               <input
                                 onChange={(e) => {
@@ -961,11 +961,11 @@ const EmployeeManage = ({
                                 value={value1?.employeeCode}
                                 disabled={id ? true : false}
                                 placeholder="Enter Employee Code"
-                                className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                className="w-full border rounded p-2 text-sm font-normal "
                               />
                             </label>
                             <label htmlFor="" className="block text-md font-normal mb-1">
-                              <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Company Email <span className="text-red-600">*</span></p>
+                              <p>Company Email <span className="text-red-600">*</span></p>
 
                               <input
                                 onChange={(e) => {
@@ -973,8 +973,8 @@ const EmployeeManage = ({
                                   handleValidation(e.target.value);
                                 }}
                               
-                                className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
-  emailisValid === false && value1.email !== "" ? "border-red-500 text-red-600" : ""
+                                className={`w-full border rounded p-2 text-sm font-normal  ${
+  emailisValid === false && value1.email !== "" ? "border-red-500" : ""
 }`}
 
                                 type="email"
@@ -989,7 +989,7 @@ const EmployeeManage = ({
                             </label>
 
                             <label htmlFor="" className="block text-md font-normal mb-1">
-                              <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Reporting Manager <span className="text-red-600">*</span></p>
+                              <p>Reporting Manager <span className="text-red-600">*</span></p>
 
                               <select
                                 onChange={(e) => {
@@ -998,7 +998,7 @@ const EmployeeManage = ({
                                 name="reportingManager"
                                 value={value1?.reportingManager}
                                 disabled={value1.status}
-                                className="department_test w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                className="department_test w-full border rounded p-2 text-sm font-normal "
                               >
                                 <option>Reporting Manager</option>
                                 {employee?.map((val, index) => {
@@ -1013,7 +1013,7 @@ const EmployeeManage = ({
                             </label>
 
                             <label htmlFor="" className="block text-md font-normal mb-1">
-                              <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Designation <span className="text-red-600">*</span></p>
+                              <p>Designation <span className="text-red-600">*</span></p>
 
                               <select
                                 onChange={(e) => {
@@ -1022,7 +1022,7 @@ const EmployeeManage = ({
                                 name="designation"
                                 value={value1?.designation}
                                 disabled={value1.status}
-                                className="department_test w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                className="department_test w-full border rounded p-2 text-sm font-normal "
                               >
                                 <option>Designation</option>
                                 {designations?.map((e, index) => {
@@ -1036,7 +1036,7 @@ const EmployeeManage = ({
                             </label>
 
                             <label htmlFor="" className="block text-md font-normal mb-1">
-                              <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Role <span className="text-red-600">*</span></p>
+                              <p>Role <span className="text-red-600">*</span></p>
 
                               <select
                                 onChange={(e) => {
@@ -1045,7 +1045,7 @@ const EmployeeManage = ({
                                 name="PermissionRole"
                                 value={value1?.PermissionRole}
                                 disabled={value1.status}
-                                className="department_test w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                className="department_test w-full border rounded p-2 text-sm font-normal "
                               >
                                 <option selected>Select Role</option>
                                 {PermRole?.map((e, index) => {
@@ -1059,7 +1059,7 @@ const EmployeeManage = ({
                             </label>
 
                             <label htmlFor="" className="block text-md font-normal mb-1">
-                              <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Joining Date <span className="text-red-600">*</span></p>
+                              <p>Joining Date <span className="text-red-600">*</span></p>
 
                               <input
                                 onChange={(e) => {
@@ -1069,7 +1069,7 @@ const EmployeeManage = ({
                                 name="joiningDate"
                                 value={value1?.joiningDate}
                                 disabled={value1.status}
-                                className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                className="w-full border rounded p-2 text-sm font-normal "
                               />
                             </label>
 
@@ -1077,14 +1077,14 @@ const EmployeeManage = ({
                               for="email1"
                               className="block text-md font-normal mb-1"
                             >
-                              <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]"> Personal Email Address <span className="text-red-600">*</span></p>
+                              <p> Personal Email Address <span className="text-red-600">*</span></p>
                               <input
                                 type="email"
                                 id="email1"
                             className={`w-full rounded-lg p-2 text-sm font-normal ${
     emailisValid1 === false && value2.email1 !== ""
-      ? "emailvalidinput border text-gray-500"
-      : "border text-gray-500"
+      ? "emailvalidinput border "
+      : "border "
   }`}
                                 // required
                                 name="email1"
@@ -1101,7 +1101,7 @@ const EmployeeManage = ({
                               for="gender"
                               className="block text-md font-normal mb-1 "
                             >
-                              <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]"> Gender <span className="text-red-600">*</span></p>
+                              <p> Gender <span className="text-red-600">*</span></p>
                               <select
                                 onChange={(e) => {
                                   handleChange(e, "form2");
@@ -1109,7 +1109,7 @@ const EmployeeManage = ({
                                 name="gender"
                                 value={value2?.gender}
                                 disabled={value2.status}
-                                className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                className="w-full border rounded p-2 text-sm font-normal "
                               >
                                 <option>gender</option>
                                 <option>Male</option>
@@ -1133,7 +1133,7 @@ const EmployeeManage = ({
                                 <input
                                   type="number"
                                   id="leaveNumber"
-                                  className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                  className="w-full border rounded p-2 text-sm font-normal "
                                   name="leaveNumber"
                                   value={value2?.leaveNumber}
                                   max="15"
@@ -1147,8 +1147,8 @@ const EmployeeManage = ({
                       </div>
                     </div>
 
-                    <div className="bg-white p-[15px] rounded-[10px] max-w-[100%] lg:max-w-[49%] w-full">
-                      <div className="flex items-center justify-between px-5">
+                    <div className="bg-white p-[15px] rounded-[10px] max-w-[100%] lg:max-w-[49%] w-full shadow">
+                      <div className="flex items-center justify-between">
                         <h3 className="text-[#101820] text-[16px] font-bold leading-[24px] tracking-[0.0015em] text-left">Address Detail</h3>
                       </div>
                       <hr className="mt-5 opacity-80" />
@@ -1158,7 +1158,12 @@ const EmployeeManage = ({
                         
                           <div className="flex w-full">
                             <div className=" w-full try">
-                            
+                              <label
+                                for="currentState"
+                                className="block text-md font-normal mb-1 "
+                              >
+                                Current Residence Address
+                              </label>
                               <input
                                 type="text"
                                 id="currentAddress"
@@ -1172,7 +1177,7 @@ const EmployeeManage = ({
                                     residence: prev.status ? val : prev.residence,
                                   }));
                                 }}
-                                className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                className="w-full border rounded p-2 text-sm font-normal "
                               />
 
 
@@ -1189,7 +1194,7 @@ const EmployeeManage = ({
 
                             
                               <select
-                                className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                className="w-full border rounded p-2 text-sm font-normal "
                                 name="currentState"
                                 value={value3?.currentState}
                                 id="currentState"
@@ -1255,7 +1260,7 @@ const EmployeeManage = ({
                               <input
                                 type="text"
                                 id="currentCity"
-                                className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                className="w-full border rounded p-2 text-sm font-normal "
                                 // required
                                 name="currentCity"
                                 value={value3?.currentCity}
@@ -1275,7 +1280,7 @@ const EmployeeManage = ({
                               <input
                                 type="text"
                                 id="currentPin"
-                                className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                className="w-full border rounded p-2 text-sm font-normal "
                                 // required
                                 name="currentPin"
                                 value={value3?.currentPin}
@@ -1287,7 +1292,8 @@ const EmployeeManage = ({
                             </div>
                           </div>
 
-                          <label className="block text-md font-normal mb-1">
+                       <div className="pt-5 pb-5">
+                           <label className="text-md font-normal mb-1">
                             <input
                               type="checkbox"
                               checked={value3.currentAddressStatus}
@@ -1302,10 +1308,11 @@ const EmployeeManage = ({
                                   perPin: checked ? prev.currentPin : "",
                                 }));
                               }}
-                              className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                              className="border rounded p-2 text-sm font-normal "
                             />
-                            <span className="text-sm">Permanent address same as current</span>
+                            <span className="p-4">Permanent address same as current</span>
                           </label>
+                       </div>
 
                           <div className="flex w-full">
                             <div className=" w-full try">
@@ -1316,22 +1323,12 @@ const EmployeeManage = ({
                                 </label>
                                 <div className="flex items-center"></div>
                               </div>
-                              {/* <input
-                                type="text"
-                                id="residence"
-                                name="residence"
-                                value={value3?.residence}
-                                className=" rounded-lg w-full"
-                                onChange={(e) => {
-                                  handleChange(e, "form3");
-                                }}
-                                disabled={value3.status}
-                              /> */}
+                             
                               <input
                                 type="text"
                                 name="residence"
                                 id="residence"
-                                className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                className="w-full border rounded p-2 text-sm font-normal "
                                 value={value3?.residence}
                                 disabled={value3?.currentAddressStatus}
                                 onChange={(e) => handleChange(e, "form3")}
@@ -1347,7 +1344,7 @@ const EmployeeManage = ({
                               Permanent state
                             </label>
                             <select
-                              className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                              className="w-full border rounded p-2 text-sm font-normal "
                               name="perState"
                               value={value3?.perState}
                               id="perState"
@@ -1412,7 +1409,7 @@ const EmployeeManage = ({
                               type="text"
                               id="perCity"
                               name="perCity"
-                              className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                              className="w-full border rounded p-2 text-sm font-normal "
                               value={value3?.perCity}
                               disabled={value3?.currentAddressStatus}
                               onChange={(e) => handleChange(e, "form3")}
@@ -1429,7 +1426,7 @@ const EmployeeManage = ({
                             <input
                               type="text"
                               id="perPin"
-                              className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                              className="w-full border rounded p-2 text-sm font-normal "
                               // required
                               name="perPin"
                               value={value3?.perPin}
@@ -1450,7 +1447,7 @@ const EmployeeManage = ({
                                 Nationality
                               </label>
                               <select
-                                className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                className="w-full border rounded p-2 text-sm font-normal "
                                 name="nationality"
                                 id="nationality"
                                 value={value3?.nationality}
@@ -1473,8 +1470,8 @@ const EmployeeManage = ({
                   <div className="flex flex-col lg:flex-row w-full gap-5 justify-between">
                     {/* this is doc side  */}
 
-                    <div className="bg-white max-w-[100%] lg:max-w-[48%] w-full p-4 rounded-lg">
-                      <div className="flex items-center justify-between px-5">
+                    <div className="bg-white max-w-[100%] lg:max-w-[48%] w-full p-4 rounded-lg shadow">
+                      <div className="flex items-center justify-between">
                         <h3 className="text-[#101820] text-[16px] font-bold leading-[24px] tracking-[0.0015em] text-left">Documents</h3>
                       </div>
 
@@ -1486,15 +1483,15 @@ const EmployeeManage = ({
                         <div className="flex w-full gap-[10px] justify-between flex-col xl:flex-row">
                           {/* fist   */}
                           <div className="flex flex-col gap-[5px] w-full">
-                            <h4 className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Aadhar Card </h4>
+                            <h4 className="pt-2">Aadhar Card </h4>
 
-                            <div className="max-w-[252px] w-full h-[62px] rounded-[12px] border border-[#B7B7B7] flex items-center justify-evenly">
+                            <div className="max-w-[252px] w-full h-[62px] rounded-[12px] border border-[#B7B7B7] flex items-center justify-evenly cursor-pointer">
                               <img className="h-full w-full object-cover rounded-[5px] max-w-[29px] max-h-[29px]" src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747395640/upload-file_eeafaw.png" alt="" />
 
-                              <p className="text-[14px] font-medium leading-[24px] tracking-[0.005em] text-[#1B2533] underline">Click to upload</p>
+                              <p className="text-[14px] font-medium leading-[24px] tracking-[0.005em] text-[#1B2533] underline cursor-pointer">Click to upload</p>
 
                               <input
-                                className="absolute opacity-0 bg-red-600 w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                className="absolute opacity-0 bg-red-600 w-full border rounded p-2 text-sm font-normal  cursor-pointer"
                                 name="adharCard"
                                 type="file"
                                 onChange={(e) =>
@@ -1533,7 +1530,7 @@ const EmployeeManage = ({
                           {/* second */}
 
                           <div className="flex flex-col gap-[5px] w-full">
-                            <h4 className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">PAN Card</h4>
+                            <h4 className="pt-2">PAN Card</h4>
 
                             <div className="max-w-[252px] w-full h-[62px] rounded-[12px] border border-[#B7B7B7] flex items-center justify-evenly try">
                               <img className="h-full w-full object-cover rounded-[5px] max-w-[29px] max-h-[29px]" src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747395640/upload-file_eeafaw.png" alt="" />
@@ -1541,7 +1538,7 @@ const EmployeeManage = ({
                               <p className="text-[14px] font-medium leading-[24px] tracking-[0.005em] text-[#1B2533] underline">Click to upload</p>
 
                               <input
-                                className="absolute opacity-0 bg-red-600 w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                className="absolute opacity-0 bg-red-600 w-full border rounded p-2 text-sm font-normal "
                                 type="file"
                                 name="pancard"
                                 onChange={(e) => handleFileChange(e, "pancard")}
@@ -1581,7 +1578,7 @@ const EmployeeManage = ({
                         <div className="flex w-full gap-[10px] justify-between flex-col xl:flex-row">
                           {/* frist   */}
                           <div className="flex flex-col gap-[5px] w-full">
-                            <h4 className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">10th Certificate</h4>
+                            <h4 className="pt-2">10th Certificate</h4>
 
                             <div className="max-w-[252px] w-full h-[62px] rounded-[12px] border border-[#B7B7B7] flex items-center justify-evenly ">
                               <img className="h-full w-full object-cover rounded-[5px] max-w-[29px] max-h-[29px]" src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747395640/upload-file_eeafaw.png" alt="" />
@@ -1589,7 +1586,7 @@ const EmployeeManage = ({
                               <p className="text-[14px] font-medium leading-[24px] tracking-[0.005em] text-[#1B2533] underline">Click to upload</p>
 
                               <input
-                                className="absolute opacity-0 bg-red-600 w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                className="absolute opacity-0 bg-red-600 w-full border rounded p-2 text-sm font-normal "
                                 type="file"
                                 name="tenCert"
                                 onChange={(e) => handleFileChange(e, "tenCert")}
@@ -1624,7 +1621,7 @@ const EmployeeManage = ({
 
                           {/* second  */}
                           <div className="flex flex-col gap-[5px] w-full">
-                            <h4 className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">12th Certificate</h4>
+                            <h4 className="pt-2">12th Certificate</h4>
 
                             <div className="max-w-[252px] w-full h-[62px] rounded-[12px] border border-[#B7B7B7] flex items-center justify-evenly">
                               <img className="h-full w-full object-cover rounded-[5px] max-w-[29px] max-h-[29px]" src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747395640/upload-file_eeafaw.png" alt="" />
@@ -1632,7 +1629,7 @@ const EmployeeManage = ({
                               <p className="text-[14px] font-medium leading-[24px] tracking-[0.005em] text-[#1B2533] underline">Click to upload</p>
 
                               <input
-                                name="twevelCert w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                name="twevelCert w-full border rounded p-2 text-sm font-normal "
                                 onChange={(e) =>
                                   handleFileChange(e, "twevelCert")
                                 }
@@ -1672,14 +1669,14 @@ const EmployeeManage = ({
                           
 
                           <div className="flex flex-col gap-[5px] w-full">
-                            <h4 className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Cancelled Cheque</h4>
+                            <h4 className="pt-2">Cancelled Cheque</h4>
                             <div className="max-w-[252px] w-full h-[62px] rounded-[12px] border border-[#B7B7B7] flex items-center justify-evenly ">
                               <img className="h-full w-full object-cover rounded-[5px] max-w-[29px] max-h-[29px]" src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747395640/upload-file_eeafaw.png" alt="" />
 
                               <p className="text-[14px] font-medium leading-[24px] tracking-[0.005em] text-[#1B2533] underline">Click to upload</p>
 
                               <input
-                                className="absolute opacity-0 bg-red-600 w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                className="absolute opacity-0 bg-red-600 w-full border rounded p-2 text-sm font-normal "
                                 type="file"
                                 name="cancelCheque"
                                 onChange={(e) =>
@@ -1729,7 +1726,7 @@ const EmployeeManage = ({
                               {/* first   */}
 
                               <div className="flex flex-col gap-[5px] w-full">
-                                <h4 className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Relieving Letter</h4>
+                                <h4 className="pt-2">Relieving Letter</h4>
 
                                 <div className="max-w-[252px] w-full h-[62px] rounded-[12px] border border-[#B7B7B7] flex items-center justify-evenly try">
                                   <img className="h-full w-full object-cover rounded-[5px] max-w-[29px] max-h-[29px]" src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747395640/upload-file_eeafaw.png" alt="" />
@@ -1737,7 +1734,7 @@ const EmployeeManage = ({
                                   <p className="text-[14px] font-medium leading-[24px] tracking-[0.005em] text-[#1B2533] underline">Click to upload</p>
 
                                   <input
-                                    className="absolute opacity-0 bg-red-600 w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                    className="absolute opacity-0 bg-red-600 w-full border rounded p-2 text-sm font-normal "
                                     type="file"
                                     name="RelievingLetter"
                                     onChange={(e) =>
@@ -1778,7 +1775,7 @@ const EmployeeManage = ({
                               {/* second  */}
 
                               <div className="flex flex-col gap-[5px] w-full">
-                                <h4 className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Offer letter</h4>
+                                <h4 className="pt-2">Offer letter</h4>
 
                                 <div className="max-w-[252px] w-full h-[62px] rounded-[12px] border border-[#B7B7B7] flex items-center justify-evenly try">
                                   <img className="h-full w-full object-cover rounded-[5px] max-w-[29px] max-h-[29px]" src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747395640/upload-file_eeafaw.png" alt="" />
@@ -1787,7 +1784,7 @@ const EmployeeManage = ({
 
                                   <input
                                     name="OfferLetter"
-                                    className="absolute opacity-0 bg-red-600 w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                    className="absolute opacity-0 bg-red-600 w-full border rounded p-2 text-sm font-normal "
                                     type="file"
                                     onChange={(e) =>
                                       handleFileChange(e, "OfferLetter")
@@ -1829,7 +1826,7 @@ const EmployeeManage = ({
                               {/* first   */}
 
                               <div className="flex flex-col gap-[5px] w-full">
-                                <h4 className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Experience letter</h4>
+                                <h4 className="pt-2">Experience letter</h4>
 
                                 <div className="max-w-[252px] w-full h-[62px] rounded-[12px] border border-[#B7B7B7] flex items-center justify-evenly try">
                                   <img className="h-full w-full object-cover rounded-[5px] max-w-[29px] max-h-[29px]" src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747395640/upload-file_eeafaw.png" alt="" />
@@ -1837,7 +1834,7 @@ const EmployeeManage = ({
                                   <p className="text-[14px] font-medium leading-[24px] tracking-[0.005em] text-[#1B2533] underline">Click to upload</p>
 
                                   <input
-                                    className="absolute opacity-0 bg-red-600 w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                    className="absolute opacity-0 bg-red-600 w-full border rounded p-2 text-sm font-normal "
                                     type="file"
                                     name="ExperienceLetter"
                                     onChange={(e) =>
@@ -1882,8 +1879,8 @@ const EmployeeManage = ({
                     </div>
 
                     {/* this is backend acc side  */}
-                    <div className="bg-white p-[15px] rounded-[10px] max-w-[100%] lg:max-w-[49%] w-full">
-                      <div className="flex items-center justify-between px-5">
+                    <div className="bg-white p-[15px] rounded-[10px] max-w-[100%] lg:max-w-[49%] w-full shadow">
+                      <div className="flex items-center justify-between">
                         <h3 className="text-[#101820] text-[16px] font-bold leading-[24px] tracking-[0.0015em] text-left">Bank Account Information</h3>
                       </div>
 
@@ -1902,7 +1899,7 @@ const EmployeeManage = ({
                               <input
                                 type="text"
                                 id="SalaryPay"
-                                className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                className="w-full border rounded p-2 text-sm font-normal "
                                 name="SalaryPay"
                                 value={value5?.SalaryPay}
                                 onChange={(e) => {
@@ -1922,7 +1919,7 @@ const EmployeeManage = ({
                               <input
                                 type="text"
                                 id="SalaryBankName"
-                                className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                className="w-full border rounded p-2 text-sm font-normal "
                                 name="SalaryBankName"
                                 value={value5?.SalaryBankName}
                                 onChange={(e) => {
@@ -1943,7 +1940,7 @@ const EmployeeManage = ({
                               <input
                                 type="text"
                                 id="BeneficiaryName"
-                                className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                className="w-full border rounded p-2 text-sm font-normal "
                                 name="BeneficiaryName"
                                 value={value5?.BeneficiaryName}
                                 onChange={(e) => {
@@ -1985,7 +1982,7 @@ const EmployeeManage = ({
                               <input
                                 type="text"
                                 id="AccountNumber"
-                                className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                className="w-full border rounded p-2 text-sm font-normal "
                                 name="AccountNumber"
                                 value={value5?.AccountNumber}
                                 onChange={(e) => {
@@ -2005,7 +2002,7 @@ const EmployeeManage = ({
                               <input
                                 type="text"
                                 id="confirmAccount"
-                                className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                className="w-full border rounded p-2 text-sm font-normal "
                                 // required
                                 name="confirmAccount"
                                 value={value5?.confirmAccount}
@@ -2029,7 +2026,7 @@ const EmployeeManage = ({
                               <input
                                 type="text"
                                 id="Branch"
-                                className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                className="w-full border rounded p-2 text-sm font-normal "
                                 // required
                                 name="Branch"
                                 value={value5?.Branch}

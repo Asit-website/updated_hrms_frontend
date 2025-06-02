@@ -19,9 +19,7 @@ const EmployeeSelf = () => {
     deleteExperienceLetter,
     deleteInternshipOfferLetter,
     deleteFreelanceOfferLetter,
-    deleteparttimeOfferLetter,
-    postActivity,
-    getStatisticsByUser,
+    deleteparttimeOfferLetter,  
     getUsers,
     changeOfferLetterPer,
     changeRelivingLetterPer,
@@ -31,6 +29,8 @@ const EmployeeSelf = () => {
   } = useMain();
 
   const [user1, setUser1] = useState({});
+  
+ 
 
   const location = useLocation();
   const state = location.state;
@@ -419,7 +419,7 @@ const EmployeeSelf = () => {
   const deletecompletion = async (id) => {
     confirmAlert({
       title: "Are you sure to Delete this Part Time letter ?",
-      // message: "All related data to this will be deleted",
+    
       buttons: [
         {
           label: "Yes, Go Ahead!",
@@ -516,6 +516,60 @@ const EmployeeSelf = () => {
                   </div>
                 </div>
 
+
+
+
+
+ <div className="w-full p-[20px_20px_30px_20px] rounded-[18px] bg-white border border-[#E8E9EB] flex flex-col gap-[18px] overflow-x-scroll">
+                  <h3 className="text-[#101820] text-base font-bold leading-6 tracking-[0.0015em] text-left">Address</h3>
+
+                  <hr />
+
+                  <div className="grid-cols-2 lg:grid gap-[22px]">
+                    <div className="flex gap-3">
+                      <p>Current Address :</p>
+                      <span>{user1?.currentAddress}</span>
+                    </div>
+
+                    <div className="flex gap-3 mt-3 lg:mt-0">
+                      <p>
+                              Permanent Address :</p>
+                      <span>{user1?.residence}</span>
+                    </div>
+
+                    <div className="flex gap-3 mt-3 lg:mt-0">
+                      <p>Current State :</p>
+                      <span>{user1?.currentState}</span>
+                    </div>
+
+                    <div className="flex gap-3 mt-3 lg:mt-0">
+                      <p>Permanent State :</p>
+                      <span>{user1?.perState}</span>
+                    </div>
+
+                    <div className="flex gap-3 mt-3 lg:mt-0">
+                      <p>Current City :</p>
+                      <span>{user1?.currentCity}</span>
+                    </div>
+
+                    <div className="flex gap-3 mt-3 lg:mt-0">
+                      <p>Permanent City :</p>
+                      <span>{user1?.perCity}</span>
+                    </div>
+
+                    <div className="flex gap-3 mt-3 lg:mt-0">
+                      <p>Current Pincode :</p>
+                      <span>{user1?.currentPin}</span>
+                    </div>
+
+                    <div className="flex gap-3 mt-3 lg:mt-0">
+                      <p>
+                               Permanent Pincode :</p>
+                      <span>{user1?.perPin}</span>
+                    </div>
+
+                  </div>
+                </div>
                 {/* second section  */}
                 <div className="w-full p-[20px_20px_30px_20px] rounded-[18px] bg-white border border-[#E8E9EB] flex flex-col gap-[18px] overflow-x-scroll">
                   <h3 className="text-[#101820] text-base font-bold leading-6 tracking-[0.0015em] text-left">Other Detail</h3>
@@ -523,10 +577,7 @@ const EmployeeSelf = () => {
                   <hr />
 
                   <div className="grid-cols-2 lg:grid gap-[22px]">
-                    <div className="flex gap-3">
-                      <p>Address :</p>
-                      <span>{user1?.currentAddress}</span>
-                    </div>
+                   
 
                     <div className="flex gap-3 mt-3 lg:mt-0">
                       <p>Mobile :</p>
@@ -536,11 +587,6 @@ const EmployeeSelf = () => {
                     <div className="flex gap-3 mt-3 lg:mt-0">
                       <p>Personal ID :</p>
                       <span>{user1?.email1}</span>
-                    </div>
-
-                    <div className="flex gap-3 mt-3 lg:mt-0">
-                      <p>Gender :</p>
-                      <span>{user1?.gender}</span>
                     </div>
 
                     <div className="flex gap-3 mt-3 lg:mt-0">
@@ -558,45 +604,17 @@ const EmployeeSelf = () => {
                       <span>{user1?.father}</span>
                     </div>
 
-                    <div className="flex gap-3 mt-3 lg:mt-0">
-                      <p>Current Address :</p>
-                      <span>{user1?.currentAddress}</span>
+                   
+
+
+
+  <div className="flex gap-3 mt-3 lg:mt-0">
+                      <p>Mother name :</p>
+                      <span>{user1?.Mother}</span>
                     </div>
 
-                    <div className="flex gap-3 mt-3 lg:mt-0">
-                      <p>Current State :</p>
-                      <span>{user1?.currentState}</span>
-                    </div>
-
-                    <div className="flex gap-3 mt-3 lg:mt-0">
-                      <p>Current City :</p>
-                      <span>{user1?.currentCity}</span>
-                    </div>
-
-                    <div className="flex gap-3 mt-3 lg:mt-0">
-                      <p>Area Pincode :</p>
-                      <span>{user1?.currentPin}</span>
-                    </div>
-
-                    <div className="flex gap-3 mt-3 lg:mt-0">
-                      <p>Permanent Address :</p>
-                      <span>{user1?.residence}</span>
-                    </div>
-
-                    <div className="flex gap-3 mt-3 lg:mt-0">
-                      <p>Permanent State :</p>
-                      <span>{user1?.perState}</span>
-                    </div>
-
-                    <div className="flex gap-3 mt-3 lg:mt-0">
-                      <p>Permanent City :</p>
-                      <span>{user1?.perCity}</span>
-                    </div>
-
-                    <div className="flex gap-3 mt-3 lg:mt-0">
-                      <p>Permanent Pin :</p>
-                      <span>{user1?.perPin}</span>
-                    </div>
+              
+                  
 
                     <div className="flex gap-3 mt-3 lg:mt-0">
                       <p>Marital status :</p>
@@ -607,11 +625,11 @@ const EmployeeSelf = () => {
                       <p>Nationality :</p>
                       <span>{user1?.nationality}</span>
                     </div>
-
-                    <div className="flex gap-3 mt-3 lg:mt-0">
-                      <p>Mother name :</p>
-                      <span>{user1?.Mother}</span>
+   <div className="flex gap-3 mt-3 lg:mt-0">
+                      <p>Gender :</p>
+                      <span>{user1?.gender}</span>
                     </div>
+                  
                   </div>
                 </div>
 

@@ -222,7 +222,7 @@ const LeaveRequest = () => {
 
                 {/* second  */}
 
-                <div className="w-full overflow-x-auto rounded-lg md:overflow-x-scroll md:overflow-y-auto bg-[white] mt-10">
+                <div className="w-full overflow-x-auto  md:overflow-x-scroll md:overflow-y-auto bg-[white] mt-10 bg-grey rounded-xl border-2 ">
                   <table className="min-w-full text-gray-700">
                     <thead className="bg-white border-b text-gray-700 uppercase text-[13px] leading-normal">
                       <tr>
@@ -443,7 +443,7 @@ const LeaveRequest = () => {
 
                       <input
                         value={formdata.employeeName}
-                        className="border rounded p-2 text-sm font-normal text-gray-500 w-full"
+                        className="border rounded p-2 text-sm font-normal  w-full"
                         onChange={changeHandler}
                         type="text"
                         name="employeeName"
@@ -463,7 +463,7 @@ const LeaveRequest = () => {
                         name="leaveType"
                         id="text"
                         placeholder="Enter your leave type"
-                        className="border rounded p-2 text-sm font-normal text-gray-500 w-full"
+                        className="border rounded p-2 text-sm font-normal  w-full"
                         required
                       />
                     </div>
@@ -476,7 +476,7 @@ const LeaveRequest = () => {
                           Start
                         </label>
                         <input
-                          className="w-[271.5px] border rounded p-2 text-sm font-normal text-gray-500"
+                          className="w-[271.5px] border rounded p-2 text-sm font-normal "
                           value={formdata.start}
                           onChange={changeHandler}
                           type="date"
@@ -494,7 +494,7 @@ const LeaveRequest = () => {
                           End
                         </label>
                         <input
-                          className="w-[271.5px] border rounded p-2 text-sm font-normal text-gray-500"
+                          className="w-[271.5px] border rounded p-2 text-sm font-normal "
                           value={formdata.end}
                           onChange={changeHandler}
                           type="date"
@@ -513,7 +513,7 @@ const LeaveRequest = () => {
                         Reason
                       </label>
                       <textarea
-                        className="border rounded p-2 text-sm font-normal text-gray-500 w-full"
+                        className="border rounded p-2 text-sm font-normal  w-full"
                         required
                         name="reason"
                         onChange={changeHandler}
