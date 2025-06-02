@@ -400,12 +400,7 @@ const UserLead = () => {
                                                 <option value="Last 14 Days">Last 14 Days</option>
                                                 <option value="This Month">This Month</option>
                                             </select>
-                                            {/* <img
-                        width="30"
-                        className="absolute right-[40px]"
-                        src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746530550/downis_yfkfau.png"
-                        alt=""
-                        /> */}
+                                            
                                         </div>
                                     </div>
 
@@ -413,13 +408,13 @@ const UserLead = () => {
                                         <table className="w-full text-sm text-gray-700">
                                             <thead className="bg-white font-semibold">
                                                 <tr>
-                                                    <th scope="col" className="text-left font-bold text-gray-900 py-3 px-4 border-b border-gray-200 whitespace-nowrap">
+                                                    <th scope="col" className="text-left font-bold text-gray-900 py-4 px-4 border-b border-gray-200 whitespace-nowrap">
                                                         {/* <input type="checkbox" placeholder="" /> */}
                                                         SR NO.
                                                     </th>
                                                     <th
                                                         scope="col"
-                                                        className="text-left font-bold text-gray-900 py-3 px-4 border-b border-gray-200 whitespace-nowrap"
+                                                        className="text-left font-bold text-gray-900 py-4 px-4 border-b border-gray-200 whitespace-nowrap"
                                                     >
                                                         Company Name
                                                     </th>
@@ -463,19 +458,19 @@ const UserLead = () => {
                                                 {currentItems?.map((item, index) => {
                                                     return (
                                                         <tr key={index} className="border-b border-gray-200 hover:bg-gray-50 transition duration-150">
-                                                            <td scope="col" className="px-3 py-3">
+                                                            <td scope="col" className="px-4 py-4">
 
                                                                 {index + 1}
                                                             </td>
                                                             <td
                                                                 scope="col"
-                                                                className="px-6 py-4 text-gray-800"
+                                                                className="px-4 py-4 text-gray-800"
                                                             >
                                                                 {item?.Company}
                                                             </td>
                                                             <td
                                                                 scope="col"
-                                                                className="px-6 py-4 text-gray-800"
+                                                                className="px-4 py-4 text-gray-800"
                                                             >
                                                                 {item?.FirstName}
                                                                 {item?.LastName}
@@ -485,29 +480,28 @@ const UserLead = () => {
 
                                                             <td
                                                                 scope="col"
-                                                                className="px-6 py-4 text-gray-800"
+                                                                className="px-4 py-4 text-gray-800"
                                                             >
                                                                 {item?.Website}
                                                             </td>
 
-                                                            <td scope="col" className="px-6 py-4 text-gray-800">
+                                                            <td scope="col" className="px-4 py-4 text-gray-800">
                                                                 <div
                                                                     scope="col"
-                                                                    className={`statussame makedivcent 
-                                ${item?.LeadStatus === "Connected" && "connected"
+                                                                    className={`flex items-center justify-center rounded-[27px] h-[28px] text-[12px] font-inter font-normal makedivcent 
+                                ${item?.LeadStatus === "Connected" && "bg-[#20C997] text-white"
                                                                         } 
-                                ${item?.LeadStatus == "Nurturing" && "Nurturing"
-                                                                        } ${item?.LeadStatus == "Qualified" && "Qualified"
+                                ${item?.LeadStatus == "Nurturing" && "bg-[#6F42C1] text-white"
+                                                                        } ${item?.LeadStatus == "Qualified" && "bg-[#28A745] text-white"
                                                                         } 
                                 ${item?.LeadStatus == "Unqualified" &&
-                                                                        "Unqualified"
-                                                                        }  ${item?.LeadStatus == "Converted" && "Converted"
+                                                                        "bg-[#6C757D] text-white"
+                                                                        }  ${item?.LeadStatus == "Converted" && "bg-[#218838] text-white"
                                                                         }
-                                ${item?.LeadStatus == "Not Converted" &&
-                                                                        "Converteds"
+                                ${item?.LeadStatus == "Not Converted" && "bg-[#DC3545] text-white"
                                                                         }
-                                ${item?.LeadStatus == "Junk" && "Junk"}
-                                ${item?.LeadStatus === "New" && "Newleadstatus"}
+                                ${item?.LeadStatus == "Junk" && "bg-[#343A40] text-white"}
+                                ${item?.LeadStatus === "New" && "bg-[#007BFF] text-white"}
                                 
                                 `}
                                                                 >
@@ -515,7 +509,7 @@ const UserLead = () => {
                                                                 </div>
                                                             </td>
 
-                                                            <td className="px-6 py-4 text-gray-800">
+                                                            <td className="px-4 py-4 text-gray-800">
                                                                 {new Date(item?.createAt).toLocaleDateString(
                                                                     "en-CA"
                                                                 )}
@@ -526,7 +520,7 @@ const UserLead = () => {
                                                                         setCurrView(currView === index ? -1 : index);
 
                                                                     }}
-                                                                    className="px-3 py-3 flex items-center hiii_gap cursor-pointer relative"
+                                                                    className="px-4 py-4 flex items-center hiii_gap cursor-pointer relative"
                                                                 >
                                                                     <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746687309/actions_rgpytx.png" alt="" />
 

@@ -661,7 +661,7 @@ const MarkAttendance = () => {
                 </div>
               </div>
 
-              <main className="bg-white border-t border-[#D8D8D8] -translate-y-[25px]">
+              <main className="bg-white border-t border-[#D8D8D8] -translate-y-[25px] bg-grey rounded-xl border-2">
                 <div className="w-full flex items-center justify-between py-2.5 px-5 bg-white border-b-[1px] pb-7 overflow-x-scroll xl:overflow-x-hidden">
                   <div className="flex items-center justify-between w-full gap-[10px] translate-y-[10px] ">
                     <h3 className="text-[#1B2533] text-base font-semibold leading-6 tracking-[0.0015em] text-left min-w-fit">Daily Attendance</h3>

@@ -271,26 +271,26 @@ export default function LeadManagement() {
                   <tr key={index} className="border-b border-gray-200 hover:bg-gray-50 transition duration-150 ">
 
 
-                    <td className="px-6 py-4 text-gray-800">
+                    <td className="px-4 py-4 text-gray-800">
                       {item?.Company}
                     </td>
-                    <td className="px-6 py-4 text-gray-800">{item?.Email}</td>
-                    <td className="px-6 py-4 text-gray-800">
+                    <td className="px-4 py-4 text-gray-800">{item?.Email}</td>
+                    <td className="px-4 py-4 text-gray-800">
                       {item?.FirstName}
                     </td>
-                    <td className="px-6 py-4 text-gray-800">
+                    <td className="px-4 py-4 text-gray-800">
                       {item?.LastName}
                     </td>
-                    <td className="px-6 py-4 text-gray-800">
+                    <td className="px-4 py-4 text-gray-800">
                       <div
                         scope="col"
                         className={`flex items-center justify-center rounded-[27px] h-[28px] text-xs font-normal
-                              ${item?.LeadStatus === "Connected" && "connected"} 
-                              ${item?.LeadStatus == "Nurturing" && "Nurturing"} ${item?.LeadStatus == "Qualified" && "Qualified"} 
-                              ${item?.LeadStatus == "Unqualified" && "Unqualified"}  ${item?.LeadStatus == "Converted" && "Converted"}
-                               ${item?.LeadStatus == "Not Converted" && "Converteds"}
-                               ${item?.LeadStatus == "Junk" && "Junk"}
-                               ${item?.LeadStatus === "New" && "Newleadstatus"}
+                              ${item?.LeadStatus === "Connected" && "bg-[#20C997] text-white"} 
+                              ${item?.LeadStatus == "Nurturing" && "bg-[#6F42C1] text-white"} ${item?.LeadStatus == "Qualified" && "bg-[#28A745] text-white"} 
+                              ${item?.LeadStatus == "Unqualified" && "bg-[#6C757D] text-white"}  ${item?.LeadStatus == "Converted" && "bg-[#218838] text-white"}
+                               ${item?.LeadStatus == "Not Converted" && "bg-[#DC3545] text-white"}
+                               ${item?.LeadStatus == "Junk" && "bg-[#343A40] text-white"}
+                               ${item?.LeadStatus === "New" && "bg-[#007BFF] text-white"}
                               
                                `}
                       >
@@ -411,25 +411,25 @@ export default function LeadManagement() {
                     <tr key={index} className="border-b border-gray-200 hover:bg-gray-50 transition duration-150">
                       <td
                         scope="row"
-                        className="px-6 py-4 text-gray-800"
+                        className="px-4 py-4 text-gray-800"
                       >
                         {item?.Company}
                       </td>
-                      <td className="px-6 py-4 text-gray-800">{item?.Email}</td>
-                      <td className="px-6 py-4 text-gray-800">{item?.FirstName}</td>
-                      <td className="px-6 py-4 text-gray-800">{item?.LastName}</td>
-                      <td className="px-6 py-4 text-gray-800">{new Date(item?.closeDate).toLocaleDateString('en-GB')}</td>
-                      <td className="px-6 py-4 text-gray-800">
+                      <td className="px-4 py-4 text-gray-800">{item?.Email}</td>
+                      <td className="px-4 py-4 text-gray-800">{item?.FirstName}</td>
+                      <td className="px-4 py-4 text-gray-800">{item?.LastName}</td>
+                      <td className="px-4 py-4 text-gray-800">{new Date(item?.closeDate).toLocaleDateString('en-GB')}</td>
+                      <td className="px-4 py-4 text-gray-800">
 
                         <div
                           scope="col"
-                          className={`text-left text-[14px]
-                              ${item?.LeadStatus === "Connected" && "connected"} 
-                              ${item?.LeadStatus == "Nurturing" && "Nurturing"} ${item?.LeadStatus == "Qualified" && "Qualified"} 
-                              ${item?.LeadStatus == "Unqualified" && "Unqualified"}  ${item?.LeadStatus == "Converted" && "Converted"}
-                               ${item?.LeadStatus == "Not Converted" && "Converteds"}
-                               ${item?.LeadStatus == "Junk" && "Junk"}
-                               ${item?.LeadStatus === "New" && "Newleadstatus"}
+                          className={`text-left text-[14px] flex items-center justify-center rounded-[27px] h-[28px] font-normal
+                              ${item?.LeadStatus === "Connected" && "bg-[#20C997] text-white"} 
+                              ${item?.LeadStatus == "Nurturing" && "bg-[#6F42C1] text-white"} ${item?.LeadStatus == "Qualified" && "bg-[#28A745] text-white"} 
+                              ${item?.LeadStatus == "Unqualified" && "bg-[#6C757D] text-white"}  ${item?.LeadStatus == "Converted" && "bg-[#218838] text-white"}
+                               ${item?.LeadStatus == "Not Converted" && "bg-[#DC3545] text-white"}
+                               ${item?.LeadStatus == "Junk" && "bg-[#343A40] text-white"}
+                               ${item?.LeadStatus === "New" && "bg-[#007BFF] text-white"}
                               
                                `}
                         >

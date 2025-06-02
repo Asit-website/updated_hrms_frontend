@@ -15,7 +15,7 @@ import { useMain } from "../../hooks/UseMain";
 
 
 const CreateLead = () => {
-    const { user, createLead, getEmployees, AllLeadSource, AllLeadStatus, getLeadStat, uploadToCloudinaryImg, getLeadCatgory, getLeadSubCategory, } = useMain();
+    const {createLead, getEmployees, AllLeadSource, AllLeadStatus, getLeadStat, uploadToCloudinaryImg, getLeadCatgory, getLeadSubCategory, } = useMain();
     const [pop1, setPop1] = useState(false);
     const stylePeer = {
         display: pop1 ? "block" : "none"
@@ -298,7 +298,7 @@ const CreateLead = () => {
 
                         </div>
 
-                        <form className="mt-[100px]" action="">
+                        <form className="mt-[55px] " action="">
 
                             <div data-modal-target="default-modal"
                                 data-modal-toggle="default-modal" className="flex flex-col gap-[20px] mt-[5px]">
@@ -375,48 +375,48 @@ const CreateLead = () => {
                              
                             </>
 
-                            <div className="lead_information mt-6">
-                                <h2 className="text-[18px] font-[600] text-black">Lead Information</h2>
+                            <div className="lead_information mt-6 bg-white rounded-lg shadow p-2">
+                                <h2 className="text-[18px] font-semibold text-black">Lead Information</h2>
 
-                               <div className="flex items-center w-[50%] justify-between gap-[8px]">
-                                        <label className="min-w-[120px] text-md font-normal " htmlFor="">Lead Owner <span className="text-red-600">*</span></label>
+                               <div className="flex flex-col xl:flex-row items-start xl:items-center w-full xl:w-[48%] justify-between gap-[8px]">
+                                        <label className="min-w-[136px] text-md font-normal" htmlFor="">Lead Owner <span className="text-red-600">*</span></label>
                                         <input 
                                           className="w-full border rounded p-3 text-sm font-normal "
                                         required 
                                         type="LeadOwner" value={userDetail?.fullName} disabled onChange={changeHandler} />
                                     </div>
-                                <div className="grid grid-cols-2 gap-4 py-5">
+                                <div className="grid grid-cols-1 xl:grid-cols-2 gap-10 py-5">
 
                                     
 
-                                    <div className="flex items-center  justify-between gap-[8px]">
-                                        <label htmlFor="" className="text-md font-normal min-w-[120px]">Lead Creator <span className="text-red-600">*</span></label>
+                                    <div className="flex flex-col xl:flex-row items-start xl:items-center  justify-between gap-[8px]">
+                                        <label htmlFor="" className="text-md font-normal min-w-[136px]">Lead Creator <span className="text-red-600">*</span></label>
                                         <input  className="w-full border rounded p-3 text-sm font-normal" required type="text" value={formdata.LeadCreator} name="LeadCreator" onChange={changeHandler} />
                                     </div>
-                                    <div className="flex items-center  justify-between gap-[8px]">
-                                        <label htmlFor="" className="text-md font-normal min-w-[120px]">Company <span className="text-red-600">*</span></label>
+                                    <div className="flex flex-col xl:flex-row items-start xl:items-center  justify-between gap-[8px]">
+                                        <label htmlFor="" className="text-md font-normal min-w-[136px]">Company <span className="text-red-600">*</span></label>
                                         <input className="w-full border rounded p-3 text-sm font-normal" required type="text" value={formdata.Company} name="Company" onChange={changeHandler} />
                                     </div>
 
-                                    <div className="flex items-center  justify-between gap-[8px]">
-                                        <label htmlFor="" className="text-md font-normal min-w-[120px]">First Name <span className="text-red-600">*</span></label>
+                                    <div className="flex flex-col xl:flex-row items-start xl:items-center  justify-between gap-[8px]">
+                                        <label htmlFor="" className="text-md font-normal min-w-[136px]">First Name <span className="text-red-600">*</span></label>
 
                                         <input value={formdata.FirstName} name="FirstName" onChange={changeHandler} type="text" className="w-full border rounded p-3 text-sm font-normal" />
 
                                     </div>
 
 
-                                    <div className="flex items-center  justify-between gap-[8px]">
-                                        <label htmlFor="" className="text-md font-normal min-w-[120px]">Last Name</label>
+                                    <div className="flex flex-col xl:flex-row items-start xl:items-center  justify-between gap-[8px]">
+                                        <label htmlFor="" className="text-md font-normal min-w-[136px]">Last Name</label>
                                         <input className="w-full border rounded p-3 text-sm font-normal" value={formdata.LastName} name="LastName" onChange={changeHandler} type="text" />
                                     </div>
 
-                                    <div className="flex items-center justify-between gap-[8px]">
-                                        <label htmlFor="" className="text-md font-normal min-w-[120px]">Title</label>
+                                    <div className="flex flex-col xl:flex-row items-start xl:items-center  justify-between gap-[8px]">
+                                        <label htmlFor="" className="text-md font-normal min-w-[136px]">Title</label>
                                         <input className="w-full border rounded p-3 text-sm font-normal" value={formdata.Title} name="Title" onChange={changeHandler} type="text" />
                                     </div>
-                                    <div className="flex items-center justify-between gap-[8px]">
-                                        <label htmlFor="" className="text-md font-normal min-w-[120px]">Email <span className="text-red-600">*</span></label>
+                                    <div className="flex flex-col xl:flex-row items-start xl:items-center  justify-between gap-[8px]">
+                                        <label htmlFor="" className="text-md font-normal min-w-[136px]">Email <span className="text-red-600">*</span></label>
                                       <input
   className={`w-full border rounded p-3 text-sm font-normal ${
     emailisValid === false && formdata.Email !== "" ? "emailvalidinput" : ""
@@ -433,8 +433,8 @@ const CreateLead = () => {
 
                                     </div>
 
-                                    <div className="flex items-center justify-between gap-[8px]">
-                                        <label htmlFor="">Phone <span className="text-red-600">*</span></label>
+                                    <div className="flex flex-col xl:flex-row items-start xl:items-center  justify-between gap-[8px]">
+                                        <label htmlFor=""  className="text-md font-normal min-w-[136px]">Phone <span className="text-red-600">*</span></label>
                                         <PhoneInput
                                             inputClass="hjj"
                                             country={'in'}
@@ -443,37 +443,39 @@ const CreateLead = () => {
                                             name="Phone"
                                             placeholder="Enter your phone"
                                             onChange={Phone => changeHandler({ target: { value: Phone, name: 'Phone' } })}
-                                            className="!w-[80%]"
+                                            className="!w-[100%]"
                                             inputProps={{
                                                 required: true,
                                             }}
                                             countryCodeEditable={false}
+                                           
                                         />
                                     </div>
 
-                                    <div className="lead_inp1">
-                                        <label htmlFor="">Fax</label>
-                                        <input value={formdata.Fax} name="Fax" onChange={changeHandler} type="text" />
+                                    <div className="flex flex-col xl:flex-row items-start xl:items-center  justify-between gap-[8px]">
+                                        <label htmlFor="" className="text-md font-normal min-w-[136px]">Fax</label>
+                                        <input value={formdata.Fax} name="Fax" onChange={changeHandler} type="text" className="w-full border rounded p-3 text-sm font-normal"/>
                                     </div>
 
 
-                                    <div className="lead_inp1">
-                                        <label htmlFor="">Mobile</label>
+                                    <div className="flex flex-col xl:flex-row items-start xl:items-center  justify-between gap-[8px]">
+                                        <label htmlFor=""  className="text-md font-normal min-w-[136px]">Mobile</label>
                                         <input
                                             value={formdata.Mobile}
                                             name="Mobile"
                                             onChange={changeHandler}
                                             type="text"
+                                            className="w-full border rounded p-3 text-sm font-normal"
                                         />
                                     </div>
 
-                                    <div className="lead_inp1">
-                                        <label htmlFor="">Annual Revenue</label>
-                                        <input value={formdata.AnnualRevenue} name="AnnualRevenue" onChange={changeHandler} placeholder="$" type="number" />
+                                    <div className="flex flex-col xl:flex-row items-start xl:items-center  justify-between gap-[8px]">
+                                        <label htmlFor=""  className="text-md font-normal min-w-[136px]">Annual Revenue</label>
+                                        <input value={formdata.AnnualRevenue} name="AnnualRevenue" onChange={changeHandler} placeholder="$" type="number"className="w-full border rounded p-3 text-sm font-normal" />
                                     </div>
-                                    <div className="lead_inp1">
-                                        <label htmlFor="">Rating</label>
-                                        <select name="Rating" onChange={changeHandler} id="">
+                                    <div className="flex flex-col xl:flex-row items-start xl:items-center  justify-between gap-[8px]">
+                                        <label htmlFor=""  className="text-md font-normal min-w-[136px]">Rating</label>
+                                        <select name="Rating" onChange={changeHandler} id="" className="w-full border rounded p-3 text-sm font-normal">
                                             <option>1</option>
                                             <option>2</option>
                                             <option>3</option>
@@ -482,28 +484,37 @@ const CreateLead = () => {
                                         </select>
                                     </div>
 
-                                    <div className="lead_inp1 lead_inp111">
+                                    <div className="flex flex-col xl:flex-row items-start xl:items-center  justify-between gap-[8px] lead_inp111">
                                         <div className="flex items-center gap-2">
-                                            <label className="jpo" htmlFor="">Email Opt Out</label>
-                                            <input value={formdata.EmailOptOut} name="EmailOptOut" onChange={changeHandler} className="seng" type="checkbox" />
+                                            <label className="jpo text-md font-normal min-w-[136px]" htmlFor="">Email Opt Out</label>
+                                            <input value={formdata.EmailOptOut} name="EmailOptOut" onChange={changeHandler} className="seng w-full border rounded p-3 text-sm font-normal" type="checkbox" />
                                         </div>
                                     </div>
-                                    <div className="lead_inp1">
-                                        <label htmlFor="">Secondary Email</label>
-                                        <input className={`${(emailisValid1 === false && formdata.SecondaryEmail !== "") && "emailvalidinput"}`} value={formdata.SecondaryEmail} name="SecondaryEmail" onChange={(e) => {
-                                            changeHandler(e);
-                                            handleValidation1(e.target.value);
-                                        }} type="email" />
+                                   <div className="flex flex-col xl:flex-row items-start xl:items-center  justify-between gap-[8px]">
+                 <label htmlFor="" className="text-md font-normal min-w-[136px]">Secondary Email</label>
+        <input
+    type="email"
+    name="SecondaryEmail"
+    value={formdata.SecondaryEmail}
+    onChange={(e) => {
+      changeHandler(e);
+      handleValidation1(e.target.value);
+    }}
+    className={`w-full border rounded p-3 text-sm font-normal ${
+      emailisValid1 === false && formdata.SecondaryEmail !== "" ? "emailvalidinput" : ""
+    }`}
+  />
+</div>
+
+
+                                    <div className="flex flex-col xl:flex-row items-start xl:items-center  justify-between gap-[8px]">
+                                        <label htmlFor="" className="text-md font-normal min-w-[136px]">Date</label>
+                                        <input value={formdata.date} name="date" onChange={changeHandler} type="date"   className="w-full border rounded p-3 text-sm font-normal"/>
                                     </div>
 
-                                    <div className="lead_inp1">
-                                        <label htmlFor="">Date</label>
-                                        <input value={formdata.date} name="date" onChange={changeHandler} type="date" />
-                                    </div>
-
-                                    <div className="lead_inp1">
-                                        <label htmlFor="Industry">Industry</label>
-                                        <select value={formdata?.Industry} name="Industry" onChange={changeHandler} id="Industry">
+                                    <div className="flex flex-col xl:flex-row items-start xl:items-center  justify-between gap-[8px]">
+                                        <label htmlFor="Industry" className="jpo text-md font-normal min-w-[136px]">Industry</label>
+                                        <select value={formdata?.Industry} name="Industry" onChange={changeHandler} id="Industry"   className="w-full border rounded p-3 text-sm font-normal">
                                             <option disabled>Select Industry</option>
                                             {
                                                 allLeadStatus?.map((item, index) => (
@@ -514,27 +525,24 @@ const CreateLead = () => {
                                         </select>
                                     </div>
 
-                                    <div className="lead_inp1">
-                                        <label htmlFor="">Lead Status <span className="text-red-600">*</span></label>
-                                        <select required value={formdata?.LeadStatus} name="LeadStatus" onChange={changeHandler} id="">
+                                    <div className="flex flex-col xl:flex-row items-start xl:items-center  justify-between gap-[8px]">
+                                        <label htmlFor="" className="text-md font-normal min-w-[136px]">Lead Status <span className="text-red-600">*</span></label>
+                                        <select required value={formdata?.LeadStatus} name="LeadStatus" onChange={changeHandler} id="" className="w-full border rounded p-3 text-sm font-normal">
                                             <option >Select Status</option>
                                             {
                                                 allleadStat?.map((val, index) => {
                                                     return <option key={index} value={val?.name}>{val?.name}</option>
                                                 })
                                             }
-                                            {/* < option value="Cold">Cold</option>
-                                                <option value="Warm">Warm</option>
-                                                <option value="Follow-up">Follow-up</option>
-                                                <option value="Hot">Hot</option> */}
+                                           
 
 
                                         </select>
                                     </div>
 
-                                    <div className="lead_inp1">
-                                        <label htmlFor="">Lead Source</label>
-                                        <select name="LeadSource" onChange={changeHandler} id="">
+                                    <div className="flex flex-col xl:flex-row items-start xl:items-center  justify-between gap-[8px]">
+                                        <label htmlFor="" className="text-md font-normal min-w-[136px]">Lead Source</label>
+                                        <select name="LeadSource" onChange={changeHandler} id="" className="w-full border rounded p-3 text-sm font-normal">
                                             <option>Select lead source</option>
                                             {
                                                 allLeadSource?.map((item, index) => (
@@ -548,74 +556,98 @@ const CreateLead = () => {
 
                             </div>
 
-                            <div className="lead_information mt-6">
-                                <h2>Social Links</h2>
+                            <div className="lead_information bg-white rounded-lg shadow p-2 mt-6">
+                                <h2 className="text-[18px] font-semibold text-black">Social Links</h2>
 
-                                <div className="grid grid-cols-2 gap-3 py-5">
-                                    <div className="lead_inp1">
-                                        <label htmlFor="">LinkedIn URL</label>
-                                        <input className={`${(isUrlValid1 === false && formdata.SkypeID !== "") && "emailvalidinput"}`} value={formdata?.SkypeID} name="SkypeID" type="text" onChange={(e) => {
-                                            changeHandler(e);
-                                            handleInputUrlChange1(e.target.value);
-                                        }} />
-                                    </div>
-                                    <div className="lead_inp1">
-                                        <label htmlFor="">Twitter</label>
-                                        <input className={`${(isUrlValid2 === false && formdata.Twitter !== "") && "emailvalidinput"}`} value={formdata.Twitter} name="Twitter" onChange={(e) => {
-                                            changeHandler(e);
-                                            handleInputUrlChange2(e.target.value);
-                                        }} type="text" />
-                                    </div>
+                                <div className="grid grid-cols xl:grid-cols-2 gap-3 py-5">
+                                    <div className="flex flex-col xl:flex-row items-start xl:items-center  justify-between gap-[8px]">
+                                        <label htmlFor="" className="text-md font-normal min-w-[136px]">LinkedIn URL</label>
+                                    <input
+  value={formdata?.SkypeID}
+  name="SkypeID"
+  type="text"
+  onChange={(e) => {
+    changeHandler(e);
+    handleInputUrlChange1(e.target.value);
+  }}
+  className={`w-full border rounded p-3 text-sm font-normal min-w-[136px] ${
+    isUrlValid1 === false && formdata.SkypeID !== "" ? "emailvalidinput" : ""
+  }`}
+/>
 
-                                    <div className="lead_inp1">
-                                        <label htmlFor="">Website</label>
-                                        <input value={formdata.Website} name="Website" onChange={(e) => {
-                                            changeHandler(e);
-                                            handleInputUrlChange(e.target.value);
-                                        }} type="text" className={`${(isUrlValid === false && formdata.Website !== "") && "emailvalidinput"}`} />
+
                                     </div>
+                                   <div className="flex flex-col xl:flex-row items-start xl:items-center  justify-between gap-[8px]">
+  <label htmlFor="" className="text-md font-normal min-w-[136px]">Twitter</label>
+  <input
+    type="text"
+    name="Twitter"
+    value={formdata.Twitter}
+    onChange={(e) => {
+      changeHandler(e);
+      handleInputUrlChange2(e.target.value);
+    }}
+    className={`w-full border rounded p-3 text-sm font-normal ${isUrlValid2 === false && formdata.Twitter !== "" ? "emailvalidinput" : ""}`}
+  />
+</div>
+
+
+                                   <div className="flex flex-col xl:flex-row items-start xl:items-center  justify-between gap-[8px]">
+  <label htmlFor="" className="text-md font-normal min-w-[136px]">Website</label>
+  <input
+    value={formdata.Website}
+    name="Website"
+    onChange={(e) => {
+      changeHandler(e);
+      handleInputUrlChange(e.target.value);
+    }}
+    type="text"
+    className={`w-full border rounded p-3 text-sm font-normal ${isUrlValid === false && formdata.Website !== "" ? "emailvalidinput" : ""}`}
+  />
+</div>
+
                                 </div>
                             </div>
 
-                            <div className="lead_information mt-6">
-                                <h2>Address Information</h2>
+                            <div className="lead_information mt-6  bg-white rounded-lg shadow p-2">
+                                <h2 className="text-[18px] font-semibold text-black">Address Information</h2>
 
-                                <div className="grid grid-cols-2 gap-3 py-5">
-                                    <div className="lead_inp1">
-                                        <label htmlFor="">Street</label>
-                                        <input value={formdata.Street} name="Street" onChange={changeHandler} type="text" />
+                                <div className="grid grid-cols-1 xl:grid-cols-2 gap-3 py-5">
+                                    <div className="flex flex-col xl:flex-row items-start xl:items-center  justify-between gap-[8px]">
+                                        <label htmlFor="" className="text-md font-normal min-w-[136px]">Street</label>
+                                        <input value={formdata.Street} name="Street" onChange={changeHandler} type="text" className="w-full border rounded p-3 text-sm font-normal"/>
                                     </div>
-                                    <div className="lead_inp1">
-                                        <label htmlFor="">City</label>
-                                        <input value={formdata.City} name="City" onChange={changeHandler} type="text" />
+                                    <div className="flex flex-col xl:flex-row items-start xl:items-center  justify-between gap-[8px]">
+                                        <label htmlFor="" className="text-md font-normal min-w-[136px]">City</label>
+                                        <input value={formdata.City} name="City" onChange={changeHandler} type="text" className="w-full border rounded p-3 text-sm font-normal"/>
                                     </div>
-                                    <div className="lead_inp1">
-                                        <label htmlFor="">State</label>
-                                        <input value={formdata.State} name="State" onChange={changeHandler} type="text" />
+                                    <div className="flex flex-col xl:flex-row items-start xl:items-center  justify-between gap-[8px]">
+                                        <label htmlFor="" className="text-md font-normal min-w-[136px]">State</label>
+                                        <input value={formdata.State} name="State" onChange={changeHandler} type="text" className="w-full border rounded p-3 text-sm font-normal"/>
                                     </div>
-                                    <div className="lead_inp1">
-                                        <label htmlFor="">Zip Code</label>
-                                        <input value={formdata.ZipCode} name="ZipCode" onChange={changeHandler} type="Number" />
+                                    <div className="flex flex-col xl:flex-row items-start xl:items-center  justify-between gap-[8px]">
+                                        <label htmlFor="" className="text-md font-normal min-w-[136px]">Zip Code</label>
+                                        <input value={formdata.ZipCode} name="ZipCode" onChange={changeHandler} type="Number" className="w-full border rounded p-3 text-sm font-normal"/>
                                     </div>
-                                    <div className="lead_inp1">
-                                        <label htmlFor="">Country</label>
-                                        <input value={formdata.Country} name="Country" onChange={changeHandler} type="text" />
+                                    <div className="flex flex-col xl:flex-row items-start xl:items-center  justify-between gap-[8px]">
+                                        <label htmlFor="" className="text-md font-normal min-w-[136px]">Country</label>
+                                        <input value={formdata.Country} name="Country" onChange={changeHandler} type="text" className="w-full border rounded p-3 text-sm font-normal"/>
                                     </div>
-                                    <div style={{ visibility: "hidden" }} className="lead_inp1">
-                                        <label htmlFor="">Zip Code</label>
-                                        <input value={formdata.ZipCode} name="ZipCode" onChange={changeHandler} type="Number" />
+                                    <div style={{ visibility: "hidden" }} className="flex flex-col xl:flex-row items-start xl:items-center  justify-between gap-[8px]">
+                                        <label htmlFor="" className="text-md font-normal min-w-[136px]">Zip Code</label>
+                                        <input value={formdata.ZipCode} name="ZipCode" onChange={changeHandler} type="Number" className="w-full border rounded p-3 text-sm font-normal"/>
                                     </div>
                                 </div>
 
                             </div>
 
-                            <div className="lead_information mt-6">
-                                <h2>Description Information</h2>
+                            <div className="lead_information mt-6 bg-white rounded-lg shadow p-2">
+                                <h2 className="text-[18px] font-semibold text-black">Description Information</h2>
 
-                                <div className="grid grid-cols-2 gap-3 py-5">
-                                    <div className="lead_inp1">
+                                <div className="grid grid-cols-1 xl:grid-cols-2 gap-3 py-5">
+                                    <div className="flex flex-col xl:flex-row items-start xl:items-center  justify-between gap-[8px]">
                                         <label htmlFor="">Description</label>
-                                        <input value={formdata.DescriptionInfo} name="DescriptionInfo" onChange={changeHandler} type="text" />
+                                        <input value={formdata.DescriptionInfo} name="DescriptionInfo" onChange={changeHandler} type="text" className="w-full border rounded p-3 text-sm font-normal" />
                                     </div>
                                 </div>
 
@@ -624,8 +656,8 @@ const CreateLead = () => {
 
                             {
                                 leadCategory.length > 4 && (
-                                    <div className="lead_information mt-6">
-                                        <h2>Additional Fields</h2>
+                                    <div className="lead_information mt-6 bg-white rounded-lg shadow p-2">
+                                        <h2 className="text-[18px] font-semibold text-black">Additional Fields</h2>
                                   
                                         <div className="border grid grid-cols-4 gap-4 p-4 rounded shadow mt-4">
                                             {leadCategory.slice(4, showAdditionalSetting).map((item) => (

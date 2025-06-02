@@ -21,13 +21,13 @@ const Assets = () => {
     }, []);
 
   const theadData2= [
-    "Title",
-    "Title",
-    "Quantity",
-    "Purchase Price",
-    "Sales Price",
-    "Purchase Date",
-    "Category",
+    "EMPLOYEE",
+    "DESIGNATION",
+    "DEPARTMENT",
+    "PRODUCT",
+    "ASSIGNED DATE",
+    "DESCRIPTION",
+    "STATUS",
     "ACTION"
   ];
  
