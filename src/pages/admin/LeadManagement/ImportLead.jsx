@@ -878,7 +878,7 @@ const ImportLead = () => {
                   <label className="flex flex-col gap-2">
                     <p>Note:</p>
                     <textarea
-                    className="w-full border-black border"
+                    className="w-[50%] border-black border"
                       value={Note}
                       onChange={(e) => {
                         setNote(e.target.value);
@@ -887,7 +887,7 @@ const ImportLead = () => {
                     />
                   </label>
 
-                  <div className="flex justify-end gap-5 max-w-[709px]">
+                  <div className="flex justify-end gap-5 max-w-[579px]">
                     <button
                       onClick={() => {
                         setNote("");

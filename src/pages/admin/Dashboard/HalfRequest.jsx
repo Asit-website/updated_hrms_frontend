@@ -204,13 +204,13 @@ const HalfRequest = () => {
 
               </div>
               <main className="pt-[10px] pb-[30px] px-0">
-                <input className="border border-[#D0D4DC] w-[200px] h-[38px] px-[10px] rounded-[10px] mb-5" onChange={(e) => setSearchInput(e.target.value)}
+                <input className="border border-black w-[200px] h-[38px] px-[10px] rounded-[10px] mb-5 ml-4" onChange={(e) => setSearchInput(e.target.value)}
                   value={searchInput} placeholder="Search Employee" />
 
 
                 {/* second  */}
 
-                <div className="w-full overflow-x-auto rounded-lg md:overflow-x-scroll md:overflow-y-auto">
+                <div className="w-full overflow-x-auto  md:overflow-x-scroll md:overflow-y-auto bg-grey rounded-xl border-2">
                   <table className="min-w-full text-sm text-gray-700">
                     <thead className="bg-white border-b text-gray-700 uppercase text-md leading-normal">
                       <tr >

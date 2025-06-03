@@ -283,7 +283,7 @@ const GoalTracking = () => {
                 </div>
               </div>
 
-              <div class="relative overflow-x-auto rounded-lg">
+              <div class="relative overflow-x-auto py-4 mt-3 bg-grey rounded-xl border-2">
                 <table class="min-w-full text-sm text-left bg-white rounded-lg">
                   <thead class="bg-white font-semibold">
                     <tr>
@@ -406,14 +406,16 @@ const GoalTracking = () => {
             >
               <nav className="flex items-center justify-between">
                 {/* left  */}
-                <h2>{onEdit ? "Update Goal Tracking" : "Create New Goal Tracking"}</h2>
+                <h2 className="text-[#1B2533] text-base font-semibold leading-6 tracking-[0.0015em] text-left
+">{onEdit ? "Update Goal Tracking" : "Create New Goal Tracking"}</h2>
               </nav>
 
               <hr />
 
               <div className="flex flex-col gap-5 overflow-y-scroll pr-2.5">
                 <div className="flex flex-wrap gap-y-5 gap-x-12 overflow-y-auto h-[400px]">
-                  <label htmlFor="" className="w-1/2 flex flex-col gap-2">
+                 <div className="grid grid-cols-1 xl:grid-cols-2  gap-5 w-full">
+                   <label htmlFor="" className=" flex flex-col gap-2">
                     <p className="text-[#1B2533] text-sm font-normal leading-5 tracking-[0.0025em] text-left">Branch <span className="text-red-600">*</span></p>
                     <select
                     className="h-11 rounded-[3px] border border-[#D0D4DC] bg-white p-2.5"
@@ -433,7 +435,7 @@ const GoalTracking = () => {
                     </select>
                   </label>
 
-                  <label className="w-1/2 flex flex-col gap-2">
+                  <label className=" flex flex-col gap-2">
                     <p className="text-[#1B2533] text-sm font-normal leading-5 tracking-[0.0025em] text-left">GoalTypes <span className="text-red-600">*</span></p>
                     <select
                     className="h-11 rounded-[3px] border border-[#D0D4DC] bg-white p-2.5"
@@ -448,7 +450,7 @@ const GoalTracking = () => {
                     </select>
                   </label>
 
-                  <label className="w-1/2 flex flex-col gap-2">
+                  <label className=" flex flex-col gap-2">
                     <p className="text-[#1B2533] text-sm font-normal leading-5 tracking-[0.0025em] text-left">Start Date <span className="text-red-600">*</span></p>
                     <input
                     className="h-11 rounded-[3px] border border-[#D0D4DC] bg-white p-2.5"
@@ -459,7 +461,7 @@ const GoalTracking = () => {
                     />
                   </label>
 
-                  <label className="w-1/2 flex flex-col gap-2">
+                  <label className=" flex flex-col gap-2">
                     <p className="text-[#1B2533] text-sm font-normal leading-5 tracking-[0.0025em] text-left">End Date <span className="text-red-600">*</span></p>
                     <input
                     className="h-11 rounded-[3px] border border-[#D0D4DC] bg-white p-2.5"
@@ -469,6 +471,7 @@ const GoalTracking = () => {
                       type="date"
                     />
                   </label>
+                 </div>
 
                   <label className="w-full flex flex-col gap-2">
                     <p className="text-[#1B2533] text-[14px] font-normal leading-5 tracking-[0.0025em] text-left">Subject <span className="text-red-600">*</span></p>

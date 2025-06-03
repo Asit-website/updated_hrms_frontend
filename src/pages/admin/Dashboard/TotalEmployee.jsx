@@ -62,7 +62,7 @@ const TotalEmployee = () => {
               <main className="grid gap-7 [grid-template-columns:repeat(auto-fit,minmax(275px,1fr))] mt-4">
                 {
                   data?.map((employ, index) => (
-                    <div key={index} className="rounded-[10px] bg-white flex flex-col items-center py-4 gap-[15px]">
+                    <div key={index} className="bg-white flex flex-col items-center py-4 gap-[15px] bg-grey rounded-xl border-2">
 
                       <div className="flex flex-col items-center gap-[10px]">
 

@@ -484,12 +484,12 @@ const CreateLead = () => {
                                         </select>
                                     </div>
 
-                                    <div className="flex flex-col xl:flex-row items-start xl:items-center  justify-between gap-[8px] lead_inp111">
+                                    {/* <div className="flex flex-col xl:flex-row items-start xl:items-center  justify-between gap-[8px] lead_inp111">
                                         <div className="flex items-center gap-2">
                                             <label className="jpo text-md font-normal min-w-[136px]" htmlFor="">Email Opt Out</label>
                                             <input value={formdata.EmailOptOut} name="EmailOptOut" onChange={changeHandler} className="seng w-full border rounded p-3 text-sm font-normal" type="checkbox" />
                                         </div>
-                                    </div>
+                                    </div> */}
                                    <div className="flex flex-col xl:flex-row items-start xl:items-center  justify-between gap-[8px]">
                  <label htmlFor="" className="text-md font-normal min-w-[136px]">Secondary Email</label>
         <input

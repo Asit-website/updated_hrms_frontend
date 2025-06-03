@@ -174,7 +174,7 @@ const CloseLeads = () => {
             </div>
 
             <div className="bg-grey rounded-xl border-2 overflow-hidden">
-                <div className="w-full overflow-x-auto bg-white  border border-gray-200 shadow-sm">
+                <div className="w-full overflow-x-auto bg-white  border border-gray-200 shadow-sm px-2">
                     <table className="w-full text-sm text-gray-700">
                         <thead className="bg-white font-semibold">
                             <tr>
@@ -189,16 +189,16 @@ const CloseLeads = () => {
                         <tbody>
                             {allCloseLead?.map((item, index) => (
                                 <tr key={index} className="border-b border-gray-200 hover:bg-gray-50 transition duration-150">
-                                    <td className="px-6 py-4 text-gray-800">{item?.Company}</td>
-                                    <td className="px-6 py-4 text-gray-800">{item?.Email}</td>
-                                    <td className="px-6 py-4 text-gray-800">{item?.FirstName}</td>
-                                    <td className="px-6 py-4 text-gray-800">{item?.LastName}</td>
-                                    <td className="px-6 py-4 text-gray-800">
+                                    <td className="px-4 py-4 text-gray-800">{item?.Company}</td>
+                                    <td className="px-4 py-4 text-gray-800">{item?.Email}</td>
+                                    <td className="px-4 py-4 text-gray-800">{item?.FirstName}</td>
+                                    <td className="px-4 py-4 text-gray-800">{item?.LastName}</td>
+                                    <td className="px-4 py-4 text-gray-800">
                                         {new Date(item?.closeDate).toLocaleDateString('en-GB')}
                                     </td>
                                     <td className=" text-gray-800">
                                         <div
-                                            className={`text-gray-800
+                                            className={`text-gray-800 flex items-center justify-center rounded-[27px] h-[28px] text-[12px] font-inter font-normal
                                             ${item?.LeadStatus === "Connected" && "connected"}
                                             ${item?.LeadStatus === "Nurturing" && "Nurturing"}
                                             ${item?.LeadStatus === "Qualified" && "Qualified"}
