@@ -20,7 +20,7 @@ import { useClickOutside } from "../../../hooks/useClickOutside";
 const MyLead = () => {
   const navigate = useNavigate();
 
-  const { getLead, deleteLeads, getUserByDesignation, closeLead } = useMain();
+  const { gettotalLeads, deleteLeads, getUserByDesignation, closeLead } = useMain();
   const { user } = useAuth();
 
   const [desUsers, setDeUsers] = useState([]);
@@ -34,10 +34,10 @@ const MyLead = () => {
   const [allData, setAllData] = useState([]);
 
   const fetchLead = async () => {
-    const ans = await getLead("", "", "", "");
-    setAllLead(ans?.data);
-    setAllData(ans?.data);
-    setAllLeading(ans?.data);
+    const ans = await gettotalLeads();
+    setAllLead(ans?.leads);
+    setAllData(ans?.leads);
+    setAllLeading(ans?.leads);
   };
 
   const [filterInput, setFilterInput] = useState();

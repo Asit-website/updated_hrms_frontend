@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import { useMain } from "../../../hooks/UseMain";
 import { useOutsideClick } from "../../../hooks/UseOutsideClick";
 const SetSallary = () => {
-    const { salaryCreate, getSallary, userSalaryFetch, createAllowance, allowDeleteHandler, editAllowance, commisionDelteHandler, createCommision, editComApi, createLoan, loanDeleteHandler, editLoanApi, getUsers } = useMain();
+    const { salaryCreate, getSallary, userSalaryFetch, createAllowance, allowDeleteHandler, editAllowance, commisionDelteHandler, createCommision, editComApi, createLoan, loanDeleteHandler, editLoanApi, getCurrentUser } = useMain();
     const [refreshFlag, setRefreshFlag] = useState(false);
 
     const [formdata, setFormdata] = useState({
@@ -26,7 +26,7 @@ const SetSallary = () => {
     const [user1, setUser1] = useState({});
 
     const fetchUserDetails = async () => {
-        const ans = await getUsers(state);
+        const ans = await getCurrentUser(state);
         setUser1(ans?.data);
     }
 
@@ -422,7 +422,7 @@ const SetSallary = () => {
     const loanpopupwrapper = useRef();
     const showupwrapper = useRef();
 
-    useOutsideClick(showupwrapper,()=> {
+    useOutsideClick(showupwrapper, () => {
         setShowIndex(null)
     })
 
@@ -455,14 +455,14 @@ const SetSallary = () => {
     return (
         <>
             <div className="employee-dash h-full">
-               
+
                 <div className="w-full ">
-                 
+
 
                     <div className="pt-[32px] pr-[20px] pb-[32px] pl-[20px] relative w-full
 ">
 
-                        <div className="flex-col flex flex-col gap-[24px]
+                        <div className=" flex flex-col gap-[24px]
 ">
 
                             {/* first  */}
@@ -662,7 +662,8 @@ const SetSallary = () => {
                                                                                     <div ref={showupwrapper} className="absolute w-32 bg-white p-2 rounded-md border border-gray-300 -top-14 right-12">
                                                                                         <div className="cursor-pointer flex gap-1 p-1" onClick={() => {
                                                                                             setShow1(true);
-                                                                                            setIsAllowEdit(item?._id);
+                                                                                            setIsAllowEdit(item._id);
+                                                                                            console.log(item._id);
                                                                                             setAllowanceForm({
                                                                                                 allowanceOption: item?.allowanceOption,
                                                                                                 title: item?.title,
@@ -675,9 +676,9 @@ const SetSallary = () => {
                                                                                         </div>
                                                                                         <hr />
                                                                                         <div onClick={() => {
-                                                                                                deleteAllow(item?._id);
-                                                                                            }} className="flex gap-1 p-1 cursor-pointer">
-                                                                                            <img className="cursor-pointer"  src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747481374/frema_ayb4lq.svg" alt="frema" />
+                                                                                            deleteAllow(item?._id);
+                                                                                        }} className="flex gap-1 p-1 cursor-pointer">
+                                                                                            <img className="cursor-pointer" src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747481374/frema_ayb4lq.svg" alt="frema" />
                                                                                             <span>Delete</span>
                                                                                         </div>
                                                                                     </div>
@@ -801,7 +802,7 @@ const SetSallary = () => {
                                     id="authentication-modal"
                                     tabIndex={-1}
                                     aria-hidden="true"
-                                    className="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-[3000] justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] lokig max-h-full backdrop-blur-[1px] bg-[rgba(0,0,0,0.3)]"
+                                    className="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-[3000] justify-center items-center w-full md:inset-0   max-h-full backdrop-blur-[1px] bg-[rgba(0,0,0,0.3)]"
                                 >
                                     <div ref={popupwrapper} className="relative top-[30%] left-[40%] p-4 w-full max-w-md max-h-full">
                                         {/* Modal content */}
@@ -883,7 +884,7 @@ const SetSallary = () => {
                                     id="authentication-modal1"
                                     tabIndex={-1}
                                     aria-hidden="true"
-                                    className="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-[3000] justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] lokig max-h-full backdrop-blur-[1px] bg-[rgba(0,0,0,0.3)]"
+                                    className="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-[3000] justify-center items-center w-full md:inset-0   max-h-full backdrop-blur-[1px] bg-[rgba(0,0,0,0.3)]"
                                 >
                                     <div ref={popupallowance} className="relative absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-[599px] p-4 max-w-md max-h-full">
                                         {/* Modal content */}
@@ -891,7 +892,7 @@ const SetSallary = () => {
                                             {/* Modal header */}
                                             <div className="flex okad items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                                                 <h3 className="text-xl font-semibold basic_sel text-gray-900 dark:text-white">
-                                                    Create Allowance
+                                                    {isAllowEdit ? "Update Allowance" : "Create Allowance"}
                                                 </h3>
                                                 {/* <img className="cursor-pointer" onClick={() => {
                                                     setShow1(false);
@@ -970,7 +971,6 @@ const SetSallary = () => {
 
                                                             }
                                                             else {
-
                                                                 postAllowance();
                                                             }
                                                         }
@@ -1003,7 +1003,7 @@ const SetSallary = () => {
                                     id="authentication-modal2"
                                     tabIndex={-1}
                                     aria-hidden="true"
-                                    className="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-[3000] justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] lokig max-h-full backdrop-blur-[1px] bg-[rgba(0,0,0,0.3)]"
+                                    className="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-[3000] justify-center items-center w-full md:inset-0   max-h-full backdrop-blur-[1px] bg-[rgba(0,0,0,0.3)]"
                                 >
                                     <div ref={commisionpopwrapper} className="relative absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 max-w-[599px] p-4 w-full max-w-md max-h-full">
                                         {/* Modal content */}
@@ -1112,7 +1112,7 @@ const SetSallary = () => {
                                     id="authentication-modal3"
                                     tabIndex={-1}
                                     aria-hidden="true"
-                                    className="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-[3000] justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] lokig max-h-full backdrop-blur-[1px] bg-[rgba(0,0,0,0.3)]"
+                                    className="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-[3000] justify-center items-center w-full md:inset-0   max-h-full backdrop-blur-[1px] bg-[rgba(0,0,0,0.3)]"
                                 >
                                     <div ref={loanpopupwrapper} className="relative absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  max-w-[599px] p-4 w-full max-w-md max-h-full">
                                         {/* Modal content */}

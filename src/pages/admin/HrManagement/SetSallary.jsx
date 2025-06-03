@@ -175,7 +175,7 @@ const EmployeeSalary = () => {
                               {
                                 showIndex === index && (
                                   <div ref={popupwrapper} onClick={() => {
-                                    navigate(`/adminDash/setAll/${val?._id}`, {
+                                    navigate(role === "ADMIN" ? `/adminDash/setAll/${val?._id}` : `/employeeDash/setAll/${val?._id}`, {
                                       state: val?._id,
                                     });setShowIndex(null)
                                   }} 

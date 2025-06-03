@@ -153,14 +153,14 @@ function App() {
             <Route path="/adminDash/HRM/Expense" element={<Items />} />
             <Route path="/adminDash/HRM/taskClients" element={<Clients />} />
             <Route path="/adminDash/HRM/clientsProject" element={<ClientsProject />} />
-            <Route path="/adminDash/HRM/projectOverview" element={<ProjectOverView/>} />
+            <Route path="/adminDash/HRM/projectOverview" element={<ProjectOverView />} />
             <Route path="/adminDash/HRM/taskProjects" element={<TaskProjects />} />
             <Route path="/adminDash/HRM/EmployeeManagement" element={<EmployeeManagement />} />
             <Route path="/adminDash/EmployeeDetails" element={<EmployeeDetail />} />
             <Route path="/adminDash/EmployeeMan/:id" element={<EmployeeManage />} />
             <Route path="/adminDash/HRM/markAttendance" element={<MarkAttendance />} />
             <Route path="/adminDash/HRM/LeaveEmployee" element={<LeaveEmployee />} />
-            <Route path="/adminDash/HRM/leaveRequest" element={<LeaveRequest/>} />
+            <Route path="/adminDash/HRM/leaveRequest" element={<LeaveRequest />} />
             <Route path="/adminDash/setSallary" element={<SetSallary />} />
             <Route path="/adminDash/setAll/:id" element={<SetSalaryId />} />
             <Route path="/adminDash/payslip" element={<Payslip />} />
@@ -176,10 +176,20 @@ function App() {
             <Route path="/employeeDash/HRM/projectDetails" element={<ProjectDetails2 />} />
             <Route path="/employeeDash/employeeLeave" element={<MyLeaves />} />
             <Route path="/employeeDash/atten" element={<AttendenceCalendar />} />
+            <Route path="/employeeDash/HRM/activeEmployee" element={<ActiveEmplyee />} />
+            <Route path="/employeeDash/HRM/halfDayRequest" element={<HalfRequest />} />
+            <Route path="/employeeDash/HRM/totalEmployee" element={<TotalEmployee />} />
+            <Route path="/employeeDash/HRM/deactivate" element={<DeactivateEmployee />} />
+            <Route path="/employeeDash/EmployeeMan" element={<EmployeeMan />} />
+            <Route path="/employeeDash/EmployeeMan/:id" element={<EmployeeManage />} />
             <Route path="/employeeDash/leadDash" element={<LeadManagement />} />
+            <Route path="/employeeDash/EmployeeDetails" element={<EmployeeDetail />} />
             <Route path="/employeeDash/LeadSystemSetting" element={<LeadSystemSetting />} />
             <Route path="/employeeDash/HRM/taskClients" element={<Clients />} />
+            <Route path="/employeeDash/HRM/clientsProject" element={<ClientsProject />} />
+            <Route path="/employeeDash/HRM/projectOverview" element={<ProjectOverView />} />
             <Route path="/employeeDash/HRM/taskProjects" element={<TaskProjects />} />
+             <Route path="/employeeDash/setAll/:id" element={<SetSalaryId />} />
             {/* <Route path="/employeeDash/HRM/myProjects" element={<MyProjects />} />  ..............Pending */}
             <Route path="/employeeDash/HRM/EmployeeManagement" element={<EmployeeManagement />} />
             <Route path="/employeeDash/HRM/markAttendance" element={<MarkAttendance />} />
