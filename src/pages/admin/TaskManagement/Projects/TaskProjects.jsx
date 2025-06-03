@@ -434,7 +434,7 @@ const TaskProjects = () => {
                 <table className="w-max lg:w-full text-sm text-left bg-white rounded-lg">
                   <thead className="bg-white font-semibold">
                     <tr>
-                      <th className="text-left font-bold text-gray-900 py-3 px-4 border-b border-gray-200 whitespace-nowrap">SR</th>
+                      <th className="text-left font-bold text-gray-900 py-3 px-4 border-b border-gray-200 whitespace-nowrap">SR/No</th>
                       <th className="text-left font-bold text-gray-900 py-3 px-4 border-b border-gray-200 whitespace-nowrap">Project Name</th>
                       <th className="text-left font-bold text-gray-900 py-3 px-4 border-b border-gray-200 whitespace-nowrap">Start Date</th>
                       <th className="text-left font-bold text-gray-900 py-3 px-4 border-b border-gray-200 whitespace-nowrap">Deadline</th>

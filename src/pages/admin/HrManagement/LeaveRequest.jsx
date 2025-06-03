@@ -216,8 +216,8 @@ const LeaveRequest = () => {
                 )}
 
               </div>
-              <main className="pt-[10px] pr-0 pb-[30px] pl-0">
-                <input className="border border-[#D0D4DC] w-[200px] px-[10px] h-[38px] rounded-[10px]" onChange={(e) => setSearchInput(e.target.value)}
+              <main className="pt-[10px] pr-0 pb-[30px] pl-0 ">
+                <input className="border border-black w-[200px] px-[10px] h-[38px] rounded-[10px]" onChange={(e) => setSearchInput(e.target.value)}
                   value={searchInput} placeholder="Search Employee" />
 
                 {/* second  */}
@@ -443,7 +443,7 @@ const LeaveRequest = () => {
 
                       <input
                         value={formdata.employeeName}
-                        className="border rounded p-2 text-sm font-normal  w-full"
+                        className="w-full border rounded p-2 text-sm font-normal "
                         onChange={changeHandler}
                         type="text"
                         name="employeeName"
@@ -463,20 +463,20 @@ const LeaveRequest = () => {
                         name="leaveType"
                         id="text"
                         placeholder="Enter your leave type"
-                        className="border rounded p-2 text-sm font-normal  w-full"
+                        className="w-full border rounded p-2 text-sm font-normal"
                         required
                       />
                     </div>
 
-                      <div className="user_class_input w-full mt-2 ">
+                      <div className="user_class_input mt-2 ">
                         <label
                           for="text"
-                          class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                          class="block text-md font-normal mb-1"
                         >
                           Start
                         </label>
                         <input
-                          className="w-[271.5px] border rounded p-2 text-sm font-normal "
+                          className="w-full border rounded p-2 text-sm font-normal "
                           value={formdata.start}
                           onChange={changeHandler}
                           type="date"
@@ -486,15 +486,15 @@ const LeaveRequest = () => {
                         />
                       </div>
 
-                      <div className="user_class_input w-full ml-2  mt-2">
+                      <div className="user_class_input w-full mt-2">
                         <label
                           for="text"
-                          className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                          className="block text-md font-normal mb-1"
                         >
                           End
                         </label>
                         <input
-                          className="w-[271.5px] border rounded p-2 text-sm font-normal "
+                          className="w-full border rounded p-2 text-sm font-normal "
                           value={formdata.end}
                           onChange={changeHandler}
                           type="date"

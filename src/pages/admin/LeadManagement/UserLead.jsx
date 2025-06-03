@@ -376,7 +376,7 @@ const UserLead = () => {
                         <div>
                             {/* apply currnt filter  */}
 
-                            <div className="w-full bg-white border border-gray-400 shadow-[0px_8px_32px_-2px_#1B25330F] py-[15px] mt-[20px] min-h-[250px] rounded-xl ">
+                            <div className="w-full bg-white py-[15px] mt-[20px] min-h-[250px] rounded-xl ">
                                 <div className="px-[20px] ">
                                     <div className="flex items-center justify-between px-[10px] overflow-x-scroll lg:overflow-x-hidden">
                                         <div className=" flex gap-2 items-center">
@@ -404,7 +404,7 @@ const UserLead = () => {
                                         </div>
                                     </div>
 
-                                    <div className="relative w-full bg-white overflow-x-scroll xl:overflow-x-hidden">
+                                    <div className="relative w-full bg-white overflow-x-scroll xl:overflow-visible z-[-40px] bg-grey rounded-xl border-2 mt-2">
                                         <table className="w-full text-sm text-gray-700">
                                             <thead className="bg-white font-semibold">
                                                 <tr>
@@ -526,7 +526,7 @@ const UserLead = () => {
 
 
                                                                     {index === currView && (
-                                                                        <div ref={ref} className="absolute -top-16 min-w-[120px] h-fit border border-[#E3E3E3] flex flex-col shadow-[0px_4px_12px_0px_#1A1A1A33] py-1 gap-[5px]  z-[1000] bg-white right-[75px]">
+                                                                        <div ref={ref} className="absolute xl:-top-20  min-w-[120px] h-fit border border-[#E3E3E3] flex flex-col shadow-[0px_4px_12px_0px_#1A1A1A33] py-1 gap-[5px]  z-[1000] bg-white right-[74px]">
                                                                             <div className="items-center w-full px-4 text-sm flex gap-2 text-gray-700 hover:bg-gray-100 cursor-pointer" onClick={() =>
                                                                                 navigate(user?.role === "ADMIN" ? "/adminDash/editLead" : "/employeeDash/editLead", {
                                                                                     state: item,
@@ -576,7 +576,6 @@ const UserLead = () => {
                                             </tbody>
                                         </table>
                                     </div>
-
                                     {totalPages > 1 && (<div className="flex items-center justify-center gap-[10px] mt-5">
                                         <div className=" w-[100px] h-[40px] gap-[10px] rounded-[10px] border border-[#D8D8D8] bg-white text-[#2B2B2B] font-inter text-[12px] font-medium leading-[16px] tracking-[0.004em] text-center flex items-center justify-center">
                                             <button className="flex items-center gap-2" onClick={prevPage} disabled={currentPage === 1}>
@@ -594,7 +593,7 @@ const UserLead = () => {
                                                     />
                                                 </svg>
                                             </button>
-                                        </div>
+                                                  </div>
 
                                         <div className="on1">
                                             <p>{currentPage}</p>

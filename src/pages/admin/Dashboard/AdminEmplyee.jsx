@@ -155,13 +155,13 @@ const AdminEmplyee = () => {
               {/* first  */}
               <p className="text-[24px] text-center font-semibold leading-[32px] lg:text-left text-[#101820]">Active Employee</p>
               {/* second */}
-              <div className="flex w-full h-[70vh] items-center justify-center">
+              <div className="flex w-full items-center justify-center lg:justify-start">
                 {
                   data1.length > 0 ? (
                     <main className="grid gap-7 [grid-template-columns:repeat(auto-fit,minmax(275px,1fr))] mt-4">
 
                       {data1?.length > 0 && data1?.map((employ, index) => (
-                        <div key={index} className="rounded-[10px] bg-white flex flex-col items-center py-4 gap-[15px] max-w-[350px]">
+                        <div key={index} className="bg-white flex flex-col items-center py-4 gap-[15px] max-w-[350px] bg-grey rounded-xl border-2">
                           <div className="flex flex-col items-center gap-2.5">
                             <img className="w-[65px] h-[65px] rounded-full" src={employ?.user?.profileImage ? employ?.user?.profileImage : data[0].profile} alt="" />
                             <h2>{employ?.user?.fullName}</h2>

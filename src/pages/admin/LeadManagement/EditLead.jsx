@@ -520,7 +520,7 @@ const EditLead = () => {
                   </div>
 
 
-                  <div className="flex flex-col xl:flex-row items-start xl:items-center justify-between gap-[8px] lead_inp111">
+                  {/* <div className="flex flex-col xl:flex-row items-start xl:items-center justify-between gap-[8px] lead_inp111">
                     <div className="flex items-center gap-2">
                       <label className="jpo min-w-[136px] text-md font-normal" htmlFor="" >
                         Email Opt Out
@@ -534,7 +534,7 @@ const EditLead = () => {
                          className="w-full border rounded p-3 text-sm font-normal "
                       />
                     </div>
-                  </div>
+                  </div> */}
 
 
                   <div className="flex flex-col xl:flex-row items-start xl:items-center justify-between gap-[8px]">
@@ -583,7 +583,7 @@ const EditLead = () => {
                       name="SkypeID"
                       type="text"
                       onChange={changeHandler}
-                       className="w-full border rounded p-3 text-sm font-normal "
+                       className="w-full border rounded p-3 text-sm font-normal"
                     />
                   </div>
 
@@ -612,7 +612,7 @@ const EditLead = () => {
                       name="Street"
                       onChange={changeHandler}
                       type="text"
-                       className="w-full border rounded p-3 text-sm font-normal "
+                       className="w-full border rounded p-3 text-sm font-normal"
                     />
                   </div>
                   <div className="flex flex-col xl:flex-row items-start xl:items-center justify-between gap-[8px]">
@@ -675,22 +675,22 @@ const EditLead = () => {
                 <h2 className="text-[18px] font-semibold text-black">Description Information</h2>
 
                 <div className="grid  gap-3 py-5">
-                  <div className="flex flex-col xl:flex-row items-start xl:items-center justify-between gap-[8px]">
-                    <label htmlFor="" className="min-w-[136px] text-md font-normal">Description</label>
+                  <div className="flex flex-col xl:flex-row items-start xl:items-center gap-[8px]">
+                    <label htmlFor="" className="min-w-[136px] text-md font-semibold">Description</label>
                     <input
                       value={formdata.DescriptionInfo}
                       name="DescriptionInfo"
                       onChange={changeHandler}
                       type="text"
                       
-                        className="w-full border rounded p-3 text-sm font-normal "
+                        className="w-[50%] border rounded p-3 text-sm font-normal "
                     />
                   </div>
                 </div>
               </div>
 
 
-              {
+              {/* {
                 leadCategory.length > 4 && (
                   <div className="lead_information bg-white rounded-lg shadow p-2 mt-6">
                     <h2 className="text-[18px] font-semibold text-black">Additional Fields</h2>
@@ -728,7 +728,7 @@ const EditLead = () => {
                         </div>
                       ))}
                     </div>
-                    {/* )} */}
+                 
                     {
                       leadCategory.length > 8 ? (
                         showAdditionalSetting === 8 ? <span className="bg-blue-600 cursor-pointer mt-3 inline-block m-auto rounded-md text-white py-1 px-2" onClick={() => setShowAdditionalSetting()}>View All</span> : <span className="bg-blue-600 inline-block mt-3 m-auto cursor-pointer rounded-md text-white py-1 px-2" onClick={() => setShowAdditionalSetting(8)}>View Less</span>
@@ -774,7 +774,7 @@ const EditLead = () => {
                     ))}
                   </div>
                 )
-              }
+              } */}
 
               <div>
                 <button

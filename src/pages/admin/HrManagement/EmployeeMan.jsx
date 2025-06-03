@@ -765,12 +765,10 @@ const EmployeeManage = ({
               >
                 <div className="flex flex-col gap-7
 ">
-                  <div className="flex flex-col lg:flex-row gap-5 w-full justify-between bg-white rounded-lg shadow p-2">
-                    <div className="bg-white max-w-[100%] lg:max-w-[48%] w-full p-4 rounded-[10px]
+                  <div className="flex flex-col lg:flex-row gap-5 w-full justify-between bg-white rounded-lg">
+                    <div className="bg-white max-w-[100%] lg:max-w-[48%] w-full p-4 rounded-[10px] shadow
 ">
-                      {/* <h2 className="admfperh2">Personal Detail</h2>
-                      <hr className="mt-5 opacity-80
-" /> */}
+                     
                       <div className="flex items-center justify-between 
 ">
                         <h3 className="text-[#101820] text-[16px] font-extrabold leading-[24px] tracking-[0.0015em] text-left
@@ -829,7 +827,7 @@ const EmployeeManage = ({
                               />
                             </label>
 
-                            <div className="makethisflex1">
+                            <div className="flex gap-[10px]">
                               <div className=" w-full try">
                                 <label
                                   for="pan"
@@ -855,7 +853,7 @@ const EmployeeManage = ({
                               <div className=" w-full try">
                                 <label
                                   for="adhar"
-                                className="block text-md font-normal py-3"
+                                className="block text-md font-normal pb-3"
                                 >
                                   Aadhaar No. <span className="text-red-600">*</span>
                                 </label>
@@ -875,7 +873,7 @@ const EmployeeManage = ({
                               </div>
                             </div>
 
-                            <div className="makethisflex1">
+                            <div className="flex gap-[10px]">
 
 
                               <div className=" w-full try">
@@ -902,7 +900,7 @@ const EmployeeManage = ({
                               <div className=" w-full try">
                                 <label
                                   for="Mother"
-                                 className="block text-md font-normal py-3"
+                                 className="block text-md font-normal pb-3"
                                 >
                                   Mother name
                                 </label>
@@ -921,7 +919,7 @@ const EmployeeManage = ({
                               </div>
                             </div>
 
-                            <div className="makethisflex1">
+                            <div className="flex gap-[10px]">
                               <div className=" w-full try">
                                 <label
                                   for="currentAddress"
@@ -946,7 +944,7 @@ const EmployeeManage = ({
                               <div className=" w-full try">
                                 <label
                                   for="Martial"
-                                 className="block text-md font-normal py-3"
+                                 className="block text-md font-normal pb-3"
                                 >
                                   Marital status
                                 </label>
@@ -1187,7 +1185,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
                       </div>
                     </div>
 
-                    <div className="bg-white p-4 rounded-[10px] max-w-[100%] lg:max-w-[49%] w-full
+                    <div className="bg-white p-4 rounded-[10px] max-w-[100%] lg:max-w-[49%] w-full shadow
 ">
                       <div className="flex items-center justify-between 
 ">
@@ -1336,7 +1334,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
                             </div>
                           </div>
 
-                          <label className="text-md font-normal mb-1 flex items-center gap-5 py-6">
+                          <label className="text-md font-normal mb-1 flex items-center gap-5 py-7">
                             <input
                             className=""
                               type="checkbox"
@@ -1442,7 +1440,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
                           <div className=" try">
                             <label
                               for="perCity"
-                          className="block text-md font-normal pb-2"
+                          className="block text-md font-normal pb-4"
                             >
                               Permanent city
                             </label>
@@ -1461,7 +1459,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
                           <div className=" try">
                             <label
                               for="perPin"
-                             className="block text-md font-normal pb-2"
+                             className="block text-md font-normal pb-4"
                             >
                               Permanent Area Pincode
                             </label>
@@ -1479,7 +1477,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
                             />
                           </div>
 
-                          <div className="flex w-full makethisflex1">
+                          <div className="flex w-full flex gap-[10px]">
 
                             <div className=" w-full try">
                               <label
@@ -1509,11 +1507,11 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
                     </div>
                   </div>
 
-                  <div className="flex flex-col lg:flex-row gap-5 w-full justify-between bg-white rounded-lg shadow p-2
+                  <div className="flex flex-col lg:flex-row gap-5 w-full justify-between bg-white rounded-lg
 ">
                     {/* this is doc side  */}
 
-                    <div className="bg-white max-w-[100%] lg:max-w-[48%] w-full p-4 rounded-[10px] 
+                    <div className="bg-white max-w-[100%] lg:max-w-[48%] w-full p-4 rounded-[10px] shadow
 ">
                       <div className="flex items-center justify-between 
 ">
@@ -1524,7 +1522,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
                       <hr className="mt-5 opacity-80
 " />
 
-                      <div className="w-full flex flex-col gap-5 mt-5 w-full
+                      <div className="w-full flex flex-col gap-5
 ">
                         {/* this is first doc row  */}
 
@@ -1950,7 +1948,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
                     </div>
 
                     {/* this is backend acc side  */}
-                    <div className="bg-white p-4 rounded-[10px] max-w-[100%] lg:max-w-[49%] w-full
+                    <div className="bg-white p-4 rounded-[10px] max-w-[100%] lg:max-w-[49%] w-full shadow
 ">
                       <div className="flex items-center justify-between 
 ">

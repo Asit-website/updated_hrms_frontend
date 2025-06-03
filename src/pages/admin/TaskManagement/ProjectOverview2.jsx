@@ -430,7 +430,7 @@ const ProjectOverview2 = ({ allTasks, getProjectTaskapi }) => {
                 </div>
               </div>
 
-              <div className="relative overflow-x-auto min-h-[250px]  rounded-lg">
+              <div className="relative overflow-x-auto min-h-[250px]  bg-grey rounded-xl border-2 ">
                 <table className="w-max lg:w-full text-sm text-left bg-white rounded-lg">
                   <thead className="bg-white font-semibold">
                     <tr>
@@ -612,7 +612,7 @@ const ProjectOverview2 = ({ allTasks, getProjectTaskapi }) => {
       </div>
       {addClientPop && (
         <div className="fixed inset-0 z-[3000] flex items-center justify-center p-5 backdrop-blur-[1px] bg-[#40404066]">
-          <div ref={wrapperRef} className="w-[599px] p-6 h-fit flex flex-col gap-4 rounded-[18px] bg-white min-h-[400px] h-fit">
+          <div ref={wrapperRef} className="w-[599px] p-6 h-fit flex flex-col gap-4 rounded-[18px] bg-white min-h-[400px]">
             <nav className="flex items-center justify-between">
               <p className="text-[#1B2533] text-base font-semibold leading-6 tracking-[0.0015em] text-left">{isEdit ? "Edit Task" : "Create New Task"}</p>
 
@@ -631,7 +631,7 @@ const ProjectOverview2 = ({ allTasks, getProjectTaskapi }) => {
                 <label className="block text-md font-normal mb-1">
                   <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Add File</p>
                   <input
-                    className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                    className="w-full border rounded p-2 text-sm font-normal"
                     name="taskfile"
                     // value={formdata.taskfile}
                     onChange={changeHandler3}
@@ -642,7 +642,7 @@ const ProjectOverview2 = ({ allTasks, getProjectTaskapi }) => {
                 <label className="block text-md font-normal mb-1">
                   <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Subject</p>
                   <input
-                    className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                    className="w-full border rounded p-2 text-sm font-normal "
                     name="Title"
                     required
                     value={formdata.Title}
@@ -667,7 +667,7 @@ const ProjectOverview2 = ({ allTasks, getProjectTaskapi }) => {
                   </div>
 
                   <select
-                    className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                    className="w-full border rounded p-2 text-sm font-normal"
                     name="Members"
                     onChange={changeHandler2}
                     disabled={formdata?.Members?.length >= allEmp?.length}  >
@@ -690,7 +690,7 @@ const ProjectOverview2 = ({ allTasks, getProjectTaskapi }) => {
                 <label className="block text-md font-normal mb-1">
                   <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Priority </p>
                   <select
-                    className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                    className="w-full border rounded p-2 text-sm font-normal "
                     name="Priority"
                     value={formdata.Priority}
                     onChange={changeHandler}
@@ -704,31 +704,31 @@ const ProjectOverview2 = ({ allTasks, getProjectTaskapi }) => {
                 <label className="block text-md font-normal mb-1">
                   <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Start Date</p>
                   <input
-                    className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                    className="w-full border rounded p-2 text-sm font-normal "
                     name="StartDate"
                     value={formdata.StartDate}
                     onChange={changeHandler}
                     type="date"
-                    min={data.startDate}
-                    max={data.deadline}
+                    // min={data.startDate}
+                    // max={data.deadline}
                   />
                 </label>
                 <label className="block text-md font-normal mb-1">
                   <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Due Date</p>
                   <input
-                    className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                    className="w-full border rounded p-2 text-sm font-normal "
                     name="DueDate"
                     value={formdata.DueDate}
                     onChange={changeHandler}
                     type="date"
-                    min={formdata.StartDate || data.startDate}
-                    max={data.deadline}
+                    // min={formdata.StartDate || data.startDate}
+                    // max={data.deadline}
                   />
                 </label>
                 <label className="block text-md font-normal mb-1">
                   <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Description</p>
                   <textarea
-                    className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                    className="w-full border rounded p-2 text-sm font-normal"
                     type="text"
                     name="Description"
                     value={formdata.Description}

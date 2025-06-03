@@ -153,14 +153,14 @@ function App() {
             <Route path="/adminDash/HRM/Expense" element={<Items />} />
             <Route path="/adminDash/HRM/taskClients" element={<Clients />} />
             <Route path="/adminDash/HRM/clientsProject" element={<ClientsProject />} />
-            <Route path="/adminDash/HRM/projectOverview" element={<ProjectOverView />} />
+            <Route path="/adminDash/HRM/projectOverview" element={<ProjectOverView/>} />
             <Route path="/adminDash/HRM/taskProjects" element={<TaskProjects />} />
             <Route path="/adminDash/HRM/EmployeeManagement" element={<EmployeeManagement />} />
             <Route path="/adminDash/EmployeeDetails" element={<EmployeeDetail />} />
             <Route path="/adminDash/EmployeeMan/:id" element={<EmployeeManage />} />
             <Route path="/adminDash/HRM/markAttendance" element={<MarkAttendance />} />
             <Route path="/adminDash/HRM/LeaveEmployee" element={<LeaveEmployee />} />
-            <Route path="/adminDash/HRM/leaveRequest" element={<LeaveRequest />} />
+            <Route path="/adminDash/HRM/leaveRequest" element={<LeaveRequest/>} />
             <Route path="/adminDash/setSallary" element={<SetSallary />} />
             <Route path="/adminDash/setAll/:id" element={<SetSalaryId />} />
             <Route path="/adminDash/payslip" element={<Payslip />} />
