@@ -290,6 +290,11 @@ const MainState = (props) => {
       return data;
    };
 
+   const getCurrentUser = async (userId) => {
+      const data = await get(`${baseUrl}/user/getUsers?userId=${userId}`, true);;
+      return data;
+   };
+
    const getActiveUsers = async (userId) => {
       const data = await get(`${baseUrl}/user/getActiveUsers`, true);
       return data;
@@ -1855,11 +1860,9 @@ const MainState = (props) => {
       return data;
    }
 
-   const getLead = async (id, query, page, perPage) => {
-      // let user = JSON.parse(localStorage.getItem("hrms_user"));
-
-      const data = await post(`${baseUrl}/lead/getAllLead`, { id: user?._id }, true);
-      setTotalLeads(data?.data.length);
+   const gettotalLeads = async () => {
+      const data = await get(`${baseUrl}/lead/getAllLeads`);
+      setTotalLeads(data?.leads.length);
       return data;
    }
 
@@ -2729,7 +2732,7 @@ const MainState = (props) => {
          getAllActivities2,
          createTrip, getTrip, deleteTrip, updateTrip, deletePromotion, updatePromotion,
          createLead,
-         getLead,
+         gettotalLeads,
          getLead2,
          allowDeleteHandler,
          fetchUserOwnDetailApi,
@@ -2775,6 +2778,7 @@ const MainState = (props) => {
          savenoteatt, AllRolesapi, FetchMyLeave, closeLead, deleteQproapi, createExpenseApi, changeStatusBreak, deleteProjectTaskapi22, EditProjectTask, postHalfDay, closeLeadApiFetch2, closeLeadApiFetch, postNotification2, getUserHalfDay, rejectHalfDay, acceptHalf, acceptassetsapi, getTodayLead, getTodayLead2, getSaveTempalte, statuschangeapi, UploadFileProjectapi, allfilesproject, deleteProjectFile, fetchAllTimesheetapi, getClientProject,
          upcomingBirthdays,
          setUpcomingBirthdays,
+         getCurrentUser,
          allProjects, setAllProjects,
          monthlyWorkingHours, setMonthlyWorkingHours,
          counts, setCounts,

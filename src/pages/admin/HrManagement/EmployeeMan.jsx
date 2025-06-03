@@ -21,9 +21,7 @@ const item = [
   },
 ];
 
-const EmployeeManage = ({
-  isHr = false,
-}) => {
+const EmployeeManage = () => {
   const { id } = useParams();
 
   const [currEmp, setCurrEmp] = useState(0);
@@ -201,7 +199,7 @@ const EmployeeManage = ({
 
   const getUser = async () => {
     const ans = await getUsers(id);
-    console.log("user",ans?.data)
+    console.log("user", ans?.data)
 
     const { EmployeeType } = ans?.data || {};
 
@@ -233,7 +231,7 @@ const EmployeeManage = ({
       joiningDate: ans.data.joiningDate,
       password: "",
       PermissionRole: perm,
-      employeeCode:ans.data.employeeCode
+      employeeCode: ans.data.employeeCode
     });
     setValue2({
       status: false,
@@ -329,7 +327,7 @@ const EmployeeManage = ({
     pancard: "",
     tenCert: "",
     twevelCert: "",
-    highestquali:"",
+    highestquali: "",
     cancelCheque: "",
     LastOrganization: "",
     RelievingLetter: "",
@@ -347,10 +345,10 @@ const EmployeeManage = ({
         [name]: file,
       }));
     }
-      const ans = await uploadToCloudinaryImg({ image: file });
+    const ans = await uploadToCloudinaryImg({ image: file });
 
     const toastId = toast.loading("Wait...");
-  
+
 
     if (ans?.status) {
       toast.success("Successfuly");
@@ -375,32 +373,12 @@ const EmployeeManage = ({
     if (!value1.PermissionRole) missingFields.push('Permission Role');
     if (!value1.employeeCode) missingFields.push('Employee Code');
 
-
-    if (!value3.pan) missingFields.push('PAN');
-    if (!value3.adhar) missingFields.push('Aadhar');
-    // if (!value3.father) missingFields.push('Father Name');
-    // if (!value3.currentAddress) missingFields.push('Current Address');
-    // if (!value3.currentState) missingFields.push('Current State');
-    // if (!value3.currentCity) missingFields.push('Current City');
-    // if (!value3.currentPin) missingFields.push('Current Pin');
-    // if (!value3.residence) missingFields.push('Residence');
-    // if (!value3.perState) missingFields.push('Permanent State');
-    // if (!value3.perCity) missingFields.push('Permanent City');
-    // if (!value3.perPin) missingFields.push('Permanent Pin');
-    // if (!value3.Martial) missingFields.push('Martial Status');
-    // if (!value3.nationality) missingFields.push('Nationality');
-    // if (!value3.Mother) missingFields.push('Mother Name');
-
-
-    // if (!value2.gmail) missingFields.push('Gmail');
     if (!value2.email1) missingFields.push('Personal Email');
-    // if (!value2.mobile) missingFields.push('Mobile');
     if (!value2.gender) missingFields.push('Gender');
     if (!value2.dob) missingFields.push('Date of Birth');
     if (!value2.leaveNumber) missingFields.push('Leave Number');
 
     if (missingFields.length > 0) {
-      // return `Please fill all the required fields`;
       return `Please fill the following required fields: ${missingFields.join(', ')}`
     }
 
@@ -411,15 +389,11 @@ const EmployeeManage = ({
   const handleSubmit = async (e, type) => {
     e.preventDefault();
 
-      const toastId = toast.loading("Loading..."); 
-
     if (emailisValid === false && value1?.email !== "") {
-      toast.dismiss(toastId);
       return toast.error("Please Enter Correct Gmail");
     }
 
     if (emailisValid1 === false && value2?.email1 !== "") {
-      toast.dismiss(toastId);
       return toast.error("Please Enter Correct Gmail");
     }
 
@@ -457,7 +431,7 @@ const EmployeeManage = ({
     }
 
 
-    // const toastId = toast.loading("Loading...");
+    const toastId = toast.loading("Loading...");
 
     if (!id) {
       const {
@@ -701,10 +675,10 @@ const EmployeeManage = ({
   return (
     <>
       <div className="employee-dash h-full">
-       
+
 
         <div className="w-full ">
-         
+
 
           <div className="w-full relative px-[20px] pt-[32px] pb-[32px] pl-[20px]
 ">
@@ -717,7 +691,7 @@ const EmployeeManage = ({
               {/* right side  */}
               <div className="flex gap-4 items-center mt-2 sm:mt-0
 ">
-                <NavLink to="/adminDash/HRM/employeeManagement">
+                <NavLink to={role === "ADMIN" ? "/adminDash/HRM/employeeManagement" : "/employeeDash/HRM/employeeManagement"}>
                   <button className="w-[102px] h-[40px] gap-[10px] rounded-[10px] border border-[#0B56E4] bg-[linear-gradient(131.78deg,_#D1E8FD_6.87%,_#EDEFFF_91.67%)]
 ">
                     <span className="text-[#0B56E4] text-[16px] font-medium leading-[24px] tracking-[0.005em] text-left
@@ -735,7 +709,7 @@ const EmployeeManage = ({
                   className="bg-[#0B56E4] text-white text-[16px] font-inter font-medium leading-[20px]
  outline-none  hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 rounded-lg text-sm px-5 py-2.5 mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                 >
-                 {id ? "Save Changes" : "Register"}
+                  {id ? "Save Changes" : "Register"}
                 </button>
               </div>
             </section>
@@ -768,7 +742,7 @@ const EmployeeManage = ({
                   <div className="flex flex-col lg:flex-row gap-5 w-full justify-between bg-white rounded-lg">
                     <div className="bg-white max-w-[100%] lg:max-w-[48%] w-full p-4 rounded-[10px] shadow
 ">
-                     
+
                       <div className="flex items-center justify-between 
 ">
                         <h3 className="text-[#101820] text-[16px] font-extrabold leading-[24px] tracking-[0.0015em] text-left
@@ -831,15 +805,15 @@ const EmployeeManage = ({
                               <div className=" w-full try">
                                 <label
                                   for="pan"
-                                className="block text-md font-normal pb-3"
+                                  className="block text-md font-normal pb-3"
                                 >
-                                  PAN No. <span className="text-red-600">*</span>
+                                  PAN No.
                                 </label>
                                 <input
                                   className="w-full border rounded p-2 text-sm font-normal"
                                   type="text"
                                   id="pan"
-                                
+
                                   // required
                                   name="pan"
                                   value={value3?.pan}
@@ -853,9 +827,9 @@ const EmployeeManage = ({
                               <div className=" w-full try">
                                 <label
                                   for="adhar"
-                                className="block text-md font-normal pb-3"
+                                  className="block text-md font-normal pb-3"
                                 >
-                                  Aadhaar No. <span className="text-red-600">*</span>
+                                  Aadhaar No.
                                 </label>
                                 <input
 
@@ -900,7 +874,7 @@ const EmployeeManage = ({
                               <div className=" w-full try">
                                 <label
                                   for="Mother"
-                                 className="block text-md font-normal pb-3"
+                                  className="block text-md font-normal pb-3"
                                 >
                                   Mother name
                                 </label>
@@ -923,7 +897,7 @@ const EmployeeManage = ({
                               <div className=" w-full try">
                                 <label
                                   for="currentAddress"
-                                className="block text-md font-normal pb-3"
+                                  className="block text-md font-normal pb-3"
                                 >
                                   Mobile Number
                                 </label>
@@ -944,12 +918,12 @@ const EmployeeManage = ({
                               <div className=" w-full try">
                                 <label
                                   for="Martial"
-                                 className="block text-md font-normal pb-3"
+                                  className="block text-md font-normal pb-3"
                                 >
                                   Marital status
                                 </label>
                                 <select
-                                    className="w-full border rounded p-2 text-sm font-normal "
+                                  className="w-full border rounded p-2 text-sm font-normal "
                                   name="Martial"
                                   id="Martial"
                                   value={value3?.Martial}
@@ -1011,16 +985,15 @@ const EmployeeManage = ({
                                   handleChange(e, "form1");
                                   handleValidation(e.target.value);
                                 }}
-className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
-  emailisValid === false && value1.email !== "" ? "emailvalidinput" : ""
-}`}
+                                className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${emailisValid === false && value1.email !== "" ? "emailvalidinput" : ""
+                                  }`}
 
                                 type="email"
                                 // name="gmail"
                                 name="email"
-                            
+
                                 value={value1?.email}
-                             
+
                                 placeholder="Company Email Address"
                                 disabled={value1.status}
                               />
@@ -1107,13 +1080,13 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
                                 name="joiningDate"
                                 value={value1?.joiningDate}
                                 disabled={value1.status}
-                                    className="w-full border rounded p-2 text-sm font-normal "
+                                className="w-full border rounded p-2 text-sm font-normal "
                               />
                             </label>
 
                             <label
                               for="email1"
-                             className="block text-md font-normal"
+                              className="block text-md font-normal"
                             >
                               <p className="pb-3"> Personal Email Address <span className="text-red-600">*</span></p>
                               <input
@@ -1124,7 +1097,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
                                   value2.email1 !== "" &&
                                   "emailvalidinput"
                                   } w-full border rounded p-2 text-sm font-normal text-gray-500l`}
-                             
+
                                 name="email1"
                                 value={value2?.email1}
                                 onChange={(e) => {
@@ -1137,7 +1110,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
 
                             <label
                               for="gender"
-                             className="block text-md font-normal mb-1"
+                              className="block text-md font-normal mb-1"
                             >
                               <p> Gender <span className="text-red-600">*</span></p>
                               <select
@@ -1164,7 +1137,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
                               <div className=" w-full try">
                                 <label
                                   htmlFor="leaveNumber"
-                             className="block text-md font-normal mb-1"
+                                  className="block text-md font-normal mb-1"
                                 >
                                   Total Leaves <span className="text-red-600">*</span>
                                 </label>
@@ -1201,11 +1174,11 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
 
                           <div className="flex w-full">
                             <div className=" w-full try">
-                             
+
                               <label htmlFor="currentAddress" className="block text-md font-normal py-2">
                                 Current Residence Address
                               </label>
-                           
+
                               <input
                                 type="text"
                                 id="currentAddress"
@@ -1229,12 +1202,12 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
                             <div className=" w-full try">
                               <label
                                 for="currentState"
-                               className="block text-md font-normal py-2"
+                                className="block text-md font-normal py-2"
                               >
                                 Current state
                               </label>
 
-                              
+
                               <select
                                 className="w-full border rounded p-2 text-sm font-normal"
                                 name="currentState"
@@ -1288,14 +1261,14 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
                                 <option>Puducherry (UT)</option>
                               </select>
                             </div>
-                           
+
                           </div>
 
                           <div className="flex w-full gap-2">
                             <div className=" w-full try">
                               <label
                                 for="currentCity"
-                             className="block text-md font-normal py-2"
+                                className="block text-md font-normal py-2"
                               >
                                 Current city
                               </label>
@@ -1315,7 +1288,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
                             <div className=" w-full try">
                               <label
                                 for="currentPin"
-                             className="block text-md font-normal py-2"
+                                className="block text-md font-normal py-2"
                               >
                                 Area Pincode
                               </label>
@@ -1336,7 +1309,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
 
                           <label className="text-md font-normal mb-1 flex items-center gap-5 py-7">
                             <input
-                            className=""
+                              className=""
                               type="checkbox"
                               checked={value3.currentAddressStatus}
                               onChange={(e) => {
@@ -1357,13 +1330,13 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
                           <div className="flex w-full">
                             <div className=" w-full try">
                               <div className="flex items-center">
-                               
+
                                 <label htmlFor="residence" className="block text-md font-normal pb-2">
                                   Permanent Residence Address
                                 </label>
                                 <div className="flex items-center"></div>
                               </div>
-                              
+
                               <input
                                 type="text"
                                 name="residence"
@@ -1440,11 +1413,11 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
                           <div className=" try">
                             <label
                               for="perCity"
-                          className="block text-md font-normal pb-4"
+                              className="block text-md font-normal pb-4"
                             >
                               Permanent city
                             </label>
-                           
+
                             <input
                               type="text"
                               id="perCity"
@@ -1459,7 +1432,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
                           <div className=" try">
                             <label
                               for="perPin"
-                             className="block text-md font-normal pb-4"
+                              className="block text-md font-normal pb-4"
                             >
                               Permanent Area Pincode
                             </label>
@@ -1482,7 +1455,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
                             <div className=" w-full try">
                               <label
                                 for="nationality"
-                               className="block text-md font-normal mb-1"
+                                className="block text-md font-normal mb-1"
                               >
                                 Nationality
                               </label>
@@ -1535,7 +1508,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
 
                             <div className="max-w-[252px] w-full h-[62px] rounded-[12px] border border-[#B7B7B7] flex items-center justify-evenly
 ">
-                              <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747729553/upload-file_sctjfj.png" alt="" className="h-full w-full object-cover rounded max-w-[29px] max-h-[29px]"/>
+                              <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747729553/upload-file_sctjfj.png" alt="" className="h-full w-full object-cover rounded max-w-[29px] max-h-[29px]" />
 
                               <p className="text-sm font-medium leading-6 tracking-[0.005em] text-[#1B2533] underline">Click to upload</p>
 
@@ -1584,7 +1557,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
 
                             <div className="max-w-[252px] w-full h-[62px] rounded-[12px] border border-[#B7B7B7] flex items-center justify-evenly
  try">
-                              <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747729553/upload-file_sctjfj.png" alt="" className="h-full w-full object-cover rounded max-w-[29px] max-h-[29px]"/>
+                              <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747729553/upload-file_sctjfj.png" alt="" className="h-full w-full object-cover rounded max-w-[29px] max-h-[29px]" />
 
                               <p className="text-sm font-medium leading-6 tracking-[0.005em] text-[#1B2533] underline">Click to upload</p>
 
@@ -1635,7 +1608,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
 
                             <div className="max-w-[252px] w-full h-[62px] rounded-[12px] border border-[#B7B7B7] flex items-center justify-evenly
  ">
-                              <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747729553/upload-file_sctjfj.png" alt="" className="h-full w-full object-cover rounded max-w-[29px] max-h-[29px]"/>
+                              <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747729553/upload-file_sctjfj.png" alt="" className="h-full w-full object-cover rounded max-w-[29px] max-h-[29px]" />
 
                               <p className="text-sm font-medium leading-6 tracking-[0.005em] text-[#1B2533] underline">Click to upload</p>
 
@@ -1731,7 +1704,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
                             <h4>Cancelled Cheque</h4>
                             <div className="max-w-[252px] w-full h-[62px] rounded-[12px] border border-[#B7B7B7] flex items-center justify-evenly
  ">
-                              <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747729553/upload-file_sctjfj.png" alt="" className="h-full w-full object-cover rounded max-w-[29px] max-h-[29px]"/>
+                              <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747729553/upload-file_sctjfj.png" alt="" className="h-full w-full object-cover rounded max-w-[29px] max-h-[29px]" />
 
                               <p className="text-sm font-medium leading-6 tracking-[0.005em] text-[#1B2533] underline">Click to upload</p>
 
@@ -1771,9 +1744,9 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
                             )}
                           </div>
 
-                 
-                            
-                         
+
+
+
                         </div>
 
                         {currEmp === 0 && (
@@ -1792,7 +1765,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
 
                                 <div className="max-w-[252px] w-full h-[62px] rounded-[12px] border border-[#B7B7B7] flex items-center justify-evenly
  try">
-                                  <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747729553/upload-file_sctjfj.png" alt="" className="h-full w-full object-cover rounded max-w-[29px] max-h-[29px]"/>
+                                  <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747729553/upload-file_sctjfj.png" alt="" className="h-full w-full object-cover rounded max-w-[29px] max-h-[29px]" />
 
                                   <p className="text-sm font-medium leading-6 tracking-[0.005em] text-[#1B2533] underline">Click to upload</p>
 
@@ -1843,7 +1816,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
 
                                 <div className="max-w-[252px] w-full h-[62px] rounded-[12px] border border-[#B7B7B7] flex items-center justify-evenly
  try">
-                                  <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747729553/upload-file_sctjfj.png" alt="" className="h-full w-full object-cover rounded max-w-[29px] max-h-[29px]"/>
+                                  <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747729553/upload-file_sctjfj.png" alt="" className="h-full w-full object-cover rounded max-w-[29px] max-h-[29px]" />
 
                                   <p className="text-sm font-medium leading-6 tracking-[0.005em] text-[#1B2533] underline">Click to upload</p>
 
@@ -1940,7 +1913,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
                                 )}
                               </div>
 
-                             
+
                             </div>
                           </>
                         )}
@@ -1985,7 +1958,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
                             <div className=" w-full try">
                               <label
                                 for="SalaryBankName"
-                               className="block text-md font-normal mb-1"
+                                className="block text-md font-normal mb-1"
                               >
                                 Salary Bank Name
                               </label>
@@ -2005,7 +1978,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
                             <div className=" w-full try">
                               <label
                                 for="BeneficiaryName"
-                               className="block text-md font-normal mb-1"
+                                className="block text-md font-normal mb-1"
                               >
                                 Beneficiary Name
                               </label>
@@ -2028,7 +2001,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
                             <div className=" w-full try">
                               <label
                                 for="BankIfsc"
-                             className="block text-md font-normal mb-1"
+                                className="block text-md font-normal mb-1"
                               >
                                 Bank IFSC Code
                               </label>
@@ -2048,7 +2021,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
                             <div className=" w-full try">
                               <label
                                 for="AccountNumber"
-                              className="block text-md font-normal mb-1"
+                                className="block text-md font-normal mb-1"
                               >
                                 Account Number
                               </label>
@@ -2068,7 +2041,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
                             <div className=" w-full try">
                               <label
                                 for="confirmAccount"
-                             className="block text-md font-normal mb-1"
+                                className="block text-md font-normal mb-1"
                               >
                                 Confirm Account Number
                               </label>
@@ -2091,7 +2064,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
                             <div className=" w-full  try">
                               <label
                                 for="Branch"
-                              className="block text-md font-normal mb-1"
+                                className="block text-md font-normal mb-1"
                               >
                                 Bank Branch
                               </label>
@@ -2118,7 +2091,7 @@ className={`w-full border rounded p-2 text-sm font-normal text-gray-500 ${
                   {/* this is button  */}
 
                   <div className=" flex items-center justify-center mt-5">
-                    
+
                   </div>
                 </div>
               </form>

@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 
-import "react-calendar/dist/Calendar.css"; 
+import "react-calendar/dist/Calendar.css";
 import { NavLink, useFetcher, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { ImCross } from "react-icons/im";
 import * as EmailValidator from "email-validator";
 import { useMain } from "../../../hooks/UseMain";
+import { useAuth } from "../../../Context/AuthContext";
 
 const item = [
   {
@@ -19,24 +20,17 @@ const item = [
   },
 ];
 
-const EmployeeManage = ({
-  isHr = false,
-}) => {
+const EmployeeManage = () => {
   const { id } = useParams();
-
   const [currEmp, setCurrEmp] = useState(0);
-
   const navigate = useNavigate();
-
   let hrms_user = JSON?.parse(localStorage.getItem("hrms_user"));
-
   const { role } = hrms_user;
 
   const {
-    user,
     createEmployee1,
     AllRolesapi,
-    getUsers,
+    getCurrentUser,
     updateUser,
     getBranchs,
     getDepartments,
@@ -45,6 +39,8 @@ const EmployeeManage = ({
     allEmployee,
     uploadToCloudinaryImg,
   } = useMain();
+
+  const { user } = useAuth();
 
   const [employee, setEmployee] = useState([]);
 
@@ -198,8 +194,8 @@ const EmployeeManage = ({
   };
 
   const getUser = async () => {
-    const ans = await getUsers(id);
-    console.log("user",ans?.data)
+    const ans = await getCurrentUser(id);
+    console.log("user", ans?.data)
 
     const { EmployeeType } = ans?.data || {};
 
@@ -231,7 +227,7 @@ const EmployeeManage = ({
       joiningDate: ans.data.joiningDate,
       password: "",
       PermissionRole: perm,
-      employeeCode:ans.data.employeeCode
+      employeeCode: ans.data.employeeCode
     });
     setValue2({
       status: false,
@@ -327,7 +323,7 @@ const EmployeeManage = ({
     pancard: "",
     tenCert: "",
     twevelCert: "",
-    highestquali:"",
+    highestquali: "",
     cancelCheque: "",
     LastOrganization: "",
     RelievingLetter: "",
@@ -363,7 +359,7 @@ const EmployeeManage = ({
     const missingFields = [];
 
     if (!value1.fullName) missingFields.push('Full Name');
-    if (!value1.password) missingFields.push('Password');
+    if (!id) if (!value1.password) missingFields.push('Password');
     if (!value1.department) missingFields.push('Department');
     if (!value1.email) missingFields.push('Company Email');
     if (!value1.reportingManager) missingFields.push('Reporting Manager');
@@ -375,7 +371,7 @@ const EmployeeManage = ({
 
     if (!value3.pan) missingFields.push('PAN');
     if (!value3.adhar) missingFields.push('Aadhar');
-   
+
     if (!value2.email1) missingFields.push('Personal Email');
     // if (!value2.mobile) missingFields.push('Mobile');
     if (!value2.gender) missingFields.push('Gender');
@@ -598,6 +594,11 @@ const EmployeeManage = ({
       setPreviewImages({});
 
       toast.success("Successfuly created");
+      if (user?.role === "ADMIN") {
+        navigate("/adminDash/HRM/EmployeeManagement");
+      } else {
+        navigate("/employeeDash/HRM/EmployeeManagement");
+      }
     } else {
       const {
         adharCard,
@@ -663,12 +664,12 @@ const EmployeeManage = ({
       const ans = await updateUser(id, value1, value2, value3, value4, value5);
 
       toast.success("success", "Profile updated Successfully");
-
-      if (!isHr) {
+      if (user?.role === "ADMIN") {
         navigate("/adminDash/HRM/EmployeeManagement");
       } else {
-        navigate("/hrDash/EmployeeMan");
+        navigate("/employeeDash/HRM/EmployeeManagement");
       }
+
     }
 
     toast.dismiss(toastId);
@@ -683,7 +684,7 @@ const EmployeeManage = ({
     <>
       <div className="employee-dash h-full">
         <div className="w-full ">
-         
+
           <div className="relative w-full p-[32px_20px_32px_20px]">
             {/* first  */}
             <section className="flex flex-col lg:flex-row items-center justify-between">
@@ -697,15 +698,15 @@ const EmployeeManage = ({
                     <span className="w-[102px] h-[40px] flex gap-[10px] rounded-[10px] border border-[#0B56E4] bg-gradient-to-br from-[#D1E8FD] via-[#EDEFFF] to-[#EDEFFF] items-center justify-center text-[#0B56E4]">Cancel</span>
                   </button>
                 </NavLink>
-              
+
                 <button
                   onClick={(f) => {
                     handleSubmit(f, "submit");
                   }}
                   type="submit"
-                  className=" text-white text-base font-medium leading-5 ctext-white outline-none bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300  font-semibold rounded-lg text-sm px-5 py-2.5 mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                  className=" text-white text-base leading-5 ctext-white outline-none bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300  font-semibold rounded-lg px-5 py-2.5 mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                 >
-                 {id ? "Save Changes" : "Register"}
+                  {id ? "Save Changes" : "Register"}
                 </button>
               </div>
             </section>
@@ -734,7 +735,7 @@ const EmployeeManage = ({
                 <div className="flex flex-col gap-8">
                   <div className="flex flex-col lg:flex-row gap-5 w-full justify-between">
                     <div className="bg-white max-w-[100%] lg:max-w-[48%] w-full p-4 rounded-lg shadow">
-                    
+
                       <div className="flex items-center justify-between ">
                         <h3 className="text-[#101820] text-[16px] font-bold leading-[24px] tracking-[0.0015em] text-left">Personal Detail</h3>
                       </div>
@@ -745,7 +746,7 @@ const EmployeeManage = ({
                             <label className="block text-md font-normal mb-1">
                               <p>Full Name <span className="text-red-600">*</span></p>
                               <input
-                              className="w-full border rounded p-2 text-sm font-normal "
+                                className="w-full border rounded p-2 text-sm font-normal "
                                 onChange={(e) => {
                                   handleChange(e, "form1");
                                 }}
@@ -758,10 +759,10 @@ const EmployeeManage = ({
                             </label>
 
                             <label htmlFor="password" className="block text-md font-normal mb-1">
-                              <p>Password <span className="text-red-600">*</span></p>
+                              <p>Password {!id && <span className="text-red-600">*</span>}</p>
 
                               <input
-                              className="w-full border rounded p-2 text-sm font-normal "
+                                className="w-full border rounded p-2 text-sm font-normal "
                                 onChange={(e) => {
                                   handleChange(e, "form1");
                                 }}
@@ -777,7 +778,7 @@ const EmployeeManage = ({
                               <p>Date of Birth <span className="text-red-600">*</span></p>
 
                               <input
-                              className="w-full border rounded p-2 text-sm font-normal "
+                                className="w-full border rounded p-2 text-sm font-normal "
                                 onChange={(e) => {
                                   handleChange(e, "form2");
                                 }}
@@ -822,7 +823,7 @@ const EmployeeManage = ({
                                   type="text"
                                   id="adhar"
                                   className="w-full border rounded p-2 text-sm font-normal "
-                             
+
                                   // required
                                   name="adhar"
                                   value={value3?.adhar}
@@ -847,7 +848,7 @@ const EmployeeManage = ({
                                 <input
                                   type="text"
                                   id="father"
-                                 className="w-full border rounded p-2 text-sm font-normal "
+                                  className="w-full border rounded p-2 text-sm font-normal "
                                   // required
                                   name="father"
                                   value={value3?.father}
@@ -868,7 +869,7 @@ const EmployeeManage = ({
                                 <input
                                   type="text"
                                   id="Mother"
-                                 className="w-full border rounded p-2 text-sm font-normal "
+                                  className="w-full border rounded p-2 text-sm font-normal "
                                   // required
                                   name="Mother"
                                   value={value3?.Mother}
@@ -891,7 +892,7 @@ const EmployeeManage = ({
                                 <input
                                   type="number"
                                   id="mobile"
-                                className="w-full border rounded p-2 text-sm font-normal "
+                                  className="w-full border rounded p-2 text-sm font-normal "
                                   // required
                                   name="mobile"
                                   value={value2?.mobile}
@@ -972,17 +973,16 @@ const EmployeeManage = ({
                                   handleChange(e, "form1");
                                   handleValidation(e.target.value);
                                 }}
-                              
-                                className={`w-full border rounded p-2 text-sm font-normal  ${
-  emailisValid === false && value1.email !== "" ? "border-red-500" : ""
-}`}
+
+                                className={`w-full border rounded p-2 text-sm font-normal  ${emailisValid === false && value1.email !== "" ? "border-red-500" : ""
+                                  }`}
 
                                 type="email"
                                 // name="gmail"
                                 name="email"
                                 // value={value1?.gmail}
                                 value={value1?.email}
-          
+
                                 placeholder="Company Email Address"
                                 disabled={value1.status}
                               />
@@ -1081,11 +1081,10 @@ const EmployeeManage = ({
                               <input
                                 type="email"
                                 id="email1"
-                            className={`w-full rounded-lg p-2 text-sm font-normal ${
-    emailisValid1 === false && value2.email1 !== ""
-      ? "emailvalidinput border "
-      : "border "
-  }`}
+                                className={`w-full rounded-lg p-2 text-sm font-normal ${emailisValid1 === false && value2.email1 !== ""
+                                  ? "emailvalidinput border "
+                                  : "border "
+                                  }`}
                                 // required
                                 name="email1"
                                 value={value2?.email1}
@@ -1155,7 +1154,7 @@ const EmployeeManage = ({
 
                       <div className="form2-class">
                         <div className="w-full mt-2 flex flex-col gap-5">
-                        
+
                           <div className="flex w-full">
                             <div className=" w-full try">
                               <label
@@ -1192,7 +1191,7 @@ const EmployeeManage = ({
                                 Current state
                               </label>
 
-                            
+
                               <select
                                 className="w-full border rounded p-2 text-sm font-normal "
                                 name="currentState"
@@ -1246,7 +1245,7 @@ const EmployeeManage = ({
                                 <option>Puducherry (UT)</option>
                               </select>
                             </div>
-                           
+
                           </div>
 
                           <div className="flex w-full gap-2">
@@ -1292,38 +1291,38 @@ const EmployeeManage = ({
                             </div>
                           </div>
 
-                       <div className="pt-5 pb-5">
-                           <label className="text-md font-normal mb-1">
-                            <input
-                              type="checkbox"
-                              checked={value3.currentAddressStatus}
-                              onChange={(e) => {
-                                const checked = e.target.checked;
-                                setValue3((prev) => ({
-                                  ...prev,
-                                  currentAddressStatus: checked,
-                                  residence: checked ? prev.currentAddress : "",
-                                  perState: checked ? prev.currentState : "",
-                                  perCity: checked ? prev.currentCity : "",
-                                  perPin: checked ? prev.currentPin : "",
-                                }));
-                              }}
-                              className="border rounded p-2 text-sm font-normal "
-                            />
-                            <span className="p-4">Permanent address same as current</span>
-                          </label>
-                       </div>
+                          <div className="pt-5 pb-5">
+                            <label className="text-md font-normal mb-1">
+                              <input
+                                type="checkbox"
+                                checked={value3.currentAddressStatus}
+                                onChange={(e) => {
+                                  const checked = e.target.checked;
+                                  setValue3((prev) => ({
+                                    ...prev,
+                                    currentAddressStatus: checked,
+                                    residence: checked ? prev.currentAddress : "",
+                                    perState: checked ? prev.currentState : "",
+                                    perCity: checked ? prev.currentCity : "",
+                                    perPin: checked ? prev.currentPin : "",
+                                  }));
+                                }}
+                                className="border rounded p-2 text-sm font-normal "
+                              />
+                              <span className="p-4">Permanent address same as current</span>
+                            </label>
+                          </div>
 
                           <div className="flex w-full">
                             <div className=" w-full try">
                               <div className="flex items-center">
-                               
+
                                 <label htmlFor="residence" className="block text-md font-normal mb-1">
                                   Permanent Residence Address
                                 </label>
                                 <div className="flex items-center"></div>
                               </div>
-                             
+
                               <input
                                 type="text"
                                 name="residence"
@@ -1404,7 +1403,7 @@ const EmployeeManage = ({
                             >
                               Permanent city
                             </label>
-                            
+
                             <input
                               type="text"
                               id="perCity"
@@ -1666,7 +1665,7 @@ const EmployeeManage = ({
                         </div>
 
                         <div className="flex w-full gap-[10px] justify-between flex-col xl:flex-row">
-                          
+
 
                           <div className="flex flex-col gap-[5px] w-full">
                             <h4 className="pt-2">Cancelled Cheque</h4>
@@ -1711,9 +1710,9 @@ const EmployeeManage = ({
                             )}
                           </div>
 
-                 
-                            
-                         
+
+
+
                         </div>
 
                         {currEmp === 0 && (
@@ -2045,7 +2044,7 @@ const EmployeeManage = ({
                   {/* this is button  */}
 
                   <div className=" flex items-center justify-center mt-5">
-                  
+
                   </div>
                 </div>
               </form>

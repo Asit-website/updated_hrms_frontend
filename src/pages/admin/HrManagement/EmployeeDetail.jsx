@@ -19,8 +19,8 @@ const EmployeeSelf = () => {
     deleteExperienceLetter,
     deleteInternshipOfferLetter,
     deleteFreelanceOfferLetter,
-    deleteparttimeOfferLetter,  
-    getUsers,
+    deleteparttimeOfferLetter,
+    getCurrentUser,
     changeOfferLetterPer,
     changeRelivingLetterPer,
     changeExperienceLetterPer,
@@ -29,8 +29,8 @@ const EmployeeSelf = () => {
   } = useMain();
 
   const [user1, setUser1] = useState({});
-  
- 
+
+
 
   const location = useLocation();
   const state = location.state;
@@ -56,7 +56,7 @@ const EmployeeSelf = () => {
   const [reliveLetter, setReliveLetter] = useState([]);
   const [experienceLetter, setExperienceLetter] = useState([]);
   const [internshipLetter, setinternshipLetter] = useState([]);
-   const [freelanceLetter, setFreelanceLetter] = useState([]);
+  const [freelanceLetter, setFreelanceLetter] = useState([]);
   const [partTimeLetter, setPartTimeLetter] = useState([]);
   const [completionLetter, setCompletionLetter] = useState([])
   const [lorLetter, setLorLetter] = useState([]);
@@ -65,7 +65,7 @@ const EmployeeSelf = () => {
   const [viewReliveLetter, setViewReliveLetter] = useState(0);
   const [viewExperienceLetter, setViewExperienceLetter] = useState(0);
   const [viewInternshipLetter, setViewInternshipLetter] = useState(0);
-    const [viewFreelanceLetter, setViewFreelanceLetter] = useState(0);
+  const [viewFreelanceLetter, setViewFreelanceLetter] = useState(0);
   const [viewPartTimeLetter, setViewPartTimeLetter] = useState(0);
   const [viewCompletionLetter, setViewCompletionLetter] = useState(0);
   const [viewLorLetter, setViewLorLetter] = useState(0);
@@ -74,7 +74,7 @@ const EmployeeSelf = () => {
   const contonentPDF2 = useRef();
   const contonentPDF3 = useRef();
   const contonentPDF4 = useRef();
-    const contonentPDF5 = useRef();
+  const contonentPDF5 = useRef();
   const contonentPDF6 = useRef();
   const contonentPDF7 = useRef();
   const contonentPDF8 = useRef();
@@ -221,7 +221,7 @@ const EmployeeSelf = () => {
   };
 
   const fetchUserDetails = async () => {
-    const ans = await getUsers(state);
+    const ans = await getCurrentUser(state);
     const resp = await getThisMonthLeave(state);
     setThisMonthLeave(resp?.totalDays);
     setUser1(ans?.data);
@@ -419,7 +419,7 @@ const EmployeeSelf = () => {
   const deletecompletion = async (id) => {
     confirmAlert({
       title: "Are you sure to Delete this Part Time letter ?",
-    
+
       buttons: [
         {
           label: "Yes, Go Ahead!",
@@ -468,7 +468,7 @@ const EmployeeSelf = () => {
                 <option value="Relieving Letter">Relieving Letter</option>
                 <option value="Experience Letter">Experience Letter</option>
                 <option value="Internship Letter">Internship Letter</option>
-                 <option value="Freelancer Letter">Freelancer Letter</option>
+                <option value="Freelancer Letter">Freelancer Letter</option>
                 <option value="Part Time Letter">Part Time Letter</option>
                 <option value="LOR Letter">Lor Letter</option>
                 <option value="Completion Letter">Completion Letter</option>
@@ -520,7 +520,7 @@ const EmployeeSelf = () => {
 
 
 
- <div className="w-full p-[20px_20px_30px_20px] rounded-[18px] bg-white border border-[#E8E9EB] flex flex-col gap-[18px] overflow-x-scroll">
+                <div className="w-full p-[20px_20px_30px_20px] rounded-[18px] bg-white border border-[#E8E9EB] flex flex-col gap-[18px] overflow-x-scroll">
                   <h3 className="text-[#101820] text-base font-bold leading-6 tracking-[0.0015em] text-left">Address</h3>
 
                   <hr />
@@ -533,7 +533,7 @@ const EmployeeSelf = () => {
 
                     <div className="flex gap-3 mt-3 lg:mt-0">
                       <p>
-                              Permanent Address :</p>
+                        Permanent Address :</p>
                       <span>{user1?.residence}</span>
                     </div>
 
@@ -564,7 +564,7 @@ const EmployeeSelf = () => {
 
                     <div className="flex gap-3 mt-3 lg:mt-0">
                       <p>
-                               Permanent Pincode :</p>
+                        Permanent Pincode :</p>
                       <span>{user1?.perPin}</span>
                     </div>
 
@@ -577,7 +577,7 @@ const EmployeeSelf = () => {
                   <hr />
 
                   <div className="grid-cols-2 lg:grid gap-[22px]">
-                   
+
 
                     <div className="flex gap-3 mt-3 lg:mt-0">
                       <p>Mobile :</p>
@@ -604,17 +604,17 @@ const EmployeeSelf = () => {
                       <span>{user1?.father}</span>
                     </div>
 
-                   
 
 
 
-  <div className="flex gap-3 mt-3 lg:mt-0">
+
+                    <div className="flex gap-3 mt-3 lg:mt-0">
                       <p>Mother name :</p>
                       <span>{user1?.Mother}</span>
                     </div>
 
-              
-                  
+
+
 
                     <div className="flex gap-3 mt-3 lg:mt-0">
                       <p>Marital status :</p>
@@ -625,11 +625,11 @@ const EmployeeSelf = () => {
                       <p>Nationality :</p>
                       <span>{user1?.nationality}</span>
                     </div>
-   <div className="flex gap-3 mt-3 lg:mt-0">
+                    <div className="flex gap-3 mt-3 lg:mt-0">
                       <p>Gender :</p>
                       <span>{user1?.gender}</span>
                     </div>
-                  
+
                   </div>
                 </div>
 

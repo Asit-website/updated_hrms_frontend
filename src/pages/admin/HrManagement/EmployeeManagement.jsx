@@ -209,7 +209,7 @@ const EmployeeManagement = () => {
 
                 {/* right  */}
                 <div className="flex gap-[16px] items-center">
-                  <NavLink to="/adminDash/EmployeeMan"><button className="ddBtn flex items-center min-h-[40px] px-[16px] py-[10px] pl-[12px] gap-[10px] border-none rounded-[10px] bg-[#0B56E4]">
+                  <NavLink to={role === "ADMIN" ? "/adminDash/EmployeeMan" : "/employeeDash/EmployeeMan"}><button className="ddBtn flex items-center min-h-[40px] px-[16px] py-[10px] pl-[12px] gap-[10px] border-none rounded-[10px] bg-[#0B56E4]">
                     <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747388185/pp_ah1fdx.png" alt="" />
                     <span className="text-[16px] font-medium leading-[24px] tracking-[0.005em] text-left text-white">Add Employee</span>
                   </button></NavLink>
@@ -351,7 +351,7 @@ const EmployeeManagement = () => {
 
                                 <div ref={ref} className="absolute -top-[59px] min-w-[120px] border-t border-[#E3E3E3] flex flex-col shadow-[0_4px_12px_0_rgba(26,26,26,0.2)] py-2 gap-[5px] rounded-tl-[8px] z-[1000] bg-white right-[62px]">
                                   {/* first  */}
-                                  <div onClick={() => navigate("/adminDash/EmployeeDetails", { state: item?._id })} className="flex gap-2 items-center px-2 cursor-pointer">
+                                  <div onClick={() => navigate(role === "ADMIN" ? "/adminDash/EmployeeDetails" : "/employeeDash/EmployeeDetails", { state: item?._id })} className="flex gap-2 items-center px-2 cursor-pointer">
 
                                     <FaRegEye className="text-[18px]" />
                                     <p className="text-left">View</p>
@@ -364,7 +364,7 @@ const EmployeeManagement = () => {
                                     (employeeManageEditPermission || role === "ADMIN") &&
 
                                     <div onClick={() => {
-                                      navigate(`/adminDash/EmployeeMan/${item._id}`);
+                                      navigate(role === "ADMIN" ? `/adminDash/EmployeeMan/${item._id}` : `/employeeDash/EmployeeMan/${item._id}`);
                                     }} className="flex gap-3 items-center px-2 cursor-pointer">
                                       {/* <img src={edit22} alt="" /> */}
                                       <MdOutlineEdit className="text-[18px]" />

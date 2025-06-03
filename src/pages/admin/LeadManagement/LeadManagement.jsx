@@ -16,7 +16,7 @@ import { useAuth } from "../../../Context/AuthContext";
 
 export default function LeadManagement() {
   const {
-    getLead,
+    gettotalLeads,
     getTodayLead,
     deleteLeads,
     getLeadByUser,
@@ -52,9 +52,9 @@ export default function LeadManagement() {
   let hrms_user = JSON.parse(localStorage.getItem("hrms_user"));
 
   const fetchLead = async () => {
-    const ans = await getLead();
-    if (ans?.data) {
-      setTotalLeads(ans?.data?.length);
+    const ans = await gettotalLeads();
+    if (ans?.leads) {
+      setTotalLeads(ans?.leads?.length);
     }
   };
   const fetchUserLead = async () => {
