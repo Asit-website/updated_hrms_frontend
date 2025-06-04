@@ -421,7 +421,7 @@ const TaskProjects = () => {
                 <input
 
                   type="text"
-                  className="h-[35px] mt-3 xl:md-0 p-4 rounded border border-black "
+                  className="border-2 border-black w-[200px] px-[10px] h-[38px] rounded-[10px] "
                   placeholder="Search Project"
                   onChange={(e) => setSearchInput(e.target.value)}
                   value={searchInput}

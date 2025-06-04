@@ -336,9 +336,9 @@ const UserLead = () => {
                                 <div className="my-[20px] flex items-center gap-[20px]">
                                     {/* <img src={fff} alt="" /> */}
 
-                                    <div className="flex items-center w-[285px] h-[48px] px-[16px] py-[8px] gap-[16px] rounded-[15px] bg-white border border-black">
+                                    <div className="flex items-center w-[285px] h-[48px] px-[16px] py-[8px] gap-[16px] rounded-[15px] bg-white border-2 border-black">
                                         <input
-                                            className="w-[288px] h-[46px] px-[16px] py-[8px] gap-[8px] border-[#666D76] font-inter  text-[14px] font-normal leading-[20px] tracking-[0.0025em] text-left outline-none"
+                                            className="outline-none"
                                             value={searchText}
                                             onChange={(e) => setSrchText(e.target.value)}
                                             type="text"

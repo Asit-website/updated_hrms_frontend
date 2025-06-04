@@ -1769,9 +1769,8 @@ against the Company’s policies and core values for the time being in force.
 </p><br><p>f) In the case of any willful or intentional misconduct, fraud, dishonesty, or breach of
 confidentiality on my part, I will be personally liable to the Company and/or its clients.</p>`;
 
-const DocumentManagement = ({ setAlert, pop, setPop }) => {
+const DocumentManagement = () => {
   const {
-    user,
     allEmployee,
     saveDocs,
     freelencerOfferApi,
@@ -3285,7 +3284,7 @@ const DocumentManagement = ({ setAlert, pop, setPop }) => {
 
                     {/* content */}
 
-                    <div className="w-full bg-white rounded-[18px] p-5 mt-[65px]">
+                    <div className="w-full bg-white rounded-[18px] p-5 mt-[65px] showoffercont">
                       <h2 className="text-[#101820] text-[24px] font-semibold leading-[32px]">RELIEVING LETTER</h2>
 
                       <div>
@@ -3484,7 +3483,7 @@ const DocumentManagement = ({ setAlert, pop, setPop }) => {
 
                     {/* content */}
 
-                    <div className="w-full bg-white rounded-[18px] p-5 mt-[65px]">
+                    <div className="w-full bg-white rounded-[18px] p-5 mt-[65px] showoffercont">
                       <h2 className="text-[#101820] text-[24px] font-semibold leading-[32px]">EXPERIENCE LETTER</h2>
 
                       <div>
@@ -3620,7 +3619,7 @@ const DocumentManagement = ({ setAlert, pop, setPop }) => {
                         </button>
                       </div>
 
-                    <div className="w-full bg-white rounded-[18px] p-5 mt-[65px]">
+                    <div className="w-full bg-white rounded-[18px] p-5 mt-[65px] showoffercont">
                       <h2 className="text-[#101820] text-[24px] font-semibold leading-[32px]">LETTER OF RECOMMENDATION</h2>
 
                       <div>
@@ -3762,7 +3761,7 @@ const DocumentManagement = ({ setAlert, pop, setPop }) => {
 
                       {/* content */}
 
-                      <div className="w-full bg-white rounded-[18px] p-5 mt-[65px]">
+                      <div className="w-full bg-white rounded-[18px] p-5 mt-[65px] showoffercont">
                         <h2 className="text-[#101820] text-[24px] font-semibold leading-[32px]">CERTIFICATE OF COMPLETION</h2>
 
                         <div>
@@ -4181,7 +4180,7 @@ const DocumentManagement = ({ setAlert, pop, setPop }) => {
 
                     {/* content */}
 
-                    <div className="w-full bg-white rounded-[18px] p-5 mt-[65px]">
+                    <div className="w-full bg-white rounded-[18px] p-5 mt-[65px] showoffercont">
                       <h2 className="text-[#101820] text-[24px] font-semibold leading-[32px]">OFFER CONFIRMATION LETTER</h2>
 
                       <div>
@@ -4603,8 +4602,8 @@ const DocumentManagement = ({ setAlert, pop, setPop }) => {
 
                     {/* content */}
 
-                    <div className="w-full bg-white rounded-[18px] p-5 mt-[65px]">
-                      <h2 className="text-[#101820] text-[24px] font-semibold leading-[32px]">OFFER CONFIRMATION LETTER</h2>
+                    <div className="w-full bg-white rounded-[18px] p-5 mt-[65px] showoffercont">
+                      <h2 className="text-[#101820] text-[24px] font-semibold leading-[32px]">PART-TIME  CONFIRMATION LETTER</h2>
 
                       <div>
                         <div
@@ -4633,7 +4632,7 @@ const DocumentManagement = ({ setAlert, pop, setPop }) => {
                     </div>
 
                     <button
-                      className="disabled:bg-blue-400 w-[70px] h-[40px] rounded-[10px] bg-[#0B56E4] font-inter text-[16px] font-semibold leading-[24px] tracking-[0.005em] text-white text-white"
+                      className="disabled:bg-blue-400 w-[70px] h-[40px] rounded-[10px] bg-[#0B56E4] font-inter text-[16px] font-semibold leading-[24px] tracking-[0.005em] text-white"
                       onClick={() => partTimeOffterLetter()}
                     >
                       <span>Save</span>

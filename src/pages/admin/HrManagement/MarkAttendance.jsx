@@ -668,7 +668,7 @@ const MarkAttendance = () => {
 
                     <div className="flex items-center gap-[17px]">
 
-                      {selectedOption !== "monthly" && <div className="flex items-center h-[44px] px-4 py-2 gap-2 rounded-[10px] bg-white border border-black justify-between">
+                      {selectedOption !== "monthly" && <div className="flex items-center h-[44px] px-4 py-2 gap-2 rounded-[10px] bg-white border-2 border-black justify-between">
                         <input
                           type="text"
                           value={searchTerm}
@@ -699,7 +699,7 @@ const MarkAttendance = () => {
               <div className="relative overflow-x-scroll ">
                   <table
                     id="table-to-xls1"
-                    className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                    className="w-full text-sm text-left rtl:text-right  dark:text-gray-400"
                   >
                     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                       <tr>
@@ -764,10 +764,10 @@ const MarkAttendance = () => {
                           </td>
 
 
-                          <td
+                         <div className="px-4 py-3 relative">
+                           <td
                           
-                            className="px-4 py-3 relative"
-                            data-exclude="true"
+                        data-exclude="true"
                           >
                             {/* <img src={moreVert} alt="" /> */}
                             <div
@@ -797,6 +797,7 @@ const MarkAttendance = () => {
                               )
                             }
                           </td>
+                         </div>
                         </tr>
                       ))}
                     </tbody>
@@ -894,14 +895,14 @@ const MarkAttendance = () => {
 
                   <label htmlFor="" className="block text-md font-normal mb-1">
                     <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Employee</p>
-                    <input    className="w-[271.5px] border rounded p-2 text-sm font-normal text-gray-500" value={editForm?.user?.fullName} type="text" />
+                    <input    className="w-[271.5px] border rounded p-2 text-sm font-normal " value={editForm?.user?.fullName} type="text" />
                   </label>
 
                   <label htmlFor="" className="block text-md font-normal mb-1">
                     <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Date</p>
                     <input onChange={handleChange} value={editForm?.Date?.split('/').reverse().join('-') || ''} type="date" 
                     
-                      className="w-[271.5px] border rounded p-2 text-sm font-normal text-gray-500"/>
+                      className="w-[271.5px] border rounded p-2 text-sm font-normal "/>
 
                   </label>
 
@@ -922,7 +923,7 @@ const MarkAttendance = () => {
                           clockIn: formatted,
                         }));
                       }}
-             className="border rounded p-2 text-sm font-normal text-gray-500 w-[271.5px]"
+             className="border rounded p-2 text-sm font-normal  w-[271.5px]"
                     />
                   </label>
 
@@ -940,7 +941,7 @@ const MarkAttendance = () => {
                           clockOut: formatted,
                         }));
                       }}
-                     className="w-[271.5px] border rounded p-2 text-sm font-normal text-gray-500"
+                     className="w-[271.5px] border rounded p-2 text-sm font-normal "
                     />
 
                   </label>
@@ -956,7 +957,7 @@ const MarkAttendance = () => {
                     <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Break Time (hh:mm:ss)</p>
                     <input
                       type="text"
-                       className="w-[271.5px] border rounded p-2 text-sm font-normal text-gray-500"
+                       className="w-[271.5px] border rounded p-2 text-sm font-normal "
                       placeholder="e.g. 01:30:00"
                       value={editForm?.breakTime || ""}
                       onChange={(e)=>setEditform((prev)=>({

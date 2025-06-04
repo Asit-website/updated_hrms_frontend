@@ -333,7 +333,7 @@ const EmployeeManagement = () => {
                             <td className="px-6 py-4 text-gray-800">{item?.designation}</td>
                             <td className="px-6 py-4 text-gray-800">{item?.joiningDate}</td>
 
-                            <div className="relative">
+                            <div className="relative px-6 py-4 ">
 
                               <td onClick={() => {
                                 if (index == currView) {
@@ -342,7 +342,7 @@ const EmployeeManagement = () => {
                                 else {
                                   setCurrView(index)
                                 }
-                              }} className="px-6 py-4 taskAns cursor-pointer relative"><img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747388144/actions_vwxpah.png" alt="" />
+                              }} className="taskAns cursor-pointer relative"><img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747388144/actions_vwxpah.png" alt="" />
                               </td>
 
 
