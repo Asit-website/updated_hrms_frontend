@@ -626,7 +626,7 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
                       className={`${({ isActive }) =>
                         isActive ? "text-[#0B56E4]" : ""}`}
                     />
-                    <span className="ms-3">Regisnation</span>
+                    <span className="ms-3">Resignation</span>
                   </NavLink>
                 </li>
 
@@ -645,7 +645,7 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
                       className={`${({ isActive }) =>
                         isActive ? "text-[#0B56E4]" : ""}`}
                     />
-                    <span className="ms-3">Promtion</span>
+                    <span className="ms-3">Promotion</span>
                   </NavLink>
                 </li>
 

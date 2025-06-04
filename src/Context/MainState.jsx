@@ -55,6 +55,9 @@ const MainState = (props) => {
    const [taskpageAllProjects, settaskpageAllProjects] = useState([]);
    const [storeProject, setStorePro] = useState([]);
 
+   // promotion
+   const [allDesignations,setAllDesignations] = useState([]);
+
    const login = async ({ email, employeeCode, password }) => {
       setLoading(true)
 
@@ -880,6 +883,7 @@ const MainState = (props) => {
 
    const getDesignations = async () => {
       const data = await get(`${baseUrl}/system/getDesignation`, true);
+      setAllDesignations(data?.data);
       return data;
    }
 
@@ -2797,7 +2801,8 @@ const MainState = (props) => {
          allClient, setAllClient,
          allActiveEmployee, setAllActiveEmployee,
          taskpageAllProjects, settaskpageAllProjects,
-         storeProject, setStorePro
+         storeProject, setStorePro,
+         allDesignations,setAllDesignations
       }}>
          {props.children}
       </MainContext.Provider>
