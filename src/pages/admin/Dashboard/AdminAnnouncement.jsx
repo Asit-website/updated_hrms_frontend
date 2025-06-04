@@ -189,22 +189,13 @@ const AdminProfile = () => {
     getAnnoucement();
   }, [refreshFlag]);
 
-  let hrms_user = JSON.parse(localStorage.getItem("hrms_user"));
-
   const [leavePopup, setLeavePopup] = useState(false);
 
-  const { role } = hrms_user;
-
   const [currentPage, setCurrentPage] = useState(1);
-
-  let itemsPerPage = 10;
-
+  let itemsPerPage = 5;
   const totalPages = Math?.ceil(allAnnoucement?.length / itemsPerPage);
-
   const startIndex = (currentPage - 1) * itemsPerPage;
-
   const endIndex = Math.min(startIndex + itemsPerPage, allAnnoucement?.length);
-
   const currentItems = allAnnoucement?.slice(startIndex, endIndex);
 
   const filteredAnnoucements = allAnnoucement.filter((item) =>
@@ -278,10 +269,13 @@ const AdminProfile = () => {
 
               </div>
 
-              <div className="relative overflow-x-auto md:overflow-visible min-h-[250px] rounded-lg">
+              <div className="relative mt-5 overflow-x-auto md:overflow-visible min-h-[250px] rounded-lg">
                 <table className="w-max lg:w-full text-sm text-left bg-white rounded-lg">
                   <thead className="bg-white font-semibold">
                     <tr>
+                      <th scope="col" className="text-left font-bold text-gray-900 py-3 px-4 border-b border-gray-200 whitespace-nowrap">
+                        SR/No.
+                      </th>
                       <th scope="col" className="text-left font-bold text-gray-900 py-3 px-4 border-b border-gray-200 whitespace-nowrap">
                         TITLE
                       </th>
@@ -303,6 +297,7 @@ const AdminProfile = () => {
                   <tbody className="text-gray-700">
                     {paginatedAnnouncements?.map((item, index) => (
                       <tr key={index} className="border-b border-gray-200 hover:bg-gray-50 transition duration-150">
+                        <td className="px-6 py-4 text-gray-800">{(currentPage - 1) * itemsPerPage + index + 1}</td>
                         <td className="px-6 py-4 text-gray-800">{item.title?.slice(0, 30)}...</td>
                         <td className="px-6 py-4 text-gray-800">{item.startDate}</td>
                         <td className="px-6 py-4 text-gray-800">{item.endDate}</td>
@@ -346,36 +341,34 @@ const AdminProfile = () => {
                 </table>
               </div>
             </main>
-
-            {totalPages > 1 && (
-              <div className="emPaginate">
-                <button
-                  className={`prepaginate ${currentPage !== 1 && "putthehovebtn"
-                    } disabled:bg-gray-200`}
-                  onClick={() => {
-                    handlePageChange(currentPage - 1);
-                    scrollToTop();
-                  }}
-                  disabled={currentPage === 1}
-                >
-                  Previous
-                </button>
-                <span className="pagenum">
-                  Page {currentPage} of {totalPages}
-                </span>
-                <button
-                  className={`prepaginate ${currentPage !== totalPages && "putthehovebtn"
-                    } disabled:bg-gray-200`}
-                  onClick={() => {
-                    handlePageChange(currentPage + 1);
-                    scrollToTop();
-                  }}
-                  disabled={currentPage === totalPages}
-                >
-                  Next
-                </button>
-              </div>
-            )}
+           
+            {totalPages > 1 && (<div className="flex items-center gap-[10px] justify-center mt-[20px]">
+              <button
+                className={`w-[100px] h-[40px] gap-[10px] rounded-[10px] border border-[#D8D8D8] bg-white text-[#2B2B2B] text-[12px] font-medium leading-[16px] tracking-[0.004em] text-center ${currentPage !== 1 && "transition-all duration-300 hover:bg-[#2B2B2B] hover:text-white"
+                  } disabled:bg-gray-200`}
+                onClick={() => {
+                  handlePageChange(currentPage - 1);
+                  scrollToTop();
+                }}
+                disabled={currentPage === 1}
+              >
+                Previous
+              </button>
+              <span className="text-[#2B2B2B] font-inter text-[12px] font-normal leading-[16px] tracking-[0.004em] text-left">
+                Page {currentPage} of {totalPages}
+              </span>
+              <button
+                className={`w-[100px] h-[40px] gap-[10px] rounded-[10px] border border-[#D8D8D8] bg-white text-[#2B2B2B] text-[12px] font-medium leading-[16px] tracking-[0.004em] text-center ${currentPage !== totalPages && "transition-all duration-300 hover:bg-[#2B2B2B] hover:text-white"
+                  } disabled:bg-gray-200`}
+                onClick={() => {
+                  handlePageChange(currentPage + 1);
+                  scrollToTop();
+                }}
+                disabled={currentPage === totalPages}
+              >
+                Next
+              </button>
+            </div>)}
 
 
 

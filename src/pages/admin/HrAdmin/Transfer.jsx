@@ -14,7 +14,7 @@ const Transfer = () => {
     deleteTransfer,
     updateTransfer,
     transfer,
-    allEmp,
+    allActiveEmployee,
     allBranch,
     allDep
   } = useMain();
@@ -23,12 +23,39 @@ const Transfer = () => {
   const [isEdit, setIsEdit] = useState(false);
   const [editData, setEditData] = useState(null);
 
+  const [searchTerm, setSearchTerm] = useState('')
+  const [currentPage, setCurrentPage] = useState(1);
+  let itemsPerPage = 5;
+  const totalPages = Math?.ceil(transfer?.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = Math.min(startIndex + itemsPerPage, transfer?.length);
+  const currentItems = transfer?.slice(startIndex, endIndex);
+
+  const filteredData = transfer.filter((item) =>
+    item?.Employee.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const paginatedData = filteredData.slice(startIndex, endIndex);
+
+  const handlePageChange = (newPage) => {
+    if (newPage >= 1 && newPage <= totalPages) {
+      setCurrentPage(newPage);
+    }
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   const fields = [
     {
       name: "Employee",
       label: "Employee",
       type: "select",
-      options: allEmp?.map((emp) => ({
+      options: allActiveEmployee?.map((emp) => ({
         value: emp?.fullName,
         label: emp?.fullName,
       })),
@@ -83,7 +110,7 @@ const Transfer = () => {
       res = await createTransfer(data);
     }
 
-    if (res.status) {
+    if (res?.success || res?.status === 200 || res?.data?.success) {
       await getTransfer();
       toast.success(`Transfer ${isEdit ? "updated" : "created"} for ${data.Employee}`);
     } else {
@@ -102,7 +129,7 @@ const Transfer = () => {
     }
   }, []);
 
-  const theadData = ["EMPLOYEE", "BRANCH", "DEPARTMENT", "TRANSFER DATE", "DESCRIPTION", "ACTION"];
+  const theadData = ["SR/NO.", "EMPLOYEE", "BRANCH", "DEPARTMENT", "TRANSFER DATE", "DESCRIPTION", "ACTION"];
 
   const buttonOptions = (item) => [
     {
@@ -158,6 +185,17 @@ const Transfer = () => {
         </button>
       </div>
 
+      <div className="w-60">
+        <input
+          type="text"
+          placeholder="Search..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="w-full p-2 pl-4 text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out"
+        />
+
+      </div>
+
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 pt-4">
         <div className="bg-grey rounded-xl border-2 xl:col-span-2">
           <hr />
@@ -180,8 +218,9 @@ const Transfer = () => {
                     </td>
                   </tr>
                 ) : (
-                  transfer.map((row, i) => (
+                  paginatedData.map((row, i) => (
                     <tr key={i} className="border-b border-gray-200 hover:bg-gray-50">
+                      <td className="px-6 py-4">{(currentPage - 1) * itemsPerPage + i + 1}</td>
                       <td className="px-6 py-4">{row?.Employee}</td>
                       <td className="px-6 py-4">{row?.branch}</td>
                       <td className="px-6 py-4">{row?.Department}</td>
@@ -192,7 +231,7 @@ const Transfer = () => {
                           : row.Description}
                       </td>
                       <td className="px-6 py-4 absolute">
-                        <ActionMenu options={buttonOptions(row)} className="relative"/>
+                        <ActionMenu options={buttonOptions(row)} className="relative" />
                       </td>
                     </tr>
                   ))
@@ -202,6 +241,34 @@ const Transfer = () => {
           </div>
         </div>
       </div>
+
+      {totalPages > 1 && (<div className="flex items-center gap-[10px] justify-center mt-[20px]">
+        <button
+          className={`w-[100px] h-[40px] gap-[10px] rounded-[10px] border border-[#D8D8D8] bg-white text-[#2B2B2B] text-[12px] font-medium leading-[16px] tracking-[0.004em] text-center ${currentPage !== 1 && "transition-all duration-300 hover:bg-[#2B2B2B] hover:text-white"
+            } disabled:bg-gray-200`}
+          onClick={() => {
+            handlePageChange(currentPage - 1);
+            scrollToTop();
+          }}
+          disabled={currentPage === 1}
+        >
+          Previous
+        </button>
+        <span className="text-[#2B2B2B] font-inter text-[12px] font-normal leading-[16px] tracking-[0.004em] text-left">
+          Page {currentPage} of {totalPages}
+        </span>
+        <button
+          className={`w-[100px] h-[40px] gap-[10px] rounded-[10px] border border-[#D8D8D8] bg-white text-[#2B2B2B] text-[12px] font-medium leading-[16px] tracking-[0.004em] text-center ${currentPage !== totalPages && "transition-all duration-300 hover:bg-[#2B2B2B] hover:text-white"
+            } disabled:bg-gray-200`}
+          onClick={() => {
+            handlePageChange(currentPage + 1);
+            scrollToTop();
+          }}
+          disabled={currentPage === totalPages}
+        >
+          Next
+        </button>
+      </div>)}
 
       <ModalForm
         isOpen={isModalOpen}

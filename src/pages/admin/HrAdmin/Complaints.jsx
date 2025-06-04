@@ -8,17 +8,43 @@ import { confirmAlert } from "react-confirm-alert";
 
 
 const Complaints = () => {
-    const { getComplain, complain, updateComplain,allEmp,deleteComplain } = useMain();
+  const { getComplain, complain, updateComplain, allActiveEmployee, deleteComplain, createComplain } = useMain();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [editData, setEditData] = useState(null);
+
+  const [searchTerm, setSearchTerm] = useState('')
+  const [currentPage, setCurrentPage] = useState(1);
+  let itemsPerPage = 5;
+  const totalPages = Math?.ceil(complain?.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = Math.min(startIndex + itemsPerPage, complain?.length);
+  const currentItems = complain?.slice(startIndex, endIndex);
+
+  const filteredData = complain.filter((item) =>
+    item?.complainFrom.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const paginatedData = filteredData.slice(startIndex, endIndex);
+
+  const handlePageChange = (newPage) => {
+    if (newPage >= 1 && newPage <= totalPages) {
+      setCurrentPage(newPage);
+    }
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
   const buttonOptions = (item) => [
     {
       label: 'Edit',
       icon: 'https://res.cloudinary.com/dd9tagtiw/image/upload/v1746260260/Vector_zah5tt.svg',
       onClick: () => {
-        console.log(item);
         setIsEdit(true);
         setEditData(item);
         setIsModalOpen(true);
@@ -29,7 +55,6 @@ const Complaints = () => {
       icon: 'https://res.cloudinary.com/dd9tagtiw/image/upload/v1746260280/delete_sgefhv.png',
       danger: true,
       onClick: () => {
-        console.log(item);
         confirmAlert({
           title: "Are you sure to delete this data?",
           message: "All related data to this will be deleted",
@@ -61,42 +86,42 @@ const Complaints = () => {
 
   const fields = [
     {
-      name: "complaintForm",
-      label: "Complaint Form",
+      name: "complainFrom",
+      label: "Complaint From",
       type: "select",
-      options: allEmp?.map((emp) => ({
+      options: allActiveEmployee?.map((emp) => ({
         value: emp?.fullName,
         label: emp?.fullName,
       })),
-      ...(isEdit && { defaultValue: editData?.complaintForm })
+      ...(isEdit && { defaultValue: editData?.complainFrom })
     }
 
     ,
     {
-          name: " complainAgain",
+      name: "complainAgain",
       label: "Complaint Against",
       type: "select",
-      options: allEmp?.map((emp) => ({
+      options: allActiveEmployee?.map((emp) => ({
         value: emp?.fullName,
         label: emp?.fullName,
       })),
-      ...(isEdit && { defaultValue: editData?. complainAgain })
+      ...(isEdit && { defaultValue: editData?.complainAgain })
     },
- {
+    {
       name: "title",
       label: "Title",
       type: "text",
-     
-      ...(isEdit && { defaultValue: editData?.title}),
+
+      ...(isEdit && { defaultValue: editData?.title }),
     },
-    
+
     {
-      name: " complainDate",
+      name: "complainDate",
       label: "Complaint Date",
       type: "date",
-      ...(isEdit && { defaultValue: editData?. complainDate}),
+      ...(isEdit && { defaultValue: editData?.complainDate }),
     },
-   
+
     {
       name: "description",
       label: "Description",
@@ -114,43 +139,45 @@ const Complaints = () => {
   }, []);
 
   const theadData2 = [
+    "SR/NO.",
     "COMPLAIN FROM",
     "COMPLAIN TO",
     "TITLE",
-    "	COMPLAIN DATE",
+    "COMPLAIN DATE",
     "DESCRIPTION",
     "ACTION"
   ];
+
   const handleFormSubmit = async (data) => {
     const toastId = toast.loading("Loading...");
     let res;
 
     if (isEdit && editData?._id) {
-      console.log(editData?._id)
       res = await updateComplain({
         id: editData._id,
-       complaintForm: data.complaintForm,
-        complainAgain: data. complainAgain,
-        complainDate: data. complainDate,
-       
+        complainFrom: data.complainFrom,
+        complainAgain: data.complainAgain,
+        title: data.title,
+        complainDate: data.complainDate,
         description: data.description,
-       
-      })
+      });
     } else {
-      res = await  updateComplain(data);
+      res = await createComplain(data);
     }
 
-    if (res.status) {
+    if (res?.success || res?.status === 200 || res?.data?.success) {
       await getComplain();
-      toast.success(`complain ${isEdit ? "updated" : "created"} for ${data.employee}`);
+      toast.success(`Complain ${isEdit ? "updated" : "created"} for ${data.complainFrom}`);
     } else {
-      toast.error(`Failed to ${isEdit ? "update" : "create"} Complain for ${data.employee}`);
+      toast.error(`Failed to ${isEdit ? "update" : "create"} complain for ${data.complainFrom}`);
     }
 
     setIsEdit(false);
     setEditData(null);
     toast.dismiss(toastId);
   };
+
+
 
   return (
     <div className="p-6">
@@ -160,7 +187,7 @@ const Complaints = () => {
         </div>
         <button
           type="button"
-             onClick={() => setIsModalOpen(true)}
+          onClick={() => setIsModalOpen(true)}
           className="flex items-center gap-2 text-white bg-blue-700 hover:bg-blue-800   font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 w-fit mt-2"
         >
 
@@ -168,6 +195,16 @@ const Complaints = () => {
         </button>
       </div>
 
+      <div className="w-60">
+        <input
+          type="text"
+          placeholder="Search..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="w-full p-2 pl-4 text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out"
+        />
+
+      </div>
 
 
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 pt-4">
@@ -201,11 +238,14 @@ const Complaints = () => {
                     </td>
                   </tr>
                 ) : (
-                  complain?.map((row, index) => (
+                  paginatedData?.map((row, index) => (
                     <tr
                       key={index}
                       className="border-b border-gray-200 hover:bg-gray-50 transition duration-150"
                     >
+                      <td className="px-6 py-4 text-gray-800">
+                        {(currentPage - 1) * itemsPerPage + index + 1}
+                      </td>
                       <td className="px-6 py-4 text-gray-800">
                         {row?.complainFrom}
                       </td>
@@ -234,7 +274,7 @@ const Complaints = () => {
                         }
                       </td>
                       <td className="px-6 py-4 text-gray-800 absolute">
-                        <ActionMenu options={buttonOptions(row)} className="relative"/>
+                        <ActionMenu options={buttonOptions(row)} className="relative" />
                       </td>
                     </tr>
                   ))
@@ -244,17 +284,47 @@ const Complaints = () => {
           </div>
         </div>
       </div>
-        {/* ModalForm call */}
-            <ModalForm
-              isOpen={isModalOpen}
-              onClose={() => {setIsModalOpen(false)
-                setEditData(null); setIsEdit(false)
-              }}
-              onSubmit={handleFormSubmit}
-              fields={fields}
-              title={isEdit ? 'Edit Award' : 'Create New Complain'}
-      
-            />
+
+      {totalPages > 1 && (<div className="flex items-center gap-[10px] justify-center mt-[20px]">
+        <button
+          className={`w-[100px] h-[40px] gap-[10px] rounded-[10px] border border-[#D8D8D8] bg-white text-[#2B2B2B] text-[12px] font-medium leading-[16px] tracking-[0.004em] text-center ${currentPage !== 1 && "transition-all duration-300 hover:bg-[#2B2B2B] hover:text-white"
+            } disabled:bg-gray-200`}
+          onClick={() => {
+            handlePageChange(currentPage - 1);
+            scrollToTop();
+          }}
+          disabled={currentPage === 1}
+        >
+          Previous
+        </button>
+        <span className="text-[#2B2B2B] font-inter text-[12px] font-normal leading-[16px] tracking-[0.004em] text-left">
+          Page {currentPage} of {totalPages}
+        </span>
+        <button
+          className={`w-[100px] h-[40px] gap-[10px] rounded-[10px] border border-[#D8D8D8] bg-white text-[#2B2B2B] text-[12px] font-medium leading-[16px] tracking-[0.004em] text-center ${currentPage !== totalPages && "transition-all duration-300 hover:bg-[#2B2B2B] hover:text-white"
+            } disabled:bg-gray-200`}
+          onClick={() => {
+            handlePageChange(currentPage + 1);
+            scrollToTop();
+          }}
+          disabled={currentPage === totalPages}
+        >
+          Next
+        </button>
+      </div>)}
+
+
+      <ModalForm
+        isOpen={isModalOpen}
+        onClose={() => {
+          setIsModalOpen(false)
+          setEditData(null); setIsEdit(false)
+        }}
+        onSubmit={handleFormSubmit}
+        fields={fields}
+        title={isEdit ? 'Edit Award' : 'Create New Complain'}
+
+      />
     </div>
   );
 };

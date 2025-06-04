@@ -160,7 +160,7 @@ const config = {
   readonly: false,
 };
 const ProposalForm = () => {
-  const {postProposalFormApi, updatePropsalFormApi } = useMain();
+  const { postProposalFormApi, updatePropsalFormApi } = useMain();
 
   let hrms_user = JSON.parse(localStorage.getItem("hrms_user"));
 
@@ -193,8 +193,14 @@ const ProposalForm = () => {
   const contonentPDF = useRef();
 
   const generatePdf = useReactToPrint({
-    content: () => contonentPDF.current,
-    documentTitle: "Quotation",
+    content: () => {
+      if (!contonentPDF.current) {
+        console.error("Nothing to print: ref is null");
+        return null;
+      }
+      return contonentPDF.current;
+    },
+    documentTitle: "Proposal",
     parentContainer: {
       "@media print": {
         display: "block",
@@ -297,6 +303,10 @@ const ProposalForm = () => {
     }
   }, []);
 
+  useEffect(() => {
+    console.log(contonentPDF.current);
+  }, [])
+
   return (
     <>
       <div className="employee-dash h-full">
@@ -392,7 +402,7 @@ const ProposalForm = () => {
               </div>
 
               {/* right side  */}
-              <div className="max-w-[900px] w-full h-[520px] overflow-y-scroll pb-[30px] bg-white">
+              <div className="max-w-[900px] w-full h-[520px] overflow-auto pb-[30px] bg-white">
                 <div
                   ref={contonentPDF}
                   className="flex flex-col gap-[14px] p-5"
@@ -462,6 +472,15 @@ const ProposalForm = () => {
                         postPropsalForm();
                       }
                     }}
+                  >
+                    <span className="text-[16px] font-medium leading-[24px] tracking-[0.005em] text-white">
+                      Save
+                    </span>
+                  </button>
+
+                  <button
+                    className="w-[80px] h-[40px] rounded-[10px] bg-[#0B56E4]"
+                    onClick={generatePdf}
                   >
                     <span className="text-[16px] font-medium leading-[24px] tracking-[0.005em] text-white">
                       Print

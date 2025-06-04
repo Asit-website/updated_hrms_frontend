@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 
 import "react-calendar/dist/Calendar.css";
-import { confirmAlert } from 'react-confirm-alert'; 
-import 'react-confirm-alert/src/react-confirm-alert.css'; 
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 import { toast } from "react-toastify";
 import { useLocation, NavLink } from "react-router-dom";
 import { MdDeleteOutline, MdOutlineEdit } from "react-icons/md";
@@ -11,7 +11,7 @@ import { useOutsideClick } from "../../../hooks/UseOutsideClick";
 
 
 const HolidayHRM = () => {
-  const {createHoliday, getHoliday, deleteHolidays, updateHolidays } = useMain();
+  const { createHoliday, getHoliday, deleteHolidays, updateHolidays } = useMain();
   const [popup1, setPopup1] = useState(false);
 
   const [refreshFlag, setRefreshFlag] = useState([]);
@@ -20,10 +20,6 @@ const HolidayHRM = () => {
   const [data, setData] = useState([]);
   const [showIndex, setShowIndex] = useState(null);
   const location = useLocation();
-
-  let hrms_user = JSON.parse(localStorage.getItem("hrms_user"));
-
-  const { role } = hrms_user;
 
   const [formdata, setFormdata] = useState({
     holidayName: "",
@@ -131,22 +127,50 @@ const HolidayHRM = () => {
 
   useEffect(() => {
     getData();
-  }, [refreshFlag])
+  }, [refreshFlag]);
+
+  const [searchTerm, setSearchTerm] = useState('')
+  const [currentPage, setCurrentPage] = useState(1);
+  let itemsPerPage = 5;
+  const totalPages = Math?.ceil(data?.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = Math.min(startIndex + itemsPerPage, data?.length);
+  const currentItems = data?.slice(startIndex, endIndex);
+
+  const filteredData = data.filter((item) =>
+    item.holidayName.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  // Paginate filtered announcements
+  const paginatedData = filteredData.slice(startIndex, endIndex);
+
+  const handlePageChange = (newPage) => {
+    if (newPage >= 1 && newPage <= totalPages) {
+      setCurrentPage(newPage);
+    }
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
 
   return (
     <>
       <div className="employee-dash h-full">
-       
+
 
         <div className="w-full  awardtm">
-         
+
 
           <div className="relative w-full">
             <div className="flex-col">
               <div className="p-5 flex flex-col gap-5 bg-transparent adminmain">
 
-            
+
                 <div className="w-full flex justify-between items-center">
                   <div className="flex flex-col gap-[10px]">
 
@@ -176,13 +200,26 @@ const HolidayHRM = () => {
                   </button>
                 </div>
 
+                <div className="w-60">
+                  <input
+                    type="text"
+                    placeholder="Search..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="w-full p-2 pl-4 text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out"
+                  />
+
+                </div>
+
 
                 <div className="relative overflow-x-auto min-h-[250px] rounded-lg">
                   <table className="w-max lg:w-full text-sm text-left bg-white rounded-lg">
 
                     <thead className="bg-white font-semibold mb-[6px]">
                       <tr>
-
+                        <th scope="col" className="text-left font-bold text-gray-900 py-3 px-4 border-b border-gray-200 whitespace-nowrap">
+                          SR/No.
+                        </th>
                         <th scope="col" className="text-left font-bold text-gray-900 py-3 px-4 border-b border-gray-200 whitespace-nowrap">
                           OCCASION
                         </th>
@@ -202,9 +239,10 @@ const HolidayHRM = () => {
                     </thead>
 
                     <tbody className="text-gray-700">
-                      {data.map((item, index) => (
+                      {paginatedData.map((item, index) => (
                         <tr key={index} className="border-b border-gray-200 hover:bg-gray-50 transition duration-150">
 
+                          <td className="px-6 py-4 text-gray-800">{(currentPage - 1) * itemsPerPage + index + 1}</td>
                           <td className="px-6 py-4 text-gray-800">{item?.holidayName}</td>
                           <td className="px-6 py-4 text-gray-800">
                             {item?.startDate}
@@ -227,7 +265,7 @@ const HolidayHRM = () => {
                                         setEditData(item);
                                         setPopup1(true)
                                       }} className="items-center w-full px-4 py-2 text-sm flex gap-2 text-gray-700 hover:bg-gray-100">
-                                        <MdOutlineEdit className="text-[18px]"/>
+                                        <MdOutlineEdit className="text-[18px]" />
                                         <span>Edit</span>
                                       </div>
                                       <hr />
@@ -235,7 +273,7 @@ const HolidayHRM = () => {
                                       <div onClick={() => {
                                         deleteProject(item?._id)
                                       }} className="items-center w-full px-4 py-2 text-sm flex gap-2 text-red-600 hover:bg-red-100">
-                                        <MdDeleteOutline className="text-[18px]"/>
+                                        <MdDeleteOutline className="text-[18px]" />
                                         <span>Delete</span>
                                       </div>
                                     </div>
@@ -255,7 +293,33 @@ const HolidayHRM = () => {
                   </table>
                 </div>
 
-
+                {totalPages > 1 && (<div className="flex items-center gap-[10px] justify-center mt-[20px]">
+                  <button
+                    className={`w-[100px] h-[40px] gap-[10px] rounded-[10px] border border-[#D8D8D8] bg-white text-[#2B2B2B] text-[12px] font-medium leading-[16px] tracking-[0.004em] text-center ${currentPage !== 1 && "transition-all duration-300 hover:bg-[#2B2B2B] hover:text-white"
+                      } disabled:bg-gray-200`}
+                    onClick={() => {
+                      handlePageChange(currentPage - 1);
+                      scrollToTop();
+                    }}
+                    disabled={currentPage === 1}
+                  >
+                    Previous
+                  </button>
+                  <span className="text-[#2B2B2B] font-inter text-[12px] font-normal leading-[16px] tracking-[0.004em] text-left">
+                    Page {currentPage} of {totalPages}
+                  </span>
+                  <button
+                    className={`w-[100px] h-[40px] gap-[10px] rounded-[10px] border border-[#D8D8D8] bg-white text-[#2B2B2B] text-[12px] font-medium leading-[16px] tracking-[0.004em] text-center ${currentPage !== totalPages && "transition-all duration-300 hover:bg-[#2B2B2B] hover:text-white"
+                      } disabled:bg-gray-200`}
+                    onClick={() => {
+                      handlePageChange(currentPage + 1);
+                      scrollToTop();
+                    }}
+                    disabled={currentPage === totalPages}
+                  >
+                    Next
+                  </button>
+                </div>)}
               </div>
             </div>
           </div>
@@ -263,7 +327,7 @@ const HolidayHRM = () => {
 
         {popup1 && (
           <div className="fixed inset-0 bg-black/20 flex items-center justify-center h-screen z-[3000] backdrop-blur-[1px] py-[50px">
-            <form onSubmit={(e)=>{
+            <form onSubmit={(e) => {
               submitHandler(e);
               setPopup1(false);
             }} ref={wrapperRef} className="max-w-[700px] w-full bg-white p-5 flex max-h-[550px] flex-col gap-[6px] rounded-[10px]">
@@ -271,7 +335,7 @@ const HolidayHRM = () => {
               <div className="flex items-center justify-between" >
 
                 <h2 className="text-[20px] font-medium leading-[30px] text-left text-black">{onEdit ? 'Edit Holiday' : 'Create New Holiday'}</h2>
-               
+
               </div>
 
 
@@ -280,13 +344,13 @@ const HolidayHRM = () => {
 
               <div className="flex flex-col gap-5 pr-2.5 mt-3">
 
-               <div className="flex items-center gap-5 w-full">
+                <div className="flex items-center gap-5 w-full">
 
                   <label htmlFor="holidayName" className="Resig-employ block text-gray-700 mb-1 w-full">
                     <p className="text-[12px] sm:text-[14px] md:text-[16px] font-semibold mb-[6px]  leading-[18px] tracking-[0.0015em] text-left ">Occasion</p>
                     <input
-                    className="ml-[3px] w-full border rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    type="text" name="holidayName" required value={formdata?.holidayName} onChange={changeHandler} />
+                      className="ml-[3px] w-full border rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      type="text" name="holidayName" required value={formdata?.holidayName} onChange={changeHandler} />
                   </label>
 
 
