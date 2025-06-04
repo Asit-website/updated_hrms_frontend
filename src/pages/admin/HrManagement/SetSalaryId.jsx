@@ -475,7 +475,7 @@ const SetSallary = () => {
 
                                 <div className="w-full mx-[10px]
 ">
-                                    <div className="w-full max-w-full rounded-[20px] h-[275px] max-h-full bg-white bg-grey border-2
+                                    <div className="w-full max-w-full rounded-[20px] h-[275px] max-h-full bg-white bg-grey border-2 overflow-y-scroll
 ">
                                         <div className="flex items-center justify-between border-b border-b-[#E8E9EB] px-[20px] py-[15px]">
                                             <div className="flex items-center
@@ -511,7 +511,7 @@ const SetSallary = () => {
 
 
                                     </div>
-                                    <div className="w-full max-w-full rounded-[20px] h-[275px] max-h-full bg-white bg-grey border-2 mt-5">
+                                    <div className="w-full max-w-full rounded-[20px] h-[275px] max-h-full bg-white bg-grey border-2 mt-5 overflow-y-scroll">
                                         <div className="flex items-center justify-between border-b border-b-[#E8E9EB] px-[20px] py-[15px]
 ">
                                             <div className="flex items-center
@@ -596,7 +596,7 @@ const SetSallary = () => {
                                 </div>
 
                                 <div className="!w-full mx-[10px]">
-                                    <div className="w-full max-w-full rounded-[20px] h-[275px] max-h-full bg-white bg-grey border-2 mt-5 lg:mt-0">
+                                    <div className="w-full max-w-full rounded-[20px] h-[275px] max-h-full bg-white bg-grey border-2 mt-5 xl:mt-0 overflow-y-scroll">
                                         <div className="flex items-center justify-between border-b border-b-[#E8E9EB] px-[20px] py-[15px]
 ">
                                             <div className="flex items-center
@@ -700,7 +700,7 @@ const SetSallary = () => {
                                         </div>
                                     </div>
 
-                                    <div className="w-full max-w-full rounded-[20px] h-[275px] max-h-full bg-white bg-grey border-2 mt-5">
+                                    <div className="w-full max-w-full rounded-[20px] h-[275px] max-h-full bg-white bg-grey border-2 mt-5 overflow-y-scroll">
                                         <div className="flex items-center justify-between border-b border-b-[#E8E9EB] px-[20px] py-[15px]
 ">
                                             <div className="flex items-center

@@ -242,7 +242,7 @@ const   Appraisal = () => {
               </button>
             </div>
 
-            <main className="bg-white flex flex-col mt-5 px-5 py-2.5 rounded-[20px] border-b border-gray-300">
+            <main className="bg-white flex flex-col mt-5 py-2.5 rounded-[20px] border-gray-300">
               {/* top */}
               <div className="flex items-center justify-between">
                 {/* left side */}
@@ -253,7 +253,7 @@ const   Appraisal = () => {
                 {/* right side  */}
                 <div className="px-4 py-2 gap-2 flex items-center rounded-[10px] bg-white border border-[#D0D4DC]">
                   <input type="text" 
-                  className="text-[#666D76] text-sm font-normal leading-5 tracking-[0.0025em] text-left"
+                  className="text-[#666D76] text-sm font-normal leading-5 tracking-[0.0025em] text-left outline-none"
                   placeholder="Search..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
@@ -261,8 +261,8 @@ const   Appraisal = () => {
                 </div>
               </div>
 
-              <div class="relative overflow-x-auto rounded-lg">
-                <table class="min-w-full text-sm text-left bg-white rounded-lg">
+              <div class="relative overflow-x-auto bg-grey rounded-xl border-2 mt-3 pb-2">
+                <table class="min-w-full text-sm text-left bg-white ">
                   <thead class="bg-white font-semibold">
                     <tr>
                       <th scope="col" class="text-left font-bold text-gray-900 py-3 px-4 border-b border-gray-200 whitespace-nowrap">

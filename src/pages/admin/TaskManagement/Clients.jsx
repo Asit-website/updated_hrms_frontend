@@ -430,7 +430,7 @@ const TaskClients = () => {
                 <label className="block text-md font-normal mb-1">
                   <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Name <span className="text-red-500">*</span></p>
                   <input
-                    className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                    className="w-full border rounded p-2 text-sm font-normal "
                     type="text"
                     name="Name"
                     value={formdata.Name}
@@ -443,7 +443,7 @@ const TaskClients = () => {
                 <label className="block text-md font-normal mb-1">
                   <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Email <span className="text-red-500">*</span></p>
                   <input
-                    className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                    className="w-full border rounded p-2 text-sm font-normal "
                     type="email"
                     name="Email"
                     value={formdata.Email}
@@ -459,7 +459,7 @@ const TaskClients = () => {
                 <label className="block text-md font-normal mb-1">
                   <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Password <span className="text-red-500">*</span></p>
                   <input
-                    className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                    className="w-full border rounded p-2 text-sm font-normal "
                     type="password"
                     name="Password"
                     value={formdata.Password}
@@ -473,7 +473,7 @@ const TaskClients = () => {
                   <label className="block text-md font-normal mb-1">
                     <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">City <span className="text-red-500">*</span></p>
                     <input
-                      className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                      className="w-full border rounded p-2 text-sm font-normal "
                       type="text"
                       name="City"
                       value={formdata.City}
@@ -486,7 +486,7 @@ const TaskClients = () => {
                   <label className="block text-md font-normal mb-1">
                     <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">State <span className="text-red-500">*</span></p>
                     <input
-                      className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                      className="w-full border rounded p-2 text-sm font-normal "
                       type="text"
                       name="State"
                       value={formdata.State}
@@ -501,7 +501,7 @@ const TaskClients = () => {
                   <label className="block text-md font-normal mb-1">
                     <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Zip/Post Code <span className="text-red-500">*</span></p>
                     <input
-                      className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                      className="w-full border rounded p-2 text-sm font-normal "
                       type="text"
                       name="ZipCode"
                       value={formdata.ZipCode}
@@ -514,7 +514,7 @@ const TaskClients = () => {
                   <label className="block text-md font-normal mb-1">
                     <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Country <span className="text-red-500">*</span></p>
                     <input
-                      className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                      className="w-full border rounded p-2 text-sm font-normal "
                       type="text"
                       name="Country"
                       value={formdata.Country}
@@ -528,7 +528,7 @@ const TaskClients = () => {
                 <label className="block text-md font-normal mb-1">
                   <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Phone Number <span className="text-red-500">*</span></p>
                   <input
-                    className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                    className="w-full border rounded p-2 text-sm font-normal "
                     type="number"
                     name="PhoneNumber"
                     value={formdata.PhoneNumber}
@@ -546,7 +546,7 @@ const TaskClients = () => {
                 <label clasName="block text-md font-normal mb-1">
                   <p className="text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em]">Address</p>
                   <input
-                    className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                    className="w-full border rounded p-2 text-sm font-normal "
                     type="text"
                     name="Address"
                     value={formdata.Address}

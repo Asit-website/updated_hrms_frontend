@@ -217,7 +217,7 @@ const LeaveRequest = () => {
 
               </div>
               <main className="pt-[10px] pr-0 pb-[30px] pl-0 ">
-                <input className="border border-black w-[200px] px-[10px] h-[38px] rounded-[10px]" onChange={(e) => setSearchInput(e.target.value)}
+                <input className="border-2 border-black w-[200px] px-[10px] h-[38px] rounded-[10px]" onChange={(e) => setSearchInput(e.target.value)}
                   value={searchInput} placeholder="Search Employee" />
 
                 {/* second  */}
