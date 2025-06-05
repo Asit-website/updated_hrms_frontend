@@ -299,7 +299,7 @@ const AdminProfile = () => {
               <form className="w-full mx-auto flex flex-col gap-5" onSubmit={handleSubmit}>
                 <div className="grid grid-cols-2 gap-5">
 
-                  <div className="bg-white p-4">
+                  <div className="bg-white p-4 shadow-lg rounded-lg">
                     <h2 className="font-semibold">Employee Detail</h2>
                     <hr className="my-3" />
                     <div className="grid grid-cols-2 gap-3">
@@ -811,7 +811,7 @@ const AdminProfile = () => {
                   </div>
 
 
-                  <div className="bg-white p-4">
+                  <div className="bg-white p-4 shadow-lg rounded-lg">
                     <h2 className="font-semibold">Address Detail</h2>
                     <hr className="my-3" />
                     <div className="flex flex-col gap-3">
@@ -972,7 +972,7 @@ const AdminProfile = () => {
 
                 </div>
 
-                <div className="bg-white p-4">
+                <div className="bg-white p-4 shadow-lg rounded-lg">
 
                   <h2 className="font-semibold">Bank Detail</h2>
                   <hr className="my-3" />

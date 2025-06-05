@@ -116,7 +116,7 @@ const EmployeeSalary = () => {
                       <input
                         type="search"
                         id="default-search"
-                        className="outline-none p-4 ps-10 text-sm text-gray-900 border-2 border-black bg-gray-50  dark:bg-gray-700  dark:placeholder-gray-400 dark:text-white flex items-center w-[285px] h-[48px] px-[16px] py-[8px] gap-[16px] rounded-[15px] "
+                        className="outline-none p-4 ps-10 text-sm text-gray-900 border-2 border-#D0D4DC bg-gray-50  dark:bg-gray-700  dark:placeholder-gray-400 dark:text-white flex items-center w-[285px] h-[48px] px-[16px] py-[8px] gap-[16px] rounded-[15px] "
                         placeholder="Search Employee"
                         required=""
                         onChange={(e) => setSearchTxt(e.target.value)}

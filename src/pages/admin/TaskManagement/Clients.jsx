@@ -308,7 +308,7 @@ const TaskClients = () => {
               <div className="flex flex-col">
 
                 <input type="text" placeholder="Search..." onChange={(e) => setSearchInput(e.target.value)}
-                  value={searchInput} className="border border-[#D0D4DC] w-[200px] px-2.5 h-[38px] rounded-[10px]" />
+                  value={searchInput} className="border-2 border-[#D0D4DC] w-[200px] px-2.5 h-[38px] rounded-[10px]" />
 
                 <p className="py-[20px] pt-0 text-[#1B2533] text-[12px] font-medium leading-[16px] tracking-[0.004em] text-left mt-4">Total Records: {allClient?.length || 0}</p>
               </div>

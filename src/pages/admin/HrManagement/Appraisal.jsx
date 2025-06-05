@@ -251,7 +251,7 @@ const   Appraisal = () => {
                 </div>
 
                 {/* right side  */}
-                <div className="px-4 py-2 gap-2 flex items-center rounded-[10px] bg-white border border-[#D0D4DC]">
+                <div className="px-4 py-2 gap-2 flex items-center rounded-[10px] bg-white border-2 border-[#D0D4DC]">
                   <input type="text" 
                   className="text-[#666D76] text-sm font-normal leading-5 tracking-[0.0025em] text-left outline-none"
                   placeholder="Search..."
@@ -295,14 +295,14 @@ const   Appraisal = () => {
                   <tbody>
                     {currentEntries.map((item, index) => (
                       <tr key={index} className="border-b border-gray-200 hover:bg-gray-50 transition duration-150">
-                        <td className="px-6 py-4 text-gray-800">{item.Branch}</td>
-                        <td className="px-6 py-4 text-gray-800">{item.department}</td>
-                        <td className="px-6 py-4 text-gray-800">{item.designation}</td>
-                        <td className="px-6 py-4 text-gray-800">{item.Employee}</td>
-                        <td className="px-6 py-4 text-gray-800">{item.targetRating}</td>
-                        <td className="px-6 py-4 text-gray-800">{item.overallRating}</td>
-                        <td className="px-6 py-4 text-gray-800">{item.SelectMonth}</td>
-                        <td className="px-6 py-4 text-gray-800">
+                        <td className="px-4 py-4 text-gray-800">{item.Branch}</td>
+                        <td className="px-4 py-4 text-gray-800">{item.department}</td>
+                        <td className="px-4 py-4 text-gray-800">{item.designation}</td>
+                        <td className="px-4 py-4 text-gray-800">{item.Employee}</td>
+                        <td className="px-4 py-4 text-gray-800">{item.targetRating}</td>
+                        <td className="px-4 py-4 text-gray-800">{item.overallRating}</td>
+                        <td className="px-4 py-4 text-gray-800">{item.SelectMonth}</td>
+                        <td className="px-4 py-4 text-gray-800">
                           <div className="flex items-center sk relative">
                             <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747392487/thredonts_jlsvvx.png" className="cursor-pointer" alt="" onClick={() => setShowIndex(showIndex === index ? null : index)} />
                             {

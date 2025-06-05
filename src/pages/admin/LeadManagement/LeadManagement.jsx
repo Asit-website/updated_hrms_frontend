@@ -34,8 +34,9 @@ export default function LeadManagement() {
     "Email",
     "FirstName",
     "LastName",
-    "Close Date",
+   
     "Status",
+    "Action"
   ];
 
   const theadData2 = [
@@ -309,10 +310,10 @@ export default function LeadManagement() {
                       className="px-6 py-4 text-gray-800 moverights cursor-pointer relative"
                     >
 
-                      <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746515211/more_vert_qbxefn.png" alt="" className="morevertimg" />
+                      <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747634200/acy_ah4jhd.svg" alt="" className="morevertimg" />
 
                       {optionedit === index && (
-                        <div className="absolute z-[100] flex flex-col top-[-85px] right-5 w-[161px] h-[54px] rounded-[8px] bg-white border border-[#E3E3E3] shadow-[0_4px_12px_0_#1A1A1A33]"
+                        <div className="absolute z-[100] flex flex-col top-[-70px] right-[80px] w-[150px] bg-white border border-[#E3E3E3] shadow-[0_4px_12px_0_#1A1A1A33]"
                         >
                           <div
                             onClick={() =>
@@ -320,7 +321,7 @@ export default function LeadManagement() {
                                 state: item,
                               })
                             }
-                            className="w-[161px] h-[44px] pt-[12px] pr-[91px] pb-[12px] pl-[12px] border-b border-b-[#E8E9EB] bg-white flex items-center gap-[10px]"
+                            className="items-center w-full px-4 py-2 text-sm flex gap-2 text-gray-700 hover:bg-gray-100"
 
                           >
                             <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746260260/Vector_zah5tt.svg" alt="" />
@@ -330,7 +331,7 @@ export default function LeadManagement() {
                             onClick={() => {
                               navigate(user?.role === "ADMIN" ? `/adminDash/importLead/${item._id}` : `/employeeDash/importLead/${item._id}`);
                             }}
-                            className="w-[161px] h-[44px] pt-[12px] pr-[91px] pb-[12px] pl-[12px] border-b border-b-[#E8E9EB] bg-white flex items-center gap-[10px]"
+                            className="items-center w-full px-4 py-2 text-sm flex gap-2 text-gray-700 hover:bg-gray-100"
 
                           >
                             <svg
@@ -352,11 +353,11 @@ export default function LeadManagement() {
                             onClick={() => {
                               deleteProject(item?._id);
                             }}
-                            className="w-[161px] h-[44px] pt-[12px] pr-[91px] pb-[12px] pl-[12px] border-b border-b-[#E8E9EB] bg-white flex items-center gap-[10px]"
+                            className="items-center w-full px-4 py-2 text-sm flex gap-2 text-red-600 hover:bg-red-100"
 
                           >
                             <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746260280/delete_sgefhv.png" alt="delete" />
-                            <p className="text-sm text-gray-700 hover:bg-gray-100">Delete</p>
+                            <p className="">Delete</p>
                           </div>
                         </div>
                       )}

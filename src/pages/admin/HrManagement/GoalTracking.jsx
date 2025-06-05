@@ -274,7 +274,7 @@ const GoalTracking = () => {
                 </div>
 
                 {/* right side  */}
-                <div className=" p-2 px-4 gap-2 rounded-lg bg-white border border-[#D0D4DC] flex items-center">
+                <div className=" p-2 px-4 gap-2 rounded-lg bg-white border-2 border-[#D0D4DC] flex items-center">
                   <input type="text" placeholder="Search..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}

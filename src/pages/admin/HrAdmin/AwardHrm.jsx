@@ -200,7 +200,7 @@ const Award = () => {
           placeholder="Search..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full p-2 pl-4 text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out"
+          className="w-full p-2 pl-4 text-gray-700 bg-white border-2 border-[#D0D4DC] rounded-lg "
         />
 
       </div>
@@ -238,26 +238,26 @@ const Award = () => {
                       key={index}
                       className="border-b border-gray-200 hover:bg-gray-50 transition duration-150"
                     >
-                      <td className="px-6 py-4 text-gray-800">
+                      <td className="px-4 py-4 text-gray-800">
                         {(currentPage - 1) * itemsPerPage + index + 1}
                       </td>
-                      <td className="px-6 py-4 text-gray-800">
+                      <td className="px-4 py-4 text-gray-800">
                         {item?.employee}
                       </td>
-                      <td className="px-6 py-4 text-gray-800">
+                      <td className="px-4 py-4 text-gray-800">
                         {item?.awardType}
                       </td>
-                      <td className="px-6 py-4 text-gray-800">{item?.date}</td>
-                      <td className="px-6 py-4 text-gray-800">{item?.gift}</td>
-                      <td className="px-6 py-4 text-gray-800">
+                      <td className="px-4 py-4 text-gray-800">{item?.date}</td>
+                      <td className="px-4 py-4 text-gray-800">{item?.gift}</td>
+                      <td className="px-4 py-4 text-gray-800">
                         {item?.rating}
                       </td>
-                      <td className="px-6 py-4 text-gray-800">
+                      <td className="px-4 py-4 text-gray-800">
                         {item?.description?.length > 30
                           ? item?.description?.slice(0, 30) + "..."
                           : item?.description}
                       </td>
-                      <td className="px-6 py-4 text-gray-800 absolute">
+                      <td className="px-4 py-4 text-gray-800 absolute">
                         <ActionMenu
                           options={buttonOptions(item)}
                           className="relative"
