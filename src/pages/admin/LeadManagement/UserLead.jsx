@@ -336,7 +336,7 @@ const UserLead = () => {
                                 <div className="my-[20px] flex items-center gap-[20px]">
                                     {/* <img src={fff} alt="" /> */}
 
-                                    <div className="flex items-center w-[285px] h-[48px] px-[16px] py-[8px] gap-[16px] rounded-[15px] bg-white border-2 border-black">
+                                    <div className="flex items-center w-[285px] h-[48px] px-[16px] py-[8px] gap-[16px] rounded-[15px] bg-white border-2 border-#D0D4DC">
                                         <input
                                             className="outline-none"
                                             value={searchText}

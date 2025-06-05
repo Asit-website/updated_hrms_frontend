@@ -204,7 +204,7 @@ const HalfRequest = () => {
 
               </div>
               <main className="pt-[10px] pb-[30px] px-0">
-                <input className="border border-black w-[200px] h-[38px] px-[10px] rounded-[10px] mb-5 ml-4" onChange={(e) => setSearchInput(e.target.value)}
+                <input className="border-2 border-[#D0D4DC] w-[200px] h-[38px] px-[10px] rounded-[10px] mb-5 ml-4" onChange={(e) => setSearchInput(e.target.value)}
                   value={searchInput} placeholder="Search Employee" />
 
 

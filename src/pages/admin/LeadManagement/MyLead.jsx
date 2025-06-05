@@ -351,9 +351,9 @@ const MyLead = () => {
               {/* left side */}
               <div>
                 <div className="my-[20px] flex gap-[20px] items-center">
-                  <div className="flex items-center gap-[8px] w-[285px] h-[48px] px-[16px] py-[8px] rounded-[15px] bg-white border border-[#D0D4DC]">
+                  <div className="flex items-center gap-[8px] w-[285px] h-[48px] px-[16px] py-[8px] rounded-[15px] bg-white border-2 border-[#D0D4DC]">
                     <input
-                      className="w-[288px] h-[46px] px-[16px] py-[8px] gap-[8px] border border-t border-none outline-none text-[14px] font-normal leading-[20px] tracking-[0.0025em] text-left "
+                      className=" border-none outline-none "
                       value={searchText}
                       onChange={(e) => setSrchText(e.target.value)}
                       type="text"
@@ -447,7 +447,7 @@ const MyLead = () => {
                     <tbody>
                       {currentItems.map((item, index) => (
                         <tr key={index} className="border-b border-gray-200 hover:bg-gray-50 transition duration-150">
-                          <td scope="col" className="px-6 py-4 text-gray-800">
+                          <td scope="col" className="px-4 py-4 text-gray-800">
 
                             {
                               index + 1
@@ -455,8 +455,8 @@ const MyLead = () => {
                             {console.log(currentItems, currentFilteredItems)}
                           </td>
 
-                          <td className="px-2 py-4 text-gray-800">{item?.Company}</td>
-                          <td className="px-6 py-4 text-gray-800">
+                          <td className="px-4 py-4 text-gray-800">{item?.Company}</td>
+                          <td className="px-4 py-4 text-gray-800">
                             {item?.FirstName} {item?.LastName}
                           </td>
 
@@ -480,7 +480,7 @@ const MyLead = () => {
                             </div>
                           </td>
 
-                          <td className="px-6 py-4 text-gray-800">
+                          <td className="px-4 py-4 text-gray-800">
                             {new Date(item?.createAt).toLocaleDateString("en-CA")}
                           </td>
 
@@ -490,12 +490,12 @@ const MyLead = () => {
                                   setCurrView(currView === index ? -1 : index);
 
                                 }}
-                                className="px-6 py-4 text-gray-800"
+                                className="px-4 py-4 text-gray-800"
                               >
                                 <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1746536583/actions_cwfbva.png" alt="" className="cursor-pointer" />
                               </td>
 
-                              {index === currView && (
+                              {currView === index && (
                                 <div ref={ref} className="absolute top-[-90px] min-w-[150px] h-fit border-t border-[#E3E3E3] flex flex-col shadow-[0_4px_12px_0px_#1A1A1A33] py-[8px] gap-[5px]  rounded-tr-none rounded-br-none rounded-bl-none z-[1000] bg-white right-[75px]">
                                   <div className="items-center w-full px-4  text-sm flex gap-2 text-gray-700 hover:bg-gray-100 cursor-pointer" onClick={() => navigate("/adminDash/editLead", { state: item })}>
 

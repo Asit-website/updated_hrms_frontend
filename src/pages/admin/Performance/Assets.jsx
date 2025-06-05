@@ -192,7 +192,7 @@ const Assets = () => {
             <div className="flex items-center gap-2">
               <h3 className="text-xl font-semibold">Assets</h3>
             </div>
-            <div className="flex items-center border border-gray-300 rounded-md px-4 py-2 w-full md:w-fit">
+            <div className="flex items-center border-2 border-[#D0D4DC] rounded-md px-4 py-2 w-full md:w-fit">
               <input
                 type="text"
                 value={assetSearch} onChange={(e) => setAssetSearch(e.target.value)}

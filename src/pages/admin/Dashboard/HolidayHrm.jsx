@@ -206,13 +206,13 @@ const HolidayHRM = () => {
                     placeholder="Search..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="w-full p-2 pl-4 text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out"
+                    className="w-full p-2 pl-4 text-gray-700 bg-white border-2 border-[#D0D4DC] rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out"
                   />
 
                 </div>
 
 
-                <div className="relative overflow-x-auto min-h-[250px] rounded-lg">
+                <div className="relative overflow-x-auto min-h-[250px] bg-grey rounded-xl border-2">
                   <table className="w-max lg:w-full text-sm text-left bg-white rounded-lg">
 
                     <thead className="bg-white font-semibold mb-[6px]">

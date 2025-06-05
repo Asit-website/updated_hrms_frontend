@@ -279,7 +279,7 @@ const EmployeeManagement = () => {
 
                     <div className="flex gap-[10px] items-center cursor-pointer">
 
-                      <input type="text" placeholder="Search..." className="border border-[#D0D4DC] w-[200px] px-2.5 h-[38px] rounded-[10px] mr-3" onChange={(e) => srchEmpFunction(e)} />
+                      <input type="text" placeholder="Search..." className="border-2 border-[#D0D4DC] w-[200px] px-2.5 h-[38px] rounded-[10px] mr-3" onChange={(e) => srchEmpFunction(e)} />
                     </div>
                   </div>
 
@@ -349,9 +349,9 @@ const EmployeeManagement = () => {
                               {
                                 index == currView &&
 
-                                <div ref={ref} className="absolute -top-[59px] min-w-[120px] border-t border-[#E3E3E3] flex flex-col shadow-[0_4px_12px_0_rgba(26,26,26,0.2)] py-2 gap-[5px] rounded-tl-[8px] z-[1000] bg-white right-[62px]">
-                                  {/* first  */}
-                                  <div onClick={() => navigate(role === "ADMIN" ? "/adminDash/EmployeeDetails" : "/employeeDash/EmployeeDetails", { state: item?._id })} className="flex gap-2 items-center px-2 cursor-pointer">
+                                <div ref={ref} className="absolute -top-[80px] min-w-[120px] border-t border-[#E3E3E3] flex flex-col shadow-[0_4px_12px_0_rgba(26,26,26,0.2)] py-2 gap-[5px] rounded-tl-[8px] z-[1000] bg-white right-[50px]">
+                              
+                                  <div onClick={() => navigate(role === "ADMIN" ? "/adminDash/EmployeeDetails" : "/employeeDash/EmployeeDetails", { state: item?._id })} className="items-center w-full px-4 py-1 text-sm flex gap-2 text-gray-700 hover:bg-gray-100 cursor-pointer">
 
                                     <FaRegEye className="text-[18px]" />
                                     <p className="text-left">View</p>
@@ -359,14 +359,14 @@ const EmployeeManagement = () => {
 
                                   <hr />
 
-                                  {/* second */}
+                                
                                   {
                                     (employeeManageEditPermission || role === "ADMIN") &&
 
                                     <div onClick={() => {
                                       navigate(role === "ADMIN" ? `/adminDash/EmployeeMan/${item._id}` : `/employeeDash/EmployeeMan/${item._id}`);
-                                    }} className="flex gap-3 items-center px-2 cursor-pointer">
-                                      {/* <img src={edit22} alt="" /> */}
+                                    }} className="items-center w-full px-4 py-1 text-sm flex gap-2 text-gray-700 hover:bg-gray-100 cursor-pointer">
+                                     
                                       <MdOutlineEdit className="text-[18px]" />
                                       <p className="text-left">Edit </p>
                                     </div>
@@ -375,14 +375,14 @@ const EmployeeManagement = () => {
 
                                   <hr />
 
-                                  {/* third */}
+                            
                                   {
                                     (employeeManageActivatePermission || role === "ADMIN") &&
 
                                     <div onClick={() => {
                                       deleteUser1(item?._id, item?.isDeactivated === "Yes");
-                                    }} className="flex gap-3 items-center px-2 cursor-pointer">
-                                      {/* <img src={deleted} alt="" /> */}
+                                    }} className="items-center w-full px-4 py-1 text-sm flex gap-2 text-red-600 hover:bg-red-100 cursor-pointer">
+                                    
                                       <MdDeleteOutline className="text-[18px]" />
                                       <p className="text-left "> {item?.isDeactivated === "Yes" ? "Activate" : "Deactivate"} </p>
                                     </div>

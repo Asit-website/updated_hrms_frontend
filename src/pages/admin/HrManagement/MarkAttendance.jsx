@@ -235,7 +235,6 @@ const MarkAttendance = () => {
 
   const [data, setData] = useState([]);
   const [data1, setData1] = useState({});
-  // const [users, setUsers] = useState([]);
   const [departments, setDepartments] = useState([]);
   const [allDash, setAllDash] = useState([]);
 
@@ -250,7 +249,6 @@ const MarkAttendance = () => {
 
   const [currentPage2, setCurrentPage2] = useState(1);
   const [editPop, setEditPop] = useState(false);
-
   const pageSize2 = 5;
 
   const handleNextPage = () => {
@@ -668,7 +666,7 @@ const MarkAttendance = () => {
 
                     <div className="flex items-center gap-[17px]">
 
-                      {selectedOption !== "monthly" && <div className="flex items-center h-[44px] px-4 py-2 gap-2 rounded-[10px] bg-white border-2 border-black justify-between">
+                      {selectedOption !== "monthly" && <div className="flex items-center h-[44px] px-4 py-2 gap-2 rounded-[10px] bg-white border-2 border-#D0D4DC justify-between">
                         <input
                           type="text"
                           value={searchTerm}
@@ -769,7 +767,7 @@ const MarkAttendance = () => {
                           
                         data-exclude="true"
                           >
-                            {/* <img src={moreVert} alt="" /> */}
+                         
                             <div
                               onClick={() => {
                                 if (showIndex === index) {
@@ -788,7 +786,8 @@ const MarkAttendance = () => {
                               showIndex === index && (
                                 <div ref={wrapperRef} onClick={() => {
                                   setEditform(item);
-                                  setEditPop(true)
+                                  setEditPop(true);
+                                    setShowIndex(null);
                                 }} className="flex gap-3 items-center bg-white p-[10px] rounded-[5px] absolute right-[65px] top-[-1px] shadow-md">
                                   <MdOutlineEdit className="cursor-pointer text-[20px]" />
                                   <span className="font-normal cursor-pointer">Update</span>

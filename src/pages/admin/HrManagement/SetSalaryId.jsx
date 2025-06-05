@@ -415,13 +415,23 @@ const SetSallary = () => {
     }
 
     const [showIndex, setShowIndex] = useState(null);
-
+   const [showCommisionAction, setShowCommisionAction] = useState(null);
+  
+    const [showLoanAction, setShowLoanAction] = useState(null);
     const popupwrapper = useRef();
     const popupallowance = useRef();
     const commisionpopwrapper = useRef();
     const loanpopupwrapper = useRef();
     const showupwrapper = useRef();
-
+      const showcommisionactionwrap = useRef();
+        
+    const showloanactionwrap = useRef();
+       useOutsideClick(showcommisionactionwrap, () => {
+        setShowCommisionAction(null)
+    })
+   useOutsideClick(showloanactionwrap, () => {
+        setShowLoanAction(null)
+    })
     useOutsideClick(showupwrapper, () => {
         setShowIndex(null)
     })
@@ -517,8 +527,7 @@ const SetSallary = () => {
                                             <div className="flex items-center
 ">
                                                 <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747481428/talent1_dyqojb.svg" alt="talent1" />
-                                                <h2 className="text-[16px] font-semibold ml-[10px]
-">Commission</h2>
+                                                <h2 className="text-[16px] font-semibold ml-[10px]">Commission</h2>
                                             </div>
                                             <div className="salary_head12">
                                                 <img className="cursor-pointer" onClick={() => {
@@ -567,20 +576,34 @@ const SetSallary = () => {
                                                                     <td className="px-6 py-4">{item?.type}</td>
                                                                     <td className="px-6 py-4">{item?.amount}</td>
                                                                     <td className="px-6 py-4">
-                                                                        <div className="flex items-center">
-                                                                            <img className="cursor-pointer" onClick={() => {
-                                                                                setShow2(true);
-                                                                                setIsCommisionEdit(item?._id);
-                                                                                setCommisionForm({
-                                                                                    title: item?.title,
-                                                                                    type: item?.type,
-                                                                                    amount: item?.amount
-                                                                                })
-                                                                            }} src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747481492/elo_rzi17s.svg" alt="elo" />
-                                                                            <img className="cursor-pointer" onClick={(e) => {
-                                                                                e.preventDefault();
-                                                                                deleteCommision(item?._id);
-                                                                            }} src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747481374/frema_ayb4lq.svg" alt="frema" />
+                                                                        <div className="relative">
+                                                                            <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747634200/acy_ah4jhd.svg" className="cursor-pointer" onClick={() => setShowCommisionAction(showCommisionAction === index ? null : index)} alt="action-btn" />
+                                                                            {
+                                                                                showCommisionAction === index && (
+                                                                                    <div ref={showcommisionactionwrap} className="p-2 absolute -top-12 w-[110px] bg-white  right-10 border border-gray-300 rounded-md">
+                                                                                        <div onClick={() => {
+                                                                                            setShow2(true);
+                                                                                            setIsCommisionEdit(item?._id);
+                                                                                            setCommisionForm({
+                                                                                                title: item?.title,
+                                                                                                type: item?.type,
+                                                                                                amount: item?.amount
+                                                                                            })
+                                                                                        }} className="flex items-center gap-2 p-1 cursor-pointer">
+                                                                                            <img className="cursor-pointer" src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747481492/elo_rzi17s.svg" alt="elo" />
+                                                                                            <span className="text-[12px]">Edit</span>
+                                                                                        </div>
+                                                                                        <hr />
+                                                                                        <div className="flex items-center gap-2 p-1 cursor-pointer" onClick={(e) => {
+                                                                                            e.preventDefault();
+                                                                                            deleteCommision(item?._id);
+                                                                                        }}>
+                                                                                            <img className="cursor-pointer" src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747481374/frema_ayb4lq.svg" alt="frema" />
+                                                                                            <span className="text-[12px]">Delete</span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                )
+                                                                            }
                                                                         </div>
                                                                     </td>
                                                                 </tr>
@@ -759,7 +782,7 @@ const SetSallary = () => {
                                                                     <td className="px-3 py-4">{item?.type}</td>
                                                                     <td className="px-3 py-4">{item?.loanAmount}</td>
                                                                     <td className="px-3 py-4">
-                                                                        <div className="flex items-center">
+                                                                        {/* <div className="flex items-center">
                                                                             <img className="cursor-pointer" onClick={() => {
                                                                                 setShow3(true);
                                                                                 setIsLoanEdit(item?._id);
@@ -775,6 +798,39 @@ const SetSallary = () => {
                                                                                 e.preventDefault();
                                                                                 deleteLoan(item?._id);
                                                                             }} src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747481374/frema_ayb4lq.svg" alt="frema" />
+                                                                        </div> */}
+                                                                         <div className="relative">
+                                                                            <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747634200/acy_ah4jhd.svg" className="cursor-pointer" alt="action-btn" onClick={() => setShowLoanAction(showLoanAction === index ? null : index)} />
+
+                                                                            {
+                                                                                showLoanAction === index && (
+                                                                                    <div ref={showloanactionwrap} className="p-2 absolute -top-12 w-[110px] bg-white  right-10 border border-gray-300 rounded-md">
+                                                                                        <div onClick={() => {
+                                                                                            setShow3(true);
+                                                                                            setIsLoanEdit(item?._id);
+                                                                                            setLoanForm({
+                                                                                                title: item?.title,
+                                                                                                type: item?.type,
+                                                                                                loanAmount: item?.loanAmount,
+                                                                                                reason: item?.reason,
+                                                                                                LoanOption: item?.LoanOption
+                                                                                            })
+                                                                                        }} className="flex items-center gap-2 p-1 cursor-pointer">
+                                                                                            <img className="cursor-pointer" src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747481492/elo_rzi17s.svg" alt="elo" />
+                                                                                            <span className="text-[12px]">Edit</span>
+                                                                                        </div>
+                                                                                        <hr />
+                                                                                        <div className="flex items-center gap-2 p-1 cursor-pointer" onClick={(e) => {
+                                                                                            e.preventDefault();
+                                                                                            deleteLoan(item?._id);
+                                                                                        }}>
+                                                                                            <img className="cursor-pointer" src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1747481374/frema_ayb4lq.svg" alt="frema" />
+                                                                                            <span className="text-[12px]">Delete</span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                )
+                                                                            }
+
                                                                         </div>
                                                                     </td>
                                                                 </tr>
@@ -1013,13 +1069,7 @@ const SetSallary = () => {
                                                 <h3 className="text-xl font-semibold basic_sel ">
                                                     Create Commission
                                                 </h3>
-                                                {/* <img className="cursor-pointer" onClick={() => {
-                                                    setShow2(false);
-                                                    setIsAllowEdit(null);
-                                                    setIsCommisionEdit(null);
-                                                    setIsLoanEdit(null);
-
-                                                }} src={oot} alt="oot" /> */}
+                                              
                                             </div>
                                             {/* Modal body */}
                                             <div className="p-4 md:p-5">

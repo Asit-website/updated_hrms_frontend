@@ -674,7 +674,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                 </div>
 
                 <div className="flex flex-col lg:flex-row w-full gap-[30px] py-5 px-0">
-                  <div className="max-w-[300px] w-full rounded-[12px] bg-white">
+                  <div className="max-w-[300px] w-full rounded-[12px] bg-white border border-[#E8E9EB] ">
                     {sidebarItem.map((item, index) => (
                       <div
                         key={index}
@@ -1312,7 +1312,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                         {/* Modal body */}
                         <div className="p-4 md:p-5 space-y-4">
                           <label className="block text-md font-normal mb-1">Name:</label>
-                          <input type="text" name="" id=""    className="w-full border rounded p-2 text-sm font-normal text-gray-500" />
+                          <input type="text" name="" id=""    className="w-full border rounded p-2 text-sm font-normal " />
                         
                         </div>
                         {/* Modal footer */}
@@ -1355,7 +1355,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
               <label className="block text-md font-normal mb-1">
                 <p className="popTitl text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em] py-2">Branch</p>
                 <input
-                   className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                   className="w-full border rounded p-2 text-sm font-normal"
                   type="text"
                   name="branch"
                   onChange={(e) => {
@@ -1367,11 +1367,11 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
               </label>
 
               <div className="w-full flex items-center gap-4 justify-start py-5">
-                <button className="w-[70px] h-[40px] rounded-[5px] bg-[#1566FF]" onClick={handleCreateBranch}>
-                  <span className="text-[#49515C] text-[16px] font-medium leading-[24px] tracking-[0.005em] text-left">Save</span>
+                <button className="w-[70px] h-[40px] rounded-[5px] bg-[#1566FF] text-white" onClick={handleCreateBranch}>
+                  <span className=" text-[16px] font-medium leading-[24px] tracking-[0.005em] text-left">Save</span>
                 </button>
 
-                <button className="w-[86px] h-10 rounded-[5px] opacity-50 border border-black" onClick={() => setPopup1(false)}>
+                <button className="w-[70px] h-[40px] rounded-[5px] bg-[#1566FF] text-white" onClick={() => setPopup1(false)}>
                   <span className="text-white text-[16px] font-medium leading-[24px] tracking-[0.005em] text-left">Cancel</span>
                 </button>
               </div>
@@ -1392,7 +1392,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                 <label className="block text-md font-normal mb-1">
                   <p className="popTitl text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em] py-2">Document Name</p>
                   <input
-                     className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                     className="w-full border rounded p-2 text-sm font-normal"
                     type="text"
                     name="name"
                     onChange={(e) => {
@@ -1433,7 +1433,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                 </button>
 
                 <button
-                  className="w-[86px] h-10 rounded-[5px] opacity-50 border border-black"
+                  className="w-[86px] h-[40px] rounded-[5px] bg-[#1566FF]"
                   onClick={() => {
                     setDocPop(false);
                     setIsUpdate(false);
@@ -1443,7 +1443,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                     });
                   }}
                 >
-                  <span className="text-[#49515C] text-[16px] font-medium leading-[24px] tracking-[0.005em] text-left">Cancel</span>
+                  <span className="text-white text-[16px] font-medium leading-[24px] tracking-[0.005em] text-left">Cancel</span>
                 </button>
               </div>
             </div>
@@ -1463,7 +1463,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
               <label htmlFor="" className="block text-md font-normal mb-1">
                 <p className="popTitl text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em] py-2">Name</p>
                 <input
-                   className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                   className="w-full border rounded p-2 text-sm font-normal"
                   type="text"
                   name="branch1"
                   onChange={(e) => {
@@ -1475,8 +1475,8 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
               </label>
 
               <div className="w-full flex items-center gap-4 justify-start py-5">
-                <button className="w-[86px] h-10 rounded-[5px] opacity-50 border border-black" onClick={() => setPopup11(false)}>
-                  <span className="text-[#49515C] text-[16px] font-medium leading-[24px] tracking-[0.005em] text-left">Cancel</span>
+                <button className="w-[86px] h-10 rounded-[5px] bg-[#1566FF]" onClick={() => setPopup11(false)}>
+                  <span className="text-white text-[16px] font-medium leading-[24px] tracking-[0.005em] text-left">Cancel</span>
                 </button>
 
                 <button className="w-[70px] h-[40px] rounded-[5px] bg-[#1566FF]" onClick={handleUpdateBranch}>
@@ -1498,7 +1498,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
               <hr />
 
               <select
-                 className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                 className="w-full border rounded p-2 text-sm font-normal "
                 value={departmentValue.branch}
                 onChange={(e) => {
                   setDepartmentValue({
@@ -1523,7 +1523,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
               <label className="block text-md font-normal mb-1">
                 <p className="popTitl text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em] py-2">Name</p>
                 <input
-                   className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                   className="w-full border rounded p-2 text-sm font-normal"
                   type="text"
                   name="department1"
                   value={departmentValue.name}
@@ -1538,8 +1538,8 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
               </label>
 
               <div className="w-full flex items-center gap-4 justify-start py-5">
-                <button className="w-[86px] h-10 rounded-[5px] opacity-50 border border-black" onClick={() => setPopup2(false)}>
-                  <span className="text-[#49515C] text-[16px] font-medium leading-[24px] tracking-[0.005em] text-left">Cancel</span>
+                <button className="w-[86px] h-10 rounded-[5px] bg-[#1566FF]" onClick={() => setPopup2(false)}>
+                  <span className="text-white text-[16px] font-medium leading-[24px] tracking-[0.005em] text-left">Cancel</span>
                 </button>
 
                 <button className="w-[70px] h-[40px] rounded-[5px] bg-[#1566FF]" onClick={handleCreateDepartment}>
@@ -1559,7 +1559,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
               </div>
               <hr />
               <select
-                 className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                 className="w-full border rounded p-2 text-sm font-normal "
                 value={departmentValue1.branch}
                 onChange={(e) => {
                   setDepartmentValue1({
@@ -1584,7 +1584,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
               <label className="block text-md font-normal mb-1">
                 <p className="popTitl text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em] py-2">Name</p>
                 <input
-                   className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                   className="w-full border rounded p-2 text-sm font-normal "
                   type="text"
                   name="department1"
                   value={departmentValue1.name}
@@ -1599,8 +1599,8 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
               </label>
 
               <div className="w-full flex items-center gap-4 justify-start py-5">
-                <button className="w-[86px] h-10 rounded-[5px] opacity-50 border border-black" onClick={() => setPopup21(false)}>
-                  <span className="text-[#49515C] text-[16px] font-medium leading-[24px] tracking-[0.005em] text-left">Cancel</span>
+                <button className="w-[86px] h-10 rounded-[5px] bg-[#1566FF]" onClick={() => setPopup21(false)}>
+                  <span className="text-white text-[16px] font-medium leading-[24px] tracking-[0.005em] text-left">Cancel</span>
                 </button>
 
                 <button className="w-[70px] h-[40px] rounded-[5px] bg-[#1566FF]" onClick={handleUpdateDepartment}>
@@ -1623,7 +1623,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
               <label className="block text-md font-normal mb-1">
                 <p className="popTitl text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em] py-2">Department</p>
                 <select
-                   className="selectBRANCH w-full border rounded p-2 text-sm font-normal text-gray-500"
+                   className="selectBRANCH w-full border rounded p-2 text-sm font-normal "
               
                   value={designationValue?.department}
                   onChange={(e) => {
@@ -1648,7 +1648,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
               <label htmlFor="" className="block text-md font-normal mb-1">
                 <p className="popTitl text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em] py-2">Name</p>
                 <input
-                                className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                className="w-full border rounded p-2 text-sm font-normal "
                   type="text"
                   placeholder="Enter Designation Name"
                   value={designationValue?.name}
@@ -1662,8 +1662,8 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
               </label>
 
               <div className="w-full flex items-center gap-4 justify-start py-5">
-                <button className="w-[86px] h-10 rounded-[5px] opacity-50 border border-black" onClick={() => setPopup3(false)}>
-                  <span className="text-[#49515C] text-[16px] font-medium leading-[24px] tracking-[0.005em] text-left">Cancel</span>
+                <button className="w-[86px] h-10 rounded-[5px] bg-[#1566FF]" onClick={() => setPopup3(false)}>
+                  <span className="text-white text-[16px] font-medium leading-[24px] tracking-[0.005em] text-left">Cancel</span>
                 </button>
 
                 <button className="w-[70px] h-[40px] rounded-[5px] bg-[#1566FF]" onClick={handleCreateDesignation}>
@@ -1686,7 +1686,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
               <label htmlFor="" className="block text-md font-normal mb-1">
                 <p className="popTitl text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em] py-2">Department</p>
                 <select
-              className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+              className="w-full border rounded p-2 text-sm font-normal "
                   value={designationValue1?.department}
                   onChange={(e) => {
                     setDesignationValue1({
@@ -1710,7 +1710,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
               <label htmlFor="" className="block text-md font-normal mb-1">
                 <p className="popTitl text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em] py-2">Name</p>
                 <input
-                 className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                 className="w-full border rounded p-2 text-sm font-normal "
                   type="text"
                   placeholder="Enter Designation Name"
                   value={designationValue1?.name}
@@ -1724,8 +1724,8 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
               </label>
 
               <div className="w-full flex items-center gap-4 justify-start py-5">
-                <button className="w-[86px] h-10 rounded-[5px] opacity-50 border border-black" onClick={() => setPopup31(false)}>
-                  <span className="text-[#49515C] text-[16px] font-medium leading-[24px] tracking-[0.005em] text-left">Cancel</span>
+                <button className="w-[86px] h-10 rounded-[5px] bg-[#1566FF]" onClick={() => setPopup31(false)}>
+                  <span className="text-white text-[16px] font-medium leading-[24px] tracking-[0.005em] text-left">Cancel</span>
                 </button>
 
                 <button className="w-[70px] h-[40px] rounded-[5px] bg-[#1566FF]" onClick={handleUpdateDesignation}>
@@ -1747,7 +1747,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
               <label htmlFor="" className="block text-md font-normal mb-1">
                 <p className="popTitl text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em] py-2">Leave Type</p>
                 <input
-                                className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                className="w-full border rounded p-2 text-sm font-normal "
                   type="text"
                   placeholder="Enter Leave Type Name"
                   name="name"
@@ -1764,7 +1764,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
               <label htmlFor="" className="block text-md font-normal mb-1">
                 <p className="popTitl text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em] py-2">Days Per Year</p>
                 <input
-                                className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                className="w-full border rounded p-2 text-sm font-normal "
                   type="text"
                   placeholder="Enter Days / Year"
                   name="days"
@@ -1779,8 +1779,8 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
               </label>
 
               <div className="w-full flex items-center gap-4 justify-start py-5">
-                <button className="w-[86px] h-10 rounded-[5px] opacity-50 border border-black" onClick={() => setPopup4(false)}>
-                  <span className="text-[#49515C] text-[16px] font-medium leading-[24px] tracking-[0.005em] text-left">Cancel</span>
+                <button className="w-[86px] h-10 rounded-[5px] bg-[#1566FF]" onClick={() => setPopup4(false)}>
+                  <span className="text-white text-[16px] font-medium leading-[24px] tracking-[0.005em] text-left">Cancel</span>
                 </button>
 
                 <button className="w-[70px] h-[40px] rounded-[5px] bg-[#1566FF]" onClick={handleCreateLeaveType}>
@@ -1803,7 +1803,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
               <label htmlFor="" className="block text-md font-normal mb-1">
                 <p className="popTitl text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em] py-2">Leave Type</p>
                 <input
-                                className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                className="w-full border rounded p-2 text-sm font-normal "
                   type="text"
                   placeholder="Enter Leave Type Name"
                   name="name"
@@ -1820,7 +1820,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
               <label htmlFor="" className="block text-md font-normal mb-1">
                 <p className="popTitl text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em] py-2">Days Per Year</p>
                 <input
-                                className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                className="w-full border rounded p-2 text-sm font-normal "
                   type="text"
                   placeholder="Enter Days / Year"
                   name="days"
@@ -1835,8 +1835,8 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
               </label>
 
               <div className="w-full flex items-center gap-4 justify-start py-5">
-                <button className="w-[86px] h-10 rounded-[5px] opacity-50 border border-black" onClick={() => setPopup41(false)}>
-                  <span className="text-[#49515C] text-[16px] font-medium leading-[24px] tracking-[0.005em] text-left">Cancel</span>
+                <button className="w-[86px] h-10 rounded-[5px] bg-[#1566FF]" onClick={() => setPopup41(false)}>
+                  <span className="text-white text-[16px] font-medium leading-[24px] tracking-[0.005em] text-left">Cancel</span>
                 </button>
 
                 <button className="w-[70px] h-[40px] rounded-[5px] bg-[#1566FF]" onClick={handleUpdateLeaveType}>
@@ -1859,7 +1859,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                 <p className="popTitl text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em] py-2">Lead Status</p>
 
                 <input
-                                className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                                className="w-full border rounded p-2 text-sm font-normal "
                   type="text"
                   placeholder="Enter Leave Type Name"
                   name="status"
@@ -1874,8 +1874,8 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
               </label>
 
               <div className="w-full flex items-center gap-4 justify-start py-5">
-                <button className="w-[86px] h-10 rounded-[5px] opacity-50 border border-black" onClick={() => setPopup5(false)}>
-                  <span className="text-[#49515C] text-[16px] font-medium leading-[24px] tracking-[0.005em] text-left">Cancel</span>
+                <button className="w-[86px] h-10 rounded-[5px] bg-[#1566FF]" onClick={() => setPopup5(false)}>
+                  <span className="text-white text-[16px] font-medium leading-[24px] tracking-[0.005em] text-left">Cancel</span>
                 </button>
 
                 <button className="w-[70px] h-[40px] rounded-[5px] bg-[#1566FF]" onClick={handleCreateLeadStatus}>
@@ -1898,7 +1898,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                 <p className="popTitl text-[#1B2533] text-[14px] font-normal leading-[20px] tracking-[0.0025em] py-2">Lead Source</p>
 
                 <input
-                 className="w-full border rounded p-2 text-sm font-normal text-gray-500"
+                 className="w-full border rounded p-2 text-sm font-normal "
                   type="text"
                   placeholder="Enter Leave Type Name"
                   name="status"
@@ -1913,8 +1913,8 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
               </label>
 
               <div className="w-full flex items-center gap-4 justify-start py-5">
-                <button className="w-[86px] h-10 rounded-[5px] opacity-50 border border-black" onClick={() => setPopup6(false)}>
-                  <span className="text-[#49515C] text-[16px] font-medium leading-[24px] tracking-[0.005em] text-left">Cancel</span>
+                <button className="w-[86px] h-10 rounded-[5px] bg-[#1566FF]" onClick={() => setPopup6(false)}>
+                  <span className="text-white text-[16px] font-medium leading-[24px] tracking-[0.005em] text-left">Cancel</span>
                 </button>
 
                 <button className="w-[70px] h-[40px] rounded-[5px] bg-[#1566FF]" onClick={handleCreateLeadSource}>
